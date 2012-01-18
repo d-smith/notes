@@ -106,3 +106,5 @@ Dune
 [Video](https://drive.google.com/file/d/1L60fdvgRLtxCZgltVfbkrOByc4ljDn-c/view)
 
 
+* group by
+* ehterscan.io for transaction details when investigating transactions, e.g. GALA currency
