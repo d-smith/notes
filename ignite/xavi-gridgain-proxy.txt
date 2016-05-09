@@ -8,3 +8,12 @@ Example xavi config for proxying a 3 node grid gain cluster
 ./xavi add-listener -name ignite-listener -routes ignite-route
 
 ./xavi listen -ln ignite-listener -address 0.0.0.0:9090
+
+
+Access like this:
+
+curl 'localhost:9090/ignite?cmd=put&key=b&val=12345&cacheName=xtSessionCache'
+{"affinityNodeId":"1487debc-ae35-441b-a251-2e2fdc20f08c","error":"","response":true,"sessionToken":"","successStatus":0}
+
+curl 'localhost:9090/ignite?cmd=get&key=b&cacheName=xtSessionCache'
+{"affinityNodeId":"1487debc-ae35-441b-a251-2e2fdc20f08c","error":"","response":"12345","sessionToken":"","successStatus":0}
