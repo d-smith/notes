@@ -1,0 +1,10 @@
+Example xavi config for proxying a 3 node grid gain cluster
+
+./xavi add-server -address 192.168.1.101 -port 8080 -name ignite1
+./xavi add-server -address 192.168.1.102 -port 8080 -name ignite2
+./xavi add-server -address 192.168.1.103 -port 8080 -name ignite3
+./xavi add-backend -name ignite-backend -servers ignite1,ignite2,ignite3
+./xavi add-route -name ignite-route -backends ignite-backend -base-uri /ignite -plugins Timing,Recovery
+./xavi add-listener -name ignite-listener -routes ignite-route
+
+./xavi listen -ln ignite-listener -address 0.0.0.0:9090
