@@ -1,0 +1,5 @@
+Adoption strategies - see http://thenewstack.io/adopting-containers-enterprise/
+
+Why containers? - see http://www.zdnet.com/article/what-is-docker-and-why-is-it-so-darn-popular/
+
+And... https://www.docker.com/what-docker
