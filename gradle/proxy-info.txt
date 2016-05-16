@@ -1,0 +1,11 @@
+When running gradle behind a proxy, use the -Dhttps.proxyHost and
+-Dhttps.proxyPort system property definitions on the command line.
+
+Note that gradlew doesn't pick these up on the command line -- you need
+to create a gradle.properties file in the project directory or a global one
+under $HOME/.gradle with the following:
+
+systemProp.https.proxyHost=www.somehost.org
+systemProp.https.proxyPort=8080
+
+
