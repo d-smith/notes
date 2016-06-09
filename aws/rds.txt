@@ -1,3 +1,7 @@
 Connect to a postgres RDS running psql via docker
 
 docker run -it --rm postgres psql -h <endpoint host> -U <master user> -d <dbname>
+
+Troubleshoot connectivity to the instance:
+
+nc -zv <add> <port>
