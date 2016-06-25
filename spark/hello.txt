@@ -1,0 +1,11 @@
+scala> val licLines = sc.textFile("LICENSE")
+licLines: org.apache.spark.rdd.RDD[String] = LICENSE MapPartitionsRDD[3] at textFile at <console>:27
+
+scala> val lineCnt = licLines.count
+lineCnt: Long = 294
+
+scala> val bsdLines = licLines.filter(line => line.contains("BSD"))
+bsdLines: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[4] at filter at <console>:29
+
+scala> bsdLines.count
+res1: Long = 34
