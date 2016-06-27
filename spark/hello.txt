@@ -9,3 +9,34 @@ bsdLines: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[4] at filter at <c
 
 scala> bsdLines.count
 res1: Long = 34
+
+scala> bsdLines.foreach(println)
+...
+
+val numbers = sc.parallelize(10 to 50 by 10)
+numbers.foreach(println)
+val numbersSquared = numbers.map(x => x*x)
+numbersSquared.foreach(println)
+
+MACLB015803:spark a045103$ cat client-ids.log 
+15,16,20,20
+77,80,94
+94,98,16,31
+31,15,20
+
+ 29  val lines = sc.textFile("client-ids.log")
+ 30  val idsStr = lines.map(line => line.split(","))
+ 31  idsStr
+ 32  idsStr.foreach(println)
+ 33  idsStr.first
+ 34  idsStr.collect
+ 35  val ids = lines.flatMap(_.split(","))
+ 36  ids.collect
+ 37  ids.collect.mkstring("; ")
+ 38  ids.collect.mkString("; ")
+ 39  val intIds = ids.map(_.toInt)
+ 40  intIds.collect
+ 41  :history
+ 42  val uniqueIds = intIds.distinct
+ 43  uniqueIds.collect
+
