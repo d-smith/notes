@@ -24,19 +24,19 @@ MACLB015803:spark a045103$ cat client-ids.log
 94,98,16,31
 31,15,20
 
- 29  val lines = sc.textFile("client-ids.log")
- 30  val idsStr = lines.map(line => line.split(","))
- 31  idsStr
- 32  idsStr.foreach(println)
- 33  idsStr.first
- 34  idsStr.collect
- 35  val ids = lines.flatMap(_.split(","))
- 36  ids.collect
- 37  ids.collect.mkstring("; ")
- 38  ids.collect.mkString("; ")
- 39  val intIds = ids.map(_.toInt)
- 40  intIds.collect
- 41  :history
- 42  val uniqueIds = intIds.distinct
- 43  uniqueIds.collect
+val lines = sc.textFile("client-ids.log")
+val idsStr = lines.map(line => line.split(","))
+idsStr
+idsStr.foreach(println)
+idsStr.first
+idsStr.collect
+val ids = lines.flatMap(_.split(","))
+ids.collect
+ids.collect.mkstring("; ")
+ids.collect.mkString("; ")
+val intIds = ids.map(_.toInt)
+intIds.collect
+:history
+val uniqueIds = intIds.distinct
+uniqueIds.collect
 
