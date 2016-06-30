@@ -22,3 +22,20 @@ program or to perform some actions against an RDD's elements
 
 Trasformations are evaluated lazily - they are not triggered until needed for some
 action
+
+Some transformations:
+
+* filter
+* map
+* distinct
+* flatMap - like map except it returns the results with one less level of nesting than received
+
+Actions
+
+* collect
+
+
+Stats 
+
+* sample, take, takeSample
+* mean, sum (implicits on double collections)

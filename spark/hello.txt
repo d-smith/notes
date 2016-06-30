@@ -39,4 +39,6 @@ intIds.collect
 :history
 val uniqueIds = intIds.distinct
 uniqueIds.collect
+intIds.mean
+intIds.sum
 
