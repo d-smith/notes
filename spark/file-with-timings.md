@@ -305,12 +305,27 @@ res21: String = ""time=""2016-07-01T15:22:58-04:00"" level=info msg=""request fo
 Next like is
 
 <pre>
-scala> println(all(401))
-{""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls"":[{""Name"":""Core-Correspondence-RetrieveCorrList"",""Endpoint"":""vc2coma2078845n.fmr.com:11000"",""Duration"":15827710,""Error"":""""}]}],""ErrorFree"":true,""Error"":""""}"
+scala> all(400)
+res17: String = ""-9223372036261114702","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","199","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET"" "
 
-scala> println(parts(12))
-"time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET""
+scala> all(401)
+res18: String = {""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls""...
+scala> isFullRecord(all(400))
+res19: Boolean = false
+
+scala> isFullRecord(all(401))
+res20: Boolean = true
+
+scala> all(402)
+res21: String = ""-9223372036261114701","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" "
+
+scala> val rm = all(401)
+rm: String = {""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls"":[{...
+
+scala> println(rm.replace("\"\"","\""))
+{"Name":"xtracApi-GET-work-items-communications","Tags":{"aud":"a79fcb28-2621-4973-8a1e-c09a2ab30f79","jti":"02fe5ff1-c242-4d18-ac7e-73166de395df","sub":"XWHRon"},"Duration":26214800,"time":"2016-07-01T15:22:58.28056338-04:00","TxnId":"181c575a-ef8c-4468-76e3-3c95ff3a5e4b","Contributors":[{"Name":"JWT Authentication plugin","Duration":26140303,"Error":"","ServiceCalls":null},{"Name":"Whitelist plugin","Duration":25868003,"Error":"","ServiceCalls":null},{"Name":"Session Management plugin","Duration":25861260,"Error":"","ServiceCalls":null},{"Name":"REST plugin","Duration":18186430,"Error":"","ServiceCalls":null},{"Name":"workflow-backend","Duration":15897375,"Error":"","ServiceCalls":[{"Name":"Core-Correspondence-RetrieveCorrList","Endpoint":"vc2coma2078845n.fmr.com:11000","Duration":15827710,"Error":""}]}],"ErrorFree":true,"Error":""}"
 </pre>
 
-
+Note the end quote (") needs to be stripped, plus in general the message could have lots of 
+lines (like statsd data).
 
