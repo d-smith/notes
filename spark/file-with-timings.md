@@ -329,3 +329,6 @@ scala> println(rm.replace("\"\"","\""))
 Note the end quote (") needs to be stripped, plus in general the message could have lots of 
 lines (like statsd data).
 
+Implement a custom input reader - see
+https://shrikantbang.wordpress.com/2013/10/22/hadoop-custom-input-format/
+
