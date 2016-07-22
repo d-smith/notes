@@ -1,0 +1,71 @@
+vagrant@vagrant-ubuntu-trusty-64:~$ history
+    1  ls
+    2  ls /vagrant
+    3  sudo mkdir -p /opt/oracle/instantclient_12_1
+    4  cd /opt/oracle/instantclient_12_1
+    5  ls
+    6  sudo cp /vagrant/*.zip .
+    7  ls
+    8  unzip instantclient-basic-linux.x64-12.1.0.2.0.zip 
+    9  sudo apt-get install unzip
+   10  ls
+   11  sudo unzip instantclient-basic-linux.x64-12.1.0.2.0.zip 
+   12  sudo unzip instantclient-sdk-linux.x64-12.1.0.2.0.zip 
+   13  ls
+   14  cd instantclient_12_1/
+   15  ls
+   16  cd sdk
+   17  ls
+   18  cd ..
+   19  ls
+   20  more BASIC_README 
+   21  pwd
+   22  ls
+   23  cd ..
+   24  pwd
+   25  ls
+   26  cp /vagrant/instantclient-sqlplus-linux.x64-12.1.0.2.0.zip .
+   27  sudo cp /vagrant/instantclient-sqlplus-linux.x64-12.1.0.2.0.zip .
+   28  ls
+   29  sudo unzip instantclient-sqlplus-linux.x64-12.1.0.2.0.zip 
+   30  ls
+   31  cd instantclient_12_1/
+   32  ls
+   33  ./sqlplus 
+   34  ls
+   35  ln -s libclntsh.so.12.1 libclntsh.so
+   36  sudo ln -s libclntsh.so.12.1 libclntsh.so
+   37  sudo ln -s libocci.so.12.1 libocci.so
+   38  export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1:$LD_LIBRARY_PATH
+   39  export PATH=/opt/oracle/instantclient_12_1:$PATH
+   40  sqlplus
+   41  ls /opt/oracle/instantclient_12_1
+   42  pwd
+   43  ls
+   44  pwd
+   45  cd ..
+   46  pwd
+   47  cd ..
+   48  pwd
+   49  ls
+   50  sudo mv instantclient_12_1/ foo
+   51  ls
+   52  sudo mv foo/instantclient_12_1/ .
+   53  ls
+   54  rmdir foo
+   55  cd foo
+   56  ls
+   57  cd ..
+   58  sudo rm -rf foo
+   59  ls
+   60  sqlplus
+   61  ls
+   62  cd instantclient_12_1/
+   63  ls
+   64  sudo apt-get install libaio1 libaio-dev
+   65  sqlplus
+   66  sqlplus xwfusr/xwfusr@xddv1covd.fmr.com:1521/XWFDI1C_APP
+   67  export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1:$LD_LIBRARY_PATH
+   68  export PATH=/opt/oracle/instantclient_12_1:$PATH
+   69  sqlplus xwfusr/xwfusr@xddv1covd.fmr.com:1521/XWFDI1C_APP
+   70  history

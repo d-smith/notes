@@ -1,0 +1,800 @@
+Introduction to Kinesis Firehose - https://qwiklabs.com/focuses/2378
+
+Cloud formation template used for set up.
+
+Firehose...
+
+* Create delivery stream
+* Destination - redshift
+
+AWS Intro Series - Introduction to Amazon Redshift - 1.0.1
+spl86-intro-redshift
+==================================================================================================================
+
+Using this command reference. 
+
+==================================================================================================================
+1. Locate the section you need. Each section in this file matches a section in the lab instructions.
+
+2. Replace items in angle brackets - < > - with appropriate values. 
+   For example, in this command you would replace the value - <JobFlowID> - (including the brackets) with the parameter indicated in the lab instructions: 
+   elastic-mapreduce --list <JobFlowID>
+
+3. Do NOT enable the Word Wrap feature in Windows Notepad or the text editor you use to view this file.
+
+==================================================================================================================
+Create a test database table
+==================================================================================================================
+
+create table users( userid integer not null distkey sortkey, username char(8), firstname varchar(30), lastname varchar(30), city varchar(30), state char(2), email varchar(100), phone char(14), likesports boolean, liketheatre boolean, likeconcerts boolean, likejazz boolean, likeclassical boolean, likeopera boolean, likerock boolean, likevegas boolean, likebroadway boolean, likemusicals boolean);
+
+==================================================================================================================
+
+==================================================================================================================
+Load sample data from S3 into your test database table
+==================================================================================================================
+
+copy users from '<S3-SampleDB-link>' CREDENTIALS 'aws_access_key_id=<Access Key Id>;aws_secret_access_key=<Secret Access Key>' delimiter '|';
+
+==================================================================================================================
+
+
+Sample Import data 
+
+1|JSG99FHE|Rafael|Taylor|Kent|WA|Etiam.laoreet.libero@sodalesMaurisblandit.edu|(664) 602-4412|TRUE|TRUE||FALSE|TRUE|||TRUE|FALSE|TRUE
+2|PGL08LJI|Vladimir|Humphrey|Murfreesboro|SK|Suspendisse.tristique@nonnisiAenean.edu|(783) 492-1886||||TRUE|TRUE|||TRUE|FALSE|TRUE
+3|IFT66TXU|Lars|Ratliff|High Point|ME|amet.faucibus.ut@condimentumegetvolutpat.ca|(624) 767-2465|TRUE|FALSE||FALSE||FALSE|TRUE|||TRUE
+4|XDZ38RDD|Barry|Roy|Omaha|AB|sed@lacusUtnec.ca|(355) 452-8168|FALSE|TRUE||FALSE||||||FALSE
+5|AEB55QTM|Reagan|Hodge|Forest Lake|NS|Cum@accumsan.com|(476) 519-9131|||TRUE|FALSE|||TRUE|TRUE|FALSE|TRUE
+6|NDQ15VBM|Victor|Hernandez|Naperville|GA|turpis@accumsanlaoreet.org|(818) 765-4255|FALSE|||TRUE||TRUE|TRUE|TRUE|TRUE|TRUE
+7|OWY35QYB|Tamekah|Juarez|Moultrie|WV|elementum@semperpretiumneque.ca|(297) 875-7247||||TRUE|TRUE|FALSE|||FALSE|FALSE
+8|AZG78YIP|Colton|Roy|Guayama|AK|ullamcorper.nisl@Cras.edu|(998) 934-9210|||TRUE|TRUE||TRUE|FALSE||FALSE|FALSE
+9|MSD36KVR|Mufutau|Watkins|Port Orford|MD|Integer.mollis.Integer@tristiquealiquet.org|(725) 719-7670|TRUE|FALSE||FALSE|TRUE||||FALSE|TRUE
+10|WKW41AIW|Naida|Calderon|Waterbury|MB|Donec.fringilla@sodalesat.org|(197) 726-8249|FALSE|FALSE|FALSE||FALSE|TRUE||TRUE||
+
+==================================================================================================================
+
+
+Query an Amazon Redshift Database From an External Client
+
+==================================================================================================================
+
+SELECT * from users;
+
+
+SELECT userid,firstname,lastname,city,likesports from users where likesports = 'true' order by firstname;
+
+
+ï¿½ 2016 Amazon Web Services, Inc. or its affiliates. All rights reserved.
+
+
+Template
+
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AWS CloudFormation Sample Template RedshiftClusterInVpc: Create an Amazon Redshift cluster in an Amazon Virtual Private Cloud (VPC). **WARNING** This template creates Amazon Redshift Cluster. You will be billed for the AWS resources used if you create a stack from this template. ",
+  "Parameters": {
+    "AWSAmiId": {
+      "Default": "x86_64,amzn-ami-hvm-2015.09.1.x86_64-gp2,amazon,ebs,hvm",
+      "Type": "String"
+    },
+    "KeyName": {
+      "Default": "quiklabskey",
+      "Type": "AWS::EC2::KeyPair::KeyName"
+    }
+  },
+  "Resources": {
+    "RedshiftCluster": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "ClusterType": "single-node",
+        "NodeType": "dc1.large",
+        "DBName": "firehosedb",
+        "MasterUsername": "xxx",
+        "MasterUserPassword": "yyy",
+        "ClusterParameterGroupName": {
+          "Ref": "RedshiftClusterParameterGroup"
+        },
+        "VpcSecurityGroupIds": [
+          {
+            "Ref": "SecurityGroup"
+          }
+        ],
+        "ClusterSubnetGroupName": {
+          "Ref": "RedshiftClusterSubnetGroup"
+        },
+        "PubliclyAccessible": "true"
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "fde027dc-b4da-4b5e-83a3-6de2c1396e65"
+        }
+      }
+    },
+    "RedshiftClusterParameterGroup": {
+      "Type": "AWS::Redshift::ClusterParameterGroup",
+      "Properties": {
+        "Description": "Cluster paraeter group",
+        "ParameterGroupFamily": "redshift-1.0",
+        "Parameters": [
+          {
+            "ParameterName": "enable_user_activity_logging",
+            "ParameterValue": "true"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "c95f7f1d-1271-4176-b5a3-6f44d7c2119a"
+        }
+      }
+    },
+    "RedshiftClusterSubnetGroup": {
+      "Type": "AWS::Redshift::ClusterSubnetGroup",
+      "Properties": {
+        "Description": "Cluster subnet group",
+        "SubnetIds": [
+          {
+            "Ref": "Subnet"
+          },
+          {
+            "Ref": "BackupSubnet"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "8566eac6-0f2c-4982-8542-f06c8b3dd183"
+        }
+      }
+    },
+    "VPC": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": "true",
+        "EnableDnsSupport": "true"
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "64d42a14-9035-4253-a7d7-972101277267"
+        }
+      }
+    },
+    "Subnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            "0",
+            {
+              "Fn::GetAZs": {
+                "Ref": "AWS::Region"
+              }
+            }
+          ]
+        },
+        "CidrBlock": "10.0.0.0/24",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "8ec99f94-512e-4a3f-874e-023f483dbb92"
+        }
+      }
+    },
+    "BackupSubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": {
+          "Fn::Select": [
+            "1",
+            {
+              "Fn::GetAZs": {
+                "Ref": "AWS::Region"
+              }
+            }
+          ]
+        },
+        "CidrBlock": "10.0.1.0/24",
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "8ec99f94-512e-4a3f-874e-023f483dbb92"
+        }
+      }
+    },
+    "SecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security group",
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "5439",
+            "ToPort": "5439",
+            "IpProtocol": "tcp"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "385ee8b8-5005-4e67-aad6-cc2f3978922a"
+        }
+      }
+    },
+    "I6TA8": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Ref": "AWSAmiId"
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "NetworkInterfaces": [
+          {
+            "AssociatePublicIpAddress": "true",
+            "DeleteOnTermination": "true",
+            "DeviceIndex": "0",
+            "GroupSet": [
+              {
+                "Ref": "SecurityGroup"
+              }
+            ],
+            "SubnetId": {
+              "Ref": "Subnet"
+            }
+          }
+        ],
+        "IamInstanceProfile": {
+          "Ref": "IAMIP5465L"
+        },
+        "InstanceType": "t2.micro",
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/bin/bash -v\n",
+                "yum update -y\n",
+                "yum install -y postgresql-server aws-kinesis-agent\n",
+                "echo \"*:*:*:root:Master123\" > /home/ec2-user/.pgpass\n",
+                "echo \"*:*:*:root:Master123\" > /root/.pgpass\n",
+                "chmod 0600 /root/.pgpass\n",
+                "chmod 0600 /home/ec2-user/.pgpass\n",
+                "chown ec2-user:ec2-user /home/ec2-user/.pgpass\n",
+                "echo \"create table if not exists cities(cityid integer not null,city varchar(100) not null,state char(2) not null);\" > /home/ec2-user/create.sql\n",
+                "chown ec2-user:ec2-user /home/ec2-user/create.sql\n",
+                "psql -h ",
+                {
+                  "Fn::GetAtt": [
+                    "RedshiftCluster",
+                    "Endpoint.Address"
+                  ]
+                },
+                " -U root -d firehosedb -p 5439 < /home/ec2-user/create.sql\n",
+                "cat /dev/null > /etc/aws-kinesis/agent.json\n",
+                "echo \"{\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"  \\\"cloudwatch.emitMetrics\\\": true,\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"  \\\"kinesis.endpoint\\\": \\\"\\\",\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"  \\\"firehose.endpoint\\\": \\\"firehose.us-east-1.amazonaws.com\\\",\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"  \\\"flows\\\": [\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"    {\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"      \\\"filePattern\\\": \\\"/tmp/app.log*\\\",\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"      \\\"kinesisStream\\\": \\\"mystream\\\",\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"      \\\"partitionKeyOption\\\": \\\"RANDOM\\\"\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"    },\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"    {\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"      \\\"filePattern\\\": \\\"/tmp/app.log*\\\",\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"     \\\"deliveryStream\\\": \\\"mystream\\\"\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"   }\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"  ]\" >> /etc/aws-kinesis/agent.json\n",
+                "echo \"}\" >> /etc/aws-kinesis/agent.json\n",
+                "touch /tmp/app.log\n",
+                "chown ec2-user:ec2-user /tmp/app.log\n",
+                "service aws-kinesis-agent start\n",
+                "# All is well so signal success\n",
+                "/opt/aws/bin/cfn-signal -e 0 -r \"Server setup complete\" '", { "Ref" : "myWaitHandle" }, "'\n"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "a9e5a8e0-965a-4abd-94f3-4e56563b911e"
+        }
+      },
+      "DependsOn": [
+        "RedshiftCluster"
+      ]
+    },
+    "myWaitHandle" : {
+        "Type" : "AWS::CloudFormation::WaitConditionHandle",
+        "Properties" : {
+        }
+    },
+    "myWaitCondition" : {
+        "Type" : "AWS::CloudFormation::WaitCondition",
+        "DependsOn" : "I6TA8",
+        "Properties" : {
+            "Handle" : { "Ref" : "myWaitHandle" },
+            "Timeout" : "500"
+        }
+    },
+    "IAMIP5465L": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Path": "/",
+        "Roles": [
+          {
+            "Ref": "IAMRM9E8"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "e32f149a-fff8-4cc5-88e7-71a379f01cef"
+        }
+      }
+    },
+    "IAMRM9E8": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "ec2.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "qwiklabsrole",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                    "Action": [
+                        "firehose:*",
+                        "cloudwatch:*",
+                        "kinesis:*"
+                    ],
+                    "Resource": [
+                        "*"
+                  ]
+                }                
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "7be3d2e6-0128-4ea7-af88-54ece15d1f47"
+        }
+      }
+    },
+    "IGW1T08": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Application",
+            "Value": {
+              "Ref": "AWS::StackName"
+            }
+          },
+          {
+            "Key": "Description",
+            "Value": "Lab Internet Gateway"
+          },
+          {
+            "Key": "Environment",
+            "Value": "qwikLABS"
+          },
+          {
+            "Key": "Name",
+            "Value": "qwikLABSInternetGateway"
+          }
+        ]
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        }
+      }
+    },
+    "RT2XJCB": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Application",
+            "Value": {
+              "Ref": "AWS::StackName"
+            }
+          },
+          {
+            "Key": "Description",
+            "Value": "Lab Route Table"
+          },
+          {
+            "Key": "Environment",
+            "Value": "qwikLABS"
+          },
+          {
+            "Key": "Name",
+            "Value": "qwikLABSInternalRouteTable"
+          }
+        ],
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "62037bb9-8e38-4f39-9bda-22e1634d00f6"
+        }
+      }
+    },
+    "SUBRTE1BWQN": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RT2XJCB"
+        },
+        "SubnetId": {
+          "Ref": "Subnet"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "feeaec59-9c9d-4348-8077-be0b8ec54c5b"
+        }
+      }
+    },
+    "SUBRTE1BWQNbackup": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RT2XJCB"
+        },
+        "SubnetId": {
+          "Ref": "BackupSubnet"
+        }
+      }
+    },
+    "RTE58Q8D": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "RT2XJCB"
+        },
+        "GatewayId": {
+          "Ref": "IGW1T08"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "ec92ec09-9ff4-46f5-bb22-8c081d038b94"
+        }
+      }
+    },
+    "VGWA2HBTB": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "InternetGatewayId": {
+          "Ref": "IGW1T08"
+        },
+        "VpcId": {
+          "Ref": "VPC"
+        }
+      },
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "7651d7b2-d4cc-44b0-af65-f4ae8252b629"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ClusterEndpoint": {
+      "Description": "Endpoint for the newly created RedShift cluster",
+      "Value": {
+        "Fn::Join": [
+          ":",
+          [
+            {
+              "Fn::GetAtt": [
+                "RedshiftCluster",
+                "Endpoint.Address"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
+                "RedshiftCluster",
+                "Endpoint.Port"
+              ]
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "64d42a14-9035-4253-a7d7-972101277267": {
+        "size": {
+          "width": 1050,
+          "height": 750
+        },
+        "position": {
+          "x": 40,
+          "y": 130
+        },
+        "z": 1,
+        "embeds": [
+          "62037bb9-8e38-4f39-9bda-22e1634d00f6",
+          "385ee8b8-5005-4e67-aad6-cc2f3978922a",
+          "8ec99f94-512e-4a3f-874e-023f483dbb92"
+        ]
+      },
+      "385ee8b8-5005-4e67-aad6-cc2f3978922a": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 430,
+          "y": 280
+        },
+        "z": 2,
+        "parent": "64d42a14-9035-4253-a7d7-972101277267",
+        "embeds": []
+      },
+      "8ec99f94-512e-4a3f-874e-023f483dbb92": {
+        "size": {
+          "width": 150,
+          "height": 210
+        },
+        "position": {
+          "x": 610,
+          "y": 190
+        },
+        "z": 2,
+        "parent": "64d42a14-9035-4253-a7d7-972101277267",
+        "embeds": [
+          "a9e5a8e0-965a-4abd-94f3-4e56563b911e"
+        ]
+      },
+      "8566eac6-0f2c-4982-8542-f06c8b3dd183": {
+        "size": {
+          "width": 210,
+          "height": 210
+        },
+        "position": {
+          "x": 510,
+          "y": 90
+        },
+        "z": 1,
+        "embeds": [
+          "fde027dc-b4da-4b5e-83a3-6de2c1396e65"
+        ],
+        "isconnectedto": [
+          "8ec99f94-512e-4a3f-874e-023f483dbb92"
+        ]
+      },
+      "c95f7f1d-1271-4176-b5a3-6f44d7c2119a": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 510,
+          "y": 360
+        },
+        "z": 1,
+        "embeds": []
+      },
+      "fde027dc-b4da-4b5e-83a3-6de2c1396e65": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 540,
+          "y": 150
+        },
+        "z": 2,
+        "parent": "8566eac6-0f2c-4982-8542-f06c8b3dd183",
+        "embeds": [],
+        "ismemberof": [
+          "385ee8b8-5005-4e67-aad6-cc2f3978922a",
+          "c95f7f1d-1271-4176-b5a3-6f44d7c2119a"
+        ]
+      },
+      "a9e5a8e0-965a-4abd-94f3-4e56563b911e": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 670,
+          "y": 280
+        },
+        "z": 3,
+        "parent": "8ec99f94-512e-4a3f-874e-023f483dbb92",
+        "embeds": [],
+        "ismemberof": [
+          "385ee8b8-5005-4e67-aad6-cc2f3978922a"
+        ],
+        "dependson": [
+          "fde027dc-b4da-4b5e-83a3-6de2c1396e65"
+        ],
+        "isrelatedto": [
+          "7be3d2e6-0128-4ea7-af88-54ece15d1f47",
+          "385ee8b8-5005-4e67-aad6-cc2f3978922a",
+          "e32f149a-fff8-4cc5-88e7-71a379f01cef",
+          "fde027dc-b4da-4b5e-83a3-6de2c1396e65"
+        ]
+      },
+      "e32f149a-fff8-4cc5-88e7-71a379f01cef": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 180,
+          "y": 180
+        },
+        "z": 1,
+        "embeds": [],
+        "isassociatedwith": [
+          "7be3d2e6-0128-4ea7-af88-54ece15d1f47"
+        ]
+      },
+      "7be3d2e6-0128-4ea7-af88-54ece15d1f47": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 150,
+          "y": 270
+        },
+        "z": 1,
+        "embeds": []
+      },
+      "e5ff6ff6-b3c2-4a53-a128-b460644d574a": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 280,
+          "y": 340
+        },
+        "z": 3,
+        "parent": "62037bb9-8e38-4f39-9bda-22e1634d00f6",
+        "embeds": []
+      },
+      "62037bb9-8e38-4f39-9bda-22e1634d00f6": {
+        "size": {
+          "width": 330,
+          "height": 240
+        },
+        "position": {
+          "x": 250,
+          "y": 310
+        },
+        "z": 2,
+        "parent": "64d42a14-9035-4253-a7d7-972101277267",
+        "embeds": [
+          "e5ff6ff6-b3c2-4a53-a128-b460644d574a",
+          "ec92ec09-9ff4-46f5-bb22-8c081d038b94"
+        ]
+      },
+      "7e06a2b9-1659-4dee-9be9-056fe8840041": {
+        "source": {
+          "id": "56996b2d-921b-45d3-b95a-066a7b2986bd"
+        },
+        "target": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        },
+        "z": 11
+      },
+      "8128b9f4-85b7-475c-9b7d-55c4efb4ecb8": {
+        "source": {
+          "id": "56996b2d-921b-45d3-b95a-066a7b2986bd"
+        },
+        "target": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        },
+        "z": 11
+      },
+      "6b42bffa-59af-468c-ab03-fc5b4b843f82": {
+        "source": {
+          "id": "56996b2d-921b-45d3-b95a-066a7b2986bd",
+          "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(5) circle:nth-child(1)     ",
+          "port": "AWS::DependencyLink-*"
+        },
+        "target": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        },
+        "z": 13
+      },
+      "feeaec59-9c9d-4348-8077-be0b8ec54c5b": {
+        "source": {
+          "id": "62037bb9-8e38-4f39-9bda-22e1634d00f6"
+        },
+        "target": {
+          "id": "8ec99f94-512e-4a3f-874e-023f483dbb92"
+        },
+        "z": 2
+      },
+      "ec92ec09-9ff4-46f5-bb22-8c081d038b94": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 420,
+          "y": 450
+        },
+        "z": 3,
+        "parent": "62037bb9-8e38-4f39-9bda-22e1634d00f6",
+        "embeds": [],
+        "references": [
+          "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        ]
+      },
+      "c3ca6217-2eb6-4b4b-b8ba-0472665e2b9a": {
+        "source": {
+          "id": "ec92ec09-9ff4-46f5-bb22-8c081d038b94"
+        },
+        "target": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        },
+        "z": 11
+      },
+      "7651d7b2-d4cc-44b0-af65-f4ae8252b629": {
+        "source": {
+          "id": "e5ff6ff6-b3c2-4a53-a128-b460644d574a"
+        },
+        "target": {
+          "id": "64d42a14-9035-4253-a7d7-972101277267"
+        },
+        "z": 3
+      }
+    }
+  }
+}
+
