@@ -1,0 +1,26 @@
+docker pull sath89/oracle-12c
+
+docker run -p 8080:8080 -p 1521:1521 -v /opt/oradata:/u01/app/oracle sath89/oracle-12c
+
+Mac Instant Client - Oracle
+
+http://www.oracle.com/technetwork/topics/intel-macsoft-096467.html
+
+
+Download:
+
+* Instant Client Package - Basic
+* Instant Client Package - SQL*Plus
+* Instant Client Package - SDK
+
+unzip instantclient-basic-macos.x64-12.1.0.2.0.zip
+unzip instantclient-sqlplus-macos.x64-12.1.0.2.0.zip
+unzip the sdk zip too
+cd instantclient_12_1
+ln -s libclntsh.dylib.12.1 libclntsh.dylib
+ln -s libocci.dylib.12.1 libocci.dylib
+
+For your path:
+
+export PATH=$PATH:$HOME/tools/elcaro/instantclient_12_1
+export DYLD_LIBRARY_PATH=$HOME/tools/elcaro/instantclient_12_1
