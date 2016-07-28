@@ -18,7 +18,7 @@ Here's a session that shows this.
 
 <pre>
 scala> val all = loglines.collect
-all: Array[String] = Array(messageId,sourceName,sourceHost,sourceCategory,messageTime,receiptTime,sourceId,collectorId,count,format,view,encoding,message, "-9223372036261114756","syslog","vc2coma2051898n.fmr.com","/xapi/DEV/xavi/statsd","1467400989626","1467400974462","114107459","102507502","4590723","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.alloc_bytes:1380400.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.sys_bytes:11684088.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.malloc_count:254212624.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.free_count:254201920.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.heap_objects:10689.000000|g, XIWS.vc2coma2051898n.fmr.com.runtime.total_gc_pause_n...
+all: Array[String] = Array(messageId,sourceName,sourceHost,sourceCategory,messageTime,receiptTime,sourceId,collectorId,count,format,view,encoding,message, "-9223372036261114756","syslog","server.domain.com","/xapi/DEV/xavi/statsd","1467400989626","1467400974462","114107459","102507502","4590723","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.server.domain.com.runtime.num_goroutines:17.000000|g, XIWS.server.domain.com.runtime.alloc_bytes:1380400.000000|g, XIWS.server.domain.com.runtime.sys_bytes:11684088.000000|g, XIWS.server.domain.com.runtime.malloc_count:254212624.000000|g, XIWS.server.domain.com.runtime.free_count:254201920.000000|g, XIWS.server.domain.com.runtime.heap_objects:10689.000000|g, XIWS.server.domain.com.runtime.total_gc_pause_n...
 scala> all(0).split(",")
 res3: Array[String] = Array(messageId, sourceName, sourceHost, sourceCategory, messageTime, receiptTime, sourceId, collectorId, count, format, view, encoding, message)
 
@@ -26,37 +26,37 @@ scala> all(0).split(",").length
 res19: Int = 13
 
 scala> all(1).split(",")
-res4: Array[String] = Array("-9223372036261114756", "syslog", "vc2coma2051898n.fmr.com", "/xapi/DEV/xavi/statsd", "1467400989626", "1467400974462", "114107459", "102507502", "4590723", "plain:atp:o:-1:l:0:p:null", "", "UTF8", "XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g)
+res4: Array[String] = Array("-9223372036261114756", "syslog", "server.domain.com", "/xapi/DEV/xavi/statsd", "1467400989626", "1467400974462", "114107459", "102507502", "4590723", "plain:atp:o:-1:l:0:p:null", "", "UTF8", "XIWS.server.domain.com.runtime.num_goroutines:17.000000|g)
 
 scala> all(1).split(",").length
 res5: Int = 13
 
 scala> all(2)
-res7: String = XIWS.vc2coma2051898n.fmr.com.runtime.alloc_bytes:1380400.000000|g
+res7: String = XIWS.server.domain.com.runtime.alloc_bytes:1380400.000000|g
 
 scala> all(3)
-res8: String = XIWS.vc2coma2051898n.fmr.com.runtime.sys_bytes:11684088.000000|g
+res8: String = XIWS.server.domain.com.runtime.sys_bytes:11684088.000000|g
 
 scala> all(4)
-res9: String = XIWS.vc2coma2051898n.fmr.com.runtime.malloc_count:254212624.000000|g
+res9: String = XIWS.server.domain.com.runtime.malloc_count:254212624.000000|g
 
 scala> all(5)
-res10: String = XIWS.vc2coma2051898n.fmr.com.runtime.free_count:254201920.000000|g
+res10: String = XIWS.server.domain.com.runtime.free_count:254201920.000000|g
 
 scala> all(6)
-res11: String = XIWS.vc2coma2051898n.fmr.com.runtime.heap_objects:10689.000000|g
+res11: String = XIWS.server.domain.com.runtime.heap_objects:10689.000000|g
 
 scala> all(7)
-res12: String = XIWS.vc2coma2051898n.fmr.com.runtime.total_gc_pause_ns:21455822848.000000|g
+res12: String = XIWS.server.domain.com.runtime.total_gc_pause_ns:21455822848.000000|g
 
 scala> all(8)
-res13: String = XIWS.vc2coma2051898n.fmr.com.runtime.total_gc_runs:33349.000000|g
+res13: String = XIWS.server.domain.com.runtime.total_gc_runs:33349.000000|g
 
 scala> all(9)
 res14: String = "
 
 scala> all(10)
-res15: String = "-9223372036261114755","syslog","vc2coma2051898n.fmr.com","/xapi/DEV/xavi/statsd","1467400989626","1467400975465","114107459","102507502","4590724","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g
+res15: String = "-9223372036261114755","syslog","server.domain.com","/xapi/DEV/xavi/statsd","1467400989626","1467400975465","114107459","102507502","4590724","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.server.domain.com.runtime.num_goroutines:17.000000|g
 
 scala> all(10).split(",").length
 res18: Int = 13
@@ -69,7 +69,7 @@ scala> println(all(402))
 "-9223372036261114701","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" 
 
 scala> println(all(403))
-{""Name"":""xtracApi-GET-workItems-history"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":39266648,""time"":""2016-07-01T15:22:58.291817179-04:00"",""TxnId"":""164cdef4-fb0c-11a0-5046-7ab797bde1cf"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":39178883,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":38981837,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":38973814,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":35177510,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":33588811,""Error"":"""",""ServiceCalls"":[{""Name"":""Core-WorkItem-RetrieveHistory"",""Endpoint"":""vc2coma2078845n.fmr.com:11000"",""Duration"":33481895,""Error"":""""}]}],""ErrorFree"":true,""Error"":""""}"
+{""Name"":""xtracApi-GET-workItems-history"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":39266648,""time"":""2016-07-01T15:22:58.291817179-04:00"",""TxnId"":""164cdef4-fb0c-11a0-5046-7ab797bde1cf"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":39178883,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":38981837,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":38973814,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":35177510,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":33588811,""Error"":"""",""ServiceCalls"":[{""Name"":""Core-WorkItem-RetrieveHistory"",""Endpoint"":""server.domain.com:11000"",""Duration"":33481895,""Error"":""""}]}],""ErrorFree"":true,""Error"":""""}"
 </pre>
 
 So to determine if a line is a complete message, first see if there are 13 parts:
@@ -94,12 +94,12 @@ So line 1 of log data has 13 parts, but is is a complete record?
 
 <pre>
 scala> val line1Parts = all(1).split(",")
-line1Parts: Array[String] = Array("-9223372036261114756", "syslog", "vc2coma2051898n.fmr.com", "/xapi/DEV/xavi/statsd", "1467400989626", "1467400974462", "114107459", "102507502", "4590723", "plain:atp:o:-1:l:0:p:null", "", "UTF8", "XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g)
+line1Parts: Array[String] = Array("-9223372036261114756", "syslog", "server.domain.com", "/xapi/DEV/xavi/statsd", "1467400989626", "1467400974462", "114107459", "102507502", "4590723", "plain:atp:o:-1:l:0:p:null", "", "UTF8", "XIWS.server.domain.com.runtime.num_goroutines:17.000000|g)
 
 scala> line1Parts.foreach(println)
 "-9223372036261114756"
 "syslog"
-"vc2coma2051898n.fmr.com"
+"server.domain.com"
 "/xapi/DEV/xavi/statsd"
 "1467400989626"
 "1467400974462"
@@ -109,7 +109,7 @@ scala> line1Parts.foreach(println)
 "plain:atp:o:-1:l:0:p:null"
 ""
 "UTF8"
-"XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g
+"XIWS.server.domain.com.runtime.num_goroutines:17.000000|g
 </pre>
 
 It is not a complete record because unlike all the other fields, it does not end with a 
@@ -119,25 +119,25 @@ Let's iterate through the records until we find the end...
 
 <pre>
 scala> all(2)
-res40: String = XIWS.vc2coma2051898n.fmr.com.runtime.alloc_bytes:1380400.000000|g
+res40: String = XIWS.server.domain.com.runtime.alloc_bytes:1380400.000000|g
 
 scala> all(3)
-res41: String = XIWS.vc2coma2051898n.fmr.com.runtime.sys_bytes:11684088.000000|g
+res41: String = XIWS.server.domain.com.runtime.sys_bytes:11684088.000000|g
 
 scala> all(4)
-res42: String = XIWS.vc2coma2051898n.fmr.com.runtime.malloc_count:254212624.000000|g
+res42: String = XIWS.server.domain.com.runtime.malloc_count:254212624.000000|g
 
 scala> all(5)
-res43: String = XIWS.vc2coma2051898n.fmr.com.runtime.free_count:254201920.000000|g
+res43: String = XIWS.server.domain.com.runtime.free_count:254201920.000000|g
 
 scala> all(6)
-res44: String = XIWS.vc2coma2051898n.fmr.com.runtime.heap_objects:10689.000000|g
+res44: String = XIWS.server.domain.com.runtime.heap_objects:10689.000000|g
 
 scala> all(7)
-res45: String = XIWS.vc2coma2051898n.fmr.com.runtime.total_gc_pause_ns:21455822848.000000|g
+res45: String = XIWS.server.domain.com.runtime.total_gc_pause_ns:21455822848.000000|g
 
 scala> all(8)
-res46: String = XIWS.vc2coma2051898n.fmr.com.runtime.total_gc_runs:33349.000000|g
+res46: String = XIWS.server.domain.com.runtime.total_gc_runs:33349.000000|g
 
 scala> all(9)
 res47: String = "
@@ -148,7 +148,7 @@ we see it is.
 
 <pre>
 scala> all(10)
-res48: String = "-9223372036261114755","syslog","vc2coma2051898n.fmr.com","/xapi/DEV/xavi/statsd","1467400989626","1467400975465","114107459","102507502","4590724","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.vc2coma2051898n.fmr.com.runtime.num_goroutines:17.000000|g
+res48: String = "-9223372036261114755","syslog","server.domain.com","/xapi/DEV/xavi/statsd","1467400989626","1467400975465","114107459","102507502","4590724","plain:atp:o:-1:l:0:p:null","","UTF8","XIWS.server.domain.com.runtime.num_goroutines:17.000000|g
 </pre>
 
 So we can define a function to see if we have a full record:
@@ -323,7 +323,7 @@ scala> val rm = all(401)
 rm: String = {""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls"":[{...
 
 scala> println(rm.replace("\"\"","\""))
-{"Name":"xtracApi-GET-work-items-communications","Tags":{"aud":"a79fcb28-2621-4973-8a1e-c09a2ab30f79","jti":"02fe5ff1-c242-4d18-ac7e-73166de395df","sub":"XWHRon"},"Duration":26214800,"time":"2016-07-01T15:22:58.28056338-04:00","TxnId":"181c575a-ef8c-4468-76e3-3c95ff3a5e4b","Contributors":[{"Name":"JWT Authentication plugin","Duration":26140303,"Error":"","ServiceCalls":null},{"Name":"Whitelist plugin","Duration":25868003,"Error":"","ServiceCalls":null},{"Name":"Session Management plugin","Duration":25861260,"Error":"","ServiceCalls":null},{"Name":"REST plugin","Duration":18186430,"Error":"","ServiceCalls":null},{"Name":"workflow-backend","Duration":15897375,"Error":"","ServiceCalls":[{"Name":"Core-Correspondence-RetrieveCorrList","Endpoint":"vc2coma2078845n.fmr.com:11000","Duration":15827710,"Error":""}]}],"ErrorFree":true,"Error":""}"
+{"Name":"xtracApi-GET-work-items-communications","Tags":{"aud":"a79fcb28-2621-4973-8a1e-c09a2ab30f79","jti":"02fe5ff1-c242-4d18-ac7e-73166de395df","sub":"XWHRon"},"Duration":26214800,"time":"2016-07-01T15:22:58.28056338-04:00","TxnId":"181c575a-ef8c-4468-76e3-3c95ff3a5e4b","Contributors":[{"Name":"JWT Authentication plugin","Duration":26140303,"Error":"","ServiceCalls":null},{"Name":"Whitelist plugin","Duration":25868003,"Error":"","ServiceCalls":null},{"Name":"Session Management plugin","Duration":25861260,"Error":"","ServiceCalls":null},{"Name":"REST plugin","Duration":18186430,"Error":"","ServiceCalls":null},{"Name":"workflow-backend","Duration":15897375,"Error":"","ServiceCalls":[{"Name":"Core-Correspondence-RetrieveCorrList","Endpoint":"server.domain.com:11000","Duration":15827710,"Error":""}]}],"ErrorFree":true,"Error":""}"
 </pre>
 
 Note the end quote (") needs to be stripped, plus in general the message could have lots of 

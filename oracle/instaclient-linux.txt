@@ -1,14 +1,10 @@
 vagrant@vagrant-ubuntu-trusty-64:~$ history
-    1  ls
-    2  ls /vagrant
+
     3  sudo mkdir -p /opt/oracle/instantclient_12_1
     4  cd /opt/oracle/instantclient_12_1
-    5  ls
     6  sudo cp /vagrant/*.zip .
-    7  ls
     8  unzip instantclient-basic-linux.x64-12.1.0.2.0.zip 
     9  sudo apt-get install unzip
-   10  ls
    11  sudo unzip instantclient-basic-linux.x64-12.1.0.2.0.zip 
    12  sudo unzip instantclient-sdk-linux.x64-12.1.0.2.0.zip 
    13  ls
@@ -64,8 +60,8 @@ vagrant@vagrant-ubuntu-trusty-64:~$ history
    63  ls
    64  sudo apt-get install libaio1 libaio-dev
    65  sqlplus
-   66  sqlplus xwfusr/xwfusr@xddv1covd.fmr.com:1521/XWFDI1C_APP
+   66  sqlplus xwfusr/xwfusr@server:1521/XWFDI1C_APP
    67  export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1:$LD_LIBRARY_PATH
    68  export PATH=/opt/oracle/instantclient_12_1:$PATH
-   69  sqlplus xwfusr/xwfusr@xddv1covd.fmr.com:1521/XWFDI1C_APP
+   69  sqlplus xwfusr/xwfusr@server:1521/XWFDI1C_APP
    70  history

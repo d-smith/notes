@@ -1,0 +1,12 @@
+In the vagrant file, for connecting and using the set up
+use config.ssh.username = "spark"
+
+* Comment this out for vagrant up and vagrant halt
+* Use it to connect to the VM for doing spark stuff
+
+Use the shared mount point between host and guest for referencing
+data, e.g.
+
+<pre>
+spark-submit --class org.sia.chapter03App.App --master local[*] --name "GitHub Day" chapter03App-0.0.1-SNAPSHOT.jar "/vagrant/sia/github-archive/*.json" "/vagrant/sia/ghEmployees.txt" "$HOME/emp-gh-push-output" "json"
+</pre>
