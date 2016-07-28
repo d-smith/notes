@@ -18,7 +18,7 @@ numbers.foreach(println)
 val numbersSquared = numbers.map(x => x*x)
 numbersSquared.foreach(println)
 
-MACLB015803:spark a045103$ cat client-ids.log 
+hostname:spark $ cat client-ids.log 
 15,16,20,20
 77,80,94
 94,98,16,31
