@@ -1,0 +1,36 @@
+## Cloud Pub/Sub
+
+A global service for real-time and reliable messaging and 
+streaming data.
+
+## Set Up
+
+Go to the cloud console, create or select a project, enable the 
+pub/sub API.
+
+https://console.cloud.google.com/start
+
+Created project first-pub-sub
+
+Enable the pub/sub API
+
+* Go to API manager for the project, then Library. Select the cloud 
+pub/sub API under Google Cloud APIs, click enable at the top of the 
+next page.
+
+[Install the Cloud SDK](https://cloud.google.com/sdk/docs/)
+
+Run install.sh, then gcloud init.
+
+Pub/Sub - create a topic, add a subscription (pull)
+
+Install alpha:
+
+<pre>
+gcloud components install alpha
+</pre>
+
+gcloud alpha pubsub subscriptions pull xtsub
+
+Add --auto-ack to remove the messages once they are pulled
+

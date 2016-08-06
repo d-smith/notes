@@ -12,3 +12,10 @@ Having the key along with the value enables sorting, aggregating, and joining da
 
 keyBy transformation
 
+  1  val tranFile = sc.textFile("first-edition/ch04/ch04_data_transactions.txt")
+  2  val tranData = tranFile.map(_.split("#"))
+  3  var transByCust = tranData.map(tran => (tran(2).toInt, tran))
+  4  transByCust.keys.distinct().count()
+transByCust.first
+transByCust.countByKey()
+transByCust.countByKey().values.sum
