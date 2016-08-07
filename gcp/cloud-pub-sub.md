@@ -34,3 +34,14 @@ gcloud alpha pubsub subscriptions pull xtsub
 
 Add --auto-ack to remove the messages once they are pulled
 
+Gradle dependency:
+
+<pre>
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.apis:google-api-services-pubsub:v1-rev11-1.22.0'
+}
+</pre>
