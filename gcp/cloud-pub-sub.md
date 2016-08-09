@@ -45,3 +45,11 @@ dependencies {
     compile 'com.google.apis:google-api-services-pubsub:v1-rev11-1.22.0'
 }
 </pre>
+
+Programmatic Access - set up includes:
+
+* Making sure the HTTP transport puts the credentials in scope
+* Generating a service accound and downloading credentials
+* Pointing to the credentials via the GOOGLE_APPLICATION_CREDENTIALS environment variable
+* Adding the producer to the Pub/Sub publisher role and granting publish access to the topic
+
