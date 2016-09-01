@@ -66,7 +66,7 @@ Here's a timing message.
 
 <pre>
 scala> println(all(402))
-"-9223372036261114701","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" 
+"-9223372036261114701","/ahost/log/xtrac-api/api_rest_transformation.log","ahost","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" 
 
 scala> println(all(403))
 {""Name"":""xtracApi-GET-workItems-history"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":39266648,""time"":""2016-07-01T15:22:58.291817179-04:00"",""TxnId"":""164cdef4-fb0c-11a0-5046-7ab797bde1cf"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":39178883,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":38981837,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":38973814,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":35177510,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":33588811,""Error"":"""",""ServiceCalls"":[{""Name"":""Core-WorkItem-RetrieveHistory"",""Endpoint"":""server.domain.com:11000"",""Duration"":33481895,""Error"":""""}]}],""ErrorFree"":true,""Error"":""""}"
@@ -287,13 +287,13 @@ So for our record of interest above...
 
 <pre>
 scala> val parts = all(400).split(",")
-parts: Array[String] = Array("-9223372036261114702", "/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log", "vc2coma2078845n", "/xapi/DEV/NONPROD", "1467400978000", "1467400979924", "117209063", "103886658", "199", "plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ", "", "UTF8", ""time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET"" ")
+parts: Array[String] = Array("-9223372036261114702", "/ahost/log/xtrac-api/api_rest_transformation.log", "ahost", "/xapi/DEV/NONPROD", "1467400978000", "1467400979924", "117209063", "103886658", "199", "plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ", "", "UTF8", ""time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET"" ")
 
 scala> parts(1)
-res13: String = "/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log"
+res13: String = "/ahost/log/xtrac-api/api_rest_transformation.log"
 
 scala> parts(2)
-res14: String = "vc2coma2078845n"
+res14: String = "ahost"
 
 scala> parts(3)
 res15: String = "/xapi/DEV/NONPROD"
@@ -306,7 +306,7 @@ Next like is
 
 <pre>
 scala> all(400)
-res17: String = ""-9223372036261114702","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","199","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET"" "
+res17: String = ""-9223372036261114702","/ahost/log/xtrac-api/api_rest_transformation.log","ahost","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","199","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/communications?maxRows=-1&startRow=1 with method GET"" "
 
 scala> all(401)
 res18: String = {""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls""...
@@ -317,7 +317,7 @@ scala> isFullRecord(all(401))
 res20: Boolean = true
 
 scala> all(402)
-res21: String = ""-9223372036261114701","/vc2coma2078845n/log/xtrac-api/api_rest_transformation.log","vc2coma2078845n","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" "
+res21: String = ""-9223372036261114701","/ahost/log/xtrac-api/api_rest_transformation.log","ahost","/xapi/DEV/NONPROD","1467400978000","1467400979924","117209063","103886658","200","plain:atp:o:6:l:25:p:yyyy-MM-dd'T'HH:mm:ssZZZZ","","UTF8","time=""2016-07-01T15:22:58-04:00"" level=info msg=""request for /xtrac/api/v1/work-items/W013327-11AUG05/history?maxRows=10&startRow=1 with method GET"" "
 
 scala> val rm = all(401)
 rm: String = {""Name"":""xtracApi-GET-work-items-communications"",""Tags"":{""aud"":""a79fcb28-2621-4973-8a1e-c09a2ab30f79"",""jti"":""02fe5ff1-c242-4d18-ac7e-73166de395df"",""sub"":""XWHRon""},""Duration"":26214800,""time"":""2016-07-01T15:22:58.28056338-04:00"",""TxnId"":""181c575a-ef8c-4468-76e3-3c95ff3a5e4b"",""Contributors"":[{""Name"":""JWT Authentication plugin"",""Duration"":26140303,""Error"":"""",""ServiceCalls"":null},{""Name"":""Whitelist plugin"",""Duration"":25868003,""Error"":"""",""ServiceCalls"":null},{""Name"":""Session Management plugin"",""Duration"":25861260,""Error"":"""",""ServiceCalls"":null},{""Name"":""REST plugin"",""Duration"":18186430,""Error"":"""",""ServiceCalls"":null},{""Name"":""workflow-backend"",""Duration"":15897375,""Error"":"""",""ServiceCalls"":[{...

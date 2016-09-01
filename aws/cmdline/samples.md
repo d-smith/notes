@@ -14,7 +14,7 @@ Look as a specific VPC using its tag name:
 aws ec2 describe-vpcs --filter "Name=tag:Name,Values=vpc-single-public-subnet"
 </pre>
 
-Pull out the security group id:
+Pull out the vpc id:
 
 <pre>
 aws ec2 describe-vpcs --filter "Name=tag:Name,Values=vpc-single-public-subnet"|jq '.Vpcs[0].VpcId'
@@ -73,7 +73,7 @@ aws ec2 create-tags --resources \
 --image-id ami-2d39803a \
 --key-name FidoKeyPair \
 --instance-type t2.micro \
---network-interfaces '[ { "DeviceIndex": 0, "Groups": ["sg-c2728ca6"], "SubnetId": "subnet-fcbd7fd7", "DeleteOnTermination": true, "AssociatePublicIpAddress": true } ]' \
+--network-interfaces '[ { "DeviceIndex": 0, "Groups": ["sg-ddc177a7"], "SubnetId": "subnet-e20718ba", "DeleteOnTermination": true, "AssociatePublicIpAddress": true } ]' \
 | jq -r ".Instances[0].InstanceId"` --tags "Key=Name,Value=my-shintinz"
 </pre>
 
