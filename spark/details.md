@@ -82,4 +82,20 @@ totals.toSeq.sortBy(_._2).last
 
 Using aggregateByKey to group all values of a key
 
+* aggregateByKey is similar to foldByKey and reduceByKey in that it takes a zero value
+and merges values, but it also transforms the value to another type
+* takes two args: a transform function to transform from V to U, and a merge
+function to merging the transformed values into themselves
 
+
+<pre>
+val prods = transByCust.aggregateByKey(List[String]())((prods,tran) => prods ::: List(tran(3)),(prods1,prods2) => prods1 ::: prods2)
+prods.collect()
+</pre>
+
+### Data Partitioning and Reducing Shuffling
+
+Data partitioning is Spark's mechanism for dividing data between multiple nodes in a cluster.
+
+* Think of a cluster as a interconnected nodes being used in parallel.
+* Each piece of an RDD is called a partition.
