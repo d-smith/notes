@@ -98,4 +98,10 @@ prods.collect()
 Data partitioning is Spark's mechanism for dividing data between multiple nodes in a cluster.
 
 * Think of a cluster as a interconnected nodes being used in parallel.
-* Each piece of an RDD is called a partition.
+* Each piece of an RDD is called a partition. When you load a text file, the data is 
+split into partitions distributed across the cluster nodes.
+* Each RDD maintain a list of the partitions and an optional list of preferred locations
+for computing the partitions.
+* Recommendation: use 3 - 4 more partitions than there are cores in the cluster.
+* Paritioning of RDDs is performed by Partitioner objects that assign a partition index 
+index to each RDD element.
