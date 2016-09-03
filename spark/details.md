@@ -104,4 +104,53 @@ split into partitions distributed across the cluster nodes.
 for computing the partitions.
 * Recommendation: use 3 - 4 more partitions than there are cores in the cluster.
 * Paritioning of RDDs is performed by Partitioner objects that assign a partition index 
-index to each RDD element.
+index to each RDD element. Two implementations provided by spark - HashPartitioner and
+RangePartitioner.
+
+HashPartitioner
+
+* Partition index based on element's Java hashcode (or key's hashcode for pair RDDs)
+* Index is hashcode % number of partitions
+
+Range Partitioner
+
+* Partitions data of sorted RDDs into roughly equal ranges
+* Data is sampled to determine the range boundaries
+
+Customer Pair Partitioners
+
+* Pair RDDs can be paritioned using custom Partitioners
+* They are passed to pair transformations as an extra arg to overloaded
+methods
+* Pass the desired number of partitions, or via passing a custom Partitioner type
+
+Shuffling
+
+* Physical movement of data between nodes is called Shuffling
+* Occurs when data from multiple partitions needs to be combined in order to
+build partitions for a new RDD.
+
+aggregateByKey
+
+* Two functions - one to transform and merge two values into the target type, and one
+to merge the transformed values
+* The first function merges values within a partition, the second merges between partitions
+
+Tasks that immediately precede and follow the shuffle are called map and reduce tasks, repsectively.
+The results of map tasks are written to intermediate files, and read by reduce tasks. Besides
+being written to disk, the data is sent over the network, so it is important to minimize shuffles.
+
+Conditions that require shuffling:
+
+* Occurs when explicitly changing paritioners - custom pair partitioners, providing new hash partitioners,
+providing new number of paritions.
+* Shuffle caused by removing partitioner - map and flatMap remove the RDD's 
+partitioner, which doesn't cause a shuffle per se. If the following RDD is transformed,
+however, a shuffle occurs (even with the default partitioner)
+
+External Shuffle Service
+
+* An external shuffle service to optimize shuffling can be enabled via the 
+spark.shuffle.service.enabled parameter (set to true)
+
+
