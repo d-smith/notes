@@ -148,9 +148,46 @@ providing new number of paritions.
 partitioner, which doesn't cause a shuffle per se. If the following RDD is transformed,
 however, a shuffle occurs (even with the default partitioner)
 
+Transformations that cause shuffling after map or flatMap
+
+* Pair RDD transformations that can change the RDD's partitioner:
+  * aggregateByKey
+  * foldByKey
+  * reduceByKey
+  * groupByKey
+  * join
+  * leftOuterJoin
+  * rightOuterJoin
+  * fullOuterJoin
+  * subtractByKey
+* RDD transformations 
+  * subtract
+  * intersection
+  * groupWith
+* sortByKey transformation
+* partitionBy or coalesce with shuffle=true
+
 External Shuffle Service
 
 * An external shuffle service to optimize shuffling can be enabled via the 
 spark.shuffle.service.enabled parameter (set to true)
+
+### Repartitioning RDDs
+
+Spark API allows reparitioning at runtime. Why would you want to do that?
+
+* Sometimes the RDD needs to be repartitioned to spread the work out more evenly
+across the cluster
+
+Repartitioning of RDDs can be accomplished using partitionBy, coalesce, repartition, 
+and repartitionAndSortWithPartition transformations.
+
+### Mapping Data Within Partitions
+
+Spark offers a way to apply functions not to the RDD as a whole, but
+to each of its partitions separately. This can be an important tool in
+optimizing transformations.
+
+* mapParititions, mapPartitionsWithIndex, glom
 
 
