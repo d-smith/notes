@@ -190,4 +190,39 @@ optimizing transformations.
 
 * mapParititions, mapPartitionsWithIndex, glom
 
+glom gathers elements of each partition into an array and returns a new RDD
+with those arrays as elements. The number of elements in the new RDD is equal
+to the number of partitions.
 
+<pre>
+val list = List.fill(500)(scala.util.Random.nextInt(100))
+val rdd = sc.parallelize(list, 30).glom()
+rdd.collect()
+rdd.count()
+</pre>
+
+### Joining, Sorting, and Grouping Data
+
+Products with total sold... first key the transactions by product id
+
+<pre>
+val transByProd = tranData.map(tran => (tran(3).toInt,tran))
+</pre>
+
+Totals per product using the reduce by key transformation:
+
+<pre>
+val totalsByProd = transByProd.mapValues(t => t(5).toDouble).reduceByKey{case(tot1,tot2) => tot1 + tot2}
+</pre>
+
+Load product data
+
+<pre>
+val products = sc.textFile("first-edition/ch04/ch04_data_products.txt").map(
+    line => line.split("#")
+  ).map(
+    p => (p(0).toInt,p)
+  )
+</pre>
+
+The four classic join transformations. 
