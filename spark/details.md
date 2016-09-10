@@ -225,4 +225,26 @@ val products = sc.textFile("first-edition/ch04/ch04_data_products.txt").map(
   )
 </pre>
 
-The four classic join transformations. 
+#### The four classic join transformations
+
+For below, assume an RDD of (K,V) elemenets, and passing in an array of (K,W)
+elements.
+
+* join - equivalent to the inner join in SQL. Returns pair RDD with the elements
+(K, (V,W)) containing all pairs of values from the first and second RDDs that have
+the same key. No elements are included for elements without matching key.
+* leftOuterJoin - This returns elements of (K, (V, Option(W))). The resulting RDD
+will include elements (K, (V,None)) for those keys that don't exist in the second
+RDD.
+* rightOuterJoin - This returns elements of (K, (Option(V), W)). Resulting RDD  will
+include elements (K, (None,W)) for those keys that do not exist in the first RDD.
+* fullOuterJoin - (K,(Option(V),Option(w)))
+
+Duplicate keys - those elements will be joined multiple times
+
+Each join has partitioner versions as well...see book for explanation.
+
+<pre>
+val totalsAndProds = totalsByProd.join(products)
+totalsAndProds.first
+</pre>
