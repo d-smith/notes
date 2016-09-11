@@ -244,7 +244,43 @@ Duplicate keys - those elements will be joined multiple times
 
 Each join has partitioner versions as well...see book for explanation.
 
+For the joins below if starting a fresh session...
+
+<pre>
+val tranFile = sc.textFile("first-edition/ch04/ch04_data_transactions.txt")
+val tranData = tranFile.map(_.split("#"))
+val transByProd = tranData.map(tran => (tran(3).toInt,tran))
+val totalsByProd = transByProd.mapValues(t => t(5).toDouble).reduceByKey{case(tot1,tot2) => tot1 + tot2}
+val products = sc.textFile("first-edition/ch04/ch04_data_products.txt").map(
+    line => line.split("#")
+  ).map(
+    p => (p(0).toInt,p)
+  )
+</pre>
+
+
+Join to attach product data to the totals
+
 <pre>
 val totalsAndProds = totalsByProd.join(products)
 totalsAndProds.first
+</pre>
+
+Total with missing products, and missing products
+
+<pre>
+val totalsWithMissingProducts = totalsByProd.rightOuterJoin(products)
+val missingProds = totalsWithMissingProducts.
+  filter(x => x._2._1 == None).
+  map(x => x._2._2)
+missingProds.foreach(p => println(p.mkString(", ")))
+</pre>
+
+Alternative way to do this: Subtract and Subtract By Key Transformations
+
+* subtract - returns elements from the first RDD not present in the second RDD
+
+<pre>
+val missingProds = products.subtractByKey(totalsByProd).values
+missingProds.foreach(p => println(p.mkString(", ")))
 </pre>
