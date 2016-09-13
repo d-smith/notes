@@ -1,0 +1,57 @@
+These articles cover R on EC2 connected to AWS redshift
+
+https://blogs.aws.amazon.com/bigdata/post/Tx3IJSB6BMHWZE5/Running-R-on-AWS
+https://blogs.aws.amazon.com/bigdata/post/Tx1G8828SPGX3PK/Connecting-R-with-Amazon-Redshift
+
+This has some useful context
+
+http://blogs.aws.amazon.com/bigdata/blog/tag/R
+
+DPLYR: https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html
+
+To get install.packages("RPostgreSQL") to install, I first has to add 'username'
+to sudoers (under the root user example) so I could run the following in a shell
+launched from RStudio web tools console:
+
+yum install postgresql-devel
+
+After that back in R studio I could do...
+
+install.packages('RPostgreSQL')
+library(RPostgreSQL)
+library(dplyr)
+myRedshift <- src_postgres('apidb',
+    host = '>redshift-host.redshift.amazonaws.com',
+    port = '5439',
+    user = 'my-api-user',
+    password = 'my-api-password')
+
+calls <- tbl(myRedshift, 'callrecord')
+colnames(calls)
+head(calls)
+distinct(calls, name)
+by_call <- group_by(calls, name)
+by_call_summarized <- summarize(by_call, count=n())
+cd <- collect(by_call_summarized)
+arrange(cd, desc(count))
+
+install.packages("data.table")
+library(data.table)
+cdot <- as.data.table(cdo)
+cdot
+
+by_aud <- group_by(calls, aud)
+by_aud_summ <- summarize(by_aud, count=n())
+arrange(by_aud_summ,desc(count))
+
+by_sub <- group_by(calls, sub)
+by_sub_sum <- summarize(by_sub, count=n())
+arrange(by_sub_sum,desc(count))
+bsst <- as.data.table(by_sub_sum)
+arrange(bsst,desc(count))
+
+calls %>%
+filter(sub=='a485128') %>%
+group_by(name) %>%
+summarize(count=n()) %>%
+arrange(desc(count))
