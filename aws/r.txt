@@ -55,3 +55,12 @@ filter(sub=='a485128') %>%
 group_by(name) %>%
 summarize(count=n()) %>%
 arrange(desc(count))
+
+
+xt114 <- filter(sc,endpoint == 'xt114doma0:11000')
+xt114 <- as.data.frame(xt114)
+boxplot(xt114$duration ~ xt114$name,outline=FALSE)
+
+api114 <- filter(calls,host=='xt114doma0')
+api114 <- as.data.frame(api114)
+boxplot(api114$duration ~ api114$name, outline=FALSE)
