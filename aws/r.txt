@@ -64,3 +64,23 @@ boxplot(xt114$duration ~ xt114$name,outline=FALSE)
 api114 <- filter(calls,host=='xt114doma0')
 api114 <- as.data.frame(api114)
 boxplot(api114$duration ~ api114$name, outline=FALSE)
+
+install.packages("lubridate")
+
+(Note - had to download the archive from https://cran.r-project.org/src/contrib/Archive/lubridate/lubridate_1.5.6.tar.gz
+followed by an install from archive file).
+
+cdt <- mutate(cd, m = month(logtime), d = day(logtime), h = hour(logtime))
+cdd <- group_by(cdt,d)
+tally(cdd)
+d31 <- filter(cdd,d == 31)
+d31h <- group_by(d31,h)
+summarize(d31h,count=n())
+
+ ggplot(data=d31h,aes(x=h)) + geom_histogram(binwidth=.5)
+
+ cdd %>%
+ filter(m==9) %>%
+ summarize(count=n())
+
+ 
