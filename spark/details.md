@@ -284,3 +284,15 @@ Alternative way to do this: Subtract and Subtract By Key Transformations
 val missingProds = products.subtractByKey(totalsByProd).values
 missingProds.foreach(p => println(p.mkString(", ")))
 </pre>
+
+#### Cogroup Transformation
+
+cogroup performs grouping of values from several RDDs by key and returns an
+RDD whose values are arrays of collections containing values from each RDD.
+
+You can pass up to 3 RDDs, all of which (including the enclosing one) must have the same keytype
+
+<pre>
+prodTotCogroup.filter(x => x._2._1.isEmpty).foreach(x =>
+  println(x._2._2.head.mkString(", ")))
+</pre>
