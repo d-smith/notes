@@ -292,7 +292,22 @@ RDD whose values are arrays of collections containing values from each RDD.
 
 You can pass up to 3 RDDs, all of which (including the enclosing one) must have the same keytype
 
+If one of the two RDDs does not contain one of the keys, the coressponding iterator will be
+empty - you can filter out the missing key, for example missing products:
+
 <pre>
+val prodTotCogroup = totalsByProd.cogroup(products)
+
 prodTotCogroup.filter(x => x._2._1.isEmpty).foreach(x =>
   println(x._2._2.head.mkString(", ")))
+</pre>
+
+In the above, x._2._1 is the iterator with matching values from totalsByProd and
+x._2._2 is the iterator with matching values from products
+
+totalsAndProds can be build using cogroup
+
+<pre>
+val totalsAndProds = prodTotCogroup.filter(x => !x._2._1.isEmpty).map(
+  x => (x._2._2.head(0).toInt,(x._2._1.head, x._2._2.head)))
 </pre>
