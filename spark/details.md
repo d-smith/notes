@@ -311,3 +311,19 @@ totalsAndProds can be build using cogroup
 val totalsAndProds = prodTotCogroup.filter(x => !x._2._1.isEmpty).map(
   x => (x._2._2.head(0).toInt,(x._2._1.head, x._2._2.head)))
 </pre>
+
+#### intersection Transformation
+
+The `intersection` transformation takes an RDD of the same type as the enclosing type and
+returns an RDD containing elements present in both.
+
+#### Cartesian Transformation
+
+Cartesian product of two RDDs
+
+<pre>
+val rdd1 = sc.parallelize(List(7,8,9))
+val rdd2 = sc.parallelize(List(1,2,3))
+rdd1.cartesian(rdd2).collect()
+</pre>
+
