@@ -327,3 +327,27 @@ val rdd2 = sc.parallelize(List(1,2,3))
 rdd1.cartesian(rdd2).collect()
 </pre>
 
+cartesian can cause a lot of data transfer, and the expotential number of
+elements can take a lot of memory
+
+#### Joining Data with Zip
+
+zip and zipPartitions transformations
+
+LIke zip in Scala, except throws an error if the two RDDs don't have
+the same number of elements and the same number of partitions.
+
+<pre>
+val rdd1 = sc.parallelize(List(1,2,3))
+val rdd2 = sc.parallelize(List("n4","n5","n6"))
+rdd1.zip(rdd2).collect()
+</pre>
+
+### Sorting Data
+
+softByKey, sortBy, and repartitionAndSortWithinPartition
+
+<pre>
+val sortedProds = totalsAndProds.sortBy(_._2._2(1))
+sortedProds.collect()
+</pre>
