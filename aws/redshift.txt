@@ -1,0 +1,3 @@
+unload('select * from callrecord where txn <> ''''')
+to 's3://84101-demo-bucket/calldata' 
+credentials 'aws_access_key_id=<access-key-id>;aws_secret_access_key=<secret-access-key>'
