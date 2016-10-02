@@ -83,4 +83,9 @@ summarize(d31h,count=n())
  filter(m==9) %>%
  summarize(count=n())
 
- 
+
+ crdf <- as.data.frame(cr)
+ crdf$day <- day(crdf$logtime)
+ crdf$month <- month(crdf$logtime)
+ crdf %>% distinct(month)
+ crdf %>% filter(month==9) %>% distinct(name)
