@@ -1,0 +1,5 @@
+In the directory where credentials no longer work, do this:
+
+git config credential.helper store
+
+On your next push you will be prompted for credentials.
