@@ -95,9 +95,53 @@ http {
 
 Note the 'native' port in the container is referenced.
 
-With the reverse proxy configuration set, the reverse proxy can be started:
+With the reverse proxy configuration set, the reverse proxy can be started. Note
+that it is run on the same network (foo):
 
 <pre>
 docker run --network foo -p 5000:5000 -v $GOPATH/src/github.com/xtraclabs/es-atom-feed-proxy/rp.conf:/etc/nginx/nginx.conf nginx
 </pre>
 
+Again, after starting the nginx container, we can see it on the same network
+
+<pre>
+$ docker network inspect foo
+[
+    {
+        "Name": "foo",
+        "Id": "e8254fc528db14a22c6bdd727bc4ab7bc17e00d3553287c2416653786c2d9d0d",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1/16"
+                }
+            ]
+        },
+        "Internal": false,
+        "Containers": {
+            "0140f78b09ba0258b6ca49f5b5991c7c9b69f2378ed4d67996f3cd0aef57e60c": {
+                "Name": "atomfeedpub",
+                "EndpointID": "f52bbcdd2ba32a35db805fba7c1db944bb5296934043025bd9647b208f1de5ce",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "8ac48e2d25ef5c19017290d37cb54330a03b9d794701a9051875f3d83486ad12": {
+                "Name": "elated_mirzakhani",
+                "EndpointID": "7f505d2fbcb44f7dda9ec34ea524d5b0bee97ea87d00e4ff7a9103294e0d1aea",
+                "MacAddress": "02:42:ac:12:00:03",
+                "IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+</pre>
