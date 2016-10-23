@@ -1,0 +1,11 @@
+Git large file support
+
+brew install git-lfs
+
+git lfs init (see git lfs help for command details)
+
+git lfs track "*x.zip"
+
+Then the usual git commands...
+
+See https://git-lfs.github.com/ for more details.
