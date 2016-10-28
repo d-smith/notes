@@ -1,0 +1,5 @@
+Misc Ansible Notes
+
+Install using brew
+
+Add hosts to /etc/ansible/hosts
