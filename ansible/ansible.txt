@@ -1,5 +1,5 @@
 Misc Ansible Notes
 
-Install using brew
+Install using pip
 
 Add hosts to /etc/ansible/hosts
