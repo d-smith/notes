@@ -1,0 +1,1 @@
+docker run -v /var/log/syslog:/syslog -d -e SUMO_PROXY_HOST=<proxy host> -e SUMO_PROXY_PORT=<proxy port> -e SUMO_COLLECTOR_NAME=docker-collector --name="sumo-logic-collector" sumologic/collector:latest-logging-driver-syslog access-key-id access-key
