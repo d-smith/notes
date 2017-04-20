@@ -1,0 +1,11 @@
+General Postgres Notes
+
+Run using docker:
+
+docker volume create pgdata
+pull postgres
+docker run --name mypg -v pgdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+
+Connect to an RDS public database:
+
+docker run -it --rm postgres psql -h somedb.dbinstancemaybe.someregion.rds.amazonaws.com -U pgmaster -d dcdb
