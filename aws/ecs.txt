@@ -1,0 +1,5 @@
+Tasks will fail to be placed on a cluster instance if their
+IAM permissions specific in the task role exceed those of
+the role assocaited with the cluster instance. The error
+message is surfaced in the service task events, and the
+CF stack will never reach a created state.
