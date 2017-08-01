@@ -1,0 +1,10 @@
+Context: 
+	- Trad war the reads config via system properties
+	- Target deployment to EBS
+	- Some properties from CF created resources
+
+
+Approach:
+	- Code build to merge config into war
+	- Config from config files in .ebextensions
+	
