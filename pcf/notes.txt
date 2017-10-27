@@ -1,0 +1,18 @@
+Deploy an app via a manifest.yml - cf push
+
+View the logs: cf logs (stream) or cf logs --recent
+
+Delete app: cf delete <app name>
+
+Setting java_opts - use JAVA_OPTS in env section.
+
+Sample manifest:
+
+---
+applications:
+- name: xtrac-poc
+  memory: 4G
+  random-route: true
+  path: ../codebuild/xt-war/xtrac-web-2016.1.2-BUILD.8.war
+  env:
+    JAVA_OPTS: '-Dthis=this -Dthat=that'
