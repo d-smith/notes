@@ -16,3 +16,11 @@ applications:
   path: ../codebuild/xt-war/xtrac-web-2016.1.2-BUILD.8.war
   env:
     JAVA_OPTS: '-Dthis=this -Dthat=that'
+
+
+Hints:
+
+For ruby gems resolved by the build pack, add env with proxy
+settings for the internal CF environment.
+
+Shell into a static app via cf ssh <app name>
