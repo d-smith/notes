@@ -43,5 +43,17 @@ Build packs execute a set of scripts:
 * bin/compile - if it can handle it, make the droplet
 * bin/release - build the metadata (env variables, start command, etc)
 
+Resilience and Scale
 
+* Run many instances of the same app: `cf scale <app name> -i <no. instances>`
+
+Toubleshooting
+
+* cf logs
+* cf events
+* cf ssh
+
+Services
+
+* cf marketplace
 
