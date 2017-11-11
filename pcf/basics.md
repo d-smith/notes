@@ -27,6 +27,8 @@ CF push
 
 Buildpacks create a runnable artifact called a droplet.
 
+* `cf buildpacks` lists installed build packs
+
 Apps are started on specialized VMs called cells.
 
 * If it's a web process, it binds to a TCP port
@@ -47,7 +49,7 @@ Resilience and Scale
 
 * Run many instances of the same app: `cf scale <app name> -i <no. instances>`
 
-Toubleshooting
+Trouble shooting
 
 * cf logs
 * cf events
@@ -56,4 +58,8 @@ Toubleshooting
 Services
 
 * cf marketplace
+* cf services
+* cf create-service
+* cf bind-service
+* cf restage (pick up env changes)
 
