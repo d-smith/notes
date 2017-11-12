@@ -68,3 +68,24 @@ Does the latest work with a proxy?
 stop, delete
 
 Errors - to clarify it's not a proxy issue, it's routing to a guest os while connected via a VPN client.
+
+Install latest -
+
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.23.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+
+https://github.com/kubernetes/minikube/releases
+
+If you see:
+
+start.go:150] Error starting host: Temporary Error: Error configuring auth on host: ssh command error:
+
+Then:
+
+minikube delete
+minikube start
+
+minikube version
+minikube version: v0.23.0
+kubectl version
+Client Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.3", GitCommit:"f0efb3cb883751c5ffdbe6d515f3cb4fbe7b7acd", GitTreeState:"clean", BuildDate:"2017-11-08T18:39:33Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.0", GitCommit:"0b9efaeb34a2fc51ff8e4d34ad9bc6375459c4a4", GitTreeState:"dirty", BuildDate:"2017-10-17T15:09:55Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"linux/amd64"}
