@@ -1,79 +1,15 @@
 Local machine - use minikube
 
-https://github.com/kubernetes/minikube
+https://github.com/kubernetes/minikube/releases
 
-brew cask install minikube
-
-* Had an older version so latest cask install not link the executable, renamed target and ran again.
-
-Start local kubernetes:
-
-mikikube start
-
-Run hello world:
-
-* kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-
-Unable to pull this while running attached to corp network with proxy. 
-
-minikube delete
-<set proxy vars>
-minikube start --docker-env http_proxy=$http_proxy --docker-env https_proxy=$https_proxy
-
-export no_proxy=$no_proxy,$(minikube ip)
-export NO_PROXY=$no_proxy,$(minikube ip)
-
-Then:
-
-kubectl config use-context minikube
-
- kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-
-No go
-
-Kill VPN connection
-
-minikube stop
-minikube delete
-
-new terminal
-
-kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-
-error: group map[federation:0xc8203e0fc0 :0xc8203e1030 extensions:0xc8203e12d0 policy:0xc8203e1340 authentication.k8s.io:0xc8203e1490 apiregistration.k8s.io:0xc8203e0a80 apps:0xc8203e10a0 authorization.k8s.io:0xc8203e1110 autoscaling:0xc8203e1180 batch:0xc8203e11f0 componentconfig:0xc8203e1260 rbac.authorization.k8s.io:0xc8203e13b0 admissionregistration.k8s.io:0xc8203e0a10] is already registered
-
-Shitty instructions... go here for install notes:
+kubectl
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
-kubectl version
-Client Version: version.Info{Major:"1", Minor:"3", GitVersion:"v1.3.0", GitCommit:"283137936a498aed572ee22af6774b6fb6e9fd94", GitTreeState:"clean", BuildDate:"2016-07-01T19:26:38Z", GoVersion:"go1.6.2", Compiler:"gc", Platform:"darwin/amd64"}
-Server Version: version.Info{Major:"1", Minor:"7", GitVersion:"v1.7.5", GitCommit:"17d7182a7ccbb167074be7a87f0a68bd00d58d97", GitTreeState:"clean", BuildDate:"2017-09-18T20:30:29Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"linux/amd64"}
-
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
-
-chmod +x ./kubectl
-
-sudo mv ./kubectl /usr/local/bin/kubectl
-
-kubectl version
-Client Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.3", GitCommit:"f0efb3cb883751c5ffdbe6d515f3cb4fbe7b7acd", GitTreeState:"clean", BuildDate:"2017-11-08T18:39:33Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"darwin/amd64"}
-Server Version: version.Info{Major:"1", Minor:"7", GitVersion:"v1.7.5", GitCommit:"17d7182a7ccbb167074be7a87f0a68bd00d58d97", GitTreeState:"clean", BuildDate:"2017-09-18T20:30:29Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"linux/amd64"}
-
-kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-deployment "hello-minikube" created
-
-Does the latest work with a proxy?
-
-stop, delete
-
-Errors - to clarify it's not a proxy issue, it's routing to a guest os while connected via a VPN client.
 
 Install latest -
 
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.23.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-
-https://github.com/kubernetes/minikube/releases
 
 If you see:
 

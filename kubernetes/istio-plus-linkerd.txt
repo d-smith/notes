@@ -1,0 +1,47 @@
+https://buoyant.io/2017/07/11/linkerd-istio/
+
+https://istio.io/docs/setup/kubernetes/index.html - steps 1 - 4
+
+curl -L https://git.io/getLatestIstio | sh -
+
+Add $HOME/code3/istio-plus-linkerd/istio-0.2.12/bin to your path; e.g copy paste in your shell and/or ~/.profile:
+export PATH="$PATH:$HOME/code3/istio-plus-linkerd/istio-0.2.12/bin"
+
+
+kubectl apply -f https://raw.githubusercontent.com/linkerd/linkerd-examples/master/istio/istio-linkerd.yml
+
+go get github.com/linkerd/linkerd-inject
+export PATH=$PATH:~/go/bin
+
+kubectl apply -f  <(linkerd-inject -useServiceVip -f <(curl -s https://raw.githubusercontent.com/linkerd/linkerd-inject/master/example/hello-world.yml))
+
+
+At this point you should be able to follow many of the Istio walkthroughs, 
+e.g. the Istio request routing demo-—though you’ll have to continue 
+to use linkerd-inject rather than istioctl kube-inject when you’re 
+installing the applications.
+
+
+Book Info Sample 
+
+https://istio.io/docs/guides/bookinfo.html
+
+git clone https://github.com/istio/istio
+
+In samples...
+
+kubectl apply -f <(linkerd-inject -useServiceVip -f bookinfo/kube/bookinfo.yaml)
+
+kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'
+kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}'
+
+export GATEWAY_URL=$(kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'):$(kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}')
+
+
+Notes:
+
+Saw some snags, reset to supported version - linkerd on this page (https://linkerd.io/getting-started/istio/)
+statues istio 0.1.6 is supported - get it from releases
+ https://github.com/istio/istio/releases?after=0.2.0
+
+ V0.1 doc for install - https://istio.io/v-0.1/docs/tasks/installing-istio.html
