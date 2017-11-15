@@ -45,3 +45,41 @@ statues istio 0.1.6 is supported - get it from releases
  https://github.com/istio/istio/releases?after=0.2.0
 
  V0.1 doc for install - https://istio.io/v-0.1/docs/tasks/installing-istio.html
+
+ 1. (grab the binary distro from the 0.1.6 release dowbload)
+ 2. Add to path
+ 3. Suss out rbac support
+ 
+ kubectl api-versions | grep rbac
+rbac.authorization.k8s.io/v1
+rbac.authorization.k8s.io/v1alpha1
+rbac.authorization.k8s.io/v1beta1
+
+4. Apply the rbac config
+
+kubectl apply -f install/kubernetes/istio-rbac-beta.yaml
+
+
+Then:
+
+kubectl apply -f https://raw.githubusercontent.com/linkerd/linkerd-examples/master/istio/istio-linkerd.yml
+service "istio-mixer" created
+deployment "istio-mixer" created
+configmap "istio" created
+service "istio-pilot" created
+serviceaccount "istio-pilot-service-account" created
+deployment "istio-pilot" created
+configmap "l5d-config" created
+daemonset "l5d" created
+service "l5d" created
+configmap "istio-ingress-config" created
+deployment "istio-ingress" created
+service "istio-ingress" created
+serviceaccount "istio-ingress-service-account" created
+configmap "istio-egress-config" created
+deployment "istio-egress" created
+service "istio-egress" created
+
+Request Routing Demo: https://istio.io/v-0.1/docs/tasks/request-routing.html
+
+
