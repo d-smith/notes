@@ -1,0 +1,5 @@
+https://coreos.com/tectonic/docs/latest/tutorials/sandbox/install.html
+
+vagrant up --provider=virtualbox
+
+export KUBECONFIG=$PWD/provisioning/etc/kubernetes/kubeconfig

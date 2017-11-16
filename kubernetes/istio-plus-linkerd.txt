@@ -59,10 +59,13 @@ rbac.authorization.k8s.io/v1beta1
 
 kubectl apply -f install/kubernetes/istio-rbac-beta.yaml
 
+==> kubectl apply -f install/kubernetes/my-istio-rbac-beta.yaml
+
 
 Then:
 
 kubectl apply -f https://raw.githubusercontent.com/linkerd/linkerd-examples/master/istio/istio-linkerd.yml
+
 service "istio-mixer" created
 deployment "istio-mixer" created
 configmap "istio" created
@@ -80,6 +83,6 @@ configmap "istio-egress-config" created
 deployment "istio-egress" created
 service "istio-egress" created
 
-Request Routing Demo: https://istio.io/v-0.1/docs/tasks/request-routing.html
+Request Routing Demo:   
 
 
