@@ -1,47 +1,27 @@
+Vendor blurb on the two working together:
+
 https://buoyant.io/2017/07/11/linkerd-istio/
 
-https://istio.io/docs/setup/kubernetes/index.html - steps 1 - 4
+Getting started guide:
 
-curl -L https://git.io/getLatestIstio | sh -
-
-Add $HOME/code3/istio-plus-linkerd/istio-0.2.12/bin to your path; e.g copy paste in your shell and/or ~/.profile:
-export PATH="$PATH:$HOME/code3/istio-plus-linkerd/istio-0.2.12/bin"
-
-
-kubectl apply -f https://raw.githubusercontent.com/linkerd/linkerd-examples/master/istio/istio-linkerd.yml
-
-go get github.com/linkerd/linkerd-inject
-export PATH=$PATH:~/go/bin
-
-kubectl apply -f  <(linkerd-inject -useServiceVip -f <(curl -s https://raw.githubusercontent.com/linkerd/linkerd-inject/master/example/hello-world.yml))
-
-
-At this point you should be able to follow many of the Istio walkthroughs, 
-e.g. the Istio request routing demo-—though you’ll have to continue 
-to use linkerd-inject rather than istioctl kube-inject when you’re 
-installing the applications.
-
-
-Book Info Sample 
-
-https://istio.io/docs/guides/bookinfo.html
-
-git clone https://github.com/istio/istio
-
-In samples...
-
-kubectl apply -f <(linkerd-inject -useServiceVip -f bookinfo/kube/bookinfo.yaml)
-
-kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'
-kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}'
-
-export GATEWAY_URL=$(kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'):$(kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}')
-
+https://linkerd.io/getting-started/istio/
 
 Notes:
 
-Saw some snags, reset to supported version - linkerd on this page (https://linkerd.io/getting-started/istio/)
-statues istio 0.1.6 is supported - get it from releases
+I was not able to get this to work with version 1.8.x of kubernetes minikube,
+but was able to have it install properly using 1.7.x installed via the 
+Tectonic sandbox (see https://coreos.com/tectonic/docs/latest/tutorials/sandbox/install.html)
+
+Can run 1.7.5 like this:
+
+minikube start --kubernetes-version v1.7.5
+
+kubectl version
+Client Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.3", GitCommit:"f0efb3cb883751c5ffdbe6d515f3cb4fbe7b7acd", GitTreeState:"clean", BuildDate:"2017-11-08T18:39:33Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"7", GitVersion:"v1.7.1+coreos.0", GitCommit:"fdd5383472eb43e60d2222503f03c76445e49899", GitTreeState:"clean", BuildDate:"2017-07-18T19:44:47Z", GoVersion:"go1.8.3", Compiler:"gc", Platform:"linux/amd64"}
+
+Saw some snags using latest istio, reset to supported version - linkerd on this page (https://linkerd.io/getting-started/istio/)
+statues istio 0.1.6 is supported - get it from releases page
  https://github.com/istio/istio/releases?after=0.2.0
 
  V0.1 doc for install - https://istio.io/v-0.1/docs/tasks/installing-istio.html
@@ -57,7 +37,9 @@ rbac.authorization.k8s.io/v1beta1
 
 4. Apply the rbac config
 
-kubectl apply -f install/kubernetes/istio-rbac-beta.yaml
+Note that the supplied config does not work (see https://github.com/istio/istio/issues/615)
+
+Work around is to update the rbac file to change RoleBindings to ClusterRoleBindings.
 
 ==> kubectl apply -f install/kubernetes/my-istio-rbac-beta.yaml
 
@@ -66,23 +48,23 @@ Then:
 
 kubectl apply -f https://raw.githubusercontent.com/linkerd/linkerd-examples/master/istio/istio-linkerd.yml
 
-service "istio-mixer" created
-deployment "istio-mixer" created
-configmap "istio" created
-service "istio-pilot" created
-serviceaccount "istio-pilot-service-account" created
-deployment "istio-pilot" created
-configmap "l5d-config" created
-daemonset "l5d" created
-service "l5d" created
-configmap "istio-ingress-config" created
-deployment "istio-ingress" created
-service "istio-ingress" created
-serviceaccount "istio-ingress-service-account" created
-configmap "istio-egress-config" created
-deployment "istio-egress" created
-service "istio-egress" created
+Then install the demo app, etc.
+kubectl apply -f <(linkerd-inject -useServiceVip -f samples/apps/bookinfo/bookinfo.yaml)
 
-Request Routing Demo:   
+kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'
+kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}'
+
+export GATEWAY_URL=$(kubectl get po -l istio=ingress -o 'jsonpath={.items[0].status.hostIP}'):$(kubectl get svc istio-ingress -o 'jsonpath={.spec.ports[0].nodePort}')
+
+curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
+
+istioctl create -f samples/apps/bookinfo/route-rule-all-v1.yaml
+
+istioctl get route-rules -o yaml
+
+istioctl create -f samples/apps/bookinfo/route-rule-reviews-test-v2.yaml
+
+istioctl replace -f samples/apps/bookinfo/route-rule-reviews-50-v3.yaml
+
 
 
