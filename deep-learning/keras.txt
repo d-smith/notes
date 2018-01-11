@@ -1,0 +1,7 @@
+Install summary here: https://keras.io/#installation
+
+My context
+
+* Python context - 2.7 via anaconda
+* pip install tensorflow
+* pip install keras

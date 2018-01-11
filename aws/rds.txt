@@ -5,3 +5,9 @@ docker run -it --rm postgres psql -h <endpoint host> -U <master user> -d <dbname
 Troubleshoot connectivity to the instance:
 
 nc -zv <add> <port>
+
+List and stop instances
+
+aws rds describe-db-instances --query 'DBInstances[*].{DBInstanceIdentifier:DBInstanceIdentifier,DBInstanceStatus:DBInstanceStatus}'
+
+aws rds stop-db-instance --db-instance-identifier <db instance identifier>
