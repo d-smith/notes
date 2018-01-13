@@ -1,0 +1,93 @@
+# xacct-lambda
+
+This project shows how to create a bridge function that is triggered
+by a kinesis stream in account A, and calls a function in account B
+using sts assume role.
+
+## Set up
+
+Assume the two account numbers are 111111111111 for account A, and 999999999999 for account B.
+
+In B, create a policy for the invocation of the lambda function:
+
+<pre>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction",
+                "lambda:InvokeAsync",
+                "lambda:Invoke"
+            ],
+            "Resource": "arn:aws:lambda:us-west-2:999999999999:function:sfe-KinesisReader-HQKLOLIX8UOQ"
+        }
+    ]
+}
+</pre>
+
+Next in B, create a role with another AWS account as the trusted entity. Add the account id for A, then click Next:Permissions. Select the policy you created in the previous step, then name and save the Role. Note the arn - `arn:aws:iam::999999999999:role/kinesis-reader-invocation-role`
+
+In account A, create a policy to allow the assumption of the invocation role:
+
+<pre>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::99999999:role/kinesis-reader-invocation-role"
+        }
+    ]
+}
+</pre>
+
+Attach the policy to the lambda function role.
+
+In the lambda code, you need to get temporary credentials for the role, and forward the event as json:
+
+<pre>
+import base64
+import json
+import boto3
+
+sts_client = boto3.client('sts')
+
+
+
+def lambda_handler(event, context):
+    print 'Assume role'
+    assumedRoleObject = sts_client.assume_role(
+        RoleArn="arn:aws:iam::999999999999:role/kinesis-reader-invocation-role",
+        RoleSessionName="ds-event-forwarding",
+        DurationSeconds=900
+    )
+    
+    print 'Grab credentials'
+    credentials = assumedRoleObject['Credentials']
+    
+    print 'Create lambda client with temp credentials'
+    lambda_client = boto3.client(
+        'lambda',
+        aws_access_key_id = credentials['AccessKeyId'],
+        aws_secret_access_key = credentials['SecretAccessKey'],
+        aws_session_token = credentials['SessionToken'],
+    )
+    
+
+    print 'Invoke lambda'
+    response = lambda_client.invoke(
+        FunctionName='sfe-KinesisReader-HQKLOLIX8UOQ',
+        InvocationType='Event',
+        Payload=json.dumps(event)
+    )
+    
+    print response
+</pre>
+
+Refer to [this guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html)
+
