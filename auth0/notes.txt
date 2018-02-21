@@ -1,0 +1,14 @@
+Resource Owner Password Grant:
+
+https://auth0.com/docs/api-auth/tutorials/password-grant
+
+Custom Claims
+
+https://auth0.com/docs/api-auth/tutorials/adoption/scope-custom-claims
+
+Basic routine:
+
+Create users, include a tenant metadata attribute
+Define a rule to inject the tenant attribute as a claim
+
+Authenticate via resource owner password grant, realm based.
