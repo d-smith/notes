@@ -1,0 +1,1 @@
+!tar chzf notebook_ex2.tgz --exclude notebook_ex2.tgz *

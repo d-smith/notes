@@ -1,0 +1,12 @@
+source activate py362
+
+tensor flow:
+
+tensor flow url: https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py3-none-any.whl
+
+
+pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.6.0-py3-none-any.whl
+
+keras:
+
+pip install keras
