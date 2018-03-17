@@ -5,3 +5,11 @@ https://docs.apigee.com/api-platform/microgateway/2.5.x/setting-and-configuring-
 Use cases (with diagrams) - https://docs.apigee.com/api-platform/microgateway/2.5.x/overview-edge-microgateway
 
 Note: names of internal proxies must be prefixed with edgemicro_
+
+Set up:
+
+1. Create an edgemicro_ project
+- Set the path appropriately
+- Set the local url
+- pass through auth
+- etc following the guide
