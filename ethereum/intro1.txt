@@ -1,0 +1,77 @@
+https://www.youtube.com/watch?v=rmtsh7Q7sbE
+
+Notes from their github link:
+
+// AlwaysBCoding Screencast - Introduction to AWS EC2
+https://www.youtube.com/watch?v=jFBbcleSPoY
+
+// Create a new EC2 Instance on aws.amazon.com (Amazon Linux AMI)
+// =====================
+
+// edit permissions on pem file
+chmod 400 {keyfile}.pem 
+
+// ssh into instance, while exposing remote port for remote Atom
+ssh -i {path-to-keyfile}.pem -R 52698:localhost:52698 ec2-user@{instance-ip}
+
+// Install Git
+sudo yum install git
+
+// Install Homebrew Linux
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+
+// Add Homebrew executables to PATH
+echo 'export PATH="$HOME/.linuxbrew/bin:$PATH"' >>~/.bash_profile
+echo 'export PATH="/home/ec2-user/.linuxbrew/sbin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+
+// Note: brew install says "- Add Linuxbrew to your PATH PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+// So...
+echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >>~/.bash_profile
+echo 'export PATH="/home/linuxbrew/.linuxbrew/sbin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+
+// Install C Development Tools
+sudo yum groupinstall 'Development Tools'
+
+// Install Node.js (this can take ~20 minutes)
+brew update && brew install -v node (this will take a minute)
+
+// Install Remote Atom
+// Note: had to convert smart quote characters in original notes to standard quotes
+sudo curl "https://raw.githubusercontent.com/aurora/rmate/master/rmate" -o /usr/local/bin/rmate && sudo chmod +x /usr/local/bin/rmate && sudo mv /usr/local/bin/rmate /usr/local/bin/ratom
+
+// Install tmux
+sudo yum install tmux
+
+// Custom tmux configuration
+touch .tmux.conf
+> Add tmux configuration to .tmux.conf file
+> Highly recommend this short tmux book for reference https://pragprog.com/book/bhtmux/tmux
+
+// Install Ethereum testrpc
+npm install -g ethereumjs-testrpc
+
+// Run testrpc
+testrpc
+
+// Make a new folder
+// Create pacakge.json file
+{
+  "dependencies": {
+    "web3": "0.17.0-alpha"
+  }
+}
+
+// Install dependencies (need to be inside the same folder as package.json)
+npm install
+
+// Run node console (need to be inside the same folder as package.json)
+node
+
+// INSIDE NODE CONSOLE
+var Web3 = require("web3")
+var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
+  web3.eth.accounts
+
+// If web3.eth.accounts matches the accounts in your testrpc, you are good to go
