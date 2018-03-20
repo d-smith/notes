@@ -35,6 +35,7 @@ source ~/.bash_profile
 sudo yum groupinstall 'Development Tools'
 
 // Install Node.js (this can take ~20 minutes)
+// Note that this is the latest node, not the LTS
 brew update && brew install -v node (this will take a minute)
 
 // Install Remote Atom
