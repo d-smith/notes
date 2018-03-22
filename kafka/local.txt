@@ -1,4 +1,4 @@
 Start with https://github.com/wurstmeister/kafka-docker
 
 
-
+Mix this in to the docker compose file: https://github.com/sheepkiller/kafka-manager-docker
