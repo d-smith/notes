@@ -1,0 +1,34 @@
+Docker CE
+
+Install instructions: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
+
+Note you need to specify the https_proxy on the command line when you fetch the key, e.g.
+
+env https_proxy=http://<proxy host>:<proxy port> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Setting up the install repository: https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
+
+Need to add proxy config in (new) file /etc/apt/apt.conf
+
+Acquire::http::Proxy "http://proxyhost:port";
+Acquire::https::Proxy "http://proxyhost:port";
+
+Proxy config for docker:
+
+https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
+
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo touch /etc/systemd/system/docker.service.d/http-proxy.conf
+
+ 
+
+File content:
+
+[Service]
+Environment="HTTP_PROXY=http://proxyhost:port/"
+Environment="HTTPS_PROXY=http://proxyhost:port/"
+Environment="NO_PROXY=*.your.domain"
+
+ 
+
+Post config: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
