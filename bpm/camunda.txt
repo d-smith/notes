@@ -1,0 +1,23 @@
+See
+
+https://hub.docker.com/r/camunda/camunda-bpm-platform/
+
+and
+
+https://github.com/camunda/camunda-get-started/tree/master/src/main/resources
+
+docker run -v $PWD:/host -d --name camunda -p 8080:8080 camunda/camunda-bpm-platform:latest
+
+Deploy:
+
+Connect to the contain via docker exec -i -t container-id /bin/bash
+
+Then copy from /host the war to deploy into $CAMUNDA_HOME/server/apache-tomcat/webapps
+
+/camunda/webapps
+
+Verify deployment with cockpit
+
+Instantiate with tasklist... see https://docs.camunda.org/get-started/bpmn20/deploy/
+
+
