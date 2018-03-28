@@ -1,0 +1,17 @@
+Multipart upload - see http://docs.python-requests.org/en/master/user/advanced/#post-multiple-multipart-encoded-files
+
+folders_url = base_endpoint + '/some/resource'
+headers = {}
+headers['Authorization'] = 'Bearer {}'.format(login_response['access_token'])
+headers['folderId'] = folder_id
+#headers['Content-Type'] = 'multipart/form-data'
+
+multiple_files = [
+    ('metadata', ('metadata.json', open('metadata.json', 'rb'), 'application/json')),
+    ('content', ('bar.txt', open('bar.txt', 'rb'), 'text/plain'))
+]
+#files = {'content': ('sample.txt', 'A simple sample\n','text/plain'), 'metadata':('blob','','application/json')}
+#files = {'content': ('bar.txt', open('bar.txt', 'rb'), 'text/plain', {'Expires': '0'})}
+
+print ('sending request to {}'.format(folders_url))
+r = requests.post(folders_url, headers=headers, files=multiple_files)
