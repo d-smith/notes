@@ -13,3 +13,8 @@ Set up:
 - Set the local url
 - pass through auth
 - etc following the guide
+
+Pubishing
+- Create api product
+- Grant developers access
+- Expose via portal
