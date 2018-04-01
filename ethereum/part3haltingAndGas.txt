@@ -1,0 +1,37 @@
+https://www.youtube.com/watch?v=eyh4g0XPX9Q&index=3&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ
+
+Halting problem: it is impossible to write a function that determines whether or not another
+function runs indefinitely or whether that function terminates at another point.
+
+Can write halt(f) bool
+
+ Ethereum virtual machine allows for arbitrary computation of other people's code - how do
+ you avoid if you are being DDoS'd running infinite loops
+
+ Each virtual machine opcode has a cost associated with it (gas)
+ ==> You pay for the computation you do, which shields the network from DDoS
+
+ The amount of gas per computational step is fixed, the amount of ether you pay for it with is not.
+
+ Exchange rate of gas to ether that is determined by the miners on the network.
+
+ web3.toWei(20, "gwei")
+
+--------------
+Show notes from https://gist.githubusercontent.com/AlwaysBCoding/3bc1f361f31b99cbc990b0028f469e3b/raw/4c8f4a49b548af7272f84316752255d82c7a20bb/notes.txt
+
+
+// To learn more about the halting problem check out Gary Bernhardt's series on computation
+https://www.destroyallsoftware.com/screencasts
+
+// Ethereum Yellow Paper
+http://gavwood.com/paper.pdf
+
+// Ethereum OpCodes List
+http://ethereum.stackexchange.com/questions/119/what-opcodes-are-available-for-the-ethereum-evm
+
+// Ethereum OpCodes Gas Costs
+https://docs.google.com/spreadsheets/d/1m89CVujrQe5LAFJ8-YAUCcNK950dUzMQPMJBxRtGCqs/edit
+
+// Ethereum Network Statistics
+http://ethstats.net

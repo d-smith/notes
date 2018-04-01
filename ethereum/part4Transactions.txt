@@ -1,0 +1,63 @@
+
+
+var Web3 = require('web3')
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+
+var acct1 = web3.eth.accounts[0]
+var acct2 = web3.eth.accounts[1]
+var balance = (acct) => {return web3.fromWei(web3.eth.getBalance(acct),'ether').toNumber() }
+
+web3.eth.sendTransaction({from:acct1, to:acct2, value:web3.toWei(1,'ether'),gasLimit:21000,gasPrice:20000000000})
+
+Look at both account balances - sender account is minus the amount sent minus the gas price for the 
+transaction.
+
+Each transaction can send the same transction only once with the same nonce value.
+
+//Grab pk1 as the private key testrpc created for account 1
+var pk1 = 'b9d067fcc7634835bfa78bcc3179595a0cadc0475068164ac17e0a953f7a9d67'
+var EthTx = require("ethereumjs-tx")
+var pk1x = new Buffer(pk1, 'hex')
+
+//setup transaction data
+var rawTx = {
+nonce: web3.toHex(web3.eth.getTransactionCount(account1)),
+to: acct2,
+gasPrice: web3.toHex(20000000000),
+gasLimit: web3.toHex(21000),
+value: web3.toHex(web3.toWei(25, 'ether')),
+data: "" //Metadata about the transaction
+}
+
+//Now sign it
+
+//send raw transaction
+web3.eth.sendRawTransaction(
+'0x'+tx.serialize().toString('hex'), (error,data) => {
+if(!error) { 
+console.log(data) }
+})
+
+//check it worked 
+web3.eth.getTransaction(id)
+//create new tx
+var tx = new EthTx(rawTx)
+//sign
+tx.sign(pk1x)
+//get signed transaction & set in a var
+tx.serialize().toString('hex')
+var sTx = tx.serialize().toString('hex')
+
+
+--------------------
+Notes from the video: https://gist.github.com/AlwaysBCoding/c28db7f8420efcd5736cc8fe32eaa04e
+
+// package.json
+{
+  "dependencies": {
+    "web3": "0.17.0-alpha",
+    "ethereumjs-util": "4.5.0",
+    "ethereumjs-tx": "1.1.2"
+  }
+}
+

@@ -1,0 +1,22 @@
+To send a real transaction on the ethereum network, need to use a node
+on the network
+
+Time consuming to set up
+~ Configure the node, synch the entire block chain (rough)
+~ Exposes you to security risks (private keys stolen)
+
+
+--------------
+Show notes: https://gist.github.com/AlwaysBCoding/8d8804f50338797e8e0cfbf0235e7c48
+
+// MyEtherWallet (MEW)
+http://myetherwallet.com
+
+// MetaMask
+http://metamask.io
+
+// ShapeShift
+https://shapeshift.io
+
+// Jaxx
+http://jaxx.io

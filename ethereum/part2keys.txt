@@ -1,0 +1,71 @@
+ethereum-js.util 4.5.0
+
+// package.json
+{
+  "dependencies": {
+    "web3": "0.17.0-alpha",
+    "ethereumjs-util": "4.5.0"
+  }
+}
+
+npm install
+
+(node)
+
+var Web3 = require("web3")
+web3 = new Web3()
+
+Any 64 char bit string is a valid Ethereum private key (except not 64 zeros in a row)
+
+"1".repeat("64) is a valid key
+"1abc".repeat(16) is a valid key
+
+Capitalization does not matter...
+
+There's a deterministic function to map private key to public key
+
+private key => wallet address
+
+Last 40 digits of the public key is the wallet address.
+
+Cannot go from public key or wallet address to the private key
+
+etherscan.io => explore the ethereum block chain
+
+SHA - take a string of arbitrary length, hash it into a string of 64 characters
+
+web3.sha3("blah blah blah")
+
+Brain wallet - you remember a phrase or word, and an algorithm to get the wallet from the
+phrase or word.
+
+ https://github.com/ethereumjs/keythereum
+
+ https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
+ 
+
+----------------------
+Gist notes from video:
+
+// package.json
+{
+  "dependencies": {
+    "web3": "0.17.0-alpha",
+    "ethereumjs-util": "4.5.0"
+  }
+}
+
+// keypairs.js
+var EthUtil = require("ethereumjs-util")
+
+var hexToBytes = function(hex) {
+  for (var bytes = [], c = 0; c < hex.length; c+=2)
+  bytes.push(parseInt(hex.substr(c, 2), 16));
+  return bytes;
+}
+
+var privateKeyToAddress = function(privateKey) {
+  return `0x${EthUtil.privateToAddress(hexToBytes(privateKey)).toString('hex')}`
+}
+
+console.log(privateKeyToAddress(process.argv[2]))

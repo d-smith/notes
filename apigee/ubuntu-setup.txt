@@ -1,0 +1,20 @@
+Install node:
+
+(Note: set the https_proxy in my shell environment first)
+
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+Install the gateway:
+
+sudo env https_proxy=xxxx npm install edgemicro -g
+
+Configure the gateway:
+
+edgemicro init
+
+edgemicro configure -o [org] -e [env] -u [username] 
+
+Start the gateway:
+
+edgemicro start -o [org] -e [env] -k [key] -s [secret]
