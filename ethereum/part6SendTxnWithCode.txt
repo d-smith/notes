@@ -1,0 +1,11 @@
+Send transaction with code without running our own node?
+
+Infura - https://infura.io/
+
+Use infura endpoint as the provider endpoint.
+
+Sign the transaction with the private key...
+
+Verify activity using etherscan.io
+
+See also https://www.blockcypher.com/
