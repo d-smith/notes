@@ -1,0 +1,16 @@
+// package.json
+{
+  "dependencies": {
+    "web3": "0.17.0-alpha",
+    "solc": "^0.4.4"
+  }
+}
+
+// HelloWorld.sol
+contract HelloWorld {
+  
+  function displayMessage() constant returns (string) {
+    return "Hello from a smart contract";
+  }
+  
+}
