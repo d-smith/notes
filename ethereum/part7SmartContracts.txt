@@ -1,16 +1,41 @@
-// package.json
-{
-  "dependencies": {
-    "web3": "0.17.0-alpha",
-    "solc": "^0.4.4"
-  }
-}
+Smart Contracts
 
-// HelloWorld.sol
-contract HelloWorld {
+* A series of ethereum virtual machine opcodes as defined by the ethereum yellow paper.
+* Typically write smart contracts in a higher level language that compiles down to
+opcodes
+* Most popular language for doing this: Solidity
+
+tmux
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-tmux-on-ubuntu-12-10--2
+
+
+Run test rpc, then node console. In the node console:
+
+var Web3 = require('web3')
+
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+var solc = require('solc')
+
+var source = `contract HelloWorld {
   
   function displayMessage() constant returns (string) {
     return "Hello from a smart contract";
   }
   
-}
+}`
+
+var compiled = solc.compile(source)
+
+compiled.contracts[':HelloWorld']
+
+compiled.contracts[':HelloWorld'].bytecode
+compiled.contracts[':HelloWorld'].opcodes
+
+The abi:
+
+compiled.contracts[':HelloWorld'].interface
+
+var abi = JSON.parse(compiled.contracts[':HelloWorld'].interface)
+
+6:16
