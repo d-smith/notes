@@ -38,4 +38,34 @@ compiled.contracts[':HelloWorld'].interface
 
 var abi = JSON.parse(compiled.contracts[':HelloWorld'].interface)
 
-6:16
+var helloWorldContract = web3.eth.contract(abi)
+
+//How much gas to deploy contract? Use the solidity online compiler...
+
+https://remix.ethereum.org/
+
+//Deploy contract
+var deployed = hellowWorldContract.new({
+  from: web3.eth.accounts[0],
+  data: compiled.contracts[':HelloWorld'].bytecode,
+  gas: 4700000,
+  gasPrice: 5,
+},(error, contract) => {})
+
+Transaction, and contract address.
+
+Two kinds of addresses in Ethereum: personal accounts, and contracts
+
+//Inspect the transaction
+web3.eth.getTransaction("txnid)
+
+deployed var from above - reference to the contract
+
+deployed.address
+
+helloContract.at(_) - pass in the address to get reference the deployed contract
+
+Can call public methods on the deployed contract via the reference
+
+deployed.displayMessage.call()
+
