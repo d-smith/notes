@@ -9,6 +9,12 @@ tmux
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-tmux-on-ubuntu-12-10--2
 
+{
+	"dependencies": {
+		"web3": "0.17.0-alpha",
+		"solc": "^0.4.4"
+	}
+}
 
 Run test rpc, then node console. In the node console:
 
@@ -45,7 +51,7 @@ var helloWorldContract = web3.eth.contract(abi)
 https://remix.ethereum.org/
 
 //Deploy contract
-var deployed = hellowWorldContract.new({
+var deployed = helloWorldContract.new({
   from: web3.eth.accounts[0],
   data: compiled.contracts[':HelloWorld'].bytecode,
   gas: 4700000,
@@ -68,4 +74,3 @@ helloContract.at(_) - pass in the address to get reference the deployed contract
 Can call public methods on the deployed contract via the reference
 
 deployed.displayMessage.call()
-
