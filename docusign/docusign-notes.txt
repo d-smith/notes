@@ -1,0 +1,4 @@
+When using the sample code in this project, when you
+set up the integrator key to use with the sample, the 
+callback uri should be /auth/callback. Use a host name that
+docusign can reach.
