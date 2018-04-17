@@ -1,3 +1,5 @@
+install python: https://conda.io/docs/user-guide/tasks/manage-python.html
+
 source activate py362
 
 tensor flow:
