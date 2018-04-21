@@ -4,3 +4,5 @@ callback uri should be /auth/callback. Use a host name that
 docusign can reach.
 
 Server side JWT login - see https://github.com/docusign/OAuth_JWT_recipes
+
+Web Hooks - see https://www.docusign.com/blog/dsdev-adding-webhooks-application/
