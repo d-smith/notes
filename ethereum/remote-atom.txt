@@ -1,0 +1,1 @@
+See https://atom.io/packages/remote-atom

@@ -1,0 +1,90 @@
+smart contracts - escrow
+
+Contracts can have state that is stored on the block-chain.
+
+Can define functions to return state...
+
+contract Escrow {
+    address buyer;
+
+    function getBuyerAddress() constant returns (address) {
+        return buyer;
+    }
+}
+
+Or can short-cut it...
+
+contract Escrow {
+    address public buyer;
+}
+
+Constructor function
+
+* Same name as the contract
+* Runs once on creation of the contract
+* Can take arguments
+
+Special object in solidity called the message object - msg
+* Provides info on the transaction calling into the current contract
+* msg.sender - address calling into the contract
+
+Build this much of the contract, and deploy it to the testrpc:
+
+contract Escrow {
+  address public buyer;
+  address public seller;
+  address public arbiter;
+
+  function Escrow(address _seller, address _arbiter) {
+    buyer = msg.sender;
+    seller = _seller;
+    arbiter = _arbiter;
+  }
+}
+
+In node:
+
+var source = `contract Escrow {
+  address public buyer;
+  address public seller;
+  address public arbiter;
+
+  function Escrow(address _seller, address _arbiter) {
+    buyer = msg.sender;
+    seller = _seller;
+    arbiter = _arbiter;
+  }
+}`
+
+var Web3 = require('web3')
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+
+var buyer = web3.eth.accounts[0];
+var seller = web3.eth.accounts[1];
+var arbiter = web3.eth.accounts[2];
+
+var solc = require('solc');
+var compiled = solc.compile(source);
+
+var bytecode = compiled.contracts[':Escrow'].bytecode
+var abi = JSON.parse(compiled.contracts[':Escrow'].interface)
+
+var escrowContract = web3.eth.contract(abi);
+
+var deployed = escrowContract.new(seller, arbiter, {
+  from: buyer,
+  data: bytecode,
+  gas: 4700000,
+  gasPrice: 5,
+},(error, contract) => {});
+
+deployed.address
+deployed.buyer.call() == buyer
+
+var balance = (acct) => { return web3.fromWei(web3.eth.getBalance(acct),'ether').toNumber()}
+
+balance(buyer)
+balance(deployed.address)
+
+
+[[[Start at 7:30 - https://www.youtube.com/watch?v=EbWKtDPFPz8&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ&index=8]]]
