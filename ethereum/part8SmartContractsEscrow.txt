@@ -71,20 +71,78 @@ var abi = JSON.parse(compiled.contracts[':Escrow'].interface)
 
 var escrowContract = web3.eth.contract(abi);
 
+Now, add a value parameter which is the amount of ether we want to send to the contract on creation.
+
 var deployed = escrowContract.new(seller, arbiter, {
   from: buyer,
   data: bytecode,
   gas: 4700000,
-  gasPrice: 5,
-},(error, contract) => {});
+  gasPrice: 5
+},(error, contract) => {if(error)console.log(error)});
 
 deployed.address
 deployed.buyer.call() == buyer
 
-var balance = (acct) => { return web3.fromWei(web3.eth.getBalance(acct),'ether').toNumber()}
+  var balance = (acct) => { return web3.fromWei(web3.eth.getBalance(acct),'ether').toNumber()}
 
 balance(buyer)
 balance(deployed.address)
 
 
 [[[Start at 7:30 - https://www.youtube.com/watch?v=EbWKtDPFPz8&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ&index=8]]]
+
+You can send ether to a contract.
+
+Now add  functions - payoutToSeller, refundToBuyer and getBalance
+
+var source = `contract Escrow {
+  address public buyer;
+  address public seller;
+  address public arbiter;
+
+  function Escrow(address _seller, address _arbiter) payable {
+    buyer = msg.sender;
+    seller = _seller;
+    arbiter = _arbiter;
+  }
+
+  function payoutToSeller() {
+    if(msg.sender == buyer || msg.sender == arbiter) {
+      seller.send(this.balance);
+    }
+  }
+
+  function refundToBuyer() {
+    if(msg.sender == seller || msg.sender == arbiter) {
+      buyer.send(this.balance);
+    } 
+  }
+
+  function getBalance() constant returns (uint) {
+    return this.balance;
+  }
+
+}`
+
+var compiled = solc.compile(source);
+
+
+
+var bytecode = compiled.contracts[':Escrow'].bytecode
+var abi = JSON.parse(compiled.contracts[':Escrow'].interface)
+
+var deployed = escrowContract.new(seller, arbiter, {
+  from: buyer,
+  data: bytecode,
+  gas: 4700000,
+  gasPrice: 5,
+  value: web3.toWei(5, 'ether')
+},(error, contract) => {if(error)console.log(error)});
+
+balance(deployed.address)
+
+deployed.payoutToSeller({from: buyer})
+
+balance(seller)
+
+ balance(deployed.address)
