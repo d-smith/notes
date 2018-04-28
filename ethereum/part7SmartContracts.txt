@@ -63,7 +63,7 @@ Transaction, and contract address.
 Two kinds of addresses in Ethereum: personal accounts, and contracts
 
 //Inspect the transaction
-web3.eth.getTransaction("txnid)
+web3.eth.getTransaction("txnid")
 
 deployed var from above - reference to the contract
 
