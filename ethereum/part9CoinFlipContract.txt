@@ -1,0 +1,112 @@
+Video: https://www.youtube.com/watch?v=OFPBSKd6us8&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ&index=9
+
+finite state machine
+
+when modeling a finite state machine:
+
+1. What are the discrete states that the FSM models
+2. What are the events at each state, and which cause state change
+3. What are artifacts are produced on state transactions
+
+Coin Flipper
+
+* noWager, function makeWager exposed, when called transitions to wagerMade
+* wagerMade, which exposes a function called acceptWager, which
+transitions to wagerAccepted
+* wagerAccepted, exposes a function called resolveBet, which randomly 
+determines who wins, send the ether to the winner, and transitions back to
+noWager
+
+How to model in solidity.
+
+Trick to avoid all the repetitive stuff we do - create temp.js and add
+preconfigured variables before the repl starts:
+
+global.Web3 = require('Web3)
+require('repl').start({})
+
+Video author provides a decypher.js that loads many handy things
+and starts the repl.
+
+// Config
+global.config = {
+  rpc: {
+    host: "localhost",
+    port: "8545"
+  }
+}
+
+// Load Libraries
+global.solc = require("solc")
+global.fs = require("fs")
+global.Web3 = require("web3")
+
+// Connect Web3 Instance
+global.web3 = new Web3(new Web3.providers.HttpProvider(`http://${global.config.rpc.host}:${global.config.rpc.port}`))
+
+// Global Account Accessors
+global.acct1 = web3.eth.accounts[0]
+global.acct2 = web3.eth.accounts[1]
+global.acct3 = web3.eth.accounts[2]
+global.acct4 = web3.eth.accounts[3]
+global.acct5 = web3.eth.accounts[4]
+
+// Helper Functions
+class Helpers {
+
+  contractName(source) {
+    var re1 = /contract.*{/g
+    var re2 = /\s\w+\s/
+    return source.match(re1).pop().match(re2)[0].trim()
+  }
+
+  createContract(source, options={}) {
+    var compiled = solc.compile(source)
+    var contractName = this.contractName(source)
+    var bytecode = compiled["contracts"][contractName]["bytecode"]
+    var abi = JSON.parse(compiled["contracts"][contractName]["interface"])
+    var contract = global.web3.eth.contract(abi)
+    var gasEstimate = global.web3.eth.estimateGas({ data: bytecode })
+
+    var deployed = contract.new(Object.assign({
+      from: global.web3.eth.accounts[0],
+      data: bytecode,
+      gas: gasEstimate,
+      gasPrice: 5
+    }, options), (error, result) => { })
+
+    return deployed
+  }
+
+  loadContract(name) {
+    var path = `./${name.toLowerCase()}.sol`
+    return fs.readFileSync(path, 'utf8')
+  }
+
+  deployContract(name, options={}) {
+    var source = this.loadContract(name)
+    return this.createContract(source, options)
+  }
+
+  etherBalance(contract) {
+    switch(typeof(contract)) {
+      case "object":
+        if(contract.address) {
+          return global.web3.fromWei(global.web3.eth.getBalance(contract.address), 'ether').toNumber()
+        } else {
+          return new Error("cannot call getEtherBalance on an object that does not have a property 'address'")
+        }
+        break
+      case "string":
+        return global.web3.fromWei(global.web3.eth.getBalance(contract), 'ether').toNumber()
+        break
+    }
+  }
+
+}
+
+// Load Helpers into Decypher namespace
+global.decypher = new Helpers()
+
+// Start repl
+require('repl').start({})
