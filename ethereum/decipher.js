@@ -1,33 +1,3 @@
-Video: https://www.youtube.com/watch?v=OFPBSKd6us8&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ&index=9
-
-finite state machine
-
-when modeling a finite state machine:
-
-1. What are the discrete states that the FSM models
-2. What are the events at each state, and which cause state change
-3. What are artifacts are produced on state transactions
-
-Coin Flipper
-
-* noWager, function makeWager exposed, when called transitions to wagerMade
-* wagerMade, which exposes a function called acceptWager, which
-transitions to wagerAccepted
-* wagerAccepted, exposes a function called resolveBet, which randomly 
-determines who wins, send the ether to the winner, and transitions back to
-noWager
-
-How to model in solidity.
-
-Trick to avoid all the repetitive stuff we do - create temp.js and add
-preconfigured variables before the repl starts:
-
-global.Web3 = require('Web3)
-require('repl').start({})
-
-Video author provides a decypher.js that loads many handy things
-and starts the repl.
-
 // Config
 global.config = {
   rpc: {
@@ -110,17 +80,3 @@ global.decypher = new Helpers()
 
 // Start repl
 require('repl').start({})
-
-
-acct1
-decypher.etherBalance(acct1)
-
-enum - Enumerable value, fixed set of values a variable can have. Great
-for enumerating states.
-
-solidity - string type is bytes32 (based on the evm)
-
-var deployed = decypher.deployContract("flipper");
-
-
-state: 10:52
