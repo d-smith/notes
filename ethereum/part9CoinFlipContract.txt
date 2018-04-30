@@ -122,5 +122,24 @@ solidity - string type is bytes32 (based on the evm)
 
 var deployed = decypher.deployContract("flipper");
 
+//Get the global state, which I can do because it it public
+deployed.currentState.call()
 
-state: 10:52
+
+deployed.transitionGameState("wagerMade",{from: acct1})
+
+Solidity concept: modifiers - reuseable code you can put into
+context to do validation before functions are called.
+
+  modifier onlyState(GameState expectedState) { if (expectedState == currentState) {_;} else {throw;}}
+
+_; means delegate out to the function that uses this modifier
+
+throwing exceptions is a bit different on the ethereum virtual machine
+compared to different programming languages
+
+* distributed nature 
+* atomic state modification - for example if do not you provide enough gas,
+the state changes are not mined into the block chain
+* throw drains the txn of all its gas
+

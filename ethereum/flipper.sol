@@ -4,24 +4,29 @@ contract Flipper {
 
   GameState public currentState;
 
+  modifier onlyState(GameState expectedState) { if (expectedState == currentState) {_:} else {throw;}}
+
   function Flipper() {
     currentState = GameState.noWager;
   }
 
-  function transitionGameState(bytes32 targetState) returns (bool) {
-    if(targetState == "noWager") {
-      currentState = GameState.noWager;
-      return true;
-    }
-    else if (targetState == "wagerMade") {
-      currentState = GameState.wagerMade;
-      return true;
-    }
-    else if (targetState == "wagerAccepted") {
-      currentState = GameState.wagerAccepted;
-      return true;
-    }
-
-    return false;
+  function makeWager() onlyState(GameState.noWager) returns (bool) {
+    // ...
+    currentState = GameState.wagerMade;
+    return true;
   }
+
+  function acceptWager() onlyState(GameState.wagerMade) returns (bool) {
+    // ...
+    currentState = GameState.wagerAccepted;
+    return true;
+  }
+
+  function resolveBet() onlyState(GameState.wagerAccepted) returns (bool) {
+    //...
+    currentState = GameState.noWager;
+    return true;
+  }
+
+
 }
