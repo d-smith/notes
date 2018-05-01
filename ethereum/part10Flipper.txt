@@ -1,0 +1,24 @@
+Part 10
+
+https://www.youtube.com/watch?v=dq-gBPvDgrc&index=10&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ
+
+If you define a value in the object when you're making a transaction
+to a contract, that value of ether will get passed into the contract
+that you can access in the msg.value property.
+
+payable keyword - function must be payable if you want to send ether
+to it
+
+deployed.makeWager({from:acct1, value: web3.toWei(5,'ether')})
+decypher.etherBalance(deployed.address)
+
+In accept wager we want to only transition state if the accepted amount
+matches the wager. If it doesn't, we have to throw to rollback the 
+transaction, because returning false if the accepted amout was wrong
+would not transition state but would still credit the value to the 
+contract.
+
+Randomness - simulating radomness on the blockchain is notoriously 
+difficult.
+
+Start: 6:02
