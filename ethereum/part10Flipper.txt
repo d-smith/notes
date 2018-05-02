@@ -21,4 +21,21 @@ contract.
 Randomness - simulating radomness on the blockchain is notoriously 
 difficult.
 
-Start: 6:02
+web3.eth.blockNumber
+web3.eth.getBlock(1)
+
+The block hash has some Randomness... you can get the hash of previous blocks
+that have been mined before.
+
+THere's a type in solidity that's a 256 bit integer. In wolfram alpha
+you can calulate 2 ^ 256 which is the number of different values
+
+115792089237316195423570985008687907853269984665640564039457584007913129639936
+
+Force convert a block has into a uint 256 - will be one of the valid values,
+there's an equally likely chance that the bit converted hash is higher or lower
+than the mid point which is (2 ^ 256) / 2.
+
+Which is:
+
+57896044618658097711785492504343953926634992332820282019728792003956564819968

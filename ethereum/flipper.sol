@@ -6,6 +6,7 @@ contract Flipper {
   uint public wager;
   address public player1;
   address public player2;
+  uint public seedBlockNumber;
 
   modifier onlyState(GameState expectedState) { if (expectedState == currentState) {_;} else {throw;}}
 
@@ -23,6 +24,7 @@ contract Flipper {
   function acceptWager() onlyState(GameState.wagerMade) payable returns (bool) {
     if(msg.value == wager) {
       player2 = msg.sender;
+      seedBlockNumber = block.number;
       currentState = GameState.wagerAccepted;
       return true;
     } else {
@@ -32,9 +34,19 @@ contract Flipper {
   }
 
   function resolveBet() onlyState(GameState.wagerAccepted) returns (bool) {
-    //...
-    currentState = GameState.noWager;
-    return true;
+    uint256 blockValue = uint256(block.blockhash(seedBlockNumber));
+    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    uint256 coinFlip = uint256(blockValue / FACTOR);
+
+    if(coinFlip == 0) {
+      player1.send(this.balance);
+      currentState = GameState.noWager;
+      return true;
+    } else {
+      player2.send(this.balance);
+      currentState = GameState.noWager;
+      return true;
+    }
   }
 
 
