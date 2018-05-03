@@ -1,0 +1,33 @@
+https://www.youtube.com/watch?v=rY2JxxzIYb0&index=10&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ
+
+Useful to break up more complex contracts into different parts, and
+to be able to use contracts provided by others.
+
+See owner.sol
+
+var source = `.......`
+var deployed = decypher.createContract(source);
+
+
+> deployed.message.call()
+''
+> deployed.setMessage("hello", {from:acct1})
+'0xab5573996aecc1d822f53f158f33428e53fe343f49e3f31cd3f85e47735bb203'
+> deployed.message.call()
+'hello'
+> deployed.setMessage("hello something different", {from:acct2})
+'0x53ee99254f762e322c0790fc471d491734b323edd6f5dd47804655131ac5ac34'
+> deployed.message.call()
+'hello'
+
+Can split these into multiple files, then import with relative
+path like ES6 imports. Note this works for the operating system level
+solidity compilers, not for the javascript version we've used so far.
+
+Mortal contract - terminates the existance of the contract on the
+ethereum blockchain.
+
+Deploy mortal helloworld...
+
+var source = `...`
+var deployed = decypher.createContract(source);
