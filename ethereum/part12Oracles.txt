@@ -1,0 +1,35 @@
+https://www.youtube.com/watch?v=04WiDy_Of2A&index=11&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ
+
+It might be useful to perform certain kinds of computation off-chain
+and pull the results into your contract. Or bring any outside data 
+into the chain to store with/use with your contracts.
+
+Oracles
+
+The Ethereum blockchain is its own source of truth - it encapsulates its
+own state and knows nothing about the outside world.
+
+An Oracle service sites between the chain and the outside world,
+and provides a consistent way to relay data from the outside world
+onto the chain. This is a concept, there's no single Oracle...
+
+Data from the outside world...
+
+* First call into the chain via a contract
+* Contract will know which Oracle service to use, and will
+call out using the service.
+* Oracle service does the interaction with the real world
+* Oracle service calls back into the contract, probably on
+a callback function. 
+
+Third party framework/tool for this: Oraclize
+
+http://docs.oraclize.it/
+
+http://docs.oraclize.it/#ethereum-quick-start-simple-query
+
+github.com/oraclize/ethereum-api/oraclizeAPI.sol
+
+Online solidity compiler https://remix.ethereum.org/
+
+Deploy to test chain via my ether wallet 
