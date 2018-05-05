@@ -1,0 +1,39 @@
+https://www.youtube.com/watch?v=9vHm7JJ7VvI&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ&index=12
+
+Ethereum Name Service
+
+Resolve human readable names to ethereum addresses
+
+* Similar to DNS
+
+Registrir Contrant
+
+FIFS Registrir - first in first out, gold rush, squatting
+Auction Registrir - this is the model ENS works
+
+testnet - .test names, FIFS registration
+main chaing - .eth, Auction
+
+ethereum-ens module
+
+ropsten test network - pass web3 instance configured to connect to ropsten
+test network to the module
+
+aNameHash = ens.namehash('somename');
+ens.ens.owner(aNameHash)
+
+ens.testRegistrar.register(name, address) - need to manually generate add
+a transaction and sign it.
+
+Auction
+name - available, up for auction, owned
+
+ens.ethRegistrar.entries(web3.sha("name"))
+
+Auctions - available for 1 week (2 weeks when it starts up initially)
+
+Can also do this on the test network - startAuction, startAuctions
+
+https://docs.ens.domains/en/latest/
+
+https://github.com/ethereum/EIPs/blob/master/EIPS/eip-162.md
