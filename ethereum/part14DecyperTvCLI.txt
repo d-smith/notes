@@ -1,0 +1,15 @@
+https://www.youtube.com/watch?v=ekVliuvzonk&index=13&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9biQ
+
+npm install -g decyphertv@0.1.14
+
+0.1.<episode no>
+
+Run testrpc then:
+
+decypertv -m testrpc
+
+Connect to the testnet - use your ethera key
+
+decyphertv -m ropsten
+
+Deploy contracts to testnet, use etherscan.io to inspect it, etc.
