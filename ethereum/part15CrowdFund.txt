@@ -26,7 +26,7 @@ contract CrowdFund {
     }
 
     function refund() {
-        if(msg.send != beneficiary) throw;
+        if(msg.sender != beneficiary) throw;
         uint256 index = 0;
         while(index < funders.length) {
             funders[index].addr.send(funders[index].contribution);
