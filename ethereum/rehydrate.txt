@@ -1,0 +1,8 @@
+* Attached to contract instance
+        const contract = global.web3.eth.contract(deployed.abi)
+        var theInstance = contract.at(address)
+        theInstance.currentState.call()
+
+    * Call from the rehydrated
+        theInstance.policyChecked(true,{from:acct1})
+        theInstance.disburseFunds({from:acct2})
