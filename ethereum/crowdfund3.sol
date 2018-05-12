@@ -1,0 +1,42 @@
+contract CrowdFund {
+
+    address public beneficiary;
+    uint256 public goal;
+    uint256 public deadline;
+    mapping (address => uint256) funders;
+    address[] funderAddresses;
+
+    function CrowdFund(address _beneficiary, uint256 _goal, uint256 _deadline) {
+        beneficiary = _beneficiary;
+        goal = _goal;
+        deadline = now + _deadline;
+    }
+
+    function getFunderContribution(address _addr) constant returns (uint256) {
+      return funders[_addr];
+    }
+
+    function getFunderAddress(uint _index) constant returns (address) {
+      return funderAddresses[_index];
+    }
+
+    function funderAddressesLength() constant returns (uint) {
+      return funderAddresses.length;
+    }
+
+    function contribute() payable {
+      if(funders[msg.sender] == 0) funderAddresses.push(msg.sender);
+        funders[msg.sender] += msg.value;
+    }
+
+    function payout() {
+        if(this.balance > goal && now > deadline) beneficiary.send(this.balance);
+    }
+
+    function refund() {
+      if(now > deadline && this.balance < goal) {
+        msg.sender.send(funders[msg.sender]);
+        funders[msg.sender] = 0;
+      }
+    }
+}

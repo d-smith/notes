@@ -1,0 +1,66 @@
+https://www.youtube.com/watch?v=TUqfJn_WTTI
+
+To avoid the problem with the refund method where it could
+never execute due to block gass limits...
+
+* Add a refundIndex member varable
+* In refund, initalized index to refundIndex, update refundIndex to
+index after the loop.
+* Add loop condition to check the gas remaining: msg.gas > 100000
+for example.
+
+    function refund() {
+        if(msg.sender != beneficiary) throw;
+        uint256 index = refundIndex;
+        while(index < funders.length && msg.gas > 100000) {
+            funders[index].addr.send(funders[index].contribution);
+            index++;
+        }
+        returnIndex = index;
+    }
+
+for(var i=0; i<300;i++) { deployed.contribute({value:1, from: acct5}) }
+deployed.refundIndex.call().toNumber() shows 0
+deployed.refund({from:acct1, gas: 1000000})
+
+From the console, 923961 were used.
+deployed.refundIndex.call().toNumber() shows 100
+ 
+An even better way...
+
+Get rid of the data structure and refund index.
+
+Remove:
+
+    uint256 public refundIndex;
+
+    struct Funder {
+        address addr;
+        uint256 contribution;
+    }
+
+    Funder[] funders;
+
+And replace it with a mapping - which is a solidity key-value store.
+
+
+mapping (address => uint256)
+
+We change refund to a pull model, and add some guard conditions...
+
+    function refund() {
+      if(now > deadline && this.balance < goal) {
+        msg.sender.send(funders[msg.sender]);
+        funders[msg.sender] = 0;
+      }
+    }
+
+There's no way to loop through all the keys in the mapping, as conceptually 
+every address was initialized with a 0 balanced, so we add some helper code
+to keep track of the addresses (see finished file).
+
+deployed.funderAddressesLength.call().toNumber()
+deployed.getFunderAddress(0)
+
+deployed.getFunderContribution('0x6422c66c2c16af61ac856d8a3560e1da87fbac88').toNumber()
+
