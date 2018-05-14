@@ -1,0 +1,32 @@
+https://www.youtube.com/watch?v=Ty2qv8eZN4I
+
+Two places data is stored in Ethereum
+
+* Chain data
+* State trie (pronounced tree)
+
+Smart contracts can write to both chain data and state trie, but can only
+read from state.
+
+Why write somewhere you can't read (from a contract)?
+
+* Writes to chain - 8 gas/byte
+* Writes to trie - 625 gas/byte
+* Clients can read from both.
+* Writing to chain data is used to model asynchronous event triggers
+
+To write to chain data from solidity code, using the crowdfund example, first
+defined a new event:
+
+event NewContribution(address indexed _from, uint256 _value);
+
+indexed keyword - attach to one or more of the fields in the event to allow
+attaching listeners to listen for specific values of the event.
+
+To write the event, call it.
+
+For example at the end of the contribute method:
+
+NewContribution(msg.sender, msg.value)
+
+2:38
