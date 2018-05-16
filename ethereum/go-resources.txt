@@ -5,3 +5,9 @@ https://github.com/ethereum/go-ethereum/wiki/Contract-Tutorial
 https://medium.com/infrageth/practical-steps-for-go-ethereum-setup-27b8d64903fc
 
 https://geth.ethereum.org/
+
+https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+
+https://legacy.gitbook.com/book/ethereum/frontier-guide/details
+
+
