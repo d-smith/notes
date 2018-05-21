@@ -29,4 +29,42 @@ For example at the end of the contribute method:
 
 NewContribution(msg.sender, msg.value)
 
-2:38
+create the contract, do two contributions acct2,1 and acct3,5
+
+web3.eth.getBlock(2) //contract create block - 2 because i threw away the first
+logs.Bloom - carries event info, non-zero value when an event has fired
+
+var deployed = decypher.createContract(source, [acct1, web3.toWei(10,'ether'),10000],{gas:1000000});
+
+deployed.contribute({from:acct2, value:1});
+deployed.contribute({from:acct3, value:5});
+
+npm install -g ganache-cli
+
+ganache-cli
+
+
+For a transaction that wrote data...
+
+
+var transactionReceipt = web3.eth.getTransactionReceipt('0x41cba3229651a012a7f66e21c99bc50ecb726618960cc39a495f99c165c0ea87');
+;
+
+From the output in the logs section we can see the data we sent out:
+
+  logs: 
+   [ { logIndex: 0,
+       transactionIndex: 0,
+       transactionHash: '0x41cba3229651a012a7f66e21c99bc50ecb726618960cc39a495f99c165c0ea87',
+       blockHash: '0xf238e31aac56c395179b22467cc584f8e6913f8826825763b87fb751c4c59f3b',
+       blockNumber: 3,
+       address: '0xfb97bf35cda12ae996eccd500869cc4f89392cd2',
+       data: '0x0000000000000000000000000000000000000000000000000000000000000005',
+       topics: [Array],
+       type: 'mined' } ],
+
+
+var event = deployed.NewContribution()
+event.watch((error, result) => {
+    console.log(result.args._value);
+})
