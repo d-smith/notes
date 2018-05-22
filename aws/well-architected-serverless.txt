@@ -1,0 +1,9 @@
+Notes from https://www.youtube.com/watch?v=2SpmQKsgcOU
+
+https://aws.amazon.com/architecture/well-architected/
+
+Serverless lens - https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
+
+API gateway method request validation: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-method-request-validation.html
+
+

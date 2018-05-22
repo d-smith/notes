@@ -1,0 +1,15 @@
+https://www.youtube.com/watch?v=1k3XqBA2hYM
+
+Serverless Means...
+
+* No servers to provision or change
+* Scales with usage
+* Never pay for idle
+* Availability and fault-tolerance built in
+
+https://github.com/awslabs/serverless-application-model
+
+Install SAM: pip install aws-sam-cli
+
+
+
