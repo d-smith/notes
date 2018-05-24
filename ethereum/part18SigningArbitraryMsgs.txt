@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=YWoBeoTUrYM
+
+mkdir eth-keypairs
+
+package.json
+
+{
+    "dependencies": {
+        "web3":"0.17.0-alpha",
+        "ethereumjs-util":"4.5.0"
+    }
+}
+
+ethereumjs-util - help library, low level crypto, etc.
