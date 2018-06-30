@@ -1,0 +1,5 @@
+See https://github.com/awslabs/amazon-sagemaker-examples
+
+Start the sample notebook from the aws console.
+
+Local mode means runs on a local instance not cluster... doesn't run outside of AWS.
