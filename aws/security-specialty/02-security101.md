@@ -1,8 +1,3 @@
-[AWS Security Specialty](https://aws.amazon.com/certification/certified-security-specialty/)
-
-[Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS_Certified_Security_Specialty_Exam_Guide_v1.5.pdf)
-
-
 ## Shared Responsibility Model
 
 See [here](https://aws.amazon.com/compliance/shared-responsibility-model/)
@@ -30,5 +25,3 @@ Different service types:
     * Abstract the platform or management layer
 
 Example: S3 - you are responsible for bucket policies
-
-
