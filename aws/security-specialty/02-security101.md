@@ -25,3 +25,46 @@ Different service types:
     * Abstract the platform or management layer
 
 Example: S3 - you are responsible for bucket policies
+
+## Security in AWS
+
+Cloud Controls
+    * Visibility
+        * What assests do you have? AWS Config
+    * Auditability
+        * Who's going into our AWS environment, who's making changes. AWS CloudTrail
+    * Controllability
+        * How is my data controlled? AWS KMS, AWS CloudHSM.
+        * KMS is multitenant, CloudHSM is dedicated hardware. FIPS 142 compliance - CloudHSM, can't use multitenant hardware.
+    * Agility
+        * How quickly can you adapt to changes? AWS CloudFormation, AWS Elastic Beanstalk
+    * Automation
+        * Are our processes repeatable? AWS OpsWorks, AWS CodeDeploy
+    * Scale
+        * Every customer gets the same AWS security foundation
+
+www.slideshare.net/AmazonWebServices
+
+These apply across all controls: AWS IAM, AWS CloudWatch, AWS TrustedAdvisor
+
+## Exam Tips
+
+* Understand the 3 models
+    * CIA (confidentiality, integrity, availability)
+        * Confidentiality: IAM, MFA
+        * Integrity: Certificate manager, IAM, Bucket Policies
+        * Availability: Autoscaling, multiple AZ, multiple regions, etc.
+    * AAA (authentication, authorization, accounting)
+        * Authentication: IAM
+        * Authorization: Policies
+        * Accounting: cloud trail
+    * Non-repudiation (can't deny)
+        * Cloud Watch, Cloud Trail, MFA, IAM
+
+* Know how Amazon secures themselves
+* Why trust AWS? => Compliance certifications
+    * PCI - gap audit
+
+* Understand the shared responsibility model (see above)
+    * Diff responsibilities for infrastructure, container, abstracted
+
