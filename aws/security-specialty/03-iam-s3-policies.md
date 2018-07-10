@@ -53,3 +53,28 @@ Resetting Root Users
 * Delete previous 2FA and re-create
 * Check if root has an access key id and secret access key - if so delete
 * Check other user accounts, delete if not legit
+
+## IAM Policies 101
+
+* IAM policies specify what you are allowed to do with any AWS resource.
+* Global, applies to all areas of AWS.
+* Attached to IAM users, groups, or roles.
+* Define what a principal can do in your AWS environment
+
+
+3 Types
+
+* AWS managed
+    * Administered by AWS
+    * Note these can be updated by AWS
+* Customer managed
+    * Standalone policy you administer in your account
+* Inline
+    * Useful to maintain a strict one to one relationship between a policy and the principal entity that it's applied to.
+    * Useful to ensure you don't inadvertantly associate the policy with anyone else.
+
+Power Users do not have access to IAM.
+
+
+## S3 Bucket Policies
+
