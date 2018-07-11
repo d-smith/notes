@@ -78,3 +78,45 @@ Power Users do not have access to IAM.
 
 ## S3 Bucket Policies
 
+* Attached only to s3 buckets
+* Specify what actions are allowed or denied on the bucket, can be broken down to the user level
+
+Use Cases
+
+* Simple way to grant cross account access to s3
+* Use when IAM policies bump up against size limits (2kb for users, 5 kb for groups, 10kb for roles). S3 suuports bucket policies up to 20 kb.
+* You prefer to keep access control policies in the s3 environment. Think denying access to a specific bucket in a 40,000 user org.
+
+Scenario
+
+* S3 bucket policy denies user access, IAM policy grants read/write/delete to the IAM user => s3 bucket policy wins here
+
+Steps
+
+1. login with admin privileges, create two buckets
+2. user IAM allows read and write, apply a bucket policy that allows delete to one of the buckets => policy generator does not supply the '/*' needed by some actions, like delete. You must know this for the exam
+3. Normal bucket - can't delete
+4. Bucket with delete policy - can delete
+5. Admin back to bucket, add policy with deny all actions to the user arn
+6. Now add access for a user as a second policy allow on the bucket. Policy has a deny all, plus an allow for one specific user. => *Explicit deny always overrides an allow*!
+
+Explicit deny always overrides and allow
+
+* Deny in IAM, allow in bucket policy => Deny takes precedent
+
+## S3 ACLs
+
+ACLs are a legacy access control mechanism that predates IAM.
+
+* Use when you must apply policies on individual objects.
+* Can use as a work around if bucket policy is too large.
+
+CLI or API - need account number and canonical user id. `aws s3api list-buckets` - gives canonical id for individual user in the output
+
+Access for the account, individual users (CLI or API), other accounts, public
+
+Scenario:
+
+1. Make an object pubich from an ACL point of view
+2. Go to IAM, edit policy, full read, limited write, edit json and change allow to deny. All read plus one write - Deny.
+3. Log in as IAM user - can read the bucket object via the link, no IAM in scope. IAM user access - deny applies.
