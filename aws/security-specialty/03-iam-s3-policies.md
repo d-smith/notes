@@ -120,3 +120,98 @@ Scenario:
 1. Make an object pubich from an ACL point of view
 2. Go to IAM, edit policy, full read, limited write, edit json and change allow to deny. All read plus one write - Deny.
 3. Log in as IAM user - can read the bucket object via the link, no IAM in scope. IAM user access - deny applies.
+
+## Policy Conflicts
+
+IAM vs s3 policy vs s3 ACL conflicts...
+
+Whenever an AWS orincipal (user, group, role) issues a request to s3, the authorization decision depends on the union of all the IAM policies, s3 bucket policies, and s3 ACLs that apply.
+
+With least privilege:
+
+* Decisions always default to DENY.
+* Explicit deny always trumps an ALLOW.
+* Only if no method specifies a deny and one or more methods specify an ALLOW will the request be allowed.
+
+1. Decision starts at Deny
+2. Evaluate all applicable policies
+3. Is there an explicit deny?
+    ==> DENY
+4. If there was no deny, is there an expliciy allow?
+    ==> ALLOW
+5. If no explicit deny, and no explicit allow, deny.
+
+## Forcing Encryption on S3
+
+Use a bucket policy with two statements:
+
+1. First statement, allows s3:GetObject on bucket/*
+2. Second statement, same as first, except it is a deny, and the bool condition is aws:SecureTransport false.
+
+````console
+{
+    "Condition":{
+        "Bool": {
+            "aws:SecureTranspart" : false
+        }
+    }
+}
+````
+
+
+## Cross Region Replication and S3
+
+By default cross region replication is done using SSL/TLS - you do not have to create bucket or IAM policies to force SSL.
+
+You can replicate objects from a source bucket to only one destination bucket. After s3 replicates an object, it cannot be replicated agailn.
+
+CRR requirements:
+
+* Source and dest must have versioning turned on
+* Must be in different regions
+* S3 must have permissions to replicate objects from that source bucket to the destination bucket on your behalf.
+* If the source bucket owner also owns the object, the object owner has full permissiones to replicate the object. If not, the object owner must grant the bucket owner the READ and READ_ACP permissions via the object ACL.
+
+Cross-Account CRR
+
+* The IAM role must have permissions to replicate objects in the destination bucket.
+* In the replication configuration, you can optionally direct S3 to change the ownership of object replicas to the AWS account that owns the destination bucket.
+
+Standard architecture solution to secure cloud trail - replicate cloud trail logs replicated to a second AWS account, originating account can't read or access replicated logs.
+
+What is replicated?
+
+* Any new objects created after you add a replication configuration
+* In addition to unencrypted objects, s3 replicates objects encrypted using s3 managed keys (SSE-S3) or AWS KMS managed keys (SSE-KMS, you have to turn it on).
+* Object metadata
+* Any object ACL updates
+* Any object tags
+* Amazon s3 replicates only objects in the source bucket for which the bucket owner has permissions to read objects and read access control lists (ACLs)
+
+What is replicated? - Deletes
+
+* If you use just a delete marker, then that delete marker is replicated
+
+What is not replicated?
+
+* Anything create before CRR is turned on.
+* Objects created with server-side encryption using customer-provided (SSE-C) encryption keys.
+* Objects created with server-side envryption using AWS KMS-managed encryption (SSE-KMS) keys, unless you explicitly enable this option.
+* Objects in the source bucket for which the bucket owner does not have permissions. This can happen when the object owner is different from the bucket owner.
+* Deletes to a particular version of an object. This is a security mechanism.
+
+Exam tips:
+
+* You do not need to use a bucket policy with aws:SecureTransport to replicate objects using SSL
+* Delete markers are replicated, deleted versions of files are not.
+* Versioning must be enabled
+* It is possible to use CRR from one AWS account to another - the IAM role must have permissions to replicate objects in the destination bucket.
+
+S3 Encryption
+
+* Server-side - request s3 to encrypt your object before writing it to disk, and decrypt it when downloading objects
+    * SSE-S3 - server side encryption with s3-managed keys
+    * SSE-KMS - server side encryption with KMS managed keys
+    * SSE-C - sse with customer provided key
+* Client-side - you encrypt the data client-side and upload encrypted data. You manage the keys, encryption process, etc.
+
