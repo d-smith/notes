@@ -100,7 +100,7 @@ Steps
 5. Admin back to bucket, add policy with deny all actions to the user arn
 6. Now add access for a user as a second policy allow on the bucket. Policy has a deny all, plus an allow for one specific user. => *Explicit deny always overrides an allow*!
 
-Explicit deny always overrides and allow
+Explicit deny always overrides an allow
 
 * Deny in IAM, allow in bucket policy => Deny takes precedent
 
@@ -172,7 +172,7 @@ CRR requirements:
 * S3 must have permissions to replicate objects from that source bucket to the destination bucket on your behalf.
 * If the source bucket owner also owns the object, the object owner has full permissiones to replicate the object. If not, the object owner must grant the bucket owner the READ and READ_ACP permissions via the object ACL.
 
-Cross-Account CRR
+## Cross-Account CRR
 
 * The IAM role must have permissions to replicate objects in the destination bucket.
 * In the replication configuration, you can optionally direct S3 to change the ownership of object replicas to the AWS account that owns the destination bucket.
@@ -207,7 +207,7 @@ Exam tips:
 * Versioning must be enabled
 * It is possible to use CRR from one AWS account to another - the IAM role must have permissions to replicate objects in the destination bucket.
 
-S3 Encryption
+## S3 Encryption
 
 * Server-side - request s3 to encrypt your object before writing it to disk, and decrypt it when downloading objects
     * SSE-S3 - server side encryption with s3-managed keys
@@ -215,3 +215,42 @@ S3 Encryption
     * SSE-C - sse with customer provided key
 * Client-side - you encrypt the data client-side and upload encrypted data. You manage the keys, encryption process, etc.
 
+## Securing S3 Using CloudFront
+
+Scenario - don't want users to browse directly to our s3 bucket;
+we want them to go through CloudFront.
+
+Lab
+
+* From console, create the bucket
+* From console, create a new CloudFront distribution
+    * Restrict bucket access - can restrict at distro create time
+    * Custom domain name? Import a cert through ACM, note this is different from any load balancer cert that might sit in front of a non-s3 origin
+* Add object to s3, make it public - verify via url
+* In CloudFront, distribution settings, origin, select and edit:
+    * Restrict bucket access, need to reuse an origin access identity, or create a new one, and grant read permissions on the bucket to the origin access identity.
+* Note it might take a while to take effect - could be anywhere between 4 and 48 hours.
+
+## Securing S3 Using Presigned URLs
+
+* Usually done using the SDKs
+* You can do this using the command line
+    * Can create a role that you can assign to an EC2 role
+
+```console
+aws s3 presign s3://bucket/object --expires-in 300
+```
+
+* URLs are valid for a specific length of time, with a default of one hour.
+* Use the --expires-in option to change the length of time the URL is available for.
+
+## S3, IAM & CloudFront Summary
+
+* Resetting root users
+* IAM Policies
+* S3 Bucket Policies
+* S3 ACLs
+* Policy Conflicts
+* Secure Transport
+* CRR
+* Pre-signed URLs
