@@ -56,3 +56,41 @@ Digest Files
 * Can validate using the command line
 * SHA-256 Hashing, SHA-256 wutg RSA for digital signing
 
+## CloudTrail - Protecting Your Logs
+
+Why secure?
+
+* Can include PII like users names and team membership
+* Can include detail config info like dynamodb table and key names
+* Could prove valuable to an attacker
+
+How to prevent unauthorized access?
+
+* Place employees who have a security role into an IAM group with attached policies that enable access to the logs.
+        * IAM - create two groups - CloudTrailAdmin 
+        * Admin - grant AWSCloudTrailFull access AWS 
+        * Auditors - AWSCloudTrailReadOnlyAccess
+
+* How can we be notified that a log file has been created, then validate it has not been modified?
+        * Configure SNS notifications and log file validation on the 'Trail'
+        * Consume the notification with a solution that will validate the logs using the provided digest file.
+        * Probably better to look for mods to files in the bucket via a lambda.
+
+* How can we prevent logs from being deleted?
+        * Restrict delete access with IAM and bucket policies.
+        * Use s3 MFA delete
+        * Validate logs have not been deleted using log file validation.
+
+* How can we ensure that logs are retained for X years in accordance with our compliance standards?
+        * Use S3 object lifecycle management
+
+Exam tips:
+        * API calls to control plane are logged by CloudTrail
+        * Metadata around calls is logged (see above)
+        * Events sent to s3 bucket - use s3 to manage the retention and archiving and purging of the files.
+        * Delivered event 5 active minutes, can be a 15 minute delay
+        * Notifications available
+        * Can aggregate logs across regions, and aggregate across accounts
+        * Can validate log file integrity (digests on the hour, every hour, AWS has the private key)
+        * Secure the logs, check their integrity
+
