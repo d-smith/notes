@@ -94,3 +94,54 @@ Exam tips:
         * Can validate log file integrity (digests on the hour, every hour, AWS has the private key)
         * Secure the logs, check their integrity
 
+## AWS CloudWatch
+
+Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS.
+
+Enables:
+
+* Resource utilization, operational performance monitoring
+* Log aggregation and basic analysis
+
+Provides:
+
+* Real-time monitoring within AWS for resources and applications
+* Hooks to event triggers
+
+Real-time: standard every 5 minutes, detailed every minute
+
+Alarms - for metrics, threshold and periods => action
+Custom metrics can be created
+
+CloudWatch Logs
+
+* From some service, from your applications/systens
+* Metrics from log entry metrics
+* Stored indefinitely
+
+Can install agents to forward logging to cloud watch logs
+
+CloudTrail can be a cloud watch event source, use cloud watch event rules to send events to event target.
+
+
+CloudWatch Events
+
+* Near real-time stream of system events
+* Events
+        * AWS resource state changes
+        * AWS CloudTrail events
+        * Custom events (code)
+        * Scheduled
+* Rules - match events and route them to targets
+* Targets - lambda, SNS, SQS, kinesis streams
+
+Exam Hint: Read the AWS CloudWatch FAQs (CloudWath + CloudTrail are a big part of the exam)
+
+Exam tips:
+
+* Remember the key components: CloudWatch, CloudWatch Logs, CloudWatch Events
+* CloudWatch - real time, metrics, alarms, notifications, custom metrics
+* CloudWatch Logs - push from some service, from applications and systems, metrics from log entries, stored indefinitely
+* CloudWath events - near real time stream of system events, state changes, cloud trail logs, custom events, scheduled, rules, targets => event driven security
+
+## AWS Config
