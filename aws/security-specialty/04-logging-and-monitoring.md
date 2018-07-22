@@ -144,4 +144,91 @@ Exam tips:
 * CloudWatch Logs - push from some service, from applications and systems, metrics from log entries, stored indefinitely
 * CloudWath events - near real time stream of system events, state changes, cloud trail logs, custom events, scheduled, rules, targets => event driven security
 
-## AWS Config
+## AWS Config 101
+
+AWS Config is a fully managed service that provides you with an AWS resource inventory, configuration history, and configuration change notifications to enable security and governance.
+
+Enables:
+
+* Compliance auditing 
+* Security analysis
+* Resource tracking
+
+Provides:
+
+* Configuration snapshots and logs config changes of AWS resources
+* Automated compliance checking
+
+Key Components:
+
+* Config Dashboard
+* Config Rules
+  * Managed
+  * Custom (using Lambda)
+* Resources
+* Settings
+
+Resource change -> Event -> AWS config bucket
+                         -> Event Target (lambda, standard rule or custom rule)
+
+Lambda can't take action, only indicates if rule broken
+
+Terminology
+
+* Configuration items - point-in-time attributes of resource
+* Configuration snapshots - collection of configuration items
+* Configuration stream - stream of change configuration items
+* Configuration history - collection of config items for a resource over time
+* Configuration recorder - the configuration of AWS Config that records and stores configuration items 
+
+Recorder Setup
+
+* Logs config for account in a region
+* Stores in S3
+* Notifies via SNS
+
+What we can see:
+
+* Resource type and id
+* Compliance
+* Timeline
+  * Configuration details
+  * Relationships
+  * Changes
+  * CloudTrail events
+
+Compliance Checks
+
+* Trigger
+  * Periodic
+  * Configuration snapshot delivery (ffilterable)
+* Managed rules 
+  * About 40 (at time of recording)
+  * Basic, but fundamental
+
+## AWS Config Lab
+
+* Services > Management Tools > Config
+* Set up on a regional basis - inventies your resources, stream config changes to an SNS topic
+* Rules - ssh open to the world - trigger type (config changes, periodic), AWS manage rule
+* Flag non-compliant resources - provides link to it
+* Config timeline - changes over time, linked to cloud trail
+
+## AWS Config Wrap Up
+
+* Assests in AWS, change generates an event to AWS config, can evaluate standard or custom rules via lambda, writes into too into the AWS config s3 bucket, rules that are violated can generate a notification
+* Its use provides visibility, compliance, auditability
+
+Exam tips:
+
+* Types of triggers: periodic, configuration snapshot delivery (filterable)
+* Managed rules: about 40, basic but fundamental
+* Permissions needed: IAM role, read only permissions to all AWS resources, write access to the S3 bucket, publish access  on SNS. Console can create these for you.
+* Restricting access
+  * Users need to be authenticated in AWS and have the appropriate permissions set via IAM policies to gain access
+  * Only admins needing to set up and manage config require full access
+  * Provide read only permissions for config on day to day basis
+* Monitoring: Use CloudTrail with COnfig to provide deeper insight
+* Use CloudTrail to monitor access to Config, such as someone stopping the Config recorder
+
+Config makes up a big part of the exam, so read through the FAQ,
