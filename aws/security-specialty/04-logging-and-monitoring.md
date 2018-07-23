@@ -232,3 +232,155 @@ Exam tips:
 * Use CloudTrail to monitor access to Config, such as someone stopping the Config recorder
 
 Config makes up a big part of the exam, so read through the FAQ,
+
+## Set Up Alert if Root User Logs In
+
+* Cloud trail + cloud watch logs + custom metrics
+  * Console > CloudTrail
+  * Select your trail, scroll down to CloudWatch Logs, click configure
+  * Use new or existing log group, for example CloudTrail/DefaultLogGroup, continue
+  * Allow on the role, can use the role created here - Allow
+  * Now, go to CloudWatch Logs and select the log group for cloud watch noted above
+  * Click Create Metric Filter
+    * FIlter Pattern - `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" `
+    * Click Assign Metric
+    * Filter Name: RootAccountUsage
+    * Metric namespace: CloudTrail
+    * MetricName: RootAccountUsageCount
+    * Advance metric settings - metric value 1
+    * CreateFilter
+  * Create alarm
+    * Name - Root Account Usage
+    * Description - the root user has logged in
+    * >= 1 for 1 consecutive periods, period 5 minutes
+    * Send notification to NotifyMe
+
+Need to know the steps for the exam.
+
+Video procedure doesn't work - info above modified using in from [this AWS doc](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail-additional-examples.html#cloudwatch-alarms-for-cloudtrail-root-example)
+
+## AWS CloudHSM
+
+Dedicated hardware security module (HSM) in the AWS cloud.
+
+Enables:
+
+* Control of data
+* Evidence of control
+* Meet tough compliance standards
+
+Provides:
+
+* Secure key storage
+* Cryptographic operations
+* Tamper-resistant HSM
+
+| | CloudHSM | KMS
+--- | --- | ---
+Tenancy | single | multi
+scale & ha | ha service from aws | ha service from from aws
+key control | you | you + aws
+integration | broad aws support | broad aws support
+symmetry | symmetric and asymmetric | symmetric
+compliace | FIPS 140-2 & EAL-4 | good
+price | $$ | $
+
+Process
+
+* Create a cluster and VPC with public and private subnet
+* Create the cluster
+* Verify HSM identity
+* Initialize the cluster
+* Launch a client instance
+* Install and configure the client
+* Activate the cluster
+* Set up users
+* Generate keys
+
+How is it secured?
+
+* AWS does not have access to your keys
+* Separation of duties and role-based access control is part of the design of the HSM
+* AWS can only administer the appliance, not the HSM Partitions where the keys are stored
+* AWS can (but probably won't) destroy your keys, but otherwise have no access
+
+Tampering
+
+* If the CloudHSM detects physical tampering the keys will be destroyed
+* If the CloudHSM detects five unsuccessful attempts to access an HSM partition as crypto officer the HSM appliance erases itself
+* If the CloudHSM detects five unsuccessfult atempts to access the HSM with Crypto User (CU) credentials. the user will be locked and must be unlocked by a CO
+
+Monitoring
+
+* Use cloud trail to monitor api calls made to Cloud HSM
+
+Read:
+
+* CloudHSM FAQs
+
+## Inspector vs Trusted Advisor
+
+What is AWS inspector?
+
+* Amazon inspector is an automated security assessment service that helps improve the security and compliance of applications deployed on AWS. Inspector automatically assesses applications for vulnerabilities or deviations from best practices. After performing an assessment, inspector produces a details list of security findings prioritized by level of severity. These findings can be reviewed directly or as part of detailed assessment reports which are available vis the Amazon Inspector console or API.
+
+How does it work?
+
+* Create an assessment target
+* Install agents on EC2 instances
+* Create assessment template
+* Perform assessment run
+* Review findings against rules
+
+Rules packages
+
+* Common vulerabilities and exposures
+* CIS OS security config
+* Security best practices
+* Runtime behavior analysis
+
+Severity levels - high, medium, low, informational
+
+It will:
+
+* Monitor the network, file system, and process activity within the target
+* compare what it sees to security rules
+* report on security issues observed withing target during run
+* report findings and advise remediations
+
+It will not:
+
+* Relieve you of your responsibilities under the shared responsibility model
+* Perform miracles
+
+Try it out
+
+* Launch an ec2 instance
+* Security, Identity, and Compliance > Inspector
+* Get started - create role
+* Tag your ec2 instances - manage tags, add tag, e.g. ProductionWebServer, Yes
+* Install the inspector agent on the ec2 instance
+* Define assessment target - use the tag from earlier
+* Define assessment template - includes a duration
+  * May want to spin up your ami somewhere else just for the purposes of a longer running scan - anything that shows up over time probably shows up on the others as well
+* Run the template
+* After run go to assessment run
+
+Exam tip
+
+* Know the diffs between the two
+* Scenario where you install an agent or generate a report => inspector
+* Non-security scenarios => trusted advisor
+* Basic security stuff (like security group ports, iam use, mfa on root) => probably trusted advisor
+
+What is trusted advistor?
+
+* An online resource to help you reduce cost, increase performance, and improve security by optimizing your AWS environment. Advisor will advise you on 
+  * Cost Optimization
+  * Performance
+  * Security
+  * Fault Tolerance.
+* Core checks and recommendations
+* Full trusted advisor - business and enterprise companies only, unlocks additional things
+
+Find it under Management Tools
