@@ -384,3 +384,40 @@ What is trusted advistor?
 * Full trusted advisor - business and enterprise companies only, unlocks additional things
 
 Find it under Management Tools
+
+## Logging
+
+Services:
+
+* CloudTrail - API calls
+* AWS Config - configuration of your environment and what assests you have, point in time with historical view
+* VPC Flow Logs - network traffic of ENIs in a VPC
+* AWS CloudWatch - performance of your AWS assests
+
+Read: Security at Scale: Logging in AWS (developed using ISO 27001:2005, PCI DSS v2.0, FedRamp)
+
+Control Access to Log Files
+
+* Prevent unauthorized access
+  * IAM users, groups, roles and policies
+  * S3 bucket policies
+  * MFA
+* Ensure role-based access
+  * IAM users, groups, roles and policies
+  * S3 bucket policies
+
+Alerts when logs are created or fail:
+
+* CloudTrail notifications
+* AWS config rules
+
+Alerts are specific, but don't divulge detail
+
+* CloudTrail SNS notifications only point to log file location
+
+Log changes to system components, control modifications.
+
+Logs are stored for at least on year, look at s3 and life cycle management.
+
+Exam tips: understand the logging services and the differences between them.
+
