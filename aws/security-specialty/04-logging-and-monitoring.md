@@ -51,10 +51,11 @@ Set Up:
 
 Digest Files
 
+* Logs delivered with a digest file
 * Mechanism to determine if someone has tampered with them, or if they were deleted.
 * Enabled via 'log file integrity checking' when provisoning cloud trail
 * Can validate using the command line
-* SHA-256 Hashing, SHA-256 wutg RSA for digital signing
+* SHA-256 Hashing, SHA-256 with RSA for digital signing
 
 ## CloudTrail - Protecting Your Logs
 
@@ -85,18 +86,25 @@ How to prevent unauthorized access?
         * Use S3 object lifecycle management
 
 Exam tips:
-        * API calls to control plane are logged by CloudTrail
-        * Metadata around calls is logged (see above)
-        * Events sent to s3 bucket - use s3 to manage the retention and archiving and purging of the files.
-        * Delivered event 5 active minutes, can be a 15 minute delay
-        * Notifications available
-        * Can aggregate logs across regions, and aggregate across accounts
-        * Can validate log file integrity (digests on the hour, every hour, AWS has the private key)
-        * Secure the logs, check their integrity
+
+* API calls to control plane are logged by CloudTrail
+* Metadata around calls is logged (see above)
+* Events sent to s3 bucket - use s3 to manage the retention and archiving and purging of the files.
+* Delivered event 5 active minutes, can be a 15 minute delay
+* Notifications available
+* Can aggregate logs across regions, and aggregate across accounts
+* Can validate log file integrity (digests on the hour, every hour, AWS has the private key)
+* Secure the logs, check their integrity
 
 ## AWS CloudWatch
 
 Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS.
+
+* Real time
+* Metrics
+* Alarms
+* Notifications
+* Custom Metrics
 
 Enables:
 
@@ -115,9 +123,9 @@ Custom metrics can be created
 
 CloudWatch Logs
 
-* From some service, from your applications/systens
+* Pushed from some service, from your applications/systens
 * Metrics from log entry metrics
-* Stored indefinitely
+* Stored indefinitely (not user s3)
 
 Can install agents to forward logging to cloud watch logs
 
@@ -127,6 +135,7 @@ CloudTrail can be a cloud watch event source, use cloud watch event rules to sen
 CloudWatch Events
 
 * Near real-time stream of system events
+  * API calls to the control generate the events
 * Events
         * AWS resource state changes
         * AWS CloudTrail events
@@ -223,7 +232,10 @@ Exam tips:
 
 * Types of triggers: periodic, configuration snapshot delivery (filterable)
 * Managed rules: about 40, basic but fundamental
-* Permissions needed: IAM role, read only permissions to all AWS resources, write access to the S3 bucket, publish access  on SNS. Console can create these for you.
+* Permissions needed: IAM role - console can create for you
+  * read only permissions to all AWS resources
+  * write access to the S3 bucket
+  * publish access  on SNS. Console can create these for you.
 * Restricting access
   * Users need to be authenticated in AWS and have the appropriate permissions set via IAM policies to gain access
   * Only admins needing to set up and manage config require full access
@@ -262,6 +274,8 @@ Video procedure doesn't work - info above modified using in from [this AWS doc](
 ## AWS CloudHSM
 
 Dedicated hardware security module (HSM) in the AWS cloud.
+
+The AWS CloudHSM service helps you meet corporate, contractual, and regulatory compliance requirements for data security using dedicated Hardware Security Module (HSM) appliances with the AWS cloud.
 
 Enables:
 
@@ -381,6 +395,7 @@ What is trusted advistor?
   * Security
   * Fault Tolerance.
 * Core checks and recommendations
+* Locked at not support/developer support
 * Full trusted advisor - business and enterprise companies only, unlocks additional things
 
 Find it under Management Tools
@@ -421,3 +436,6 @@ Logs are stored for at least on year, look at s3 and life cycle management.
 
 Exam tips: understand the logging services and the differences between them.
 
+## Section 4 Summary
+
+Updated above sections based on summary presentation.
