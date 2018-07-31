@@ -1,0 +1,30 @@
+Multiple versions of node
+
+
+Use n - https://www.npmjs.com/package/n
+
+export N_PREFIX=$HOME
+
+n bin 4.7.2
+export PATH=/Users/xxx/n/versions/node/4.7.2/bin:$PATH
+
+npm install -g npm@4.6.1
+
+@latest
+
+
+My original npm:
+
+$ npm -v
+5.6.0
+
+
+n bin lts
+$ n bin lts
+/Users/a045103/n/versions/node/8.11.3/bin/node 
+$ export PATH=/Users/xxx/n/versions/node/8.11.3/bin:$PATH
+$ node -v
+v8.11.3
+$ npm -v
+5.6.0
+
