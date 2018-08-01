@@ -88,3 +88,54 @@ Cannot enable automatic key rotation when you provide your own key material.
 You can delete the key material right away.
 
 
+## KMS Part 4 - Summary
+
+* Must know KMS in depth to pass the exam
+* Know what services it is integrated with
+
+Customer Master Key - two types: AWS and customer managed
+
+CMK
+
+* Alias, creation date, description, key state (enabled, disabled, waiting for import of key material, scheduled for deletion, etc), key material
+* Can NEVER be exported
+* AWS-managed CMK for each service that is integrated with AWS KMS, or you can have a customer-managed CMK you generate by providing AWS with key material.
+
+Set up a CMK:
+
+* Create alias and description
+* Choose key material option
+* Define key administrative permissions
+  * IAM users/roles that can administer (but not use) the key through the KMS API
+* Define key usage permissions
+  * IAM users/roles that can use the key to encrypt and decryt data
+
+Key material
+
+* You can import a symmetric 256-bit key from your key management infrastructure into KMS and use it like and other customer master key.
+
+Why provide your own key material:
+
+* Prove that randomness meets your requirements (compliance)
+* Extend your existing processes to AWS
+* To be able to delete key material without a 7 - 30 day wait. Then be able to import them again.
+* To be resilient to AWS failure by storing keys outside AWS
+
+Key Material Import
+
+* Create CMK with no key material
+* Download a public key (wrapping key) and import token
+* Encrypt the key material
+* Import the key material
+
+Considerations for imported key material
+
+* Availability and durability is different
+* Secure key generation is up to you
+* No automatic rotation
+* Ciphertexts are not portable between CMKs
+
+Monitor key activity using cloud trail plus events and alerts, or AWS config with alerts
+
+READ THE KMS FAQs
+
