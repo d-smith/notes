@@ -139,3 +139,41 @@ Monitor key activity using cloud trail plus events and alerts, or AWS config wit
 
 READ THE KMS FAQs
 
+## EC2 and Customer Managed Key Pairs - Mac Users
+
+* Download open ssl
+* openssl genpkey -algorithm RSA -output private_key.pem -pkeyopt rsa_keygen_bits:2048
+* openssl rsa -pubout -in private_key.pem -out public_key.pem
+* chmod 400 private_key.pem
+* AWS console > services > ec2
+* Import key pair (remove the mime BEGIN PUBLIC KEY and END PUBLIC KEY lines)
+* Now provision you instance, select the key pair you've uploaded via the public key import
+* ssh in using your private_key.pem
+* can't just import a public key into KMS - KMS is symmetric
+
+## Using KMS with EBS
+
+Need to understand where you use KMS vs CloudHSM
+
+Lab
+
+* Remember: KMS keys are for a specific region
+* Create a key with KMS key material
+  * Grant admin, usage permissions - can assign to an admin
+* Provision a new ec2 instance, e.g.g AWS linux, t2 micro, defaults
+  * Add a new EBS volume, check encrypted
+* Launch the instance
+ * Modify volume - can change volume size and type, no encrypton
+ * Same with snapshot - cannot change the encryption
+ * Can't delete the managed key
+* Stop the ec2 instance
+  * Detach the root device volume
+  * Modify volume - can't add encryption
+  * Create a snapshot of thr root device volume
+* Go to snapshots
+  * Create an AMI from the snapshot
+* On the image, modify image permissions
+  * Can share with the world, or another account
+* Image, actions, copy the AMI, selecting 'encrypt target ECS snapshots'
+    * Select your CMK
+    * Copying to another region, use key in the destination region
