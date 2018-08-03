@@ -177,3 +177,46 @@ Lab
 * Image, actions, copy the AMI, selecting 'encrypt target ECS snapshots'
     * Select your CMK
     * Copying to another region, use key in the destination region
+
+## EC2 and Key Pairs
+
+Lab
+
+* Log into console, launch an instance, defaults, launch it with a key pair you have access to (which you will delete later)
+* ssh into the instance
+* from ec2-user, go into .ssh and you see authorized_keys, which will contain your public key
+* you can also curl http://169.254.169.254/latest/meta-data/
+* we want http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key/
+* go to aws console, iam, create a new role (ec2), allow it to services on your behalf, pick S3AdminAccess.
+* instance > settings > attach/replace iam role - add the role we created
+* can now do aws s3 ls
+* make a bucket via aws s3 mb
+* ssh-keygen -t rsa - new key pair, not password protected
+* add new public key to authorized keys
+* cat mynewkp.pub >> ~/.ssh/authorized_keys
+* chmod 400 mynewkp, copy it to our s3 bucket so we can download it
+* on your laptop, download the private key, ssh in with the new key
+
+
+## EC2 and Key Pairs part 2
+
+* go to key pairs, delete the original key pair you deleted
+* delete in the console, you can still log into ec2 instances that were launch with the keypair
+* look at the instance metadata again using curl - public is still in the metadata
+* how to add a new public key
+  * actions > create image
+  * launch the clone... create a new key pair as part of the launch... there you go
+    * ssh in with the new key
+    * look authorized keys - new key has been appended, previous ones are still there
+
+SO... lost your key? SNapshot it creating a new AMI, relauch with the new AMI with a new keypair
+
+Exam Tips
+
+* Two ways to view the public key (file, meta-data)
+* You can have multiple public keys (and users too)
+* You can add roles to existing ec2 instances
+* Deleting a keypair from the console does not delete it from instances
+* Lose key - snapshot, relaunch, clean up keys
+* You cannot use KMS with ssh for ec2
+* You can use CLoudHSM keys with ec2
