@@ -59,10 +59,11 @@ Scenario, continued
 
   Be careful who gets full AdministratorAccess and use CloudTrail to monitor key activity
 
-  ## KMS Part 3 - Use your own key material
+## KMS Part 3 - Use your own key material
 
-  * Create a new key
-    * Advanced options - external key material origin
+Create a new key
+    
+* Advanced options - external key material origin
 
 Have to download wrapping key and import token before you can upload your key material
 
