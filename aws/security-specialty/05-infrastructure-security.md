@@ -221,3 +221,54 @@ Exam Tips
 * Lose key - snapshot, relaunch, clean up keys
 * You cannot use KMS with ssh for ec2
 * You can use CLoudHSM keys with ec2
+
+## AWS Marketplace Security Products
+
+In the console, go to EC2, then launch an instance...
+
+* Click on AWS Marketplace
+* Scroll down to categories, select security
+* Exam - know that you can buy preconfigured AMIs
+  * Scenario based questions - getting hacked, pick an AMI to mitigate the attack
+  * If you can use a product and it saves you a lot of time, and there's a solution you can buy, that's probably the right answer if it handles everything for you.
+* Check out the CIS red hat enterprise linux AMI
+ * Details has links to the benchmarks
+
+## AWS WAF and AWS Shield
+
+What is WAF
+
+* A web application firewall that lets you monitor the HTTP and HTTPS requests that are forwarded to CloudFront or an appication load balancer. AWS WAF also lets you control access to your content.
+* You can configure conditions such as allowed IPAddresses or required query string parameters to allow cloud front or the ALB to make an access decision.
+
+At the most basic level, AWS WAF allows 3 different behaviors:
+
+* Allow all requests except the ones you specify
+* Block all requests except the ones you specify
+* Count the requests that match the properties you specify
+
+What it protects you against? Protection against web attacks using conditions you specify. You can define conditions using various characteristics of web requests:
+
+* IP addresses the requests originate from
+* Country the requests originate from
+* Values in the request headers
+* Strings that appear in requests (specific or regex match)
+* Length of requests
+* Presense of SQL code that is likely to be malicious (SQL injection)
+* Presense of a script that is likely to be malicious (cross site scripting)
+
+WAF - layer 7
+
+AWS Shield
+
+* Standard or advanced plan - go to the console and the shield page to see the differences
+* Enterprise - $3000 a month
+ * Incident response team, in depth reporting, no bill for charges incurred via DDoS attack
+
+Demo - cloud formation stack - common attacks.json from the class resources.
+
+CloudFront WAF - global
+ALB WAF - regional
+
+
+
