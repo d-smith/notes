@@ -271,4 +271,82 @@ CloudFront WAF - global
 ALB WAF - regional
 
 
+## EC2 Dedicated Instances vs Dedicated Hosts
 
+See [here](https://aws.amazon.com/ec2/dedicated-hosts/)
+
+Dedicated instances are EC2 instances that run in a VPC on hardware that's dedicted to a single customer.
+
+* Physically isolated at the host hardware level from instances that belong to all other AWS accounts.
+* May share hardware with other instances from the same AWS account that are not dedicated instances.
+
+Like dedicated instances, dedicated hosts allow you to launch instances on physical servers that are dedicated for your use.
+
+* An important difference is dedicated hosts gives you additional visibility and control over how instances are placed on a physical server, and you can consistently deploy your instances to the same physical server overtime.
+* Dedicated hosts enable you to use existing server-bound software licensing and address corporate compliance and regulatory requirements.
+
+Provisioning
+
+* EC2 console, pick dedicated hosts, then allocate a host.
+* Or, launch an instance, in launch details, selected dedicate option in Tenancy.
+
+Exam Tips
+
+* Both dedicated instances and dedicated hosts have dedicated hardware.
+* Dedicated isntances are charged by the instance, dedicated hosts are charged by the host.
+* If you have specific regulatory requirements or licensing conditions, choose dedicated hosts.
+* Dedicated instances may share the same hardware with other AWS instances from the same account that are not dedicated.
+* Dedicated hosts give you much better visibility into things like sockets, cores, and host id.
+
+## AWS Hypervisors, Isolation of AWS Resources abd AWS Firewalls
+
+AWS Hypervisor
+
+* A hypervisor or virtual machine monitor (VMM) is computer software, firmware, or hardware that creates and runs virtual machines. A computer on which a hypervisor runs one or more virtual machines is called a host machine, and each virtual machine is called a guest machine.
+
+AWS Hypervisor
+
+* EC2 currently runs on Xen hypervisors. Xen hypervisors can have guest operating systens running either as paravirtualization (PV) or using Hardware Virtual Machine (HVM).
+* HVM guests are fully virtualized. The VMs on top of the hypervisors are not aware that they are sharing processing time with other VMs.
+* PV is a lighter form of virtualization and used to be quicker.
+* Amazon recommends HVM over PV. Note windows can only be HVM.
+
+PV
+
+* PV guests rely on the hypervisor to provide support for operations that normally require priviledged access. The guest OS has no elevated access to the CPU.
+* The CPU provides four separate privilege modes, 0-3, called rings, with 0 the most priveleged and 3 the least.
+* The host OS executes in ring 0, the guest OS runs in 1, and apps run in 3.
+
+Isolation
+
+From the AWS Security Overview whitepaper.
+
+![isolation](./isolation.jpeg)
+
+Hypervisor Access
+
+* Admins with a business need to access the management plane are required to use MFA to gain access to purpose built admin hosts.
+* Admin hosts are specifically designed, built, configured, and hardened to protect the management plane of the cloud.
+* All access is logged and audited.
+* When access is no longer needed, priveleges and access can be revoked.
+
+Guest Access
+
+* Completely controlled by the customer.
+* AWS has no access.
+
+Memory Scrubbing
+
+* EBS automatically resets every block of storage used by the customer, so that one customer's data is never unintentionally exposed  to another.
+* Memory allocated to guests is scrubbed by the hypervisor when it is unallocated to a guest. Memory is not returned to the pool available for new allocations until scrubbed.
+
+Exam Tips
+
+* Choose HVM or PV where possible.
+* PV is isolated by layers, guest OS in layer 1, apps in layer 3.
+* Only AWS admins have admin accces to hypervisors.
+* AWS staff do not have access to EC2 - that is the responsibility of the customer.
+* Storage and RAM are scubbed before it is delivered to you.
+
+
+C5/Nitro - KVM based
