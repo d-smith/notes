@@ -96,7 +96,7 @@ You can delete the key material right away.
 
 Customer Master Key - two types: AWS and customer managed
 
-CMK
+CMK - Customer Master Key
 
 * Alias, creation date, description, key state (enabled, disabled, waiting for import of key material, scheduled for deletion, etc), key material
 * Can NEVER be exported
@@ -114,6 +114,7 @@ Set up a CMK:
 Key material
 
 * You can import a symmetric 256-bit key from your key management infrastructure into KMS and use it like and other customer master key.
+* AWS can create the key material.
 
 Why provide your own key material:
 
@@ -127,11 +128,11 @@ Key Material Import
 * Create CMK with no key material
 * Download a public key (wrapping key) and import token
 * Encrypt the key material
-* Import the key material
+* Import the key material into KMS
 
 Considerations for imported key material
 
-* Availability and durability is different
+* Availability and durability is different - you need to make the key material safe.
 * Secure key generation is up to you
 * No automatic rotation
 * Ciphertexts are not portable between CMKs
@@ -150,7 +151,7 @@ READ THE KMS FAQs
 * Import key pair (remove the mime BEGIN PUBLIC KEY and END PUBLIC KEY lines)
 * Now provision you instance, select the key pair you've uploaded via the public key import
 * ssh in using your private_key.pem
-* can't just import a public key into KMS - KMS is symmetric
+* can't just import a public key into KMS - KMS is for symmetric encryption only
 
 ## Using KMS with EBS
 
@@ -228,10 +229,11 @@ In the console, go to EC2, then launch an instance...
 
 * Click on AWS Marketplace
 * Scroll down to categories, select security
+  * Firewalls, Hardened OS's, WAFs, Antivirus, Security Monitoring, etc.
 * Exam - know that you can buy preconfigured AMIs
   * Scenario based questions - getting hacked, pick an AMI to mitigate the attack
   * If you can use a product and it saves you a lot of time, and there's a solution you can buy, that's probably the right answer if it handles everything for you.
-* Check out the CIS red hat enterprise linux AMI
+* Check out the Center for Internet Security red hat enterprise linux AMI
  * Details has links to the benchmarks
 
 ## AWS WAF and AWS Shield
@@ -249,13 +251,19 @@ At the most basic level, AWS WAF allows 3 different behaviors:
 
 What it protects you against? Protection against web attacks using conditions you specify. You can define conditions using various characteristics of web requests:
 
-* IP addresses the requests originate from
+* IP addresses the requests originate from (IP v4 and  v6 supported)
 * Country the requests originate from
 * Values in the request headers
 * Strings that appear in requests (specific or regex match)
 * Length of requests
 * Presense of SQL code that is likely to be malicious (SQL injection)
 * Presense of a script that is likely to be malicious (cross site scripting)
+
+Application Load Balancers integrate with WAF at the regional level, CloudFront at the global level.
+
+You need to associate your rules to AWS resources in order for it to work.
+
+You can use WAF to protect website note hosted in AWS via CloudFront, which supports custom origins outside of AWS.
 
 WAF - layer 7
 
@@ -267,8 +275,7 @@ AWS Shield
 
 Demo - cloud formation stack - common attacks.json from the class resources.
 
-CloudFront WAF - global
-ALB WAF - regional
+
 
 
 ## EC2 Dedicated Instances vs Dedicated Hosts
@@ -288,12 +295,12 @@ Like dedicated instances, dedicated hosts allow you to launch instances on physi
 Provisioning
 
 * EC2 console, pick dedicated hosts, then allocate a host.
-* Or, launch an instance, in launch details, selected dedicate option in Tenancy.
+* Or, launch an instance, in launch details, selected dedicated option in Tenancy.
 
 Exam Tips
 
 * Both dedicated instances and dedicated hosts have dedicated hardware.
-* Dedicated isntances are charged by the instance, dedicated hosts are charged by the host.
+* Dedicated instances are charged by the instance, dedicated hosts are charged by the host.
 * If you have specific regulatory requirements or licensing conditions, choose dedicated hosts.
 * Dedicated instances may share the same hardware with other AWS instances from the same account that are not dedicated.
 * Dedicated hosts give you much better visibility into things like sockets, cores, and host id.
@@ -350,3 +357,8 @@ Exam Tips
 
 
 C5/Nitro - KVM based
+
+
+## Section 5 Summary
+
+KMS - see above
