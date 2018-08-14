@@ -79,3 +79,51 @@ Lab
       * Can ipv6 route as well ::0
       * Associate a subnet with it, which makes it a public route table
       * Public subnet - go to subnet action, modify auto-assign IP settings, auto assign IPv4 public addresses
+
+## VPC Lab Part II
+
+* Ping private from public subnet - ICMP in the security group, source public IP CIDR block or VPC private address space.
+* Can enable ssh too
+* What if you want to yum update? Need internet access for istances in the private subnet.
+
+## NAT Instances & NAT Gateways
+
+[NAT instance vs NAT gateway](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-comparison.html) 
+
+
+NAT instances
+
+* Launch instance - community AMIs, search for NAT (Amazon NAT AMI)
+* Network - disable source and destination checks, NAT doesn't work if it is enabled
+* Go to VPC, edit the route table, 0.0.0.0/0 outbound destination, NAT instance as the target
+* What happens if the NAT instance crashes? No internet access.
+
+NAT Gateway
+
+* Create a NAT gateway (IPv4), exgress only gateways (IPv6)
+  * Select the public subnet
+  * Need a new elastic IP address
+  * Once provisioned, go to route tables, add route 0.0.0.0/0 with NAT gateway as the target
+
+Exam Tips - NAT instances
+
+* WHen creating, disable source/destination check on the instance
+* NAT instances must be in a public subnet
+* Add routes out from private subnets to the NAT instance
+* Amount of traffic supported depends on instance size - if bottlenecked, increase the size
+* Create HA using autoscaling groups, multiple subnets in different Az, and a script to automate failover.
+* Behind a security group.
+
+Exam Tips - NAT Gateways
+
+* Preferred by the enterprise
+* Scale automatically up to 10 Gbps
+* No need to patch
+* Not assocaited with security groups
+* Automatically assigned a public IP address
+* Remember to update your route tables.
+* More secure - no ssh access, no need to patch, install or maintain antivirus software, etc
+
+
+
+
