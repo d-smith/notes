@@ -121,13 +121,13 @@ Exam Tips - NAT Gateways
 * No need to patch
 * Not assocaited with security groups
 * Automatically assigned a public IP address
-* Remember to update your route tables.
+* Remember to update your route tables - could take 10 - 15 minutes to provision then update tables.
 * More secure - no ssh access, no need to patch, install or maintain antivirus software, etc
 
 ## NACLs vs Security Groups
 
 * You can associate a subnet with a single Network ACL
-* Do increments of 100 for the IDs
+* Do increments of 100 for the IDs - evaluated in order from lowest numbered rule up.
 * A NACL can belong only to a single VPC
 * NACL - stateless - need to specify both inbound and outbound rules
 
@@ -138,7 +138,7 @@ Default Network ACL
 
 Create a New ACL
 
-* Default is to deny everything
+* Default for customer NACL is to deny everything
 
 Ephemeral Ports
 
@@ -148,7 +148,7 @@ Ephemeral Ports
 
 Rule Evaluation
 
-* Rules are evaluated in numerical order
+* Rules are evaluated in numerical order from low to high
 * Using increments allows you to add rules later in between existing rules
 * Rule changes take effect immediately
 
@@ -212,5 +212,17 @@ What if you want to send traffic straight to s3 without going out via the public
   * Two types: interface and gateways
 * Pick the s3 gateway, associate it with your route table
 * Back to your private instance, try the s3 command again - now it works, no internet access needed.
+
+Endpoints can be endpoints or interfaces (which rely on ENIs)
+
+## VPC Clean Up
+
+* Delet the NAT gateway
+* Detach and delete IGW
+
+
+## VPC Summary
+
+Filled in notes above.
 
 
