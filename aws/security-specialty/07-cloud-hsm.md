@@ -95,4 +95,42 @@ Key Management Utility
 
 ## CloudHSM - Generating and Exporting Our Keys
 
+EC2 instance, copied our self signed cert to it, used the cloud hsm client to connect via the private ip to our cloud hsm...
+
+Commands:
+
+* loginHSM
+* genRSAKeyPair
+* genSymKey - used as a wrapping key - used to wrap private key
+* wrapKey command - wrap your private key with your wrapping key, can only export wrapped keys
+* exportPrivateKey
+* exportPublicKey
+
+Lab
+
+* copied wrapping, private, and public keys to s3, then downloaded public and private key
+* go to ec2, my key pairs, import
+  * copy in public key (remove begin and end public key lines), and it MyHSMKeyPair
+* Launch an instance using the key pair
+
+
+## CloudHSM Wrap Up
+
+Process
+
+* Downloaded AWS root cert and Manufacturer root cert
+* Provisioned our cluster and installed our first HSM
+* Were given certs and a signing request, including the AWS hardware cert and the manufacturer hardware cert
+* Then got the HSM certificate and the cluster CSR
+* Sign the CSR with our CA
+* Verified using chain certificate for both the AWS and manufacturer root certs
+* Then took HSM cert and cluster CSR to extract public keys, checked they match
+* Initialize cluster with more cert stuff
+* Deploy ec2 instance to manage our cluster, download our self signed cert to the instance, installed the tools, provision COs and CUs, etc.
+
+Exam Tips
+
+* Remember the 4 user types (PRECO, CO, CU, AU)
+* Main roles - crypto officers (manage users), crypto users (do crypto stuff)
+
 
