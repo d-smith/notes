@@ -114,3 +114,41 @@ Exam Tips
   * Autoscaling (both for web servers and WAFs)
   * CloudWatch
 
+## WAF Integration into AWS
+
+Exam Tip
+
+* Integrate with Application Load Balancers
+* Integrate with CloudFront
+
+## EC2 Has Been Hacked - What Should You Do?
+
+What steps should you take?
+
+* Stop the instance immediately
+* Take a snapshot of the EBS volume
+* Deploy an instance in to a totally isolated environment. Isolated VPC, no internet access - ideally a private subnet
+* Access the instance using a forensic workstation
+* Read through the logs to figure out how (Windows Event Logs)
+
+Isolate
+
+* The instance you are investigating
+* The machine you are using to perform the investigation from (the forsensic work station)
+
+## I've Leaked My Keys on Github!
+
+IAM Console > User > Access Keys
+
+* Disable the leaked key
+* Create a new key
+* Delete the old key id
+
+## Reading CloudTrail Logs
+
+* JSON object with multiple records of API calls
+* All API calls
+
+Be sure to replicate the logs to another account for safekeeping
+
+## Pen Testing
