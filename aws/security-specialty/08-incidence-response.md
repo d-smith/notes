@@ -152,3 +152,92 @@ IAM Console > User > Access Keys
 Be sure to replicate the logs to another account for safekeeping
 
 ## Pen Testing
+
+Landing page - [AWS Pen Testing](https://aws.amazon.com/security/penetration-testing/)
+
+Always need permission to do pen testing.
+
+Resources that may be pen tested:
+
+* EC2
+* RDS
+* Aurora
+* CloudFront
+* API Gateway
+* Lambda
+* Lightsail
+* DNS walking
+
+EC2 Marketplace - search for penetration testing
+
+* Check out Kali Linux
+  * Aircrack ng - look for youtube videos
+
+## AWS Certificate Manager
+
+Route 53
+
+* Can buy/register domains through AWS
+* Can extend registration for up to 9 years, turn on auto-renew
+
+AWS Certificate Manager
+
+* AWS certificate manager makes it easy to provision, manage, deploy, and renew TLS/SSL certificates on the AWS platform
+* Can import your own certificates from other CAs
+* Can enter your own domain name to obtain cert, then do DNS validation or email.
+  * DNS validation - add cname record to the domain in route 53, then wait about 5 - 10 minutes
+* For certs provisioned through ACM, AWS will automatically renew them (and the ARN remains the same)
+  * Not so for imported certs, or certs associated with private zones
+* Cannot export ACM certificates - use only with AWS services
+
+Integration
+
+* CloudFront integration - reference cert ARN for customer domain name
+* EC2 - load balancers, listeners, cert type - select from ACM - applied at the ALB
+
+Exam Tips
+
+* SSL certificates renew automatically, provided you purchased the domain name from Route 53 and it's not for a Route 53 private hosted domain.
+* You can use Amazon SSL certificates with both load balancers and cloud front
+* You cannot export the certificates
+
+## Perfect Forward Secrecy and ALBs
+
+Wikipedia article on [perfect forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy)
+
+* Compromises of long term keys do not compromise past session keys
+* If someone recorded your traffic, then compromised your key, then can't go back and decrypt the recorded traffic
+
+ALB
+
+* Add a listener, choose a protocol, https uses port 443 (remember), etc...
+* Pick certificate type, look at the security policies - documented [here](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies)
+  * To enable perfect forward secrecy, you need the ECDHE cipher.
+  * 2016-08 has this, will give you perfect forward secrecy
+
+## API Gateway, Throttling & Caching
+
+Throttling
+
+* To prevent your API from being overwhelmed by too many requests, Amazon API GW throttles requests
+* When request submissions exceed steady-state and burst limit, API fails the limit-exceeding requests and returns a 429
+* By default, steady state request rate is 10,000 rps
+* By default, limits the burst to 5,000 across all APIs within an AWS Request.
+* Account-level rate limit and burst limit can be increased upon request.
+
+Request Processing
+
+* If a caller sends 10,000 requests in one second spaced evenly (for example 10 requests/ms) API GW processes all requests without dropping any
+* If a caller sends 10,000 requests in the first millisecond, API GW servces 5,000 and throttles the request in the one second period
+* If a caller sends 5,000 requests in the first millisecond, and evenly spreads another 5,000 across the remaining 999 milliseconds, then all requests are processed.
+
+Caching
+
+* You can enable API caching in Amazon API Gateway to cache your endpoint's response.
+  * Fewer calls to endpoint
+  * Improved latency
+* Cache entries have a TTL
+  * Default TTL (in seconds) is 300
+  * Max is 3600
+  * TTL of 0 means caching disabled
+* Enabled at the stage level
