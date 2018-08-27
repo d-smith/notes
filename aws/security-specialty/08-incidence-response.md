@@ -241,3 +241,46 @@ Caching
   * Max is 3600
   * TTL of 0 means caching disabled
 * Enabled at the stage level
+
+## AWS Systems Manager Parameter Store
+
+Systems Manager used to manage fleets for ec2 instances at scale.
+
+* Accessed under EC2 in the console
+* Use secure string for sensitive information
+* Can reference in cloud formation
+
+Exam Tips
+
+* Confidential information like passwords, database connection strings, license codes can be store in SSM parameter store
+* You can store values as plain text or encrypted
+* You can then reference the value by using their names
+* You can use this service with EC2, CloudFormation, EC2 run command, Lambda, etc.
+
+## AWS Systems Manager EC2 Run Command
+
+Scenario
+
+* You work as a sys admin managing a large number of ec2 instances and on premise systems
+* You would like to automate common admin tasks and ad hoc configuration changes, e.g. installing apps, applying the latest patches, joining new instances to a Windows domain without having to log into each instance
+
+Systems Manager Run
+
+* Need to define a role, and launch the ec2 instances using that role, and tags you might use to classify instance types based on your needs
+* In Systems Manager, pick run command
+  * Can pick preconfigured commands, select targets by tag or by instance id
+
+Exam Tips
+
+* Commands can be applied to a group of systems based on AWS instance tags or selecting them manually
+* SSM Agent needs to be installed on all your managed instances
+* The commands and parameters are defined in a systems manager document
+* Commands can be issued using AWS console, AWS cli, AWS tools for windows powershell, Systems Manager API, or Amazon SDKs
+* You can use this service with your own on-premise systems as well as EC2 instances
+
+Where's it show up in the exam?
+
+* Scenario where you need to apply security updates at scale (but you must have the SSM agent enabled, need to have the role assigned to them allowing systen manager to talk to them, apply to instances by selecting them manually or by tags)
+
+## Compliance Franeworks
+
