@@ -282,5 +282,25 @@ Where's it show up in the exam?
 
 * Scenario where you need to apply security updates at scale (but you must have the SSM agent enabled, need to have the role assigned to them allowing systen manager to talk to them, apply to instances by selecting them manually or by tags)
 
-## Compliance Franeworks
+## Compliance Frameworks
+
+Main 3:
+
+* PCI DSS
+* ISO
+* HIPAA
+
+AWS Compiance Page [here](https://aws.amazon.com/compliance)
+
+* Read up about the 3 on the complance page.
+
+ISO 27001:2005/10/13
+
+* Specifies the requirements for establishing, implementing, operating, monitoring, reviewing, maintaining and improving a documented information Security Mangement System within the context of the organization's overall business riskss
+
+FedRAMP
+
+* The Federal Risk and Autorization Management Program is a government-wide program that provides a standardized approach to security assessment, authorization, and continuous monitoring for cloud products and services.
+
+HIPAA
 
