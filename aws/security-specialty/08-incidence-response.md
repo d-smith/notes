@@ -304,3 +304,44 @@ FedRAMP
 
 HIPAA
 
+* HIPAAA is the health insurance portability and accountability act of 1996.
+* Goal of the law is to make it easier for people to heep health insurance, protect the confidentiality and security of healthcare information and help the healthcare industry control administrative costs.
+
+NIST
+
+* National institute of standards and technology Framework for Improving Critical Infrastructure Cybersecurity
+* Set of standards and best practices to help organizations manage cybersecurity risks
+
+PCI DSS v3.2
+
+* Payment Card Industry Data Security Standard
+* Widely accepted set of policies and procedures intended to optimize the security or credit, debit, and cash card transactions and protect cardholders against misuse of their personal information.
+
+PCI DSS v3.2
+
+* Req 1 - install and maintain a firewall configuration to protect cardholder data
+* Req 2 - do not use vendor supplied defaults for system passwords and other security parameters
+* Req 3 - protect stored cardholder data (for example encrypt the data, protect the keys)
+* Req 4 - encrypt transmission of cardholder data across open, public networks
+* Req 5 - protect all systems against malware and regularly update anti-virus software or programs
+* Req 6 - develop and maintain secure systems and applications
+* Req 7 - restrict access to cardholder data by business need to know
+* Req 8 - identify and authenticate access to system components
+* Req 9 - Restrict physical access to cardholder data
+* Req 10 - Track and monitor all access to network resources and cardholder data
+* Req 11 - Regularly test security systems and processes
+* Req 12 - Maintain a policy that addresses information security for all personel
+
+Other Frameworks
+
+* SAS70 - statement on auditing standards no. 70
+* SOC1 - service organization controls - accounting standards
+* FISMA - federal information security modernization act
+* FIPS 140-2 - US government standard used to approve cryptographic modules, rated from level 1 to 4 with 4 being the highest. Cloud HSM meets the level 3 standard.
+
+Exam Tips
+
+* Be familiar with the top 3
+* Read the compliance page
+* Be aware of FIPS 140-2 for Cloud HSM vs KMS scenarios - use CloudHSM if you need FIPS 140-2 compliance to level 3
+
