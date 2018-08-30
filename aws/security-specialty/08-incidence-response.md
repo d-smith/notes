@@ -345,3 +345,21 @@ Exam Tips
 * Read the compliance page
 * Be aware of FIPS 140-2 for Cloud HSM vs KMS scenarios - use CloudHSM if you need FIPS 140-2 compliance to level 3
 
+## Section 8 Wrap Up
+
+* Shield - know the services it protects and the type of protections
+* DDoS - read the white paper, know the technologies you can use to mitigate the attacks (cloud front, route 53, elbs, WAFs, autoscaling, cloudwatch)
+* WAFs - know the integrations (ALB, CloudFront)
+* EC2 hacked - know what to do
+* Keys leaked - know what to do
+* Review VPC flow logs
+* Reading cloud trail logs - might come up
+* Pen testing - know the services you can pen test
+* Certificate manager
+* Perfect forward secrecy
+* API gateway throttling - know the default behavior and the 429 error
+* API gateway caching
+* AWS systems manager parameter store
+* AWS systems manager run command
+* Compliance - check out the compliance site
+* FIPS 140-2 - think cloud hsm
