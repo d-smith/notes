@@ -83,3 +83,9 @@ And grab the address via the tag
 aws ec2 describe-instances --filter "Name=tag:Name,Values=my-shintinz" | jq '.Reservations[0].Instances[0].PublicDnsName'
 </pre>
 
+
+Cat an S3 object to standard out:
+
+```console
+aws s3 cp s3://bucket/hello.txt -
+```
