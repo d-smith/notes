@@ -7,3 +7,19 @@ https://github.com/serverless/serverless/issues/2653
 This one... override cloud formation resources =>
 
 https://serverless.com/framework/docs/providers/aws/guide/resources/
+
+
+Doesn't look like LogGroup or LogStream support the specification of a kms key
+used to encrpyt logs.
+
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-logstream.html
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
+
+Encryption is managed at the log group level:
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html
+
+You can associated the key with the log group via the CLI:
+
+aws logs associate-kms-key --log-group-name my-log-group --kms-key-id "key-arn"
+
