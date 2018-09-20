@@ -1,0 +1,5 @@
+Might be in for some special processing logic if your producer is using the KPL.
+
+https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-aggretation
+
+https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-consumer-deaggregation.html
