@@ -49,7 +49,7 @@ Hint: take a photo of your QR code, store it in s3 - if you lose your smart phon
 
 Resetting Root Users
 
-* Createe a new root user password and strong password policy
+* Create a new root user password and strong password policy
 * Delete previous 2FA and re-create
 * Check if root has an access key id and secret access key - if so delete
 * Check other user accounts, delete if not legit
@@ -84,7 +84,7 @@ Power Users do not have access to IAM.
 Use Cases
 
 * Simple way to grant cross account access to s3
-* Use when IAM policies bump up against size limits (2kb for users, 5 kb for groups, 10kb for roles). S3 suuports bucket policies up to 20 kb.
+* Use when IAM policies bump up against size limits (2kb for users, 5 kb for groups, 10kb for roles). S3 supports bucket policies up to 20 kb.
 * You prefer to keep access control policies in the s3 environment. Think denying access to a specific bucket in a 40,000 user org.
 
 Scenario
@@ -117,7 +117,7 @@ Access for the account, individual users (CLI or API), other accounts, public
 
 Scenario:
 
-1. Make an object pubich from an ACL point of view
+1. Make an object public from an ACL point of view
 2. Go to IAM, edit policy, full read, limited write, edit json and change allow to deny. All read plus one write - Deny.
 3. Log in as IAM user - can read the bucket object via the link, no IAM in scope. IAM user access - deny applies.
 
@@ -194,7 +194,7 @@ What is replicated? - Deletes
 
 What is not replicated?
 
-* Anything create before CRR is turned on.
+* Anything created before CRR is turned on.
 * Objects created with server-side encryption using customer-provided (SSE-C) encryption keys.
 * Objects created with server-side envryption using AWS KMS-managed encryption (SSE-KMS) keys, unless you explicitly enable this option.
 * Objects in the source bucket for which the bucket owner does not have permissions. This can happen when the object owner is different from the bucket owner.
@@ -212,7 +212,7 @@ Exam tips:
 * Server-side - request s3 to encrypt your object before writing it to disk, and decrypt it when downloading objects
     * SSE-S3 - server side encryption with s3-managed keys
     * SSE-KMS - server side encryption with KMS managed keys
-    * SSE-C - sse with customer provided key
+    * SSE-CMK - SSE with customer provided key
 * Client-side - you encrypt the data client-side and upload encrypted data. You manage the keys, encryption process, etc.
 
 ## Securing S3 Using CloudFront
