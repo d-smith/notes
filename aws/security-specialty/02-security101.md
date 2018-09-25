@@ -29,6 +29,7 @@ Example: S3 - you are responsible for bucket policies
 ## Security in AWS
 
 Cloud Controls
+
     * Visibility
         * What assests do you have? AWS Config
     * Auditability
