@@ -25,7 +25,7 @@ Security Models
 
 ## Security of AWS 
 
-TODO: read the Introduction to AWS Security Processes white-paper
+TODO: read the Introduction to [AWS Security Processes](https://d1.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf) white-paper
 
 From the paper know and understand the different security controls around:
 
