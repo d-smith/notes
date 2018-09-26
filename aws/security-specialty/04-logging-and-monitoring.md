@@ -17,7 +17,7 @@ Enables:
 
 * After the fact incident investigation
 * Near real time intrusion detection
-* Industry & regulatory complaince
+* Industry & regulatory compliance
 
 Provides:
 
@@ -68,22 +68,22 @@ Why secure?
 How to prevent unauthorized access?
 
 * Place employees who have a security role into an IAM group with attached policies that enable access to the logs.
-        * IAM - create two groups - CloudTrailAdmin 
-        * Admin - grant AWSCloudTrailFull access AWS 
-        * Auditors - AWSCloudTrailReadOnlyAccess
+      * IAM - create two groups - CloudTrailAdmin 
+      * Admin - grant AWSCloudTrailFull access AWS 
+      * Auditors - AWSCloudTrailReadOnlyAccess
 
 * How can we be notified that a log file has been created, then validate it has not been modified?
-        * Configure SNS notifications and log file validation on the 'Trail'
-        * Consume the notification with a solution that will validate the logs using the provided digest file.
-        * Probably better to look for mods to files in the bucket via a lambda.
+      * Configure SNS notifications and log file validation on the 'Trail'
+      * Consume the notification with a solution that will validate the logs using the provided digest file.
+      * Probably better to look for mods to files in the bucket via a lambda.
 
 * How can we prevent logs from being deleted?
-        * Restrict delete access with IAM and bucket policies.
-        * Use s3 MFA delete
-        * Validate logs have not been deleted using log file validation.
+      * Restrict delete access with IAM and bucket policies.
+      * Use s3 MFA delete
+      * Validate logs have not been deleted using log file validation.
 
 * How can we ensure that logs are retained for X years in accordance with our compliance standards?
-        * Use S3 object lifecycle management
+      * Use S3 object lifecycle management
 
 Exam tips:
 
