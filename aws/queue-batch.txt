@@ -1,0 +1,16 @@
+With an array of strings to enqueue as a batch to SQS, lodash is
+useful for building the entries, e.g.
+
+If you have an array, e.g.
+
+let results = [];
+for(item in colection) {
+	results.push( f(item) );
+}
+
+let params = {
+	QueueUrl: something,
+	Entries: _.reduce(results, (acc, val, idx) => { acc.push({Id: `${idx}`, MessageBody: val }); return acc; },[]);
+}
+
+let sqsResponse = SQS.sendMessageBatch(params).promise();
