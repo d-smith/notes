@@ -11,7 +11,7 @@ Exam Blueprint
 
 * 12% Incident Response
 * 20% Logging and Monitoring
-* 26% Infrstructure Security
+* 26% Infrastructure Security
 * 20% Identity and Access Management
 * 22% Data Protection
 

@@ -2,7 +2,7 @@
 
 ## IAM Recap
 
-For this speciailty, key to passing exam is understanding IAM and policies inside and out, and know how they result to s3 policies and access policies.
+For this speciailty, key to passing exam is understanding IAM and policies inside and out, and know how they relate to s3 policies and access policies.
 
 IAM - allows you to manage users and their level of access to the AWS console.
 
