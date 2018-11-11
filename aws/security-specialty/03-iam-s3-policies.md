@@ -163,7 +163,7 @@ Use a bucket policy with two statements:
 
 By default cross region replication is done using SSL/TLS - you do not have to create bucket or IAM policies to force SSL.
 
-You can replicate objects from a source bucket to only one destination bucket. After s3 replicates an object, it cannot be replicated agailn.
+You can replicate objects from a source bucket to only one destination bucket. After s3 replicates an object, it cannot be replicated again.
 
 CRR requirements:
 
@@ -177,7 +177,7 @@ CRR requirements:
 * The IAM role must have permissions to replicate objects in the destination bucket.
 * In the replication configuration, you can optionally direct S3 to change the ownership of object replicas to the AWS account that owns the destination bucket.
 
-Standard architecture solution to secure cloud trail - replicate cloud trail logs replicated to a second AWS account, originating account can't read or access replicated logs.
+Standard architecture solution to secure cloud trail - replicate cloud trail logs to a second AWS account, originating account can't read or access replicated logs.
 
 What is replicated?
 
@@ -196,7 +196,7 @@ What is not replicated?
 
 * Anything created before CRR is turned on.
 * Objects created with server-side encryption using customer-provided (SSE-C) encryption keys.
-* Objects created with server-side envryption using AWS KMS-managed encryption (SSE-KMS) keys, unless you explicitly enable this option.
+* Objects created with server-side encryption using AWS KMS-managed encryption (SSE-KMS) keys, unless you explicitly enable this option.
 * Objects in the source bucket for which the bucket owner does not have permissions. This can happen when the object owner is different from the bucket owner.
 * Deletes to a particular version of an object. This is a security mechanism.
 
