@@ -90,7 +90,7 @@ Exam tips:
 * API calls to control plane are logged by CloudTrail
 * Metadata around calls is logged (see above)
 * Events sent to s3 bucket - use s3 to manage the retention and archiving and purging of the files.
-* Delivered event 5 active minutes, can be a 15 minute delay
+* Delivered every 5 active minutes, can be a 15 minute delay
 * Notifications available
 * Can aggregate logs across regions, and aggregate across accounts
 * Can validate log file integrity (digests on the hour, every hour, AWS has the private key)
@@ -123,7 +123,7 @@ Custom metrics can be created
 
 CloudWatch Logs
 
-* Pushed from some service, from your applications/systens
+* Pushed from some service, from your applications/systems
 * Metrics from log entry metrics
 * Stored indefinitely (not user s3)
 
