@@ -210,7 +210,7 @@ Compliance Checks
 
 * Trigger
   * Periodic
-  * Configuration snapshot delivery (ffilterable)
+  * Configuration changes (filterable, when a recorded resource is  created, changed, or deleted)
 * Managed rules 
   * About 40 (at time of recording)
   * Basic, but fundamental
@@ -218,14 +218,14 @@ Compliance Checks
 ## AWS Config Lab
 
 * Services > Management Tools > Config
-* Set up on a regional basis - inventies your resources, stream config changes to an SNS topic
+* Set up on a regional basis - inventories your resources, stream config changes to an SNS topic
 * Rules - ssh open to the world - trigger type (config changes, periodic), AWS manage rule
 * Flag non-compliant resources - provides link to it
 * Config timeline - changes over time, linked to cloud trail
 
 ## AWS Config Wrap Up
 
-* Assests in AWS, change generates an event to AWS config, can evaluate standard or custom rules via lambda, writes into too into the AWS config s3 bucket, rules that are violated can generate a notification
+* Assests in AWS, change generates an event to AWS config, can evaluate standard or custom rules via lambda, writes into the AWS config s3 bucket, rules that are violated can generate a notification
 * Its use provides visibility, compliance, auditability
 
 Exam tips:
@@ -240,10 +240,10 @@ Exam tips:
   * Users need to be authenticated in AWS and have the appropriate permissions set via IAM policies to gain access
   * Only admins needing to set up and manage config require full access
   * Provide read only permissions for config on day to day basis
-* Monitoring: Use CloudTrail with COnfig to provide deeper insight
+* Monitoring: Use CloudTrail with Config to provide deeper insight
 * Use CloudTrail to monitor access to Config, such as someone stopping the Config recorder
 
-Config makes up a big part of the exam, so read through the FAQ,
+Config makes up a big part of the exam, so read through the FAQ.
 
 ## Set Up Alert if Root User Logs In
 
