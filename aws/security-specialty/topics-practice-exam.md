@@ -9,6 +9,7 @@ Some notes from taking the practive exam:
 * Review VPNs
 * Review service control policies
 * Know how to set up and leverage cross account access for s3
+* Know how the security token service is used
 
 
 # Services
@@ -40,4 +41,25 @@ Some notes from taking the practive exam:
 ## Systems Manager
 
 > AWS Systems Manager gives you visibility and control of your infrastructure on AWS. Systems Manager provides a unified user interface so you can view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources. With Systems Manager, you can group resources, like Amazon EC2 instances, Amazon S3 buckets, or Amazon RDS instances, by application, view operational data for monitoring and troubleshooting, and take action on your groups of resources. Systems Manager simplifies resource and application management, shortens the time to detect and resolve operational problems, and makes it easy to operate and manage your infrastructure securely at scale.
+
+# Key Rotation
+
+## Automatic
+
+When enabled (it can be enabled and disabled, disabled by default), AWS KMS generates new key material every 365 days, and saves the older key material such that it can be used to decrypt data that was encrypted with the older key material.
+
+Key rotation only changes the CMK's backing key, it does not change the arn or other properties.
+
+Not available for CMK's with imported key material.
+
+## Manual
+
+Manual key rotation involves creating a new CMK, then updating your apps to use it, or changing your key alias to point to the new CMK.
+
+* Since the new key is different resource than the previous key, it has a different key id and arn. You need to update references to the old key to the new key in order to start using it. KMS keeps track of the master key used to encrypt data. 
+* If you use a key alias in your application, you can point the alias to the new key and your application will then use the new key.
+
+![](./key-rotation-manual.png)
+
+> When you begin using the new CMK, be sure to keep the original CMK enabled so that AWS KMS can decrypt data that the original CMK encrypted. When decrypting data, KMS identifies the CMK that was used to encrypt the data, and it uses the same CMK to decrypt the data. As long as you keep both the original and new CMKs enabled, AWS KMS can decrypt any data that was encrypted by either CMK.
 

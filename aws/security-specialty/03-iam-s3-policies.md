@@ -79,7 +79,7 @@ Power Users do not have access to IAM.
 ## S3 Bucket Policies
 
 * Attached only to s3 buckets
-* Specify what actions are allowed or denied on the bucket, can be broken down to the user level
+* Specify what actions are allowed or denied *on the bucket*, can be broken down to the user level
 
 Use Cases
 
@@ -108,7 +108,7 @@ Explicit deny always overrides an allow
 
 ACLs are a legacy access control mechanism that predates IAM.
 
-* Use when you must apply policies on individual objects.
+* Use when you must *apply policies on individual objects*.
 * Can use as a work around if bucket policy is too large.
 
 CLI or API - need account number and canonical user id. `aws s3api list-buckets` - gives canonical id for individual user in the output
@@ -131,6 +131,7 @@ With least privilege:
 
 * Decisions always default to DENY.
 * Explicit deny always trumps an ALLOW.
+* If no method specifies an ALLOW then the request will be denied by default
 * Only if no method specifies a deny and one or more methods specify an ALLOW will the request be allowed.
 
 1. Decision starts at Deny
@@ -198,7 +199,7 @@ What is not replicated?
 * Objects created with server-side encryption using customer-provided (SSE-C) encryption keys.
 * Objects created with server-side encryption using AWS KMS-managed encryption (SSE-KMS) keys, unless you explicitly enable this option.
 * Objects in the source bucket for which the bucket owner does not have permissions. This can happen when the object owner is different from the bucket owner.
-* Deletes to a particular version of an object. This is a security mechanism.
+* Delete versions of objects. This is a security mechanism.
 
 Exam tips:
 
@@ -243,6 +244,37 @@ aws s3 presign s3://bucket/object --expires-in 300
 
 * URLs are valid for a specific length of time, with a default of one hour.
 * Use the --expires-in option to change the length of time the URL is available for.
+
+## Security Token Services with Active Directory
+
+Security Token Service - grants users limited and temporary access to AWS resources. Users can come from three sources:
+
+* Federation (typically active directory)
+    * Uses SAML
+    * Grants temporary access based off the user's Active Directory credentials. Does not need to be an IAM user.
+    * SSO allows signing into the console without assigning IAM credentials
+* Federation with mobile apps
+    * Use facebook/google/amazon or other open id connect providers
+* Cross account access
+    * Lets users in one aws account use resources in another
+
+Terms:
+
+* Federation: combining or joining a list of users in one domain (such as IAM) with a list of users in another domain (such as active directory, facebook, etc)
+* Identity Broker: a service that lets you take an identity from point A and join it (federate it) with point B
+* Identity Store - services such as active directory, facebook, google, etc
+* Identities - a user of a service such as facebook etc
+
+### Scenario
+
+You are hosting a company web site on some ec2 web servers in your vpc. Users of the web site must log in to the site which then authenticates against the company's active directory servers which are based in a site at the company HQ. Your VPC is connected to HQ via a secure IPSEC VPN. Once logged in the user has access only to their own s3 bucket. How to set up?
+
+1. Employee enters the user name and password 
+2. The identity broker (which you wrote) uses the org's LDAP directory to validate the employee's identity using the provided credentials
+3. The Identity Broker calls the GetFederationToken function using IAM credentials. The call must include an IAM policy and duration (1-36 hours) along with a policy that specifies the permissions to be granted to the temporary security credentials
+4. The security token service confirms the policy of the IAM user making the call to GetFederationToken gives permission to create new tokens and then returns four values: an access key, a secret access key, a token, and a duration (the token's lifetime)
+
+Exam Tip: know this flow
 
 ## S3, IAM & CloudFront Summary
 
