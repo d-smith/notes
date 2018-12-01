@@ -3,5 +3,17 @@
 Assemble Notes from Two Aspects
 
 * Add notes and links using domain outline format
-* Layer in product notes into the domains
+* Layer in service notes into the domains
 
+Services:
+
+* Macie
+* Inspector
+* GuardDuty
+* Trusted Advisor
+* Systems Manager
+* Config
+* KMS
+* CloudHSM
+* VPC Endpoints
+* IAM
