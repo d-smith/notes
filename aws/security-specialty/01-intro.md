@@ -4,7 +4,7 @@
 
 [AWS Security Specialty](https://aws.amazon.com/certification/certified-security-specialty/)
 
-[Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS_Certified_Security_Specialty_Exam_Guide_v1.5.pdf)
+[Exam Guide](https://d1.awsstatic.com/training-and-certification/eligibilityupdates/AWS%20Certified%20Security%20Specialty_Exam%20Guide_v1.6_FINAL.pdf?refid=em_124190)
 
 
 Exam Blueprint

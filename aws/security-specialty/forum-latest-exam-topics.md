@@ -136,3 +136,8 @@ if you just want to use this course here are some extra things you should look a
 16. how can you make a policy with write once read many archiving policy?
 
 In conclusion do not treat this exam like an associate. Treat is more like a professional and I greatly encourage you to go out and study more in depth topics covered in this cours.
+
+## More Perspecfives
+
+* https://daviseford.com/blog/2018/08/17/aws-security-specialty-exam-tips.html
+* 
