@@ -28,7 +28,7 @@ SEC325-R - Data Protection: Encryption, Availability, Resiliency, and Durability
 
 SEC326 - Orchestrate Perimeter Security Across Distributed Applications [video](https://youtu.be/ELIiF-jE0y8)
 
-SEC327 - AWS Security in Your Sleep: Build End-to-End Automation for IR Workflows
+SEC327 - AWS Security in Your Sleep: Build End-to-End Automation for IR Workflows [ppt](https://www.slideshare.net/AmazonWebServices/aws-security-in-your-sleep-build-endtoend-automation-for-ir-workflows-sec327-aws-reinvent-2018)
 
 SEC389 - Detecting Credential Compromise in AWS [video](https://youtu.be/pagHGaercLs)
 
@@ -38,3 +38,6 @@ SEC397 - Introduction to AWS Security Hub [video](https://www.youtube.com/watch?
 
 SEC403 - Five New Security Automations Using AWS Security Services & Open Source [video](https://youtu.be/M5yQpegaYF8)
 
+SEC322 Using AWS Lambda as a Security Team [video](https://youtu.be/ecT4eyy0CyU)
+
+CTD201 Layered Perimeter Protection for Apps Running on AWS [video](https://youtu.be/MeFXknWDN3E)

@@ -40,23 +40,53 @@ Scenarios:
 ### Domain 1: Incident Response
 
 1.1 Given an AWS abuse notice, evaluate the suspected compromised instance or exposed access keys.
+
+SEC389 - Detecting Credential Compromise in AWS [video](https://youtu.be/pagHGaercLs)
+
+[Preventing Credential Compromise](https://medium.com/netflix-techblog/netflix-information-security-preventing-credential-compromise-in-aws-41b112c15179)
+
 1.2 Verify that the Incident Response plan includes relevant AWS services.
+
+SEC327 - AWS Security in Your Sleep: Build End-to-End Automation for IR Workflows [ppt](https://www.slideshare.net/AmazonWebServices/aws-security-in-your-sleep-build-endtoend-automation-for-ir-workflows-sec327-aws-reinvent-2018)
+
 1.3 Evaluate the configuration of automated alerting, and execute possible remediation of security-related
 incidents and emerging issues.
+
+SEC322 Using AWS Lambda as a Security Team [video](https://youtu.be/ecT4eyy0CyU)
+
+SEC403 - Five New Security Automations Using AWS Security Services & Open Source [video](https://youtu.be/M5yQpegaYF8)
 
 ### Domain 2: Logging and Monitoring
 
 2.1 Design and implement security monitoring and alerting.
+
+ENT332-R - Best Practices for Centrally Monitoring Resource Configuration & Compliance [video](https://youtu.be/kErRv4YB_T4)
+
 2.2 Troubleshoot security monitoring and alerting.
 2.3 Design and implement a logging solution.
+
+SEC323-R - Augmenting Security Posture and Improving Operational Health with AWS CloudTrail [video](https://youtu.be/YWzmoDzzg4U)
+
 2.4 Troubleshoot logging solutions.
 
 ### Domain 3: Infrastructure Security
 
 3.1 Design edge security on AWS.
+
+SEC312-S - The Perimeter is Dead. Long Live the Perimeters. [video](https://youtu.be/nvVI3azDmOQ)
+
+SEC326 - Orchestrate Perimeter Security Across Distributed Applications [video](https://youtu.be/ELIiF-jE0y8)
+
+CTD201 Layered Perimeter Protection for Apps Running on AWS [video](https://youtu.be/MeFXknWDN3E)
+
 3.2 Design and implement a secure network infrastructure. 
+
+NET 202 - Securing Your Virtual Data Center in the Cloud [vide](https://youtu.be/2DF_EXmxbLM)
+
 3.3 Troubleshoot a secure network infrastructure.
 3.4 Design and implement host-based security.
+
+SEC391 - Inventory, Track, and Respond to AWS Asset Changes within Seconds at Scale [video](https://youtu.be/_O6dIG5uqGg)
 
 ### Domain 4: Identity and Access Management
 
@@ -66,5 +96,10 @@ incidents and emerging issues.
 ### Domain 5: Data Protection
 
 5.1 Design and implement key management and use.
+
+SEC304 - AWS Secrets Manager: Best Practices for Managing, Retrieving, and Rotating Secrets at Scale [video](https://youtu.be/qoxxRlwJKZ4)
+
 5.2 Troubleshoot key management.
 5.3 Design and implement a data encryption solution for data at rest and data in transit. 
+
+SEC325-R - Data Protection: Encryption, Availability, Resiliency, and Durability [video](https://youtu.be/FH6AXreSQWQ)
