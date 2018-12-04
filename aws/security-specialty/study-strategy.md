@@ -56,6 +56,36 @@ SEC322 Using AWS Lambda as a Security Team [video](https://youtu.be/ecT4eyy0CyU)
 
 SEC403 - Five New Security Automations Using AWS Security Services & Open Source [video](https://youtu.be/M5yQpegaYF8)
 
+Why automation?
+
+* More than reactive auto remediation
+* Provide proactive support to reactive humans in time of crisis, including information gathering
+
+Services used in security: lambda, step functions, cloud trail, cloud trail events, parameter store, more
+
+* Not just guard duty, inspector, macie, secrets manager, etc.
+
+Project: SignalHub
+
+* Centralized message hub for alerts and other notification needs
+* Runs as per account or per organization Lambda function
+* Send notifications to multiple destinations
+
+Project: LambdaCanary
+
+Lambda-based canary to verify the existence of cross account IR functions
+
+* Do validation of expected Lambda functions
+* Validate expected code with checksum
+* Integrate with alert function if incorrect code or errors occur
+
+Project: [GuardDuty Multi-Account Manager](https://github.com/mozilla/guardduty-multi-account-manager)
+
+* Cross account role manager and configuration assurance for AWS GuardDuty
+* Enable GuardDuty masters in all AWS Regions present and future
+* Aggregate all findings in one place, put in s3
+* Uses [cloudformation cross account outputs](https://github.com/mozilla/cloudformation-cross-account-outputs/) service
+
 ### Domain 2: Logging and Monitoring
 
 2.1 Design and implement security monitoring and alerting.
