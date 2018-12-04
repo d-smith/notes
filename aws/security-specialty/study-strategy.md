@@ -85,8 +85,32 @@ Project: [GuardDuty Multi-Account Manager](https://github.com/mozilla/guardduty-
 * Enable GuardDuty masters in all AWS Regions present and future
 * Aggregate all findings in one place, put in s3
 * Uses [cloudformation cross account outputs](https://github.com/mozilla/cloudformation-cross-account-outputs/) service
+* Manages relationships between master and sub account
+
+Project: [MozDef](https://github.com/mozilla/MozDef) (The Mozilla Defense Platform)
+
+* SIEM
+* Ability to enrich, gather, and store logs
+* Abililty to track the lifecycle of investigations and incidents
+* Provide an interface to correlate multiple pieces of data: attackers, investigations, incidents
+* Mozilla security principles - https://infosec.mozilla.org/fundamentals/security_principles
+
+
+Project: ExposedKeyRemediator - v2
+
+Some repos
+
+* AWS security automation - https://github.com/awslabs/aws-security-automation
+* https://threatresponse.cloud/
+* https://github.com/ThreatResponse/aws_ir
+* https://documentation.wazuh.com/current/amazon/
+
+* Disables keys and keys created from those keys based on alerts from GuardDuty and Trusted Advisor
 
 ### Domain 2: Logging and Monitoring
+
+
+
 
 2.1 Design and implement security monitoring and alerting.
 
