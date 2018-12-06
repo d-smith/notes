@@ -49,6 +49,14 @@ SEC389 - Detecting Credential Compromise in AWS [video](https://youtu.be/pagHGae
 
 SEC327 - AWS Security in Your Sleep: Build End-to-End Automation for IR Workflows [ppt](https://www.slideshare.net/AmazonWebServices/aws-security-in-your-sleep-build-endtoend-automation-for-ir-workflows-sec327-aws-reinvent-2018)
 
+
+Open Source IR Solutions
+
+* [Cloud Custodian](https://github.com/cloud-custodian/cloud-custodian)
+* [Fido](https://github.com/Netflix/Fido)
+* [Security Monkey](https://github.com/Netflix/security_monkey)
+* [Stream Alert](https://github.com/airbnb/streamalert)
+
 1.3 Evaluate the configuration of automated alerting, and execute possible remediation of security-related
 incidents and emerging issues.
 
