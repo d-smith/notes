@@ -260,7 +260,25 @@ Security Controls Enforced by KMS HSMs
 * 3rd party verified evidence
     * FIPS 140-2 Level 2 with Level 3 physical security, design assurance, cryptography
     * SOC 1 - Control 4.5: Customer master keys used for cryptographic operations in KMS are logically secured so no single AWS employee can gain access to the key material
-31:41
+
+Each CMK has as resource policy to define permissions
+
+Key Policy Sample permissions: 
+
+* Can only be used for enc and dec by <these users and roles> in <these accounts>
+* Can be used by application A to encrypt and only used by application B to decrypt
+* Can be managed only by this set of administrator IAM users or IAM roles
+* Can be used by <these external accounts>, but only for encryption/decryption, not administrative tasks
+
+Where to encrypt your data
+
+* Client-side encryption
+* Server-sde encryption
+
+AWS KMS custom key store
+
+* Custom Key Store Connector
+* [This blog](https://aws.amazon.com/blogs/security/are-kms-custom-key-stores-right-for-you/)
 
 ## Domain Notes - Services Notes
 
