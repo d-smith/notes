@@ -7,7 +7,7 @@ Assemble Notes from Two Aspects
 
 Services:
 
-* Macie
+* [Macie](https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html)
 * Inspector
 * GuardDuty
 * Trusted Advisor
@@ -21,6 +21,7 @@ Services:
 * Artifact
 * Athena
 * CloudTrail
+* Cognito
 
 Scenarios:
 
@@ -35,7 +36,7 @@ Scenarios:
 * 
 
 
-## Domain Outline
+## Domain Outline - Presentations
 
 ### Domain 1: Incident Response
 
@@ -165,3 +166,153 @@ SEC304 - AWS Secrets Manager: Best Practices for Managing, Retrieving, and Rotat
 5.3 Design and implement a data encryption solution for data at rest and data in transit. 
 
 SEC325-R - Data Protection: Encryption, Availability, Resiliency, and Durability [video](https://youtu.be/FH6AXreSQWQ)
+
+PARC - pricipals, actions, resources, conditions
+
+IAM - declarative policy language, can be attached and of the principal/actor/identity, or attached to resources
+
+Data - stored in multiple services - remember access control of resources via data. IAM can be used for management of resource actions. Data in databases is protected by the engine
+
+Protect database and application credentials: AWS Secrets Manager
+
+* Integrated with AWS IAM and services
+* Controlling access to secrets is often the same as controlling access to the data
+* To many humans handling secrets creates risk and vulnerability
+* Automated secret rotation provides security and availability
+    * Integration with RDS to update both clients and database server with new credentials
+
+Features:
+
+* Rotate secrets safely
+* Build in, extensible integrations with lambda
+* Scheduled versioned rotation
+* Fine grained access control
+* Encrypted storage
+* Logging and monitoring
+
+Data in AWS Storage Services
+
+* S3, EBS, Glacier, EFS
+
+Protecting data in AWS storage services
+
+EBS
+
+* Confidentiality: tag-based IAM policies
+* Durability: share snapshots between accounts and copy between regions
+* Integrity: block integrity automatically provided
+
+EFS
+
+* Confidentiality: IAM policies for attachments; POSIX permissions for file / directories
+* Durability: share snapshots between accounts and copy between regions
+* Integrity: file integrity automatically provided
+
+S3
+
+* Confidentiality: read/write object permissions (IAM and bucket resource policies)
+* Durability: s3 cross region replication; versioning allows recovery of deleted objects; CRR can now be selective via tags
+* Integrity: file integrity automatically provided
+
+S3 Security Enhanced with VPC Endpoints
+
+* Reach s3 privately without giving internet access to your vpc with an endpoint.
+* Role accesses the endpoint to access the bucket: there is policy language that can be attached to the endpoint (separate from the identity and resource)
+* IAM policy: what s3 API actions can this iam user/role perform under which conditions?
+* Bucket policy: what iam users/roles can access this s3 bucket?
+* Endpoint policy: which IAM users/roles can connect to which s3 buckets using this VPC?
+
+Default Encryption for an S3 Bucket
+
+* Any object placed into this bucket must be encrypted with a specific key
+
+"I have control of the keys needed for decryption"
+
+* Encrypt the data key with the master key
+* Where does that master key get stored in plaintext?
+* On prem HSM?
+    * Pro: you control the device, autz. authn
+    * Pro: familiar to auditors
+    * Con: latency, availability, durability, scalability is your responsibility
+    * Con: limited integration with cloud managed services
+* In the cloud in your HSM (AWS CloudHSM)
+    * Pro: you control the device, autz. authn
+    * Pro: lower latency to your apps in the cloud
+    * Pro: AWS makes it easy to have HA, durabiity, scalable
+    * Pro: familiar to auditors
+    * Con: limited integration with cloud managed services
+* In the cluod in a managed HSM (AWS KMS)
+    * Pro: you control the device, autz . authn
+    * Pro: lower latency to your apps in the cloud
+    * Pro: AWS makes it easy to have HA, durabiity, scalable
+    * Pro: integration with cloud managed services
+    * Con: looks unfamiliar to your auditors
+
+Security Controls Enforced by KMS HSMs
+
+* When operational with key material provisioned:
+    * No AWS operator access to HSM; no software updates allowed
+* AFter reboot and in a non-operational state:
+    * No key material on host
+    * Software can only be updated:
+        * After multiple AWS employees have reviewed the code
+        * Under a quorum of multiple authenticated KMS operators
+* 3rd party verified evidence
+    * FIPS 140-2 Level 2 with Level 3 physical security, design assurance, cryptography
+    * SOC 1 - Control 4.5: Customer master keys used for cryptographic operations in KMS are logically secured so no single AWS employee can gain access to the key material
+31:41
+
+## Domain Notes - Services Notes
+
+### Domain 1: Incident Response
+
+1.1 Given an AWS abuse notice, evaluate the suspected compromised instance or  exposed access keys.
+1.2 Verify that the Incident Response plan includes relevant AWS services.
+1.3 Evaluate the configuration of automated alerting, and execute possible remediation of security-related incidents and emerging issues.
+
+> Macie
+> 
+> Data Discovery and Classification
+>
+> * Amazon Macie enables you to identify business-critical data and analyze access patterns and user behavior:
+> * Continuously monitor new data in your AWS environment
+> * Use artificial intelligence to understand access patterns of historical data
+> * Automatically access user activity, applications, and service accounts
+> * Use natural language processing (NLP) methods to understand data
+> * Intelligently and accurately assign business value to data and prioritize business-critical data based on your unique organization
+> * Create your own security alerts and custom policy definitions
+>
+> Data Security
+>
+> * Amazon Macie enables you to be proactive with security compliance and achieve preventive security:
+> * Identify and protect various data types, including PII, PHI, regulatory documents, API keys, and secret keys
+> * Verify compliance with automated logs that allow for instant auditing
+> * Identify changes to policies and access control lists
+> * Observe changes in user behavior and receive actionable alerts
+> * Receive notifications when data and account credentials leave protected zones
+> * Detect when large quantities of business-critical documents are shared internally and externally
+
+
+### Domain 2: Logging and Monitoring
+2.1 Design and implement security monitoring and alerting.
+
+* See Macie data security notes above
+
+2.2 Troubleshoot security monitoring and alerting.
+2.3 Design and implement a logging solution.
+2.4 Troubleshoot logging solutions.
+
+### Domain 3: Infrastructure Security
+3.1 Design edge security on AWS.
+3.2 Design and implement a secure network infrastructure. 
+3.3 Troubleshoot a secure network infrastructure.
+3.4 Design and implement host-based security.
+
+### Domain 4: Identity and Access Management
+4.1 Design and implement a scalable authorization and authentication system to access AWS resources.
+4.2 Troubleshoot an authorization and authentication system to access AWS resources.
+
+### Domain 5: Data Protection
+5.1 Design and implement key management and use.
+5.2 Troubleshoot key management.
+5.3 Design and implement a data encryption solution for data at rest and data in transit. 
