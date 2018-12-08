@@ -118,9 +118,6 @@ Some repos
 
 ### Domain 2: Logging and Monitoring
 
-
-
-
 2.1 Design and implement security monitoring and alerting.
 
 ENT332-R - Best Practices for Centrally Monitoring Resource Configuration & Compliance [video](https://youtu.be/kErRv4YB_T4)
