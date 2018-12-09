@@ -41,4 +41,25 @@ Detecting Unknown Threats
     * Experiment with implementations
     * Testing, tuning, and validation
 
-    step: 13:30
+What can the service detect?
+
+* RDP brute force
+* RAT (remote access trojan) installed
+* Exfiltrate temp IAM credentials over DNS
+* Probe API with temp creds
+* Attempt to compromise account
+
+Finding Type Categories: Recon, Backdoor, Trojan, Unauthorized Access ,Stealth, Crypto Mining
+
+Virtuous Flywheel - use of GuardDuty across the ecosystem yields benefits to all customers using the service.
+
+GuardDuty - Cloud watch events to lambda to slack, pager duty, etc.
+
+Multi-account support
+
+* multi-account on-boarding workflow - pick a master account, send invites to member accounts, accept to centralize findings in the master account.
+
+Bring Your Own Threat Intelligence
+
+* Styx and OTX format, alien format, etc
+* Other customizations
