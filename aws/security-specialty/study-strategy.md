@@ -9,7 +9,7 @@ Services:
 
 * [Macie](https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html)
 * Inspector
-* GuardDuty
+* GuardDuty - see notes
 * Trusted Advisor
 * Systems Manager
 * Config
