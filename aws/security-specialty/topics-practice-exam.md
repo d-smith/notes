@@ -100,7 +100,7 @@ Policy Enforcement
 
 ![](./EffectivePermissions-numbered.png)
 
-Permissions boundaries - define the max set of operations, typically narrowed down to a subset. Boundary enforced via Confidition that references the boundary via iam:PermissionBoundary
+[Permissions boundaries](https://aws.amazon.com/blogs/security/delegate-permission-management-to-developers-using-iam-permissions-boundaries/) - define the max set of operations, typically narrowed down to a subset. Boundary enforced via Condition that references the boundary via iam:PermissionBoundary
 
 Cross Account Console Access
 
@@ -108,3 +108,5 @@ Cross Account Console Access
 * Trust policy - specifies who can assume the role, assigned to the role
 
 Trust policy can grant access to an entire account, an iam user, an assumed role (via sts), multiple, etc.
+
+See [this](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) tutorial
