@@ -22,6 +22,7 @@ Services:
 * Athena
 * CloudTrail
 * Cognito
+* AWS SSO
 
 Scenarios:
 
