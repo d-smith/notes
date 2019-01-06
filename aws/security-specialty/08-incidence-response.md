@@ -280,7 +280,7 @@ Exam Tips
 
 Where's it show up in the exam?
 
-* Scenario where you need to apply security updates at scale (but you must have the SSM agent enabled, need to have the role assigned to them allowing systen manager to talk to them, apply to instances by selecting them manually or by tags)
+* Scenario where you need to apply security updates at scale (but you must have the SSM agent enabled, need to have the role assigned to them allowing systems manager to talk to them, apply to instances by selecting them manually or by tags)
 
 ## Compliance Frameworks
 

@@ -387,7 +387,7 @@ Exam tip
 * Non-security scenarios => trusted advisor
 * Basic security stuff (like security group ports, iam use, mfa on root) => probably trusted advisor
 
-What is trusted advistor?
+What is trusted advisor?
 
 * An online resource to help you reduce cost, increase performance, and improve security by optimizing your AWS environment. Advisor will advise you on 
   * Cost Optimization
