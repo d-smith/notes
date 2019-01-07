@@ -28,6 +28,8 @@ Topics
 
 ### Policies
 
+See [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)
+
 *Identity-based* policies control what actions the identity can perform, on what resources, and under what conditions. These are permissions policies you attach to an IAM identity such as a user, group, or role.
 
 * Managed and inline variants.
@@ -37,3 +39,25 @@ Topics
 * Inline only
 * To enable cross account access, you can specify an entire account or IAM entities in another account as the principal in a resource based policy.
 
+> The IAM service supports only one type of resource-based policy called a role trust policy, which is attached to an IAM role. Because an IAM role is both an identity and a resource that supports resource-based policies, you must attach both a trust policy and an identity-based policy to an IAM role. Trust policies define which principal entities (accounts, users, roles, and federated users) can assume the role. 
+
+Some services that support resource based policies
+
+* S3 buckets
+* SNS topics
+* SQS queues
+
+Delegating AWS Permissions in a Resource-based policy
+
+* After a resource grants your AWS account permissions as a principal in its resource based policy, you can then delegate permissions to specific users or groups under your AWS accounts.
+* You can delegate a subset of the original permissions granted, but not more.
+
+### AWS Config - Before and After
+
+* Continuously monitor and record configuration changes of AWS resources
+* Send notifications if config has changed via SNS, can fire lambdas from that, etc.
+* Review history of config states
+* Combine with CloudTrail to identify root causes of operational problems
+* Mutli-account, multi-region data aggregation
+
+![](./config.jpg)
