@@ -9,9 +9,12 @@ Topics
 * Understand AWS Config and its before and after capabilities, including IAM permissions.
 * Compromised EC2 instance - what to do?
 * Keys in a public repo - what to do?
+    * See [this blog post](https://aws.amazon.com/blogs/security/what-to-do-if-you-inadvertently-expose-an-aws-access-key/)
 * Default encryption on s3 objects
 * AWS Config Rules - check for things like logging enabled on all buckets
+    * Two types - predefined and custom
 * Review bucket policies, bucket ACLs, and use cases - including bucket policies for unauthenticated users.
+    * See [this](https://aws.amazon.com/blogs/security/iam-policies-and-bucket-policies-and-acls-oh-my-controlling-access-to-s3-resources/) blog post.
 * Review basic capabilities of security related services
 * Create a private, isolated s3 bucket
 * Enforce requirement that all objects upload to s3 use SSE-S3 using AWS_256
@@ -61,3 +64,30 @@ Delegating AWS Permissions in a Resource-based policy
 * Mutli-account, multi-region data aggregation
 
 ![](./config.jpg)
+
+
+### S3 Encryption
+
+Can use a policy to require server-side encryption:
+
+```console
+{
+   "Version":"2012-10-17",
+   "Id":"PutObjPolicy",
+   "Statement":[{
+         "Sid":"DenyUnEncryptedObjectUploads",
+         "Effect":"Deny",
+         "Principal":"*",
+         "Action":"s3:PutObject",
+         "Resource":"arn:aws:s3:::YourBucket/*",
+         "Condition":{
+            "StringNotEquals":{
+               "s3:x-amz-server-side-encryption":"aws:kms"
+            }
+         }
+      }
+   ]
+}
+```
+
+Can also use condition key of `s3:x-amz-server-side-encryption-aws-kms-key-id `
