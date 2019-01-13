@@ -91,3 +91,58 @@ Can use a policy to require server-side encryption:
 ```
 
 Can also use condition key of `s3:x-amz-server-side-encryption-aws-kms-key-id `
+
+### Private, Isolated S3 Bucket
+
+Use an VPC endpoint for amazon S3 - a vpc endpoint for s3 is a logical entity within a vpc that allows connectivity to s3. The vpc endpoint routes requests to s3 and and routes responses back to the vpc.
+
+* You can control the requests, users, or groups that are allowed through a specific vpc endpoint.
+* You can control which vpcs or vpc endpoints have access to your s3 bucket.
+
+The following is an example of an S3 bucket policy that restricts access to a specific bucket, examplebucket, only from the VPC endpoint with the ID vpce-1a2b3c4d. 
+
+```console
+{
+   "Version": "2012-10-17",
+   "Id": "Policy1415115909152",
+   "Statement": [
+     {
+       "Sid": "Access-to-specific-VPCE-only",
+       "Principal": "*",
+       "Action": "s3:*",
+       "Effect": "Deny",
+       "Resource": ["arn:aws:s3:::examplebucket",
+                    "arn:aws:s3:::examplebucket/*"],
+       "Condition": {
+         "StringNotEquals": {
+           "aws:sourceVpce": "vpce-1a2b3c4d"
+         }
+       }
+     }
+   ]
+}
+```
+You can create a bucket policy that restricts access to a specific VPC by using the aws:sourceVpc condition. 
+
+```console
+{
+   "Version": "2012-10-17",
+   "Id": "Policy1415115909153",
+   "Statement": [
+     {
+       "Sid": "Access-to-specific-VPC-only",
+       "Principal": "*",
+       "Action": "s3:*",
+       "Effect": "Deny",
+       "Resource": ["arn:aws:s3:::examplebucket",
+                    "arn:aws:s3:::examplebucket/*"],
+       "Condition": {
+         "StringNotEquals": {
+           "aws:sourceVpc": "vpc-111bbb22"
+         }
+       }
+     }
+   ]
+}
+```
+
