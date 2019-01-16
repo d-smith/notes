@@ -25,6 +25,8 @@ Topics
 * CMK resource policy
 * KMS throttling errors, encryption SDK key caching
 * CloudHSM JCE compatibility
+  * If you are developing your own custom application, your application can use the standard APIs supported by CloudHSM, including PKCS#11 and Java JCA/JCE (Java Cryptography Architecture/Java Cryptography Extensions). Support for Microsoft CAPI/CNG is coming soon.
+  * 
 * Know the distinction of CMKs and DEKs and what KMS can manage and generate.
 
 ## Notes
@@ -146,3 +148,39 @@ You can create a bucket policy that restricts access to a specific VPC by using 
 }
 ```
 
+### FIPS - Federal Information Processing Standard
+
+Publication 140-2 
+
+KMS - crypto module validated at Level 2 Overall
+
+> AWS Key Management Service (KMS) is a multi-tenant, managed service that allows you to use and manage encryption keys. Both services offer a high level of security for your cryptographic keys. AWS CloudHSM provides a dedicated, FIPS 140-2 Level 3 HSM under your exclusive control, directly in your Amazon Virtual Private Cloud (VPC).
+
+### Unmanageable CMKs
+
+Example: CMK key policy allows only one IAM user to managed the key. If that user is deleted the key in unmanageable. AWS support must contacted to regain access to the CMK.
+
+Note that you must grant access to the account (root) to allow it to enable IAM policies
+
+```console
+{
+  "Sid": "Enable IAM User Permissions",
+  "Effect": "Allow",
+  "Principal": {"AWS": "arn:aws:iam::111122223333:root"},
+  "Action": "kms:*",
+  "Resource": "*"
+}
+```
+
+Key administrators, Key users
+
+### KMS API throttling
+
+Encrypt, Decrypt, GenerateDataKey, GenerateDataKeyWithoutPlaintext, GenerateRandom, ReEncrypt have account limits of 5500 (some regions support 10000), shared.
+
+### KMS Misc
+
+* Primary resources are customer master keys
+* Typical use is to generate, encrypt, and descrypt data keys
+* Data keys - keys you can use to encrypt data, including large amounts of data and other encryption keys
+  * AWS KMS does not store, manage, or track your data keys
