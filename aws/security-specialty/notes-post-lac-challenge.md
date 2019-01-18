@@ -28,6 +28,15 @@ Topics
   * If you are developing your own custom application, your application can use the standard APIs supported by CloudHSM, including PKCS#11 and Java JCA/JCE (Java Cryptography Architecture/Java Cryptography Extensions). Support for Microsoft CAPI/CNG is coming soon.
   * 
 * Know the distinction of CMKs and DEKs and what KMS can manage and generate.
+* Inline vs Managed Policies - see [here]
+(https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html)
+  > Inline policies are useful if you want to maintain a strict one-to-one relationship between a policy and the principal entity that it's applied to. For example, you want to be sure that the permissions in a policy are not inadvertently assigned to a principal entity other than the one they're intended for. When you use an inline policy, the permissions in the policy cannot be inadvertently attached to the wrong principal entity. In addition, when you use the AWS Management Console to delete that principal entity, the policies embedded in the principal entity are deleted as well. That's because they are part of the principal entity.
+* Condition operators - see [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html)
+* Monitoring root user activity - CloudWatch events rules + lambda function - [here](https://aws.amazon.com/blogs/mt/monitor-and-notify-on-aws-account-root-user-activity/)
+* CloudTrail logs - encrypted by default. See [here](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/encrypting-cloudtrail-log-files-with-aws-kms.html)
+* Legacy logs to CloudWatch - use the cloud watch agent.
+* Console SSO - direct connect between the corp network and AWS region, IAM to establish trust relationship between IAM and the corp directory identity provider (IdP)
+
 
 ## Notes
 
