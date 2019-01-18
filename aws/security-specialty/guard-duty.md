@@ -2,7 +2,7 @@
 
 https://www.youtube.com/watch?v=Imjbh0WPSR4
 
-Thread Detection Service Re-Imagined for the Cloud
+Threat Detection Service Re-Imagined for the Cloud
 
 * Continuously monitors and protects AWS accounts, along with the applications and services running within them.
 * Detects known and unknown threats (zero-days)
