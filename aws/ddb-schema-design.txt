@@ -1,0 +1,3 @@
+This video - https://www.youtube.com/watch?v=HaEPXoXVf2k
+
+These slides - https://www.slideshare.net/AmazonWebServices/amazon-dynamodb-deep-dive-advanced-design-patterns-for-dynamodb-dat401-aws-reinvent-2018pdf﻿
