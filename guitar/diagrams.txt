@@ -1,0 +1,5 @@
+LaTeX package: https://ctan.org/tex-archive/graphics/gchords?lang=en
+
+https://www.wellesley.edu/lts/techsupport/latex/latexmac
+
+http://tug.org/mactex/
