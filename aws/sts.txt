@@ -1,0 +1,10 @@
+Can get the caller identity via STS get identity, e.g.
+
+let result = await STS.getCallerIdentity({}).promise();
+
+The response looks like:
+
+{ ResponseMetadata: { RequestId: 'c2bc34bb-6b84-11e9-89e1-37a926d0491c' },
+  UserId: 'xxxxxx:name@domain.COM',
+  Account: 'nnnnnnnnnnnn',
+  Arn: 'arn:aws:sts::nnnnnnnnnnn:assumed-role/role-name/user@domain.COM' }
