@@ -4,6 +4,9 @@
 
 John Allspaw
 
+Related blog post [here](https://www.adaptivecapacitylabs.com/blog/2017/12/19/taking-human-performance-seriously/)
+
+
 beliefs about safety 40s - 70s
 
 * safety can be encoded within the design of the tech
@@ -14,8 +17,8 @@ Tasks - humans better at some, machines better at others
 
 Thinking changes after 3 mile island - new beliefs
 
-* automation is necess, also introduces new challenges and risks
-* rules and procs always underspec
+* automation is necessary, also introduces new challenges and risks
+* rules and procs always underspecified
 * events require humans to make decisions and take actions
 * method/models for risk that rely on human judgemen are fraught
 
@@ -267,3 +270,45 @@ Questions to guide fix repair itmes
 - are our dependencies behaving in accordance with expectations?
 
 pm - an arg and opp for change
+
+## A Story of One SLO
+
+Narrative on how to carefully construct an SLO
+
+## The AWS Billing Machine and Optimizing Cloud Costs
+
+Ryan Lopopolo
+
+Efficiency engineering
+
+Thesis: cost optimization is observability, cost and performance is aligned.
+
+[EC2 Info](https://ec2instances.info/)
+
+Monitoring pricing/etc - fire event to slack for manual approve, action, etc.
+
+[Stripe Blog Entry](https://stripe.com/blog/aws-reserved-instances)
+
+## Explain it Like I’m Five - What I Learned Teaching Observability to My Kids
+
+Dave Cadwallader 
+
+Teach our tools in ways that are understandable and accessible for children.
+
+Prometheus - monitor garage door... so bears don't eat your trash
+
+CLean thresholds, when is something urgent, avoiding supurious alarms, firing alerts, resolving alerts.
+
+phippy.io
+
+phippy and zee go to the mountains
+
+@PhippyMountains
+
+range vector, moving average - smooth it out
+
+bluetooth moisture sensors
+
+## Automation + Artisanship: the Future of Runbooks
+
+Kenny Johnston
