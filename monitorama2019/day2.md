@@ -1,3 +1,7 @@
+## Monitorama
+
+[Day 2 stream](https://youtu.be/65-6aDlR_WE)
+
 ## Software Supply Chain Observability with Grafeas and Kritis
 
 Aysylu Greenberg
@@ -19,11 +23,54 @@ Kind specific schemas
 ## Logs, Metrics, and the Evolution of Observability at Coinbase
 Luke Demi
 
+Learn
+
+Log 
+everything
+arbitrarily, but
+rely on
+new relic, primarily
+
+
+Wanted to know when and why services were breaking
+
+Facebook [Scuba](https://research.fb.com/publications/scuba-diving-into-data-at-facebook/)
+
+First take away: use structured log events
+
+Conventional wisdom: 3 pillars of observability
+
+* Being sold three different products - metrics, logging, tracing
+
+Metrics don't give you context needed for investigation
+Predefined aggregates limit the questions you can ask in the future
+
+MELT - metrics, events, logging, tracing
+
+Author - recommends doubling down on events and tracing
 
 ## What can network teach you about your service?
+
 Sergey Fedorov
 
+How to improve things: experiment (A|B), scale
+
+* Faster iterations - better results
+
+Network - not a black box
+
+DNS | TCP | TLS | First byte | Download
+
+You can pick you DNS provider, you can adjust your tcp settings, etc.
+
+How to experiment... synthetic monitoring: full control, flexibiliy, but does not represent all clients.
+
+Agent/probe based - run the experiments from the user device. Download recipe, test and measure, visualize
+
+[Probnik](https://github.com/netflix/probnik)
+
 ## Schema On Read and the New Logging Way
+
 Dave Josephsen
 
 
@@ -31,18 +78,45 @@ Dave Josephsen
 
 Christine Yen
 
-write test commit release observe
+Incidents - change is the most common trigger
 
-shift observe left
+* Developers often the cause of chaos in production systems
 
+DevOps
+
+* First wave - getting ops folks to code
+* Second wave - teaching devs to own their code in prod
+
+* [Blog post](https://m.subbu.org/incidents-trends-from-the-trenches-e2f8497d52ed)
+
+Dev process
+
+* write -> test -> commit -> release -> observe
+
+shift observe left - better feedback in dev lifecycle
+
+* Observability shares much with testing
+
+```console
 write - test
+   ^     |
    |<----|
-         |
-      observe
+   |     |
+   |<---observe
+```
+
+Devs good with functionality - expected vs actual.
+
+* Good instincts in place - state assumptions, be able to verify them
+* Extend these principles to production behavior.
+    * Think about how things might fail, not how they failed
+    * Build up an ops sensitivity
+
+What does it mean for developers to embrace observability as a super power?
 
 * Speak the language of production
-* Sees through prod to code
-* Experiments + Checks Hypothesis
+* See through production to how it maps to their code
+* Run experiments and check hypotheses
 
 Extend the dev environment to make production constructs and tools familiar.
 
@@ -80,3 +154,26 @@ Keep the simplicity of the head and the statistical properties, with some of the
 divvy up the trace budget to weight the samples based on endpoint frequency (prefer infrequent), divvy up endpoint  budget based on latency buckets
 
 * forecasting
+
+## How Capital One used a Data Driven approach and Governance to improve their observability in the Cloud
+
+Amit Sheth and Prasad Konduri
+
+Capital One Transformation
+
+* All in on cloud - zero data center mandate 2020
+* Fully embrace open and inner sourcing
+* Build all services based on microservices, API enabled, etc
+* Build data platform in cloud (analytics, stream)
+* Machine learning (fraud detection, credit card approvals, etc.)
+* Agile, DevOps, push button deployments
+
+How do you know each app has the right monitoring in place?
+
+* Monitoring governance
+
+Monitoring governance
+
+* Establish standards
+* Capture set ups, alerts, config - capture and compare to standards
+* Engage the right people

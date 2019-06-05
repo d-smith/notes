@@ -1,5 +1,7 @@
 # Monitorama Day 1
 
+[Video Stream](https://www.youtube.com/watch?v=eZJoevaojyE&t=36s)
+
 ## Taking Human Performance Seriously
 
 John Allspaw
@@ -312,3 +314,103 @@ bluetooth moisture sensors
 ## Automation + Artisanship: the Future of Runbooks
 
 Kenny Johnston
+
+Artisans drive local economies as globalization expands - [don't mock the pickle maker](https://www.nytimes.com/2012/02/19/magazine/adam-davidson-craft-business.html)
+
+* take pride in your work
+* thank your tools
+
+Drive - Daniel Pink
+
+* Activities that require deep cognitive work not motivated by external incentives
+* Intrinsic motivators - autonomy, mastery, purpose
+
+Automation
+
+* Hacks
+* Bots
+* Operators
+* Scripts
+* Process Documentation
+* Runbooks
+
+Runbook - a compilation of routine procedures and operations that the system administrator or operator carries out.
+
+* Becoming more common to see them checked into the repository
+* Becoming more common to be executable
+* Becoming common to be written before production
+
+The Conflict: 
+
+* Automation burners: We're being robbed of our ability to be artisans
+* vs SRE book maximalist PoV - we should automate everything
+
+THe Cure
+
+* Find a balance where people can have mastery yet provide the benefits and scale of automation
+* Runbook Zero (like inbox zero principles)
+    * completeness - capture everything, runbook in source, capture data around how often run, etc
+    * prioritization - prioritize with data, product management perspective (how often run, risk, etc)
+    * iterative process - iterate on a minimally viable runbook, add automation overtime based on data
+
+Continuous feedback loop for your observability and response
+
+## Tradeoffs on the Road to Observability
+
+Liz Fong-Jones
+
+Get the right incentives in place
+
+Why 20 ways of doing things
+
+* Not invented here
+* Chrome polishing, pet projects, resume driven development
+* Just trust the consultants (e.g. no choice in your tooling)
+
+Want: appropriate reliability and scalability
+
+* Scalability of humans (no burnout) and machines
+
+Appropriate observability: how we archieve scalability and reliability
+
+* Take the status and make a decision
+
+Get out of the busines of feeling important because there's a line of people waiting on you.
+
+Engineering != writing software
+
+* Art of solving problems
+
+People have the wrong incentives, build the wrong software, people burn out operating it, users are unhappy
+
+Change the incentives
+
+* How do we reward people... talk about success cases, what was the porblem, what did we try, how did we solve it, how can others make use of this work, did we save work and make the system better
+* Don't glorify creating complexity - can we reuse others code, open source, leverage standards
+
+What problem are your customers having?
+
+* Keep asking why... uncover the deeper seated need
+
+What options did you consider?
+
+* Share and educate
+
+How to build the right software
+
+* Collaborate within your own organization
+* Look for similar problems
+* Document and provide examples
+* Upskill each other
+* User confusion is costly - make things simple, easy
+* Share tools and code
+* Use common idioms (open tracing and telemetry)
+* Do not dump your hacks
+* Explain your full context
+* Upstream core and specs
+* Have external maintainers
+* Document your technical decisions
+
+Success does not demand heroism
+
+Look. Evaluate. Collaborate. Share.
