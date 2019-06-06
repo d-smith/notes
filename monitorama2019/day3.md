@@ -55,6 +55,98 @@ Choice might not be ideal, no clear winner
 
 Merging the projects... new projects.
 
-* OpenTelemetry - the next mahor version of OT and OC
+* OpenTelemetry - the next major version of OT and OC
 
 Telemetry verticals - logs, metrics, tracing
+
+## Tracing at Dropbox: A Story of Incremental Improvements
+
+Ross Delinger
+
+Span
+Trace
+Integrations
+
+Time series database - good for aggregates, trends, longer term analytics, hard to dig into a problem
+
+Tracing - want to drill down into anamolous behavior
+
+Dropbox
+
+tens of thousands of spans per second, sampling rate of 0.3%, head sampling
+
+Initially used zipkin... never reached critical mass, didn't evangelize it, maintain, no consistent ux, etc.
+
+Next... fixed 3 years of rot, stabilized the ingestion pipline, stabilization of the interface.
+
+Then... integrations
+
+* Feature partity for go and python, support for the desired transports
+* Devs could use the tools in all parts of the stack
+
+Then... moved off Zipkin
+
+* Picked Jaeger + in memory to start, switched to cassandra as the backend storage system
+* Moved from Kafka to Kaiju
+
+How to transition
+
+* Leverage the interface to haul out stuff behind the interface over time
+* Feature flags to move traffic gradually
+
+## Fight, Flight, or Freeze — Releasing Organizational Trauma
+
+Matty Stratton
+
+Rest and Digest - parasympatheic nervous system
+Flight or Fight - sympatheic nervous system
+Freeze - overloaded nervous system
+
+Hyperarousal 
+
+* flight or fight, constantly worried about outages
+* focus on production support teams
+
+Hypoarousal
+
+* freeze, avoid change
+
+Post mortems - did your organization become unregulated?
+
+* Resiliant organizations - routine threats to business are things we used and can handle (we're regulated).
+
+What can we do?
+
+* Game days - keep them low pressure and safe
+* Need guidance
+
+Cognitive Bias
+
+* Over Generalization
+* Fortune telling - if we know enough, we can predict the future
+* Control fallacies - we have no control... or we have complete control
+
+
+Resilient stringth is the opposite of helplessness
+
+* Culture of blame will create feelings of helplessness
+
+https://speaking.mattstrattib.com
+
+## How to get the 30,000 ft view, 1 ft view and everything in between without breaking the bank!
+
+Martin Mao
+
+[M3](https://github.com/m3db/m3) - open source metrics system from uber
+
+* Compare series by tags
+* 11x storage compression over cassandra rep
+* down sample - store high res metrics for a set amount of time, then store at lower res later
+
+## Practical Anomaly Detection using Prometheus
+
+Andrew Newdigate
+
+Humans - very good at visual anomoly dectection
+
+Refer to the talk for the details on how to query prometheus for anamolies.
