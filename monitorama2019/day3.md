@@ -150,3 +150,84 @@ Andrew Newdigate
 Humans - very good at visual anomoly dectection
 
 Refer to the talk for the details on how to query prometheus for anamolies.
+
+## Sensory Friendly Monitoring - Keeping the Noise Down
+
+Quintessence Anx
+
+Slide [here](https://noti.st/quintessence/KjitaX#s4jTL5J)
+
+To much noise can ...
+
+* bury important alerts in a sea of low priority notices
+* ... causing teams to start muting alarms
+* ... which means people who need to be notified missing the notification
+
+How to create the right amount of silence.
+
+Your brain on alerts...
+
+* You hear the background noise and your brain processes it
+* Time cost of noise and interruptions - short interruption costs you 25 minutes.
+* Quality cost - you don't recover from the interruption immediately, work suffers
+
+Cost of multitasking
+
+* Tiny interruptions have consequences
+
+How to deal with it
+
+* Be aware of your noises
+    * source of noises
+    * categorize the types of noise
+    * channel the noise into productive workflow
+    * create a routine to clear the clutter
+
+You can be a source of your own noise
+
+* How often do you check your phone, social media, email, etc.
+
+Communication and Boundaries
+
+* Plan for set times to focus on your work and mute non-critical alerts
+* This includes messages from families and friends
+* When setting boundaries make sure your friends, family, and co-workers know what you consider to be relevant emergencies
+* Set reasonable expectations for yourself and coworkers
+
+Noise Categories
+
+* False positives
+* False negative
+* Fragility
+* Frequency
+
+Save Time - create your noise flow
+
+* What needs to be known
+* Who needs to know it
+* How soon should they know
+* When should they be notified
+
+Re-Evaluate Redundancy: Know how to add a little complexity to stop a vacuum
+
+Resilient noise builds trust (can you trust the silence?)
+
+* how reliable are your tools and systems?
+* how much notification duplication is needed?
+* do you have the ability to switch alert endpoints in the event of a service outage?
+* do you regularly evaluate the reliablity of your services (internal and external)
+
+Keep alerts relevant: Spring cleaning
+
+For every alert triggered ask:
+
+* was the notification needed?
+* how was the incident resoved?
+* can the solution be automated?
+* is the solution permanent?
+* how urgently was the solution needed?
+
+
+
+
+
