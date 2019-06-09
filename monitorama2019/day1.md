@@ -31,7 +31,7 @@ By human performance we mean cognition
 Study cog work by studying incidents
 
 * time pressure
-* hihg or increasing consequences
+* high or increasing consequences
 * etc
 
 methods, approaches, and techniques
@@ -50,7 +50,7 @@ observations and hypothesis changed
 time of year. day of year, time of day
 logs
 
-Gary Klien et tl Problem Detection
+Gary Klien et al [Problem Detection](https://www.researchgate.net/publication/220579480_Problem_detection)
 
 Different tenures, domain expertise, etc
 
@@ -60,32 +60,31 @@ Multiple threads of activity - some productive, so not
 
 Layer
 
-* tentative evolvin shared hypohtheres
-anaomolous signals and reps
+* tentative evolving shared hypothesis
+* anaomolous signals and reps
 
-cognitive process tracing marisa grayson approaching overload ohio state university
+[Approaching Overload](https://www.researchgate.net/publication/333091997_Approaching_Overload_Diagnosis_and_Response_to_Anomalies_in_Complex_and_Automated_Production_Software_Systems) marisa grayson approaching overload ohio state university
 
 monitoring/observability are inextritably coupled with other activies
 
 Recommendation
 
 * build your own internal resources to do inciedent analysis, cadre, etc
-* ask better questions - how do you iprovide tools, what tricks to understand how opaue 3d party services, are there other sources of into you can tap
+* ask better questions - how do you improve tools, what tricks to understand how opaque 3d party services work, are there other sources of into you can tap
 
-* select a few inidented fpr closer and deeper analysis - look for suprises, ambiguity, use disagreements about incidents as data
+* select a few incidents for closer and deeper analysis - look for suprises, ambiguity, use disagreements about incidents as data
 * build or adjust tooling to capture data streams of incidents and their handling - chats, call transcripts, command people ran, hypothesis that didn;t pan out, etc
-
 * make company-wide postmortem sesions regular events (investments you didn't plan on making)
 
-conclusions
+Conclusions
 
-* understanding cogitive work in software env and ops crtically importany
-* doning this well will mean new language, concepts, paradigms, and practices
+* understanding cogitive work in software env and ops crtically important
+* doing this well will mean new language, concepts, paradigms, and practices
 * must be driven by both research/academia and industry/practitioners
 
-Lesam Bainbridge The ironies of automation
+Lisanne Bainbridge [The ironies of automation](https://www.ise.ncsu.edu/wp-content/uploads/2017/02/Bainbridge_1983_Automatica.pdf)
 
-The more advanced an autonation, the more crucials the work of the human 
+The more advanced an automation, the more crucial the contribution of the human to the system.
 
 adaptivecapacitylabs.com/blog
 
