@@ -22,13 +22,13 @@ Thinking changes after 3 mile island - new beliefs
 * automation is necessary, also introduces new challenges and risks
 * rules and procs always underspecified
 * events require humans to make decisions and take actions
-* method/models for risk that rely on human judgemen are fraught
+* method/models for risk that rely on human judgement are fraught
 
-What we thought about human comtrib to complex work was wrong
+What we thought about human contribution to complex work was wrong
 
 By human performance we mean cognition
 
-Study cog work by studying incidents
+Study cognitive work by studying incidents
 
 * time pressure
 * high or increasing consequences
@@ -65,15 +65,15 @@ Layer
 
 [Approaching Overload](https://www.researchgate.net/publication/333091997_Approaching_Overload_Diagnosis_and_Response_to_Anomalies_in_Complex_and_Automated_Production_Software_Systems) marisa grayson approaching overload ohio state university
 
-monitoring/observability are inextritably coupled with other activies
+monitoring/observability are inextricably coupled with other activies
 
 Recommendation
 
-* build your own internal resources to do inciedent analysis, cadre, etc
+* build your own internal resources to do incident analysis, cadre, etc
 * ask better questions - how do you improve tools, what tricks to understand how opaque 3d party services work, are there other sources of into you can tap
 
 * select a few incidents for closer and deeper analysis - look for suprises, ambiguity, use disagreements about incidents as data
-* build or adjust tooling to capture data streams of incidents and their handling - chats, call transcripts, command people ran, hypothesis that didn;t pan out, etc
+* build or adjust tooling to capture data streams of incidents and their handling - chats, call transcripts, commands people ran, hypothesis that didn't pan out, etc
 * make company-wide postmortem sesions regular events (investments you didn't plan on making)
 
 Conclusions
@@ -89,60 +89,61 @@ The more advanced an automation, the more crucial the contribution of the human 
 adaptivecapacitylabs.com/blog
 
 ## Chaos Engineering Traps
+
 Nora Jones
 
 observabiity - feedback that provides insigt into a process and refers to the work needed to extract meaning form avilable data
 
-woods and hollnagel, jint cognitive systems
+woods and hollnagel, Joint Cognitive Systems
 
 Apollo 1: launch rehearsal test
 
-we can use ce to build adaptive decision making capabilities in engineers
+we can use case to build adaptive decision making capabilities in engineers
 
 The 8 traps of ce
 
-3 accident investigation traps talk
+Inspired by the [3 traps in accident investigation talk](https://www.youtube.com/watch?v=TqaFT-0cY7U)
 
-Trap 1 - you can measure you success with ce by counting the number of vulerabilities you find.
+*Trap 1* - you can measure you success with ce by counting the number of vulerabilities you find.
 
-you don;t knw much about safety by counting error Wears
+you don't know much about safety by counting errors
 
 How to lie with statistics - darrell huff
 
-GOal of ce - puh forward on a journey of resilience through the vulnerailities we find
+Goal of ce - move forward on a journey of resilience through the vulnerailities we find
 
-Looking at what went right in a ce experiment helps us undertandd what went eromg
+Looking at what went right in a ce experiment helps us undertand what went wrong
 
-trap 2 - not all the people that work on the service need to be involved in the experiment and the preperation
+*trap 2* - not all the people that work on the service need to be involved in the experiment and the preperation
 
-trap 4 - chaos engineers should be rule enforcers
+*trap 4* - chaos engineers should be rule enforcers
 
 build relationships, you want people to share with you, want to understand the tradeoffs people make under pressure
-don;t mandate, take control, bring context and influence
+don't mandate, take control, bring context and influence
 
-trap 4.5 fix the vulnerabilities you find, and if you can, automate the fixes
+*trap 4.5* fix the vulnerabilities you find, and if you can, automate the fixes
 
-Trap 5 - not real CE unless you move beyonf gamedays amd experimenting in sandbox environments
+*Trap 5* - not real CE unless you move beyond gamedays amd experimenting in sandbox environments
 
-you can get more vslue going through the proes of automating the experiments than you actually get automating...
+you can get more value going through the process of automating the experiments than you actually get automating the solution
 
-Trap 6 - the most important part of ce is running the experiment
+*Trap 6* - the most important part of ce is running the experiment
 
-Before, during, after the experiment all phsese desrve equel experimnt
+Before, during, after the experiment all phases deserve equal attention
 
-Before = all models are wrong, but some are useful
+Before - all models are wrong, but some are useful
 
-Trap 7 - you can worry about safety later. The important part if creating the chaos.
+*Trap 7* - you can worry about safety later. The important part if creating the chaos.
 
 Vulnerable defences
 
-creating the chaos i easy, thinkig about safety is hard
+creating the chaos is easy, thinkig about safety is hard
 
-Trap 8 - you can do chao seng without having an undertanding of hte system you are experimenting on.
+*Trap 8* - you can do chaos eng without having an understanding of the system you are experimenting on.
 
-Trap 8.5 it's ok to be a little lenient on the definition of steady state
+*Trap 8.5* it's ok to be a little lenient on the definition of steady state
 
-Trap 3 - there is a presciptive formulat for doing CE
+*Trap 3* - there is a presciptive formulat for doing CE
 
 no preseriptive formula for dealing with the unknown and learning
 
@@ -152,15 +153,15 @@ no preseriptive formula for dealing with the unknown and learning
 
 David Calavera
 
-ak RTITRry new questions and explore where the cookie crumbs take you - observability def, charity majors
+ask new questions and explore where the cookie crumbs take you - observability def, charity majors
 
 build robustness against negative events
 
 key: access to the raw data
 
-but... what if you don't think about the rquestio you want to ask
+but... what if you don't think about the question you want to ask
 
-how can we get as micj cata as we want from a linux system?
+how can we get as much data as we want from a linux system?
 BPF - in kernel virtual machine to run event driven programs
 
 * llvm backend to compile C code to BPF instructions
@@ -191,13 +192,6 @@ Don't be afraid tp push boundaries to find better answers
 
 github.com/brendangreg/FlameGraph
 
-## Sponsor Talks
-
-Resilience driver development
-
-hows does it react when it's down? 
-aasertion -> monitoring (query your monitoring tool)
-pessimistic - not like unit tests where you assume timely reponses, etc
 
 
 ## The Power and Creativity of PostMortems and Repair Items
@@ -217,21 +211,21 @@ postmortem
 
 When to do a pm
 
-* something borke you and your ustomers are about -now you know more abouit user behavior
-* something that you expected to work - system cannot handle redl world use case
+* something broke you and your customers - now you know more about user behavior
+* something that you expected to work - system cannot handle real world use case
 
 PM pinpoints where you need attention
 
 Outage is an actual case study of how your system responds in the real world
 
---> Outage demonostrates what needs to change. PM provides the specifics for the change
+--> Outage demonstrates what needs to change. PM provides the specifics for the change
 
 impact assessment
 
 * user focused
-* hard numbers - cost of outagei nterms of failed requests, txns that did not complete, what teh cose of the outage was
+* hard numbers - cost of outage in terms of failed requests, txns that did not complete, what the cost of the outage was
   
-Repair item categories = detection, mitigation, fixing
+Repair item categories - detection, mitigation, fixing
 
 SRE focus on mitigation and detection
 Devs focus on fixes
