@@ -131,7 +131,7 @@ Resilient stringth is the opposite of helplessness
 
 * Culture of blame will create feelings of helplessness
 
-https://speaking.mattstrattib.com
+https://speaking.mattstratton.com/
 
 ## How to get the 30,000 ft view, 1 ft view and everything in between without breaking the bank!
 
