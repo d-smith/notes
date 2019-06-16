@@ -34,3 +34,7 @@ kubectl get namespaces
 kubectl config view | grep namespace:
 
 kubectl config set-context $(kubectl config current-context) --namespace=my-gloo
+
+No go on the docker version - below the version required for glue.
+
+[mikikube install instructions](https://kubernetes.io/docs/tasks/tools/install-minikube/)
