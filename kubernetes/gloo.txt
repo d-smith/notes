@@ -1,0 +1,36 @@
+https://github.com/solo-io/gloo
+
+Gloo CLI - brew install solo-io/tap/glooctl.
+
+Didn't work - how about curl -sL https://run.solo.io/gloo/install | sh 
+
+url -sL https://run.solo.io/gloo/install | sh
+Attempting to download glooctl version v0.13.33
+Downloading glooctl-darwin-amd64...
+Download complete!, validating checksum...
+Checksum valid.
+Gloo was successfully installed 🎉
+
+Add the gloo CLI to your path with:
+  export PATH=$HOME/.gloo/bin:$PATH
+
+Now run:
+  glooctl install gateway     # install gloo's function gateway functionality into the 'gloo-system' namespace
+  glooctl install ingress     # install very basic Kubernetes Ingress support with Gloo into namespace gloo-system
+  glooctl install knative     # install Knative serving with Gloo configured as the default cluster ingress
+Please see visit the Gloo Installation guides for more:  https://gloo.solo.io/installation/
+
+
+Gloo install - can we run it on docker for desktop?
+
+glooctl install gateway -n my-gloo
+
+deploy the pet store app
+
+kubectl apply \
+  --filename https://raw.githubusercontent.com/solo-io/gloo/master/example/petstore/petstore.yaml
+
+kubectl get namespaces
+kubectl config view | grep namespace:
+
+kubectl config set-context $(kubectl config current-context) --namespace=my-gloo
