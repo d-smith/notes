@@ -38,3 +38,10 @@ kubectl config set-context $(kubectl config current-context) --namespace=my-gloo
 No go on the docker version - below the version required for glue.
 
 [mikikube install instructions](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+
+Running minikube: https://kubernetes.io/docs/setup/learning-environment/minikube/
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit \
+&& sudo install -o root -g wheel -m 4755 docker-machine-driver-hyperkit /usr/local/bin/
+
+minikube start --vm-driver=hyperkit
