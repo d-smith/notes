@@ -1,0 +1,144 @@
+Build the aws consumer 
+
+* grab the release zip from github - 1.6.2
+* build the main, craps out on mapr
+* go into connectors, build
+* go into the aws connect mvn install
+
+Policy for sample 
+
+{
+
+    "Version": "2012-10-17",
+
+    "Statement": [
+
+        {
+
+            "Sid": "ReadCode",
+
+            "Effect": "Allow",
+
+            "Action": [
+
+                "s3:GetObject",
+
+                "s3:GetObjectVersion"
+
+            ],
+
+            "Resource": [
+
+               "arn:aws:s3:::ka-app-code-something/aws-kinesis-analytics-java-apps-1.0.jar"
+
+            ]
+
+        },
+
+        {
+
+            "Sid": "ListCloudwatchLogGroups",
+
+            "Effect": "Allow",
+
+            "Action": [
+
+                "logs:DescribeLogGroups"
+
+            ],
+
+            "Resource": [
+
+                "arn:aws:logs:us-west-2:nnnn:log-group:*"
+
+            ]
+
+        },
+
+        {
+
+            "Sid": "PutMetricsData",
+
+            "Effect": "Allow",
+
+            "Action": [
+
+                "cloudwatch:PutMetricData"
+
+            ],
+
+            "Resource": [
+
+                "*"
+
+            ]
+
+        },
+
+        {
+
+            "Sid": "ListCloudwatchLogStreams",
+
+            "Effect": "Allow",
+
+            "Action": [
+
+                "logs:DescribeLogStreams"
+
+            ],
+
+            "Resource": [
+
+                "arn:aws:logs:us-west-2:nnnnn:log-group:MyApplication:log-stream:*"
+
+            ]
+
+        },
+
+        {
+
+            "Sid": "PutCloudwatchLogs",
+
+            "Effect": "Allow",
+
+            "Action": [
+
+                "logs:PutLogEvents"
+
+            ],
+
+            "Resource": [
+
+                "arn:aws:logs:us-west-2:nnnn:log-group:MyApplication:log-stream:kinesis-analytics-log-stream"
+
+            ]
+
+        },
+
+        {
+
+            "Sid": "ReadInputStream",
+
+            "Effect": "Allow",
+
+            "Action": "kinesis:*",
+
+            "Resource": "arn:aws:kinesis:us-west-2:nnnn:stream/ExampleInputStream"
+
+        },
+
+        {
+
+            "Sid": "WriteOutputStream",
+
+            "Effect": "Allow",
+
+            "Action": "kinesis:*",
+
+            "Resource": "arn:aws:kinesis:us-west-2:nnnn:stream/ExampleOutputStream"
+
+        }
+
+    ]
+
+}
