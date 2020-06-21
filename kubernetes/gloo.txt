@@ -35,13 +35,11 @@ kubectl config view | grep namespace:
 
 kubectl config set-context $(kubectl config current-context) --namespace=my-gloo
 
-No go on the docker version - below the version required for glue.
 
-[mikikube install instructions](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+Sigh... doesn't see the upstreams... docker for mac kubernetes version is v1.10.11
 
-Running minikube: https://kubernetes.io/docs/setup/learning-environment/minikube/
+Gloos needs...  v1.11.3+
 
-curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit \
-&& sudo install -o root -g wheel -m 4755 docker-machine-driver-hyperkit /usr/local/bin/
+Crap - will need minikube
 
-minikube start --vm-driver=hyperkit
+Uninstall: glooctl uninstall -n my-gloo
