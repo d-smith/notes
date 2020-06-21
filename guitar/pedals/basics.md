@@ -30,6 +30,6 @@ The building blocks
     * Earthquaker rainbow machine
     * Meku stomp (korg) - anime character sound
     
-Pedal clones - see [here](http://www.thecavanproject.com/101-effect-pedal-clones/)
+Pedal clones - see [here](http://www.thecavanproject.com/101-effect-pedal-clones/), [here](https://www.clonepedalindex.com/joyo-pedals/clone-list/), etc...
 
 
