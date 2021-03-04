@@ -1,0 +1,3 @@
+# Kafka Linkage
+
+[Effective Strategies for Kafka Paritioning](https://blog.newrelic.com/engineering/effective-strategies-kafka-topic-partitioning/)
