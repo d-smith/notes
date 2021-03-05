@@ -1,3 +1,7 @@
 # Kafka Linkage
 
 [Effective Strategies for Kafka Paritioning](https://blog.newrelic.com/engineering/effective-strategies-kafka-topic-partitioning/)
+[How we Monitor and Run Kafka at Scale](https://www.splunk.com/en_us/blog/devops/how-we-monitor-and-run-kafka-at-scale.html)
+[Beyond 50,000 Partition: How Heroku Operates and Pushes the Limits of Kafka at Scale](https://www.datacouncil.ai/talks/beyond-50000-partitions-how-heroku-pushes-the-limits-of-kafka-at-scale)
+[Netflix Kafka Inside Keystone Pipeline](https://netflixtechblog.com/kafka-inside-keystone-pipeline-dd5aeabaf6bb)
+[Druid for Real-time Insights at Netflix](https://netflixtechblog.com/how-netflix-uses-druid-for-real-time-insights-to-ensure-a-high-quality-experience-19e1e8568d06)
