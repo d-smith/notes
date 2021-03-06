@@ -1,0 +1,48 @@
+Doccos - https://docs.aws.amazon.com/msk/latest/developerguide/what-is-msk.html
+
+Cluster spec:
+
+```
+{
+  "BrokerNodeGroupInfo": {
+    "BrokerAZDistribution": "DEFAULT",
+    "InstanceType": "kafka.t3.small",
+    "ClientSubnets": [
+      "subnet-0f84c3d238f543e2f",
+      "subnet-0746d4caf4d3a9c4a",
+      "subnet-029fa4efe5631162d"
+    ],
+    "SecurityGroups": [
+      "sg-02fb953e4f34b12d4"
+    ]
+  },
+  "ClusterName": "msk1",
+  "EncryptionInfo": {
+    "EncryptionInTransit": {
+      "InCluster": true,
+      "ClientBroker": "TLS"
+    }
+  },
+  "KafkaVersion": "2.2.1",
+  "NumberOfBrokerNodes": 3
+}
+```
+Create the cluster
+
+```
+aws kafka create-cluster --cli-input-json file://msk1.json
+```
+
+Get cluster status
+
+```
+aws kafka describe-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:cluster/msk1/b4a211ec-fb6a-4038-a6e4-436f6288bf92-13
+```
+
+Delete input
+
+```
+aws kafka delete-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:cluster/msk1/b4a211ec-fb6a-4038-a6e4-436f6288bf92-13
+```
+
+TODO - log delivery to cloud watch
