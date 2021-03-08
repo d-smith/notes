@@ -18,6 +18,14 @@
         "ClientBroker": "TLS"
       }
     },
+    "LoggingInfo": {
+        "BrokerLogs": {
+          "CloudWatchLogs": {
+          "Enabled": true,
+          "LogGroup": "mksloggruppo"
+          }
+        }
+    },
     "KafkaVersion": "2.2.1",
     "NumberOfBrokerNodes": 3
   }
