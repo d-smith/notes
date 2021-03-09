@@ -38,6 +38,7 @@ Cluster spec:
 Create the cluster
 
 ```
+aws logs create-log-group --log-group-name mksloggruppo
 aws kafka create-cluster --cli-input-json file://msk1.json
 ```
 
@@ -53,4 +54,5 @@ Delete input
 aws kafka delete-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:cluster/msk1/b4a211ec-fb6a-4038-a6e4-436f6288bf92-13
 ```
 
-TODO - log delivery to cloud watch
+Kafka Client Set Up - see [here](https://docs.aws.amazon.com/msk/latest/developerguide/create-topic.html)
+
