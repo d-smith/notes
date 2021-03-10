@@ -56,3 +56,4 @@ aws kafka delete-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:clus
 
 Kafka Client Set Up - see [here](https://docs.aws.amazon.com/msk/latest/developerguide/create-topic.html)
 
+Note: to enable cloud9 to talk to MSK, add the cloud9 security group to the allow ingress groups for the vpc.
