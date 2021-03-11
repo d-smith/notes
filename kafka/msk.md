@@ -56,4 +56,9 @@ aws kafka delete-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:clus
 
 Kafka Client Set Up - see [here](https://docs.aws.amazon.com/msk/latest/developerguide/create-topic.html)
 
-Note: to enable cloud9 to talk to MSK, add the cloud9 security group to the allow ingress groups for the vpc.
+
+Shell set Up
+
+```
+export ZK=`aws kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:427848627088:cluster/msk1/6dd948de-285d-4234-9712-2bd656d98f8b-13"|jq '.ClusterInfo.ZookeeperConnectString'`
+```

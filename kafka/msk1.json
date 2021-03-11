@@ -8,7 +8,8 @@
         "subnet-029fa4efe5631162d"
       ],
       "SecurityGroups": [
-        "sg-02fb953e4f34b12d4"
+        "sg-02fb953e4f34b12d4",
+        "sg-0a8c79ea5056760a4"
       ]
     },
     "ClusterName": "msk1",
