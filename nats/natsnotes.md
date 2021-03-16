@@ -47,10 +47,17 @@ Subscription types
 
 ## Run on cloud9
 
+NATS
+
 * docker run -p 4222:4222 -ti nats:latest
 * Install go sources
     * GO111MODULE=on go get github.com/nats-io/nats-server/v2
     * Go sample - git clone git@github.com:nats-io/nats.go.git
+
+NATS Streaming
+
+* docker pull nats-streaming
+* docker run -p 4222:4222 -ti nats-streaming:latest
 
 Subscriber:
 
