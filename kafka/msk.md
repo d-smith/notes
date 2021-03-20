@@ -62,3 +62,15 @@ Shell set Up
 ```
 export ZK=`aws kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:427848627088:cluster/msk1/6dd948de-285d-4234-9712-2bd656d98f8b-13"|jq '.ClusterInfo.ZookeeperConnectString'`
 ```
+
+## Kinesis Analytics
+
+Guide here = https://docs.aws.amazon.com/kinesisanalytics/latest/java/example-msk.html
+
+Clone this - https://github.com/aws-samples/amazon-kinesis-data-analytics-java-examples
+
+Package it - mvn package -Dflink.version=1.11.1
+
+Make a bucket to host it, e.g. 
+aws s3api create-bucket --bucket mantis-shrimp
+
