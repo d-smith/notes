@@ -48,7 +48,13 @@ Get cluster status
 aws kafka describe-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:cluster/msk1/b4a211ec-fb6a-4038-a6e4-436f6288bf92-13
 ```
 
-Delete input
+Get bootstrap brokers
+
+```
+aws kafka get-bootstrap-brokers --cluster-arn xxxx
+```
+
+Delete cluster
 
 ```
 aws kafka delete-cluster --cluster-arn arn:aws:kafka:us-east-1:nnnnnnnnnnnn:cluster/msk1/b4a211ec-fb6a-4038-a6e4-436f6288bf92-13
@@ -73,4 +79,14 @@ Package it - mvn package -Dflink.version=1.11.1
 
 Make a bucket to host it, e.g. 
 aws s3api create-bucket --bucket mantis-shrimp
+
+create a topic
+
+bin/kafka-topics.sh --create --zookeeper ZookeeperConnectString --replication-factor 3 --partitions 1 --topic AWSKafkaTutorialTopic
+
+Also create AWSKafkaTutorialTopicDestination
+
+producer / consumer set up here - https://docs.aws.amazon.com/msk/latest/developerguide/produce-consume.html
+
+
 
