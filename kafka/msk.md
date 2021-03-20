@@ -88,5 +88,20 @@ Also create AWSKafkaTutorialTopicDestination
 
 producer / consumer set up here - https://docs.aws.amazon.com/msk/latest/developerguide/produce-consume.html
 
+Java set up info -  alternatives --list
 
+cp /usr/lib/jvm/jre-11-openjdk-11.0.9.11-0.amzn2.0.1.x86_64/lib/security/cacerts /tmp/kafka.client.truststore.jks
+
+In kafka bin...
+
+Create client.properties and add
+
+security.protocol=SSL
+ssl.truststore.location=/tmp/kafka.client.truststore.jks
+
+aws kafka get-bootstrap-brokers --region us-east-1 --cluster-arn $MSKARN
+
+./kafka-console-producer.sh --broker-list $BSS -producer.config client.properties --topic AWSKafkaTutorialTopic
+
+./kafka-console-consumer.sh --bootstrap-server $BSS --consumer.config client.properties --topic AWSKafkaTutorialTopicDestination --from-beginning
 
