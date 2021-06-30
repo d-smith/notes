@@ -1,0 +1,1 @@
+After accounts are created, from the master org you can access other account from the console by assuming the OrganizationAccountAccessRole role.
