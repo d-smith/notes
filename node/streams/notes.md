@@ -36,3 +36,4 @@ s.pipe(process.stdout);
 s.push('your text here');
 s.push(null);
 ```
+
