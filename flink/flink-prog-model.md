@@ -25,3 +25,58 @@ Streaming
 * Ordering important, out of order arrival tracked
 * No global state, only history of events received
 * Processing code does not know what lies ahead
+
+## Stream Processing
+
+* Data is received as a stream
+* Continuously processed - process individual messages, patterns of messages
+
+Basic Architecture
+
+* Source data streamed into message transport
+* Stream processing reads from message transport
+
+Message Transport
+
+* Buffer for event data 
+* Performant and persistent
+* Decouple multiple sources from processing of the streaming data
+
+Examples: Kafka, MapR stream
+
+Stream Processing
+
+* high throughput, low lateny
+* fault toleerance with low overhead
+* managed out of order events
+* easy to use, maintainable
+* replay streams
+
+data sources -> transformations -> sink
+
+Directed acylic graph
+
+## Apache Flink
+
+* Open source, unified stream-processing framework for batch and streaming apps
+* Unbounded streams, not micro-batches
+* Stream dataflows in flink are transformed by user-defined operators
+* Nodes in the graph represent operators
+
+Flink applications
+
+* User defined operators
+* Streaming data flow
+* Flink programs are inherently parallel and distributed 
+* Streams are composed of stream partitions
+* Operators are composed of operator subtasks
+
+![graph broken down into subtasks](./subtasks.png)
+
+* Number of subtasks refer to the parallelism of the operator
+* Edges in graph - streams
+* Forwarding (one to one) Pattern
+* Redistributing Pattern - each operator subtask sends data to different target subtasks
+
+## Environment Set Up
+
