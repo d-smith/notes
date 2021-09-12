@@ -80,3 +80,16 @@ Flink applications
 
 ## Environment Set Up
 
+1.11.1 - Flink version used for the course
+
+* Java and mvn prerequisites
+* Download flink 1.11.x for scala
+* Project dir - ApacheFlink/code/datasets ApacheFlink/code/output - put flink download in ApacheFlink and untar there
+* Add a FLINK_HOME env var to .bash_profile
+
+## Stream Transformations
+
+* Stateless - transformations that are applied on a single stream entity
+    * map, flatMap, filter
+* Stateful - transformations which acumulate across multiple stream entities
+    * assumulate data across a longer time interval - entire stream, window, per key, per operator
