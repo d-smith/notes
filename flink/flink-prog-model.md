@@ -93,3 +93,54 @@ Flink applications
     * map, flatMap, filter
 * Stateful - transformations which acumulate across multiple stream entities
     * assumulate data across a longer time interval - entire stream, window, per key, per operator
+
+## Flink Architecture
+
+* Flink application - any program that spawns a flink job
+* Execution of a flink job can be
+    * local jvm
+    * remote cluster
+        * job manager
+        * task managers
+
+Job Manager
+
+* Coordinates the distributed execution of flink applications
+* schedules tasks, manages failures
+* Coordinate checkpoints and recovery
+* Recieves JobGraph (DAG of operators and intermediate results), transforms to execution graph
+* Execution graph is parallelized
+
+Job Manager Components
+
+* ResourceManager
+    * Allocation, deallocation, and provisioning of cluster
+    * Manages task slots
+* Dispatcher
+    * REST interface to submit applications
+    * Runs flink webui
+* JobMaster
+    * Managed execution of a single job
+
+TaskManagers 
+
+* One of more TaskManagers (workers) execute the tasks of the dataflow
+* Buffer and exchange data streams
+* Use units of scheduling called task slots
+
+Task Slots
+
+* Represent a fixed subset of resources of a task manager
+* Smallest unit of resource scheduling
+* Number of task slots indicate concurrent processing tasks
+* Multiple operators can work within the same slot
+
+Task
+
+* Basic unit of execution
+* Where each parallel instance of an operator is execute
+
+
+
+
+
