@@ -140,6 +140,17 @@ Task
 * Basic unit of execution
 * Where each parallel instance of an operator is execute
 
+Executing and Monitoring Streaming Queries
+
+* Start the cluster - `*$FLINK_HOME/bin/start-cluster.sh`
+* Go localhost:8081
+* Submit a sample
+
+```
+$FLINK_HOME/bin/flink run $FLINK_HOME/examples/streaming/WordCount.jar \
+--input /Volumes/seagate/ApacheFlink/code/datasets/words.txt \
+--output /Volumes/seagate/ApacheFlink/code/datasets/output/wordcount.txt
+```
 
 
 
