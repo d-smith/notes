@@ -147,11 +147,32 @@ Executing and Monitoring Streaming Queries
 * Submit a sample
 
 ```
+$FLINK_HOME/bin/start-cluster.sh
+
 $FLINK_HOME/bin/flink run $FLINK_HOME/examples/streaming/WordCount.jar \
 --input /Volumes/seagate/ApacheFlink/code/datasets/words.txt \
 --output /Volumes/seagate/ApacheFlink/code/datasets/output/wordcount.txt
+
+$FLINK_HOME/bin/stop-cluster.sh
 ```
 
+## Configuration Settings 
+
+See flink.yml in conf/
+
+```
+$FLINK_HOME/bin/flink run $FLINK_HOME/examples/streaming/TopSpeedWindowing.jar
+
+tail -f $FLINK_HOME/log/flink-*-taskexecutor-*.out
+
+$FLINK_HOME/bin/flink list -m 127.0.0.1:8081
+```
+
+Example - change number of task slots from 1 to 4, parallelism default from 1 to 2, set rest.port frpm 8081 to 8088
+
+```
+$FLINK_HOME/bin/flink run -p 3 $FLINK_HOME/examples/streaming/TopSpeedWindowing.jar 
+```
 
 
 
