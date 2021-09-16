@@ -175,4 +175,19 @@ $FLINK_HOME/bin/flink run -p 3 $FLINK_HOME/examples/streaming/TopSpeedWindowing.
 ```
 
 
+## Flink Project Set Up
+
+mvn archetype:generate                               \
+  -DarchetypeGroupId=org.apache.flink              \
+  -DarchetypeArtifactId=flink-quickstart-java      \
+  -DarchetypeVersion=1.11.1 \
+  -DgroupId=my-flink-project \
+  -DartifactId=my-flink-project \
+  -Dversion=1.0-SNAPSHOT \
+  -Dpackage=ds.org.helloflink \
+  -DinteractiveMode=false
+
+In IntelliJ, to run our program, we add the contents of the $FLINK_HOME/lib as module dependencies to the project via File > ProjectSTructure > Modules > Dependencies > Plus
+
+To run HighSpeedDetection, start nc -l 9000, then the app. In nc submit a line at a time with car name and speed, e.g. Toyota, 67
 
