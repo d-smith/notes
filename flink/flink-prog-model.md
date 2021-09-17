@@ -191,3 +191,4 @@ In IntelliJ, to run our program, we add the contents of the $FLINK_HOME/lib as m
 
 To run HighSpeedDetection, start nc -l 9000, then the app. In nc submit a line at a time with car name and speed, e.g. Toyota, 67
 
+netstat -ant -p TCP|grep LISTEN
