@@ -192,3 +192,53 @@ In IntelliJ, to run our program, we add the contents of the $FLINK_HOME/lib as m
 To run HighSpeedDetection, start nc -l 9000, then the app. In nc submit a line at a time with car name and speed, e.g. Toyota, 67
 
 netstat -ant -p TCP|grep LISTEN
+
+## Deployment
+
+Flink app - any program that spawns a flink job
+
+Types of clusters
+
+* Session cluster 
+    * aka flink cluster in session mode
+    * interactive use-cases with short running queries, want savings on resource spin up
+    * life cycle
+        * pre-existing, long running cluster
+        * can accept multiple job submissions
+        * remains alive after jobs finished
+    * resource isolation
+        * jobs compete for resources
+        * crash in job manager or task manager affects all jobs
+
+* Job cluster
+    * aka flink cluster in job mode
+    * use cases with high need for stability (long running jobs, cluster startup time matters less)
+    *  Cluster created for a particular job
+    * life cycle
+        * spun up by cluster manager (yarn, kubernetes, etc)
+    * resource isolation
+        * jobs do not compete for resources
+        * crash in job manager or task manager affects only one job
+
+* Application cluster
+    * Life cycle: dedicated cluster for one application only
+        * main runs on cluster not on client
+        * lifetime tied to the application
+    * resource isolation: best separation of concerns
+        * resource manager and dispatcher scoped to on appiliation only
+
+Modes of Flink Deployment
+
+* Session mode - deploy to an existing cluster, jobs compete for resources
+* Per-job Mode - better isolation, spin up a cluster per job
+* Application mode - long running cluster dedicated to the app, main runs on the JobManager of the cluster
+
+Deployment Targets
+
+* Local
+* Standalone
+* Yarn
+* Docker
+* Kubernetes
+* Mesos
+
