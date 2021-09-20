@@ -242,3 +242,33 @@ Deployment Targets
 * Kubernetes
 * Mesos
 
+## Job Manager High Availability
+
+* Typically one JobManager per cluster
+* If Job Mnager crashes no additional programs can be submitted, running programs will fail
+
+Stand ALone Cluster
+
+* Can run multiple JobManagers, single leader, stand by job managers
+* No explicit distinction between stand bys and leader
+* Leader election for new leader after JobManager leader crashes
+* Uses ZooKeeper for leader election
+
+HA with YARN
+
+* Single master needed, YARN will restart a leader on failure
+
+For the deployment demo, add in a transformer entry in pom.xml, e.g.
+
+```
+<transformers>
+    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+        <mainClass>ds.org.helloflink.LifeExpectancyTracking</mainClass>
+    </transformer>
+</transformers>
+```
+
+The in IntelliJ, project settings > artifacts > + > jar >  jar from modules with dependencies > Main class > select
+
+Build > Build artifacts > build
+

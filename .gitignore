@@ -9,3 +9,4 @@ chord-shapes.pdf
 target/
 .idea/
 *.iml
+out/
