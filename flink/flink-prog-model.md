@@ -272,3 +272,14 @@ The in IntelliJ, project settings > artifacts > + > jar >  jar from modules with
 
 Build > Build artifacts > build
 
+## Performing Stateless Transformations on Streams
+
+* filter
+* map
+* flatMap
+
+Datastream, Dataset, Table APIs, SQL queries
+
+xforms
+
+* stateless transformation - processing a single entity at a time
