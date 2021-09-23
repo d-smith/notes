@@ -283,3 +283,5 @@ Datastream, Dataset, Table APIs, SQL queries
 xforms
 
 * stateless transformation - processing a single entity at a time
+
+DataStreams support Pojos under certain conditions
