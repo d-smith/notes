@@ -5,32 +5,6 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class CarListingsFiltering {
-    public static class Car {
-        public String make;
-        public String model;
-        public String type;
-        public float price;
-
-        public Car() {
-        }
-
-        public Car(String make, String model, String type, float price) {
-            this.make = make;
-            this.model = model;
-            this.type = type;
-            this.price = price;
-        }
-
-        @Override
-        public String toString() {
-            return "Car{" +
-                    "make='" + make + '\'' +
-                    ", model='" + model + '\'' +
-                    ", type='" + type + '\'' +
-                    ", price=" + price +
-                    '}';
-        }
-    }
 
     public static void main(String[] args) throws Exception {
         final StreamExecutionEnvironment env =
