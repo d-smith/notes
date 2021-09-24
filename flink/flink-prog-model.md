@@ -285,3 +285,31 @@ xforms
 * stateless transformation - processing a single entity at a time
 
 DataStreams support Pojos under certain conditions
+
+$FLINK_HOME/bin/flink run -c ds.org.helloflink.SentenceSplitting out/artifacts/my_flink_project_jar/my-flink-project.jar
+
+Stateful Stream Processing API
+
+* timeles stream processing
+* stateful stream processing
+* fault tolerant state
+
+Datastream / Dataset APIs - core APIs to use unbounded and bounded data
+
+* Common building blocks for data processing
+    * user specified transformations
+    * joins
+    * aggregations
+    * windowing
+
+Table API 
+
+* Centered around tables - streams and batch
+* Follows the relational model
+* select, project, join, group by, aggregate
+
+SQL - highest level abstraction
+
+* Similar to the table API in semantics and expressiveness
+* Represent programs as SQL query expresstions
+* Execute over tables defined using the table api
