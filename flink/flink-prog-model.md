@@ -313,3 +313,38 @@ SQL - highest level abstraction
 * Similar to the table API in semantics and expressiveness
 * Represent programs as SQL query expresstions
 * Execute over tables defined using the table api
+
+## Keyed Streams
+
+Associated each record in the stream with a key, for example a course score associated with a student name.
+
+* All entities with the same key is sent to the same process
+* KeyedStream - keys are virtual, used to virtually partition a stream
+* Key - keyBy takes a key specifyer
+* Partition a single stream into multiple independent streams
+
+Keyed streams
+
+* Flink will partition a single stream into multiple independent streams
+* Each stream will hold elements that have the same key
+* Stateful operations will only have access to elements with the same state.
+
+![](./keyed-streams.png)
+
+
+
+## Stateful Transformations
+
+Accumulate information across entities in a stream
+
+* Operator State - maintaining state on a per-operator basis on streams
+    * Associated with source and sink, not typically used
+    * Also used in scenarios where you do not have a key to partition state
+* Keyed State - maintaining state on a per-key basis
+
+Broadcast State
+
+* Special type of operator state
+* Records of one stream will be broadcast to all downstream tasks
+* State can be accessed while processing records of a second stream
+
