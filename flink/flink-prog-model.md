@@ -348,3 +348,82 @@ Broadcast State
 * Records of one stream will be broadcast to all downstream tasks
 * State can be accessed while processing records of a second stream
 
+Keyed Stated
+
+* Used with KeyedStream
+* Stores state across all elements assocaited with the same key
+* Queryable State - feature that allows client APIs to query state from outside Flink
+
+## Keyed State Interaces
+
+* ValueState<T> - holds a value of any type
+* ListState<T> - hold a list of elements
+* ReducingState<T> - holds a single value, result of an aggregation over input elements, value is the reult of an aggregation over input elements, elements added to the reduced to the aggregate
+* AggregatingState<T> - holds a single value of any type, value is the reult of an aggregation over input elements, value can be a different type from the input elements, elements added to the state are reduced to the aggregate
+* MapState<UK,UV> - keeps a list of mappings from key to value
+
+Accessing State
+
+* State objects are used to interface with state
+* Actual state can be stored externally
+* Use state descriptos to get access to state handles
+* State is access using the RuntimeContext
+* Runtime is accessible via RichFunctions
+
+Rich Functions
+
+* All transformations on data can be represented using rich functions
+* Provide additional methods for 
+    * parameterizing the function
+    * managing state
+    * accessing runtime information
+    * accessing broadcast variables
+
+
+
+Joins Notes
+
+* https://ci.apache.org/projects/flink/flink-docs-release-1.13/docs/dev/datastream/operators/joining/
+* https://blog.knoldus.com/flink-join-two-data-streams/
+
+## Table API
+
+Additional dependencies
+
+```
+<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
+			<version>1.11.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table-common</artifactId>
+			<version>1.11.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-table</artifactId>
+			<version>1.11.2</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+```
+
+Need to instantiate the stream table environment, e.g.
+
+```
+StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+```
+
+Some operations will not be possible until a Dynamic Table is used, e.g. group by.
+
