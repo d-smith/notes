@@ -379,6 +379,16 @@ Rich Functions
     * accessing runtime information
     * accessing broadcast variables
 
+Fault Tolerance
+
+* Persist state of flink program
+    * replay - resend records from a source so they can be processed again
+    * checkpointing - marks points in input streams and state of operators, restart from checkpoint
+        * diabled by default, if enable default persistence is internal
+
+* MemoryStateBackend - memory
+* FsStateBackend - files
+* RocksDBStateBackend
 
 
 Joins Notes

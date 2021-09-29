@@ -7,6 +7,8 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
+import static org.apache.flink.table.api.Expressions.$;
+
 public class Table2 {
     public static class Quote {
         public String symbol;
@@ -60,10 +62,11 @@ public class Table2 {
         quoteDataStream.print();
 
 
-        Table quotesTable = tableEnv.fromDataStream(quoteDataStream, "symbol, price");
+        Table quotesTable = tableEnv.fromDataStream(quoteDataStream,$("symbol"), $("price"));
 
         Table results = tableEnv.sqlQuery("select * from " + quotesTable);
-        tableEnv.toAppendStream(results, Quote.class).print();
+        //tableEnv.toAppendStream(results, Quote.class).print();
+        tableEnv.toRetractStream(results, Quote.class).print();
         env.execute();
     }
 }
