@@ -46,6 +46,32 @@ public class DynamicSub {
         }
     }
 
+    public static class PositionValue {
+        public String owner;
+        public String symbol;
+        public Double amount;
+        public Double value;
+
+        public PositionValue(){}
+
+        public PositionValue(String owner, String symbol, Double amount, Double value) {
+            this.owner = owner;
+            this.symbol = symbol;
+            this.amount = amount;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "PositionValue{" +
+                    "owner='" + owner + '\'' +
+                    ", symbol='" + symbol + '\'' +
+                    ", amount='" + amount + '\'' +
+                    ", value=" + value +
+                    '}';
+        }
+    }
+
     public static class RawPositionFilterFunction implements FilterFunction<String> {
 
         @Override
@@ -99,7 +125,7 @@ public class DynamicSub {
         }
     }
 
-    public static class QuoteEvaluator extends KeyedBroadcastProcessFunction<String,Position,Quote, Tuple2<String,Double>> {
+    public static class QuoteEvaluator extends KeyedBroadcastProcessFunction<String,Position,Quote, PositionValue> {
 
         private static final Logger LOG = LoggerFactory.getLogger(QuoteEvaluator.class);
         // broadcast state descriptor
@@ -125,7 +151,7 @@ public class DynamicSub {
         }
 
         @Override
-        public void processElement(Position position, ReadOnlyContext readOnlyContext, Collector<Tuple2<String, Double>> collector) throws Exception {
+        public void processElement(Position position, ReadOnlyContext readOnlyContext, Collector<PositionValue> collector) throws Exception {
             System.out.println("processElement " + position);
             LOG.warn("you seen my cones");
 
@@ -136,7 +162,7 @@ public class DynamicSub {
             System.out.println(quote);
 
             if(position != null && quote != null && position.symbol.equals(quote.symbol)) {
-                collector.collect(Tuple2.of(position.owner, position.amount * quote.price));
+                collector.collect(new PositionValue(position.owner, position.symbol,position.amount, position.amount * quote.price));
             }
 
             //Store it
@@ -159,7 +185,7 @@ public class DynamicSub {
         }
 
         @Override
-        public void processBroadcastElement(Quote quote, Context context, Collector<Tuple2<String, Double>> collector) throws Exception {
+        public void processBroadcastElement(Quote quote, Context context, Collector<PositionValue> collector) throws Exception {
             System.out.println("processBroadcastElement " + quote);
             // store the new quote by updating the broadcast state
             BroadcastState<Void, Quote> bcState = context.getBroadcastState(quoteDesc);
@@ -182,7 +208,7 @@ public class DynamicSub {
                     Map<String,Position> positionsWithSymbols =  stringMapMapState.get(quote.symbol);
                     if(positionsWithSymbols != null) {
                         positionsWithSymbols.values().forEach(position -> collector.collect(
-                                Tuple2.of(position.owner, position.amount * quote.price)));
+                                new PositionValue(position.owner, position.symbol, position.amount, position.amount * quote.price)));
                     }
 
                 }
@@ -224,7 +250,7 @@ public class DynamicSub {
         BroadcastStream<Quote> quotes = quoteStream.broadcast(broadcastDescriptor);
 
         //Connect the streams
-        DataStream<Tuple2<String,Double>> balanceCalcStream =
+        DataStream<PositionValue> balanceCalcStream =
                 positionsByAccount
                         .connect(quotes)
                         .process(new QuoteEvaluator());
