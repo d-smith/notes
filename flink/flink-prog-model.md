@@ -460,4 +460,41 @@ To ensure recovery from job crashed input shources should be replayable.
 	Exactly once sinks: HDFS bucketing sink, file sinks, cassandra sink - idempotent statem kafka producer - transactional
 	At least once sinks: Kafka (other than transactional producer), Kinesis, Elastic Search, Socket sinks, Standard sinks, Redis sink
 	
+## Checkpoints
+
+	Checkpoint - specific marked point in each input stream from which stream can be replayed. Implemented by persising state of all streams and state associated with operators.
+	
+	Fault tolerance
+	
+	* periodically save state to a reliable storage system
+	* If the appliaction crashes, restore state using the checkpoint
+	
+	### Aligned and Unaligned Checkpoints
+	
+	Aligned checkpoints
+	
+	* Implemented by injecting lightweight entities known as stream barriers into input streams
+	* Barriers are lightweight markers with IDs
+	* FLink injects barriers into the data stream to flow with the records
+	* Barriers do not overtake records, they flow strictly in line
+	* Stream records between barriers belong to the same snapshot
+	* Once a snapshot has been completed the job will never ask the source for records before that barrier
+	
+	Begin alignment, End Alignment
+	
+	* Operator processes incoming records on a stream until a barrier reaches it, after which it pauses until all the barriers for all of its input streams have been receieved
+	* After all the barriers for the operator input streams have reached the operator, the output buffers can be written, the state snapshotted, and the processing of records from input stream resumed
+	* THe operator writes the state asynchronously to the state backend
+	
+	Unaligned Checkpoint
+	
+	* Checkpoints implemented by reading all in-flight data as part of the operator state.
+	* Barriers still inserted by flink to avoid overloading check point coordinator
+	* Barriers flow to the end of the output buffers as they are received by the operator - it then marks the overtaken records to be stored asynchronously and creates a snap shot of its state
+	* Processing is never stopped to align barriers
+	* Ensures barriers are arriving at the sink as fast as possible
+	
+	
+	
+	
 	
