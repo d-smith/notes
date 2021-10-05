@@ -494,6 +494,14 @@ To ensure recovery from job crashed input shources should be replayable.
 	* Processing is never stopped to align barriers
 	* Ensures barriers are arriving at the sink as fast as possible
 	
+	Checkpointing: disabled by default, default mode is exactly_once
+	Enable checkpointing, run it, look at the details on the console
+	
+	* Maintain some state, submit a job, cancel it, restart - does it restore the state? 
+		* Checkpoint state is lost unless persistent checkpoints are enabled via an appropriate state backend selection
+	
+	
+	
 	
 	
 	
