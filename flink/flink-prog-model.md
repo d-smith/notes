@@ -437,3 +437,27 @@ StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
 
 Some operations will not be possible until a Dynamic Table is used, e.g. group by.
 
+
+## Fault Tolerance Guarantees
+	
+* At most once
+* Exactly once
+* Exactly once
+
+For a streaming application to apply an exactly-once guarantee, each step must provide exactly-once guarantees.
+	
+To ensure recovery from job crashed input shources should be replayable.
+	
+	Flink can guarantee exactly-once semantics when
+	
+	* Source participate in shapshotting mechanism
+	* Sink participates in checkpointing mechanism
+	
+	Flink exactly once sources: Kafka, Kinesis, Colections, Files, Rabbit MQ v1
+	Flink at most once source: Rabbit MQ 0.1, Twitter streaming API, Sockets
+	At least once source: Google PubSub
+	
+	Exactly once sinks: HDFS bucketing sink, file sinks, cassandra sink - idempotent statem kafka producer - transactional
+	At least once sinks: Kafka (other than transactional producer), Kinesis, Elastic Search, Socket sinks, Standard sinks, Redis sink
+	
+	
