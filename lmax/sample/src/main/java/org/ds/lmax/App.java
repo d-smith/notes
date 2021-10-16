@@ -22,9 +22,16 @@ public class App {
         public void setValue(int value) {
             this.value = value;
         }
+
+        @Override
+        public String toString() {
+            return "ValueEvent{" +
+                    "value=" + value +
+                    '}';
+        }
     }
 
-    public static class SingleEventPrintConsumer {
+    public static class SingleEventPrintConsumer implements EventHandler<ValueEvent> {
 
 
         public EventHandler<ValueEvent>[] getEventHandler() {
@@ -38,6 +45,12 @@ public class App {
            System.out.println("Id is " + id
                     + " sequence id that was used is " + sequenceId);
         }
+
+
+        @Override
+        public void onEvent(ValueEvent valueEvent, long seq, boolean b) throws Exception {
+            System.out.println("onEvent sequence is " + seq + " value event is " + valueEvent.toString());
+        }
     }
 
     public static void main(String[] args) {
@@ -48,11 +61,19 @@ public class App {
         Disruptor<ValueEvent> disruptor
                 = new Disruptor<>(
                 ValueEvent.EVENT_FACTORY,
-                16,
+                8,
                 threadFactory,
                 ProducerType.SINGLE,
                 waitStrategy);
-        disruptor.handleEventsWith(new SingleEventPrintConsumer().getEventHandler());
+
+        SingleEventPrintConsumer[] consumers = {
+                new SingleEventPrintConsumer(),
+                new SingleEventPrintConsumer(),
+                new SingleEventPrintConsumer()
+        };
+
+        //disruptor.handleEventsWith(new SingleEventPrintConsumer().getEventHandler());
+        disruptor.handleEventsWith(consumers);
 
         RingBuffer<ValueEvent> ringBuffer = disruptor.start();
 
