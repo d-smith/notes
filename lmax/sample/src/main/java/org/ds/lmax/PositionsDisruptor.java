@@ -11,31 +11,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadFactory;
 
 public class PositionsDisruptor {
 
     public static class QuoteEvent {
+
+
         public String symbol;
         public double price;
+        public Instant timestamp;
+
         public final static EventFactory EVENT_FACTORY
                 = () -> new QuoteEvent();
+
+        public QuoteEvent() {
+            timestamp = Instant.now();
+        }
 
         @Override
         public String toString() {
             return "QuoteEvent{" +
                     "symbol='" + symbol + '\'' +
                     ", price=" + price +
+                    ", timestamp=" + timestamp +
                     '}';
         }
     }
 
     public static class QuotePrinterConsumer implements EventHandler<QuoteEvent> {
+        private static Logger LOG = LoggerFactory.getLogger(QuotePrinterConsumer.class);
 
         @Override
         public void onEvent(QuoteEvent quoteEvent, long seq, boolean b) throws Exception {
-            System.out.println("onEvent sequence is " + seq + " value event is " + quoteEvent.toString());
+           LOG.info("onEvent sequence is {} value event is {}", seq, quoteEvent);
         }
     }
 
