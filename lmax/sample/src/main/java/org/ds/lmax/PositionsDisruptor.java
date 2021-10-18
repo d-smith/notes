@@ -42,20 +42,20 @@ public class PositionsDisruptor {
     }
 
     public static class QuotePrinterConsumer implements EventHandler<QuoteEvent> {
-        private static Logger LOG = LoggerFactory.getLogger(QuotePrinterConsumer.class);
+        private static final Logger LOG = LoggerFactory.getLogger(QuotePrinterConsumer.class);
 
         @Override
         public void onEvent(QuoteEvent quoteEvent, long seq, boolean b) throws Exception {
-           LOG.info("onEvent sequence is {} value event is {}", seq, quoteEvent);
+            LOG.info("onEvent sequence is {} value event is {}", seq, quoteEvent);
         }
     }
 
-    private static Logger LOG = LoggerFactory.getLogger(PositionsDisruptor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PositionsDisruptor.class);
 
     public static void main(String... args) throws Exception {
         LOG.info("alive");
         String natsEndpoints = System.getenv("NATS_ENDPOINT");
-        if(natsEndpoints == null) {
+        if (natsEndpoints == null) {
             LOG.error("NATS_ENDPOINT not set in environment... exiting");
             System.exit(1);
         }
@@ -79,38 +79,13 @@ public class PositionsDisruptor {
         handlers.add(new QuotePrinterConsumer());
         disruptor.handleEventsWith(handlers.toArray(new QuotePrinterConsumer[0]));
 
-    RingBuffer<QuoteEvent> ringBuffer = disruptor.start();
+        RingBuffer<QuoteEvent> ringBuffer = disruptor.start();
 
         // Dispatcher - nats to the disrupter
-        Dispatcher dispatcher  = nc.createDispatcher(msg -> {
-            LOG.info("quote is {}", msg.toString());
-            String[] subjectParts = msg.getSubject().split("\\.");
-            if(subjectParts.length != 2) {
-                LOG.warn("ignoring {}", msg);
-                return;
-            }
-
-            double price = 0.0;
-            try {
-                price = Double.parseDouble(new String(msg.getData(), StandardCharsets.UTF_8));
-            } catch(Throwable t) {
-                LOG.warn("Unable to parse price in msg {}", msg);
-                return;
-            }
-
-
-
-            long sequenceId = ringBuffer.next();
-            QuoteEvent quoteEvent = ringBuffer.get(sequenceId);
-            quoteEvent.symbol = subjectParts[1];
-            quoteEvent.price = price;
-            ringBuffer.publish(sequenceId);
-
-
-        });
+        Dispatcher dispatcher = nc.createDispatcher(
+                new QuotesMessageHandler(ringBuffer)
+        );
 
         dispatcher.subscribe("quotes.>");
-
-
     }
 }
