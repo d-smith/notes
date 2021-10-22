@@ -87,5 +87,11 @@ public class PositionsDisruptor {
         );
 
         dispatcher.subscribe("quotes.>");
+
+        Dispatcher positionsDispatcher = nc.createDispatcher(
+                new PositionMessageHandler()
+        );
+
+        positionsDispatcher.subscribe("positions");
     }
 }
