@@ -1,14 +1,13 @@
-package org.ds.lmax;
+package org.ds.lmax.sourcedata;
 
 import io.nats.client.Connection;
-import io.nats.client.Dispatcher;
 import io.nats.client.Nats;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-public class QuotesPub {
+public class PositionPub {
     public static void main(String[] args ) throws Exception {
 
         Connection nc = Nats.connect("nats://localhost:4222");
@@ -18,11 +17,7 @@ public class QuotesPub {
                     new InputStreamReader(System.in));
 
             String line = reader.readLine();
-
-            String[] tokens = line.split(",");
-            String topic = "quotes." + tokens[0];
-            System.out.println("publish topic " + topic + " with data " + tokens[1]);
-            nc.publish(topic, tokens[1].getBytes(StandardCharsets.UTF_8));
+            nc.publish("positions", line.getBytes(StandardCharsets.UTF_8));
         }
     }
 

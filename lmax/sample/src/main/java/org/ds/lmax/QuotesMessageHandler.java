@@ -19,7 +19,7 @@ public class QuotesMessageHandler implements MessageHandler {
 
     @Override
     public void onMessage(Message msg) throws InterruptedException {
-        LOG.info("quote is {}", msg.toString());
+        LOG.debug("quote is {}", msg.toString());
         String[] subjectParts = msg.getSubject().split("\\.");
         if(subjectParts.length != 2) {
             LOG.warn("ignoring {}", msg);
