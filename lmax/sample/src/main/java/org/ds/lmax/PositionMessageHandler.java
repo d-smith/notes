@@ -14,10 +14,12 @@ public class PositionMessageHandler implements MessageHandler {
 
     private ArrayList<String> symbols;
     private Dispatcher quotesDispatcher;
+    private PositionsMonitor positionsMonitor;
 
-    public PositionMessageHandler(Dispatcher quotesDispatcher) {
+    public PositionMessageHandler(Dispatcher quotesDispatcher, PositionsMonitor positionsMonitor) {
         symbols = new ArrayList<>();
         this.quotesDispatcher = quotesDispatcher;
+        this.positionsMonitor = positionsMonitor;
     }
 
     @Override
@@ -38,6 +40,8 @@ public class PositionMessageHandler implements MessageHandler {
             LOG.warn("unable to convert amount token to double");
             return;
         }
+
+        positionsMonitor.addPosition(new Position(tokens[0], tokens[1], amount));
 
         String symbol = tokens[1];
         if(symbols.contains(symbol)) {

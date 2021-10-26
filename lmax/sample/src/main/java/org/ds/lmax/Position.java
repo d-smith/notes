@@ -11,6 +11,18 @@ public class Position {
         this.amount = amount;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
     @Override
     public String toString() {
         return "Position{" +

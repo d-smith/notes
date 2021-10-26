@@ -96,10 +96,11 @@ public class PositionsDisruptor {
                 new QuotesMessageHandler(ringBuffer)
         );
 
-        //dispatcher.subscribe("quotes.>");
+
+        PositionsMonitor positionsMonitor = new PositionsMonitor();
 
         Dispatcher positionsDispatcher = nc.createDispatcher(
-                new PositionMessageHandler(dispatcher)
+                new PositionMessageHandler(dispatcher, positionsMonitor)
         );
 
         positionsDispatcher.subscribe("positions");
