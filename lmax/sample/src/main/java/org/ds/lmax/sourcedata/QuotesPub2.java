@@ -39,6 +39,7 @@ public class QuotesPub2 {
             byte[] randoPrice = String.valueOf((Math.random() * 600)).getBytes(StandardCharsets.UTF_8);
 
             nc.publish(subject, randoPrice);
+            Thread.sleep(10);
         }
     }
 

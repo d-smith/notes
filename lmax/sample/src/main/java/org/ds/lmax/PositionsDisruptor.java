@@ -7,10 +7,11 @@ import com.lmax.disruptor.util.DaemonThreadFactory;
 import io.nats.client.Connection;
 import io.nats.client.Dispatcher;
 import io.nats.client.Nats;
+import org.ds.lmax.marketval.MarketValueEvent;
+import org.ds.lmax.marketval.MarketValueEventConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadFactory;
@@ -51,7 +52,7 @@ public class PositionsDisruptor {
         }
         @Override
         public void onEvent(QuoteEvent quoteEvent, long seq, boolean b) throws Exception {
-            LOG.info("onEvent sequence is {} value event is {}", seq, quoteEvent);
+            //LOG.info("onEvent sequence is {} value event is {}", seq, quoteEvent);
             called++;
             if(called % 1000 == 0) {
                 LOG.info("onEvent called at least {} times so far, current sequence is {}",
@@ -73,10 +74,28 @@ public class PositionsDisruptor {
         //Need a nats connection
         Connection nc = Nats.connect("nats://localhost:4222");
 
-        //Need disrupter setup
         ThreadFactory threadFactory = DaemonThreadFactory.INSTANCE;
-
         WaitStrategy waitStrategy = new BusySpinWaitStrategy();
+
+        //
+        // Market position value disruptor
+        //
+        Disruptor<MarketValueEvent> mvDisruptor = new Disruptor<>(
+                MarketValueEvent.EVENT_FACTORY,
+                512,
+                threadFactory,
+                ProducerType.SINGLE,
+                waitStrategy
+        );
+
+        ArrayList<EventHandler> mvHandlers = new ArrayList<>();
+        mvHandlers.add(new MarketValueEventConsumer(nc));
+        mvDisruptor.handleEventsWith(mvHandlers.toArray(new EventHandler[0]));
+        RingBuffer<MarketValueEvent> mvRingBuffer = mvDisruptor.start();
+
+        //Need disrupter setup
+
+
         Disruptor<QuoteEvent> disruptor
                 = new Disruptor<>(
                 QuoteEvent.EVENT_FACTORY,
@@ -85,9 +104,12 @@ public class PositionsDisruptor {
                 ProducerType.SINGLE,
                 waitStrategy);
 
+        PositionsMonitor positionsMonitor = new PositionsMonitor(mvRingBuffer);
+
         ArrayList<EventHandler> handlers = new ArrayList<>();
         handlers.add(new QuotePrinterConsumer());
-        disruptor.handleEventsWith(handlers.toArray(new QuotePrinterConsumer[0]));
+        handlers.add(positionsMonitor);
+        disruptor.handleEventsWith(handlers.toArray(new EventHandler[0]));
 
         RingBuffer<QuoteEvent> ringBuffer = disruptor.start();
 
@@ -97,7 +119,7 @@ public class PositionsDisruptor {
         );
 
 
-        PositionsMonitor positionsMonitor = new PositionsMonitor();
+
 
         Dispatcher positionsDispatcher = nc.createDispatcher(
                 new PositionMessageHandler(dispatcher, positionsMonitor)
