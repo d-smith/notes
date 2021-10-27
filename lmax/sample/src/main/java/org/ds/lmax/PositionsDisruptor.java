@@ -67,12 +67,12 @@ public class PositionsDisruptor {
         LOG.info("alive");
         String natsEndpoints = System.getenv("NATS_ENDPOINT");
         if (natsEndpoints == null) {
-            LOG.error("NATS_ENDPOINT not set in environment... exiting");
-            System.exit(1);
+            LOG.warn("NATS_ENDPOINT not set in environment... defaulting to nats://localhost:4222");
+            natsEndpoints = "nats://localhost:4222";
         }
 
         //Need a nats connection
-        Connection nc = Nats.connect("nats://localhost:4222");
+        Connection nc = Nats.connect(natsEndpoints);
 
         ThreadFactory threadFactory = DaemonThreadFactory.INSTANCE;
         WaitStrategy waitStrategy = new BusySpinWaitStrategy();
