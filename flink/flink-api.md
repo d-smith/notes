@@ -1,6 +1,6 @@
 # Notes from Exploring the Apache Flink API for Processing Streaming Data
 
-Flink APIs - High to Low Abstraction
+## Flink APIs - High to Low Abstraction
 
 * SQL
     *  Highest level of abstraction
@@ -16,3 +16,10 @@ Flink APIs - High to Low Abstraction
     * Stateful processing
     * Fault tolerant state
 
+## DataStream Connectors
+
+* Predefined sources and sinks
+    * Files, sockets, memory
+* Bundled connectors
+    * Nifi, Cassandra, RabbitMQ, JDBC, Kafka, Kinesis, Elasticsearch, etc
+* Apache Bahir connectors
