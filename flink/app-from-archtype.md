@@ -4,15 +4,16 @@
 
 Interactive version
 
-
+```
 mvn archetype:generate                               \
   -DarchetypeGroupId=org.apache.flink              \
   -DarchetypeArtifactId=flink-quickstart-java      \
   -DarchetypeVersion=1.11.0
-
+```
 
 Non-interactive
 
+```
 mvn archetype:generate                               \
   -DarchetypeGroupId=org.apache.flink              \
   -DarchetypeArtifactId=flink-quickstart-java      \
@@ -22,6 +23,7 @@ mvn archetype:generate                               \
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=com.org.helloflink \
   -DinteractiveMode=false
+```
 
   ## Run Job in IntelliJ
 
