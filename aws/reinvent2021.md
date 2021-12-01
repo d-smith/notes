@@ -39,3 +39,14 @@ https://github.com/aws-samples/aws-lambda-docker-serverless-inference
 https://aws.amazon.com/blogs/compute/pay-as-you-go-machine-learning-inference-with-aws-lambda/
 
 https://aws.amazon.com/blogs/compute/creating-faster-aws-lambda-functions-with-avx2/
+
+
+### Day 3
+
+https://www.eventbox.dev/published/lesson/reinvent21-observability-builder-session/
+
+https://serverlessland.com/
+
+
+
+
