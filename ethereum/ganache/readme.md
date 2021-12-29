@@ -10,6 +10,8 @@ Install truffle:
 npm i truffle -g
 ```
 
+To initialize a project, `truffle init`
+
 Ganache download [here](http://trufflesuite.com/ganache/)
 
 * Start ganache, quick start a block chain, determine the RPC port
