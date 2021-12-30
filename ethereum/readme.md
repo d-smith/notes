@@ -16,6 +16,12 @@ Network id - [this](https://ethereum.stackexchange.com/questions/91072/setup-gan
 
 * Options > Server > Network Id is 5777
 
+## Events and Logs
+
+https://medium.com/linum-labs/everything-you-ever-wanted-to-know-about-events-and-logs-on-ethereum-fec84ea7d0a5
+
+
+
 ## First solidity example
 
 From [here](https://github.com/ethereumbook/ethereumbook/blob/develop/code/Solidity/Faucet.sol)
@@ -42,4 +48,8 @@ truffle(development)> await instance.send(web3.utils.toWei("1","ether"))
 truffle(development)> instance.withdraw("100000000000000000")
 ```
 
+### Get the ABI
 
+const fs = require('fs');
+const contract = JSON.parse(fs.readFileSync('./build/contracts/Faucet.json', 'utf8'));
+console.log(JSON.stringify(contract.abi));
