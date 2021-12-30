@@ -8,8 +8,12 @@ contract Faucet2 {
         owner = msg.sender;
     }
 
-    function destroy() public {
+    modifier onlyOwner {
         require(msg.sender == owner);
+        _;
+    }
+
+    function destroy() public onlyOwner {
         selfdestruct(payable(owner));
     }
 }
