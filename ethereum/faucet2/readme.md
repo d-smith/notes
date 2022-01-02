@@ -8,3 +8,7 @@ truffle console
 let res = await Faucet2Deployed.withdraw(web3.utils.toWei("0.1","ether"));
 
 Faucet2Deployed.getPastEvents("allEvents", {fromBlock:"earliest"})
+
+Also...
+
+f2 = await Faucet2.deployed()
