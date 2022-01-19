@@ -44,7 +44,36 @@ dev2: {
 },
 ```
 
+After booting we can see the root account
 
+curl --location --request POST 'localhost:8545' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "eth_accounts",
+    "params": []
+}'
+{"jsonrpc":"2.0","id":3,"result":["0x10cba52b34930586aa166e1c8aca0eea9442f01e"]}
+
+
+Unlock the root account...
+
+```
+geth attach http://localhost:8545
+> personal.unlockAccount("0x10cba52b34930586aa166e1c8aca0eea9442f01e", "d0ntt3ll",0)
+```
+
+Deploy the smart contract:
+
+truffle deploy --network dev2 
+
+In the truffle console, fund the faucet
+
+truffle console --network dev2
+
+Faucet2.deployed().then(i => {Faucet2Deployed = i})
+Faucet2Deployed.send(web3.utils.toWei("1","ether")).then(res => {console.log(res.logs[0].event, res.logs[0].args) })
 
 Create a second account:
 
@@ -59,11 +88,32 @@ curl --location --request POST 'http://localhost:8545' \
         "5uper53cr3t"
     ]
 }'
-
-{"jsonrpc":"2.0","id":5,"result":"0xb5f47784f55ed77c040db48b4771997ceebdb549"}
+{"jsonrpc":"2.0","id":5,"result":"0x2a265e23e2ded2c8a7f37f7094f637f62ca472b9"}
 ```
 
-What is the root account?
+Transfer some ether to the second account so it can run the smart contract
+
+curl --location --request POST 'localhost:8545' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "jsonrpc": "2.0",
+    "id": 7,
+    "method": "eth_sendTransaction",
+    "params": [
+        {
+            "from":"0x10cba52b34930586aa166e1c8aca0eea9442f01e",
+            "to":"0x2a265e23e2ded2c8a7f37f7094f637f62ca472b9",
+            "value": "0xf4240"
+        }
+    ]
+}'
+
+
+Fund the second account from the faucet
+
+let res = await Faucet2Deployed.withdraw(web3.utils.toWei("0.1","ether"));
+
+What are the accounts?
 
 ```
 curl --location --request POST 'localhost:8545' \
@@ -79,12 +129,22 @@ curl --location --request POST 'localhost:8545' \
 ```
 
 
-Unlock the root account...
 
-```
-geth attach http://localhost:8545
-personal.unlockAccount("0x10cba52b34930586aa166e1c8aca0eea9442f01e")
 
 Deploy the smart contract:
 
 truffle deploy --network dev2 
+
+Get balance
+
+curl --location --request POST 'localhost:8545' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "jsonrpc": "2.0",
+    "id": 4,
+    "method": "eth_getBalance",
+    "params": ["0xb5f47784f55ed77c040db48b4771997ceebdb549",
+        "latest"
+    ]
+}'
+
