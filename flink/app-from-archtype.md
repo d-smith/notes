@@ -8,7 +8,7 @@ Interactive version
 mvn archetype:generate                               \
   -DarchetypeGroupId=org.apache.flink              \
   -DarchetypeArtifactId=flink-quickstart-java      \
-  -DarchetypeVersion=1.11.0
+  -DarchetypeVersion=1.11.6
 ```
 
 Non-interactive
@@ -17,7 +17,7 @@ Non-interactive
 mvn archetype:generate                               \
   -DarchetypeGroupId=org.apache.flink              \
   -DarchetypeArtifactId=flink-quickstart-java      \
-  -DarchetypeVersion=1.11.0 \
+  -DarchetypeVersion=1.11.6 \
   -DgroupId=com.org.helloflink \
   -DartifactId=hello-flink \
   -Dversion=1.0-SNAPSHOT \
