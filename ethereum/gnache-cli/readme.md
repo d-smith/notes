@@ -42,10 +42,75 @@ HD Wallet
 Mnemonic:      myth like bonus scare over problem client lizard pioneer submit female collect
 ```
 
-
+```
 truffle init
 truffle create contract faucet
 edit the truffle config
 truffle migrate
 truffle console
+```
 
+Once deployed you can fire up the event processor via `nooe events.js`
+
+Then in the truffle console deposit some ether in the contract, then withdraw some...
+
+```
+let instance = await faucet.deployed()
+await instance.send(web3.utils.toWei("1","ether"))
+instance.withdraw("100000000000000000")
+```
+
+You should observe events printed out from the console
+
+```
+{
+  address: '0xCfEB869F69431e42cdB54A4F4f105C19C080A601',
+  blockHash: '0xe8b1e4d94245d20b9d37511154476bbce170775cd839be3050044d64772f4f58',
+  blockNumber: 5,
+  logIndex: 0,
+  removed: false,
+  transactionHash: '0x98bee93a24b0bf7a7c79dd7e1dd8a5f09f7a8f74b6bd9432e3be2d5d60ab3f10',
+  transactionIndex: 0,
+  id: 'log_b76d6442',
+  returnValues: Result {
+    '0': '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
+    '1': '1000000000000000000',
+    from: '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
+    amount: '1000000000000000000'
+  },
+  event: 'Deposit',
+  signature: '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c',
+  raw: {
+    data: '0x0000000000000000000000000000000000000000000000000de0b6b3a7640000',
+    topics: [
+      '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c',
+      '0x00000000000000000000000090f8bf6a479f320ead074411a4b0e7944ea8c9c1'
+    ]
+  }
+}
+{
+  address: '0xCfEB869F69431e42cdB54A4F4f105C19C080A601',
+  blockHash: '0xbacdb8306890601df9ad0edc805005ad970b16ad27538da8f772bcb52b728eac',
+  blockNumber: 6,
+  logIndex: 0,
+  removed: false,
+  transactionHash: '0x433b87706809f46b33a3cf72e30f2531157c3f4e9b096b11c7701c49c64bc9ba',
+  transactionIndex: 0,
+  id: 'log_0ceca7af',
+  returnValues: Result {
+    '0': '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
+    '1': '100000000000000000',
+    to: '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1',
+    amount: '100000000000000000'
+  },
+  event: 'Withdrawal',
+  signature: '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65',
+  raw: {
+    data: '0x000000000000000000000000000000000000000000000000016345785d8a0000',
+    topics: [
+      '0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65',
+      '0x00000000000000000000000090f8bf6a479f320ead074411a4b0e7944ea8c9c1'
+    ]
+  }
+}
+```
