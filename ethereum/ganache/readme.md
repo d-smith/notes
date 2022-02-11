@@ -46,3 +46,5 @@ Ganache download [here](http://trufflesuite.com/ganache/)
 ```    
 npm install chai
 npm install chai-as-promised
+```
+
