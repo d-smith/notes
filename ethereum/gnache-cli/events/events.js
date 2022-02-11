@@ -14,7 +14,6 @@ console.log(blockHeader)
 const fs = require('fs');
 const contract = JSON.parse(fs.readFileSync('../build/contracts/faucet.json'));
 
-//let faucet = require('../build/contracts/faucet.json');
 
 const faucetContract = new web3.eth.Contract(
     contract.abi,
