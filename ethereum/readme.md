@@ -32,6 +32,7 @@ From [here](https://github.com/ethereumbook/ethereumbook/blob/develop/code/Solid
 
 ### Using Truffle
 
+```
 truffle init
 edit truffle-config.js - change the port
 truffle migrate
@@ -39,6 +40,7 @@ create Faucet.sol in the contracts folder
 create 2_Faucet_migration.js in migrations
 truffle migrate --reset
 execute from remix - on the deploy and run page, enter the contract in the "at address field", select the contract, the use the interface to run
+```
 
 Note - can't fund from metamask
 
