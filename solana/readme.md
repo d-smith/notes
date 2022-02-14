@@ -12,3 +12,13 @@ Add this to .zshrc
 ```
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 ```
+
+* create a wallet
+
+```
+solana-keygen new
+```
+
+keypair is written to $HOME/.config/solana/id.json
+
+
