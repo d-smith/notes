@@ -26,3 +26,11 @@ Now... how to send some SOL. Coinbase minimum is 1.12 SOL as of today, way more 
 Moon pay will allow a minimum of 0.33 but is fussy about billing address...
 FTX US? https://ftx.us
 
+* validate the public key
+
+solana-keygen verify public-key-val
+
+* Connect a phantom wallet
+
+https://mattmazur.com/2021/11/18/using-a-phantom-wallet-address-with-the-solana-cli/
+
