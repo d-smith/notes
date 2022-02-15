@@ -21,4 +21,8 @@ solana-keygen new
 
 keypair is written to $HOME/.config/solana/id.json
 
+Now... how to send some SOL. Coinbase minimum is 1.12 SOL as of today, way more then a small test amount.
+
+Moon pay will allow a minimum of 0.33 but is fussy about billing address...
+FTX US? https://ftx.us
 
