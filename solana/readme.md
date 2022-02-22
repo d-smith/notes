@@ -34,3 +34,43 @@ solana-keygen verify public-key-val
 
 https://mattmazur.com/2021/11/18/using-a-phantom-wallet-address-with-the-solana-cli/
 
+Specifically to use my phantom wallet via the cli:
+
+solana-keygen recover 'prompt:?key=0/0' --outfile ~/.config/solana/id.json
+
+ % solana balance
+0.15 SOL
+
+https://spl.solana.com/token
+
+Rust install 
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+cargo install spl-token-cli 
+
+Create a fungible token:
+
+spl-token create-token
+
+spl-token create-account <token>
+
+spl-token mint <token> 100000
+
+To send some tokens, use spl-token transfer, may want the --fund-recipient and --allow-unfunded-recipient options
+
+https://solscan.io/token/<token>
+
+
+Shovels icon attribution
+
+<a href="https://www.flaticon.com/free-icons/shovels" title="shovels icons">Shovels icons created by Eucalyp - Flaticon</a>
+
+To add token...
+
+Fork https://github.com/solana-labs/token-list
+
+Under assets add a folder with the token address as the name
+
+6HzndwRRT1Eamf8pFZxikuFPHcRkp6457fUcxFACZK7H
+
