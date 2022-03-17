@@ -28,16 +28,43 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header "x-api-key: $APIKEY" \
   --data '{
-  "currency": "BTC",
-  "xpub": "xpub",
+  "currency": "SOL",
+  "xpub": "xpub...",
   "customer": {
-    "accountingCurrency": "AED",
+    "accountingCurrency": "USD",
     "customerCountry": "US",
     "externalId": "000001",
     "providerCountry": "US"
   },
   "compliant": false,
   "accountCode": "AC_1011_B",
-  "accountingCurrency": "AED",
+  "accountingCurrency": "USD",
   "accountNumber": "000001"
 }'
+
+Can create multiple accounts...
+
+
+3. Create deposit address for an account.
+
+https://docs.tatum.io/rest/virtual-accounts/b3A6MzA2MjE3MzA-create-new-deposit-address
+
+curl --request POST \
+  --url https://api-eu1.tatum.io/v3/offchain/account/id/address \
+  --header 'Content-Type: application/json' \
+  --header "x-api-key: $APIKEY"
+
+4. List accounts for the customer
+
+curl --request GET \
+  --url https://api-eu1.tatum.io/v3/ledger/account/customer/id \
+  --header 'Content-Type: application/json' \
+  --header "x-api-key: $APIKEY"
+
+
+  Get the deposit addresses for the account
+
+  curl --request GET \
+  --url https://api-eu1.tatum.io/v3/offchain/account/id/address \
+  --header 'Content-Type: application/json' \
+  --header "x-api-key: $APIKEY"
