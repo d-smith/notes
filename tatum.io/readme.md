@@ -80,3 +80,34 @@ POST 'https://api-eu1.tatum.io/v3/ledger/transaction' \
   "recipientAccountId": "5fbaca3001421166273b3779",    
   "amount": "0.000001"
 }'
+
+## JavaScript
+
+Latest dev will not install, e.g.
+
+```
+npm install @tatumio/eth    
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for @tatumio/api-client@v2.0.1-alpha.202.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/ds/.npm/_logs/2022-03-18T22_28_33_345Z-debug-0.log
+```
+
+Previous version looks sus, e.g.
+
+```
+npm i --save @tatumio/tatum
+...
+19 vulnerabilities (9 moderate, 10 high)
+```
+
+What about earlier v2 versions?
+
+```
+npm install @tatumio/eth@2.0.1-alpha.245
+...
+found 0 vulnerabilities
+```
