@@ -68,3 +68,15 @@ curl --request GET \
   --url https://api-eu1.tatum.io/v3/offchain/account/id/address \
   --header 'Content-Type: application/json' \
   --header "x-api-key: $APIKEY"
+
+  Internal transfer
+
+  curl --location --request 
+POST 'https://api-eu1.tatum.io/v3/ledger/transaction' \
+--header 'x-api-key: YOUR_API_KEY ' \ 
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "senderAccountId": "5fad2aa1cac7f2e8aeac0e6b",
+  "recipientAccountId": "5fbaca3001421166273b3779",    
+  "amount": "0.000001"
+}'
