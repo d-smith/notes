@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tatumio/eth": "^2.0.1-alpha.245"
+    "@tatumio/eth": "^2.0.1-alpha.245",
+    "@tatumio/sdk": "^2.0.1-alpha.245",
+    "tslib": "^2.3.1"
   }
 }
