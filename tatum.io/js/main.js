@@ -3,11 +3,11 @@ let apiKey = process.env.APIKEY;
 ethSdk = te.TatumEthSDK({apiKey: apiKey});
 
 
-
+console.log(JSON.stringify(ethSdk.offchain,null,2));
 
 
 let check = async() => {
-    console.log(JSON.stringify(ethSdk.tatum, null, 2))
+    //console.log(JSON.stringify(ethSdk.tatum, null, 2))
     await ethSdk.offchain.depositAddress.checkExists('LepMzqfXSgQommH2qu3fk7Gf5xgoHQsP1b');
 }
 
