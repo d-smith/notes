@@ -82,3 +82,43 @@ Where's the best yield?
 * Where there's a lot of trading, volatility, and volume with low liquidity
 * Low risk - stable coin liquidity pairs
 
+## Lending and Borrowing
+
+https://defirate.com/
+https://defirate.com/lend/
+
+https://aave.com/
+
+What you want, work backwards, for example
+
+* By some bitcoin... deposit some dollars to coinbase pro, buy some bitcoin
+* Set up a metamask wallet
+* How to withdraw bitcoin the ethereum? You can't bitcoin you can only buy, sell, move around
+* Wrapped bitcoin - manage them one to one, keep wrapped pegged to bitcoin
+* In coinbase, trade bitcoin for wrapped bitcoin
+* Send wrapped to your wallet address
+* Metamask - view on etherscan.io
+* Go to aave.com, connect your wallet
+* Go to wrapped bitcoin, deposit your wrapped bitcoin
+* You need ethereum to pay for the gas fees
+* ETH gas fees super high... use avalance or polygon?
+
+On the avalanche network
+
+* Connect your wallet to avalanche, maybe via trader joe
+* Use snowtrace for your etherscan equivalent
+* chainlist.org shows EVM compatible blockchains
+* By avax on coinbase pro, move to your metamask avalance wallet address
+* Go to trader joe or pangolin, look at the volume, swap avax to WBTC.e
+* If you have wrapped you can use the avax bridge
+* May have to go to snowscan to find the wrapped, import as custom token into metamask wallet
+* Go to aave to deposit, need avax for gas feed
+* After coins deposited you can borrow against it.
+
+HODL - https://www.forbes.com/sites/matthougan/2018/04/23/bitcoin-hodling-is-the-best-strategy-with-one-big-caveat/?sh=157062653266
+
+
+
+
+
+Use coinbase pro. Look at Kraken, FTX, crypto.com, Kucoin
