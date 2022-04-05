@@ -151,3 +151,22 @@ What about yield on a stable coin pair, to avoid market risk
 https://docs.spookyswap.finance/products/liquidity-pools    
 
 Impermanent loss
+
+17 Mistakes https://twitter.com/thedefiedge/status/1507722622095613955
+
+## Staking
+
+* Incentives for HODLing tokens, often with a timelock
+
+Pancake swap, earn - farms and pools
+Binance chain is on pancake swap
+Binance.org will show the bridges, bridge lets you bring assets across chains.
+
+Bridge - lock tokens on one network, pair it up on the other, take a small cut
+
+zapper defi dashboard
+
+General note keep careful notes about what you have where
+
+ETH2 - can stake using kucoin
+fantom defi - can stake there (fantoms)
