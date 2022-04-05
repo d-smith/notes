@@ -108,7 +108,7 @@ On the avalanche network
 * Connect your wallet to avalanche, maybe via trader joe
 * Use snowtrace for your etherscan equivalent
 * chainlist.org shows EVM compatible blockchains
-* By avax on coinbase pro, move to your metamask avalance wallet address
+* Buy avax on coinbase pro, move to your metamask avalance wallet address
 * Go to trader joe or pangolin, look at the volume, swap avax to WBTC.e
 * If you have wrapped you can use the avax bridge
 * May have to go to snowscan to find the wrapped, import as custom token into metamask wallet
@@ -119,6 +119,35 @@ HODL - https://www.forbes.com/sites/matthougan/2018/04/23/bitcoin-hodling-is-the
 
 
 
-
-
 Use coinbase pro. Look at Kraken, FTX, crypto.com, Kucoin
+
+## Liquidity
+
+* How you trade one token for another
+* Automated market maker (decentralized), Order Book (centralized)
+
+Decentralized exchanges
+
+* Uniswap
+* Sushi Swap
+* Pancake Swap (binance)
+    * BSC - binance smart chain
+* Quickswap - for polygon
+* Trader Joes
+* Spooky Swap
+* Spirit swap
+
+Look for wrapped tokens to find popular exchanges
+
+https://www.coingecko.com/
+    s
+What about yield on a stable coin pair, to avoid market risk
+
+* Spooky swap - USDC, liquidity pair on USDC-DAI
+    * daily fees divided by volumes times 365 days a year to see what you in a year per dollar
+* 
+
+
+https://docs.spookyswap.finance/products/liquidity-pools    
+
+Impermanent loss
