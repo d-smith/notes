@@ -8,7 +8,7 @@ Liquidity - used to exchange one asset of another, pool of assets
 * Exchanges provide incentives to add assets to the pool
 
 
-https://defillama.com/chains
+Chart that shows TVL for various block chains - https://defillama.com/chains
 
 Chasing yield - low risk, high yield is the dream
 
