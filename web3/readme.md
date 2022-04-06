@@ -4,3 +4,5 @@
 
 
 [Hardhat dev environment](https://hardhat.org/)
+
+NOTE: The dependencies generated following along with the above tutorial have several vulunerabilties - while illustritive and educational do not use for a real application without understanding and resolving these.
