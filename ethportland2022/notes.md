@@ -1,5 +1,7 @@
 # ETH Portland 2022
 
+https://2022.ethportland.com/
+
 ## Day 1
 
 Discord channel - shadowy frenz
@@ -276,3 +278,352 @@ blocknative - prechain layer
 reactdemo.blocknative.com
 
 py-etherscan-api
+
+## Day 2
+
+### Ethereum Security Incidents & Lessons Learned
+
+Michael Lewellin - Open Zepplin
+
+Open zep
+
+* contracts, audits, defender
+
+The DAO Hack - 2016
+
+* [Analysis of the DAO Exploit](https://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/)
+* [Reentrancy After Istabbul](https://blog.openzeppelin.com/reentrancy-after-istanbul/)
+
+* must account for malicious calls from external contracts and accounts
+* update the state and balances of a contract before sending funds or perf ext calls
+* forming a protocol to reverse attacks is possible but heavy damage to community
+* better security standards and more secure solidity implementations are needed to prevent exploits
+
+crypto-comics.com
+
+OpenZepplin contracts
+
+* token standard, extensions (pausable, snapshots, etc), Proxies, Access Control, Utilities, Governance, Updates Plugins, Security models (reentrency guard, pull payments, etc)
+
+
+Parity Multisig Hack
+
+* [The Multi-sig Hack: a Postmortum](https://www.parity.io/blog/the-multi-sig-hack-a-postmortem)
+* [A Postmortem on the Parity Multi-Sig Library Self-Destruct](https://www.parity.io/blog/a-postmortem-on-the-parity-multi-sig-library-self-destruct/)
+* [The Parity Wallet Hack Explained](https://blog.openzeppelin.com/on-the-parity-wallet-multisig-hack-405a8c12e8f7/)
+
+
+
+pro tip - recurrent audits with clear git logs are paramount
+
+QA
+
+* Use [NatSpec](https://docs.soliditylang.org/en/v0.8.10/natspec-format.html)
+* hard hat, boundary for testing
+
+openzep security-audits readyness-guide
+
+Yearn yDAI Vault Exploit
+
+* [Yearn Disclosure](https://github.com/yearn/yearn-security/blob/master/disclosures/2021-02-04.md)
+* [Inside the Yearn yDAI Hack](https://halborn.com/explained-the-yearn-v1-ydai-hack-feb-2021/)
+
+
+* Flash loan attack - uncollateralized defi lending where liquidity is borrow instantly and repaid in the same transaction block (useful for scenarios like arbitrage, first offered by aave 2020)
+
+
+* Economics attacks
+* dependencies on DEXs and other on-chain pricing can expose a protocol to flash loan attacks
+* consider multi-block flows
+
+[OpenZeppelin Defender](https://openzeppelin.com/defender/) - security ops
+
+[Forta Network](https://forta.org/) - real time threat detection
+
+* decentralized, community based security network
+* explorer.forta.network
+
+Smart contract security
+
+* pre-deplyment (libs, testing & docs, audit)
+* post (bug bounties, real time monitoring, incident response management)
+
+L2Beat - https://l2beat.com/
+
+### Gas free ECR20 Delegation
+
+a governance use case with OZ Defenderr
+
+Delegate with signature
+
+Uses EIP712 Structured Data Signature
+
+Defender - Relayer manage keys, sigs
+AutoTask - lambda
+
+gasless-delegator
+
+https://github.com/ernestognw/gasless-delegator
+
+@smpalladino - youtube video for handling broader meta transactions
+
+zpl.in/join
+
+### Let anyone and everyone run your DAO
+
+UMA - optiistic oracle that can provide and verify any arbitrary data
+
+Oracle 
+
+* trusted or trustless source of information that smart contracts can be used to trigger events
+* trend is to decentralized versions
+
+price feed oracles
+
+* verify correctness in advance
+* good for getting processes on-chain
+* scalability problems, ineffiecient, lacks flexibility
+
+optimistic oracle: enforce correctness after dispute
+
+* requestor, proposer,disputer network
+dispute resolution proces
+a documented methodology of truth
+economic guarantees - proposers post a bond, lose posted if found incorrect
+
+Use cases
+
+* prediction markets, defi insurance, optimistic governance, rewards as a service, kpi options,  success tokens
+* Polymarket
+* Sherlock - defi insurance
+* Across - cross team bridge
+* Shapeshift - success token
+* Boba - kpi options
+
+opt gov
+
+* publish rules off chain
+* ref the rules in a proposer contract linked to the oracle
+* anyone can propose, anyone can dispute
+* oracle checks if the tranasction follow the rules
+
+Gnosis Safe - multisig wallet used by DAO trasuries
+Zodiac - dev modules to add new func to Gnosis Safe
+
+* Optimistic Oracle Zodiac Module - Uma proposal proposal
+ 
+ IPFS - use this to keep the rules online
+
+ * https://ipfs.io/
+
+### Onramping Mainstream Users Globally to Web3
+
+Transak - Fiat On-ramp
+
+What about the retail user?
+
+* find the platform
+* buy cryoto
+* create a new wallet and transfer crypto
+* app
+
+Transak looks to simplify
+
+Case study - Zed Run
+
+Model - let devs and builders (buidler) dictate the experience, transak handles all the LRC stuff
+
+register dashboard.transak.com, integrated.transak.com, test/stage/deploy
+
+Christian Flagg
+
+
+### Cryptosat
+
+trusted party in space for blockchain protocols
+
+https://cryptosat.io/
+
+Cubesat device
+
+Use cases
+
+* random beacon
+* verifiable delay
+* trusted setup/ceremonies
+
+DRAND - distributed random beacon
+
+crytosatboat - send back a 'cert' signed in space
+cryptosat simulator https://simulator.cryptosat.io/#/getting-started/overview
+
+github - https://github.com/cryptosat
+
+SpaceTEE - https://arxiv.org/abs/1710.01430
+
+### Not Quite Water Under the Bridge: Review of Cross-Chain Bridge Hacks
+
+[Quantstamp](https://quantstamp.com/)
+
+Bridge - move assets from one chain to another
+
+* THey don't really move...
+    * Customdian locks the assets
+    * Communicator to talk to the other chain
+    * Debt issuer -issue, burn on withdra
+
+    asset custodian
+    debt issuer
+
+    off chain - communicator (oracle)
+
+attack surfaces
+
+* custodian
+    * call relay attack
+    * transaction replay attack, e.g. replay modified proof of burn multiple times releasting funds multiple time
+* debt issuers
+    * fake verification attack
+* communicator
+    * fake events attack (pollute the data source of an oracle)
+* interfaces
+    * infinite approval attack (not bridge specific), typically via unsanitized inputs
+    * permit attack
+* network
+    * launch a 51% attack on the L1 chain
+
+crypto51.app
+
+### The Student Coffee Shop DAO
+
+JosephALChami
+
+Figment - nodes, validators
+
+incentives & slashing
+
+### Tips on Pitching
+
+Race Capital
+
+Chris McCann
+
+Goals
+
+* Get next meeting - starts with a 30 min zoom, ask questions, 
+* Understand fit - is there a good fit?
+* Get to terms - get the SAFE-T
+
+
+Pitch Narrative structure - can you do this in 10 - 15 minutes?
+
+* team
+* problem
+* product
+* demo - idea realized via an mvp
+* traction - your numbers
+* big picture 
+* competition (comparables)
+* investment - your ask
+* what else are you looking for?
+
+Example investment flow
+
+* intro call (30m)
+* second meeting (45 -1)
+* basic due filigence
+* third meeting
+* megtiate on terms 
+* term sheet
+* final dd
+* countersign and wire
+
+Tips
+
+* don't share your full life story
+* demo speaks 1000 words
+* demonstrable traction
+* be clear on customer segment
+* be concise, leave time for Q&A
+* don't induce fomo
+* leading/following - who will lead with the funding who will follow
+* terms - amount raided, valuation, vesting, structure
+* pick the right partner
+
+Book - Venture Deals
+
+### Scaling dApps: From Hackathons to Millions of Users
+
+daws.eth - earnifi
+
+launch problems
+
+* crowded
+* confusing
+* unscalable
+
+want: easy to use, stand out, welcoming
+
+first try - don't start with a metamask wallet link requirement
+* one box, enter address see if there's an airdrop
+
+* make it immediately usable
+* super simple - example was one box no button, take down every single barrier on our page (e.g. metamask bounce rate 80%)
+* find fans - twitter
+
+first try 
+* Ugly
+* Not stick - nothing to come back
+
+next: images - click to claim
+
+
+WIth each iteration - what's good, what's bad
+
+next: get notify when there are new airdrops
+* pink - playful, standouts
+* good ux - 
+
+Hackathon - ETHGlobal - online
+
+Next - what was missing?
+* ENS support... but resolve them without metamask
+* Infura
+
+design stuff that is fast and fast for you to do
+
+getting some traction...
+* deal with copyright
+* income
+
+How to bring in income?
+* paywall - but... only put it up if there's a claimable airdrop
+
+UX/premium tip - social validation (e.g. xxx paid users)
+
+Now we 100K visits...
+
+* performance - backend, web bundle
+* education
+
+ethers
+
+Split off code and open source it where you can.
+
+isomorphic typescript
+
+Avoid
+
+* discord
+* overly-needy customers
+* tech debt
+
+## Misc
+
+mirror protocol whitepaper - https://docsend.com/view/kcsm42mqiyu5t6ej
+
+mirror participants - minter - mint mAssets, take the opposite position of the assets' natural direction
+
+
+
+
