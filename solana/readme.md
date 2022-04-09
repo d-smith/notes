@@ -3,7 +3,7 @@
 Install the tools - see [here](https://docs.solana.com/cli/install-solana-cli-tools)
 
 ```
-sh -c "$(curl -sSfL https://release.solana.com/v1.9.6/install)"
+sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
 ```
 
 Add this to .zshrc
@@ -12,6 +12,18 @@ Add this to .zshrc
 ```
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 ```
+
+Rust Setup
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Rust is installed now. Great!
+
+To get started you may need to restart your current shell.
+This would reload your PATH environment variable to include
+Cargo's bin directory ($HOME/.cargo/bin).
 
 * create a wallet
 
