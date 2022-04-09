@@ -47,6 +47,12 @@ https://www.eventbox.dev/published/lesson/reinvent21-observability-builder-sessi
 
 https://serverlessland.com/
 
+### Day 4
+
+Add this to the roadmap/backlog
+
+https://aws.amazon.com/blogs/compute/publishing-messages-in-batch-to-amazon-sns-topics/
+
 
 
 
