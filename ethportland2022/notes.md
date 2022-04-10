@@ -618,11 +618,6 @@ Avoid
 * overly-needy customers
 * tech debt
 
-## Misc
-
-mirror protocol whitepaper - https://docsend.com/view/kcsm42mqiyu5t6ej
-
-mirror participants - minter - mint mAssets, take the opposite position of the assets' natural direction
 
 
 
