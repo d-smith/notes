@@ -170,3 +170,25 @@ General note keep careful notes about what you have where
 
 ETH2 - can stake using kucoin
 fantom defi - can stake there (fantoms)
+
+## Apps
+
+https://beefy.finance/ - multichain yield optimizer
+
+TVL - total value locked - https://coinmarketcap.com/alexandria/glossary/total-value-locked-tvl
+
+https://www.coindesk.com/learn/why-tvl-matters-in-defi-total-value-locked-explained/
+
+polkadot, moonriver (supports kusama evm, glimr unity token)
+
+Curve
+
+https://polygon.curve.fi/
+
+https://apeboard.finance/dashboard
+https://debank.com/
+https://defillama.com/
+
+
+
+

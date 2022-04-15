@@ -36,3 +36,69 @@ On the local validator you may need to transfer a min amount of lamports, e.g. 1
 }
 
 https://explorer.solana.com/?cluster=custom
+
+## Deploying a Program
+
+https://docs.solana.com/developing/on-chain-programs/overview
+
+Cargo, creates, and basis project structure - https://learning-rust.github.io/docs/a4.cargo,crates_and_basic_project_structure.html
+
+Binary Object Representation Serializer for Hashing - borsh
+
+Derive macros - https://doc.rust-lang.org/reference/procedural-macros.html#derive-macros
+
+Set up
+
+```
+solana config set --url <local url>
+
+mkdir solana-wallet
+solana-keygen new --outfile solana-wallet/keypair.json
+
+solana airdrop 1 $(solana-keygen pubkey solana-wallet/keypair.json)
+
+yarn run solana:build:program
+```
+
+Command looks like...
+
+```
+solana deploy -v --keypair solana-wallet/keypair.json dist/solana/program/helloworld.so
+```
+
+After the program is deployed, create an account used by the program for storage. The account is derived from program id, e.g.
+
+```
+const greetedPubkey = await PublicKey.createWithSeed(
+      payer.publicKey,
+      GREETING_SEED,
+      programId,
+    );
+
+    // This function calculates the fees we have to pay to keep the newly
+    // created account alive on the blockchain. We're naming it lamports because
+    // that is the denomination of the amount being returned by the function.
+    const lamports = await connection.getMinimumBalanceForRentExemption(
+      GREETING_SIZE,
+    );
+
+    // Find which instructions are expected and complete SystemProgram with
+    // the required arguments.
+    const transaction = new Transaction().add(
+      SystemProgram.createAccountWithSeed({
+        fromPubkey: payer.publicKey,
+        basePubkey: payer.publicKey,
+        seed: GREETING_SEED,
+        newAccountPubkey: greetedPubkey,
+        lamports,
+        space: GREETING_SIZE,
+        programId,
+      }),
+    );
+
+    // Complete this function call with the expected arguments.
+    const hash = await sendAndConfirmTransaction(connection, transaction, [payer]);
+    ```
+
+    Then... get data from the program (i.e. the counter) and send data to the program (the greetingm3rg3nt
+    )
