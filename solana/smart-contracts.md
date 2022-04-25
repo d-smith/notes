@@ -37,3 +37,6 @@ Base concept - account
 * Only way the lamports in the account can be removed is if the program that owns the account is the one doing those actions.
 * In Solana accounts are charged rent to stay on the blockchain
 
+23:51
+
+* 
