@@ -39,4 +39,11 @@ Base concept - account
 
 23:51
 
+* Rent is charged to maintain data, can be exempt if there's a minimum number of lamports in the account
+* Rent is based on the amount of data
+
+* What's in a solana transaction? - see [here](https://docs.solana.com/developing/programming-model/transactions#:~:text=A%20transaction%20contains%20a%20compact,bits%20of%20the%20message%20header.)
+* Proof of stake, proof of history
 * 
+
+34:22
