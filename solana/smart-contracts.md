@@ -19,7 +19,7 @@ solana-cli 1.9.6 (src:781609b2; feat:2191737503)
 
 Solana uses clusters as the terms for dev net, test net, main net, localnet
 
-export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
+    export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
 
 Use --log for local
 
@@ -47,3 +47,13 @@ Base concept - account
 * 
 
 34:22
+
+solana logs -u localhost
+
+msg! - this is a macro, shortcut for multiple lines. Note msg is used instead of print
+
+* msg support string interpolation via {}
+
+Serialization - borsh, binary object serialization/deserialization
+
+
