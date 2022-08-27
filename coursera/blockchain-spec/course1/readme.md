@@ -50,9 +50,14 @@ Transaction zero, index zero of the confirmed block is created by the miner of t
 Linkage:
 
 
-https://www.ccn.com/bitcoin-transaction-really-works/
-
 https://medium.com/blockchain-review/how-does-the-blockchain-work-for-dummies-explained-simply-9f94d386e093
+
+The basics:
+
+* blockchain is a distributed ledger that keeps track of who owns what
+* txns grouped with others that have occured in the last 10 minutes into a crytographically protected block, and sent to the entire network.
+* miners compete to validate the block by solving a complex problem
+* validated block is timestamped then added to the chain of blocks
 
 https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae
 
