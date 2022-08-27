@@ -15,4 +15,11 @@ https://blockgeeks.com/guides/what-is-blockchain-technology/
 https://www.pcmag.com/article/351486/blockchain-the-invisible-technology-thats-changing-the-wor
 
  
+Blockchain projects are built around 3 core properties: decentralization, scalability, and security.
+
+### Blockchain Structure
+
+[UTXO](https://smithandcrown.com/glossary/unspent-transaction-outputs-utxo/) - unspent transaction output
+
+
 
