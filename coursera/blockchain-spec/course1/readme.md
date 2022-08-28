@@ -62,3 +62,44 @@ The basics:
 https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae
 
 https://smartereum.com/8970/how-do-bitcoin-nodes-verify-transactions/
+
+### Beyond Bitcoin
+
+Bitcoin Open Source - github.com/bitcoin/bitcoin
+
+Bitcoint scripts - conditional transfer of value
+
+Ethereum extended the idea of script concept to smart contracts, which are code execution to embed business logic on blockchain
+
+Three types of blockchains:
+
+* Type 1 - coins and currency, e.g. bitcoin
+* Type 2 - cryptocurrency and business logic, e.g. Ethereum
+* Type 3 - No currency, but smart contract support, e.g. Hyperledger
+
+Three types of access
+
+* Public
+* Private - selected participants
+* Permission - consortium of collaborating parties to transact, provides provenance, governance, accountability
+
+
+Linkage:
+
+https://bitsonblocks.net/2015/09/09/a-gentle-introduction-to-blockchain-technology/
+
+https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/
+
+https://cointelegraph.com/bitcoin-for-beginners/what-are-cryptocurrencies#accept-as-payment-for-business
+
+https://www.coindesk.com/2017-bitcoins-year-2018-will-ethereums/
+
+https://blockgeeks.com/guides/what-is-cryptocurrency/
+
+https://www.coindesk.com/learn/how-does-blockchain-technology-work/
+
+https://blockchain.info/
+
+https://blockexplorer.com/
+
+https://etherscan.io/
