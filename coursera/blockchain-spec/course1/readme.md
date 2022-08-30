@@ -103,3 +103,43 @@ https://blockchain.info/
 https://blockexplorer.com/
 
 https://etherscan.io/
+
+## Week 2
+
+Learning objectives
+
+* Discuss, at a conceptual level, the innovation of the Ethereum Blockchain, namely, the smart contract.
+* Illustrate Ethereum Blockchain protocol: structural elements and operational aspects.
+* Demonstrate the concept of gas, the fuel or payment model for code execution, and the incentive model of Ethereum Blockchain.
+
+Ethereum Stack
+
+* verticals - end user apps
+* app framework - smart contracts
+* eth blockchain and evm
+* Peer to peer network and operating systems
+* Hardware
+
+ Smart contract
+
+ * A smart contract is a piece of code deployed in the blockchain node.
+* Execution of a smart contract is initiated by a message embedded in the transaction.
+
+More sophisticated logic can be enabled
+
+* e.g. An auction bidding smart contract could execute this logic. If the age of a bidder is greater than 18 and the bid is greater than the minimum bid, then, accept the bid, or else reject the bid.
+
+Solidity
+
+* class-like structure with data and functions
+
+Code execution
+
+* ethereum virtual machine - run anywhere abstraction for contract code
+
+Linkage 
+
+* http://ethdocs.org/en/latest/introduction/what-is-ethereum.html
+* https://blockgeeks.com/guides/smart-contracts/
+* http://solidity.readthedocs.io/en/develop/introduction-to-smart-contracts.html
+
