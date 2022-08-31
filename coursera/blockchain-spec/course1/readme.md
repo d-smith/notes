@@ -120,6 +120,8 @@ Ethereum Stack
 * Peer to peer network and operating systems
 * Hardware
 
+### Smart Contracts
+
  Smart contract
 
  * A smart contract is a piece of code deployed in the blockchain node.
@@ -142,4 +144,52 @@ Linkage
 * http://ethdocs.org/en/latest/introduction/what-is-ethereum.html
 * https://blockgeeks.com/guides/smart-contracts/
 * http://solidity.readthedocs.io/en/develop/introduction-to-smart-contracts.html
+
+### Ethereum Structure
+
+Bitcoin block state was defined in terms of unspent transaction outputs UTXOs and a reference implementation of the Wallet application that held the account reference.
+
+ Ethereum formally introduce the concept of an account as a part of the protocol.
+
+* The account is the originator and the target of a transaction.
+* A transaction directly updates the account balances
+
+ There are two types of accounts
+* Externally Owned Accounts
+    * controlled by private keys.
+    * An externally owned account is needed to participate in the Ethereum network. It interacts with the blockchain using transactions.
+* Contract Accounts
+    * Contract Accounts or CA are controlled by the code and can be activated only by an EOA.
+    * A Contract Account represents a smart contract.
+
+Every account has a coin balance. The participant node can send transaction for Ether transfer or it can send transaction to invoke a smart contract code or both. Both types of transaction require fees. An account must have sufficient balance to meet the fees needed for the transactions activated.
+
+Fees are paid in Wei.
+
+* Wei is a lower denomination of Ether.
+* One Ether 10 to the power of 18 Weis.
+
+Transactions
+
+* A transaction in Ethereum includes the recipient of the message, digital signature of the sender authorizing the transfer, amount of Wei to transfer, an optional data field or payload that contains a message to a contract, STARTGAS which is a value representing the maximum number of computational steps the transaction is allowed.
+* Gas price a value representing the fee sender is willing to pay for the computations.
+
+Ethereum transaction
+
+* Observe transaction hash, height of the chain, timestamp, from and to accounts, value transport, gas limit, gas used, transaction receipt, success in this case and nonce. T
+
+ Ethereum block structure
+
+* has a header, transaction, and runner-up block headers.
+
+ Block details.
+
+* the height, timestamp, block hash, previous hash, difficulty and total difficulty, size, gas used, gas limit, nonce and block reward.
+
+Linkage 
+
+* https://ethereum.org/en/whitepaper/
+* http://ethdocs.org/en/latest/account-management.html
+* https://geth.ethereum.org/docs/dapp/native-accounts
+
 
