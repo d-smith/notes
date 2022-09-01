@@ -193,3 +193,16 @@ Linkage
 * https://geth.ethereum.org/docs/dapp/native-accounts
 
 
+### Ehtereum Operations
+
+For a simple Ether transfer, the amount to transfer and the target address are specified along with the fees or gas points.The amount and the fees are transferred to their respective accounts.
+
+Ethereum node - computational system representing a business entity or an individual participant. An Ethereum full node hosts the software needed for transaction initiation, validation, mining, block creation, smart contract execution and the Ethereum Virtual Machine, EVM.
+
+Smart contract is designed, developed, compiled and deployed on the EVM that can be more than one smart contract in an EVM. When the target address in a transaction is a smart contract, the execution code corresponding to the smart contract is activated and executed on the EVM. The input needed for this execution is extracted from the payload field of the transaction. Current state of the smart contract is the values of the variables defined in it. The state of the smart contract may be updated by this execution. Results of this execution is told in the receipts. A blockchain maintains both the state hash and the receipt hash.
+
+All the transactions generated are validated. Transaction validation involves checking the time-stamp and the nonce combination to be valid and the availability of sufficient fees for execution. Miner nodes in the network receive, verify, gather and execute transactions. The in-work smart contract code are executed by all miners. Validated transactions are broadcast and gathered for block creation.
+
+Lnkage:
+
+* https://ethereum.stackexchange.com/questions/3/what-is-meant-by-the-term-gas
