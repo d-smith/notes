@@ -267,3 +267,39 @@ Linkage
 * https://www.coindesk.com/vitalik-buterin-doubles-ethereum-incentive-strategy/
 * https://www.ethereum.org/ether
 * https://blockgeeks.com/guides/proof-of-work-vs-proof-of-stake/
+
+## Week 3 - Algorithms and Techniques
+
+ 
+
+Learning objectives
+
+* Summarize the working of public key cryptography.
+* Explain simple hashing & Merkle tree hash.
+* Explore the application of hashing and cryptography in protecting the Blockchain.
+
+
+### Public Key cryptography
+
+Two techniques are predominantly used for securing the chain and for efficient validation and verification. Hashing and asymmetric key encryption.
+
+Recall that blockchains decentralized network participants, are not necessarily known to each other. Credentials cannot be checked by the conventional means such as verifying who you are with your driver's license. Participants can join and leave the chain as they wish. They operate beyond the boundaries of trust. Given this context. how do you identify the peer participants? How do you authorize and authenticate the transactions? How do you detect forged or faulty transactions?
+
+We can do these things by using Public-key cryptography algorithm that we'll discuss in this lesson. Let's begin by examining simple symmetric key encryption. The same key is used for encryption and decryption, so it is called symmetric key.
+
+You shift by three the S key value of every letter to encrypt it, and your receiver decrypts it using the same three as the key. Shift the other way every character to view the original message. Three is the key in this trivial example. Since the same key is used for encryption and decryption, it is a symmetric key.
+
+ Note that symmetric key encryption has issues. Number one, it is easy to derive the secret key from the encrypted data. And number two, the key distribution, how do you pass the key to the participant transacting? These issues are further exasperated in a block chain decentralized network where participants are unknown to each other.
+
+Let's now examine how Public-key cryptography addresses these issues. Instead of a single secret key, it employs two different keys that take care of both the issues of symmetric key encryption. Let, lowercase b uppercase B be the private public-key pair for a participant in Buffalo New York USA. Let lowercase k and uppercase K be the pair of keys for the participant and Kathmandu Nepal. Public-key is published, private key is kept safe and locked. Typically using a passphrase and the pair works as follows; encrypting function holds two properties with a key pair. The public-key private key pair has the unique quality that even though a data is encrypted with the private key, it can be decrypted with the corresponding public-key and vice versa. Now let's look at an example, authenticate the sender and the receiver. We'll examine just one common use of a symmetric key encryption. Let's say a participant in Buffalo wants to transact with the participant in Kathmandu. Instead of sending just a simple message, a participant in Buffalo will send a transaction data encrypted by Buffalo's private key, and then encrypted by Kathmandu's public key. Kathmandu will first decrypt the data using its own private key, then use Buffalo's public key to decrypt assigned transaction data. This ensures that only Kathmandu can decrypt and receive the data and that only Buffalo could have sent the data.
+
+A popular implementation of public key, private key is the Rivest Shamir Adleman (RSA) algorithm. Common application of RSA is the passwordless user authentication, for example for accessing a virtual machine on Amazon cloud. Though RSA is very commonly used in many applications, block chains need a more efficient and stronger algorithm. Efficiency is a critical requirement since public key pair is frequently used in many different operations in block chain protocol.
+
+Elliptic Curve Cryptography, ECC family of algorithms is used in the bitcoin as well as an Ethereum block chain for generating the key pair. Why ECC not RSA? ECC is stronger than RSA for a given number of bits. Did you know that 256 bit ECC key pair is equal in strength to about 3072 bits of RSA key pair. Both bitcoin and Ethereum use ECC based algorithms for their encryption needs.
+
+Linkage:
+
+* https://www.globalsign.com/en/ssl-information-center/what-is-public-key-cryptography/
+* http://searchsecurity.techtarget.com/definition/asymmetric-cryptography
+* https://www.youtube.com/watch?v=GSIDS_lvRv4
+* https://qvault.io/cryptography/elliptic-curve-cryptography/
