@@ -303,3 +303,32 @@ Linkage:
 * http://searchsecurity.techtarget.com/definition/asymmetric-cryptography
 * https://www.youtube.com/watch?v=GSIDS_lvRv4
 * https://qvault.io/cryptography/elliptic-curve-cryptography/
+
+### Hashing
+
+Hashing
+
+ 
+
+A hash function or hashing transforms and maps an arbitrary length of input data value to a unique fixed length value. Input data can be a document, tree data, or a block data. Even a slight difference in the input data would produce a totally different hash output value.
+
+The following are two basic requirements of a hash function.
+
+* The algorithm chosen for the hash function should be a one-way function and it should be collision free, or exhibit extremely low probability of collision. The first requirement is to make certain that no one can derive the original items hashed from the hash value.
+* The second requirement is to make sure that the hash value uniquely represents the original items hashed. There should be extremely low probability that two different datasets map onto the same hash value. These requirements are achieved by choosing a strong algorithm such as secure hash, and by using appropriately large number of bits in the hash value.
+
+Most common hash size now is 256 bits and the common functions are SHA-3, SHA-256 and Keccak. Hash value space, how good is 256 bits hash? A 256-bit hash value space is indeed very large. 2 to the power of 256 possible combinations of values. That is approximately 10 to the power of 77. That is 10 followed by 77 zeros.
+
+In the simple hash approach, all the data items are linearly arranged and hashed. In a tree-structured approach, the data is at the leaf nodes of the tree, leaves are pairwise hash to arrive at the same hash value as a simple hash. When is a tree-structured hash used? When is a simple hash used? When we have a fixed number of items to be hashed, such as the items in a block header, and we are verifying the composite block integrity and not the individual item integrity, we use simple hash. When the number of items differ from block to block, for example, number of transactions, number of states, number of receipts, we use the tree structure for computing the hash.
+
+Note that the state is a variable that may be modified by a smart contract execution, and the result of the execution may be returned in a receipt. Tree structure helps the efficiency of repeated operations, such as transaction modification and the state changes from one block to the next. Log N versus N.
+
+Summarizing, in Ethereum, hashing functions are used for generating account addresses, digital signatures, transaction hash, state hash, receipt hash and block header hash. SHA-3, SHA-256, Keccak-256 are some of the algorithms commonly used by hash generation in blockchains.
+
+Linkage:
+
+* https://blockgeeks.com/guides/what-is-hashing/
+* https://www.cs.hmc.edu/~geoff/classes/hmc.cs070.200101/homework10/hashfuncs.html
+* https://www.youtube.com/watch?v=DMtFhACPnTY
+* https://anders.com/blockchain/hash
+
