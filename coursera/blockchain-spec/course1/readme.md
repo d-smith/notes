@@ -332,3 +332,26 @@ Linkage:
 * https://www.youtube.com/watch?v=DMtFhACPnTY
 * https://anders.com/blockchain/hash
 
+### Transaction Integrity
+
+To manage the integrity of a transaction we need: number one, secure a unique account address. We need a standard approach to uniquely identify the participants in the decentralized network. Number two, authorization of the transaction by the sender through digital signing. And number three, verification that the content of that transaction is not modified.
+
+We use a combination of hashing and public key cryptography, that we learned in the last two lessons to solve these problems. Let's start with the address of the accounts.
+
+Addresses of accounts are generated using public key, private key pair.
+
+Step 1, at 256-bit random number is generated, and designated as the private key. Kept secure and locked using a passphrase.
+
+Step 2, an ECC algorithm is applied to the private key, to get a unique public key. This is the private public key pair.
+
+Step 3. Then a hashing function is applied to the public key to obtain account address. The address is shorter in size, only 20 bytes or 160 bits.
+
+Now that we have the account address, let's look at the transaction initiated by this address. A transaction for transferring assets will have to be authorized, it has to be non-repudiable, and unmodifiable. They first examined, the digital signing process, and then apply it to that transaction. Data is hashed and encrypted. This is the digital signature. The receiver gets the original data, and the secure hash digitally signed. Receiver can recompute the hash of the original data received, and compare it with the received hash to verify the integrity of the document. Now, consider the transaction to be that data. Step number 1, find the hash of the data fields of the transaction. Step number 2, encrypt that hash using the private key of the participant originating the transaction. Thus, digitally signing the transaction to authorize and making the transaction non-repudiable. Step number 3, this hash just added to the transaction. It can be verified by others decryiptng it using the public key of the sender of the transaction, and recomputing the hash of the transaction. Then, compare the computed hash, and the hash received at the digital signature. If that is a match, accept the transaction. Otherwise, reject it. Note that for the complete transaction verification, the timestamp, nons, account balances, and sufficiency of fees are also verified.
+
+ 
+
+Linkage:
+
+* https://hbr.org/2017/03/how-safe-are-blockchains-it-depends
+* https://infospectives.co.uk/blockchains-embedding-integrity/
+
