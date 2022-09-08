@@ -306,10 +306,6 @@ Linkage:
 
 ### Hashing
 
-Hashing
-
- 
-
 A hash function or hashing transforms and maps an arbitrary length of input data value to a unique fixed length value. Input data can be a document, tree data, or a block data. Even a slight difference in the input data would produce a totally different hash output value.
 
 The following are two basic requirements of a hash function.
@@ -348,10 +344,40 @@ Step 3. Then a hashing function is applied to the public key to obtain account a
 
 Now that we have the account address, let's look at the transaction initiated by this address. A transaction for transferring assets will have to be authorized, it has to be non-repudiable, and unmodifiable. They first examined, the digital signing process, and then apply it to that transaction. Data is hashed and encrypted. This is the digital signature. The receiver gets the original data, and the secure hash digitally signed. Receiver can recompute the hash of the original data received, and compare it with the received hash to verify the integrity of the document. Now, consider the transaction to be that data. Step number 1, find the hash of the data fields of the transaction. Step number 2, encrypt that hash using the private key of the participant originating the transaction. Thus, digitally signing the transaction to authorize and making the transaction non-repudiable. Step number 3, this hash just added to the transaction. It can be verified by others decryiptng it using the public key of the sender of the transaction, and recomputing the hash of the transaction. Then, compare the computed hash, and the hash received at the digital signature. If that is a match, accept the transaction. Otherwise, reject it. Note that for the complete transaction verification, the timestamp, nons, account balances, and sufficiency of fees are also verified.
 
- 
 
 Linkage:
 
 * https://hbr.org/2017/03/how-safe-are-blockchains-it-depends
 * https://infospectives.co.uk/blockchains-embedding-integrity/
 
+### Securing the Chain
+
+Main components of the Ethereum block:
+
+* the header,
+* the transactions, including the transaction hash or the transaction root,
+* the state, the state hash, or the state root.
+
+Integrity of the block is managed by assuring that the block header contents are not tampered with, the transactions are not tempered with, state transitions are efficiently computed, hashed, and verified.
+
+In Ethereum, the block hash is the block of all the elements in the block header, including the transaction root and state root hashes. It is computed by applying a variant of SHA-3 algorithm called Keccak and all the items of the block header.
+
+A typical block has about 2,000 transactions in bitcoin and about 100 transaction Ethereum. We need an efficient way to detect tampering and validate the transaction efficiently.
+
+Hashes of transaction in a block are processed in a tree structure called Mekle tree hash that we discussed in earlier lesson. Merkle tree hash is also used for computing the state root hash, since only the hash of the chained states from block to block have to be re-computed. It is also used for receipt hash root. Remember the advantage over flat versus tree representation. If any transaction is to be verified, only one path to the tree has to be checked. You don't have to go through the entire set of transactions.
+
+Smart contract execution in Ethereum results in state transitions. Every state change requires state root hash re-computation. Instead of computing hash for the entire set of states, only the affected path in the Merkle tree needs to be re-computed.
+
+Now, let's move on to block hash computation.
+
+Block hash in Ethereum is computed by first computing the state root hash, transaction root hash and then receipt root hash, shown at the bottom of the block header. These roots and all the other items in the header are hash together with the variable nonce to solve the proof of work puzzle.
+
+Block hash serves two important purposes; verification of the integrity of the block and the transactions, formation of the chain link by embedding the previous block hash in the current block header. If any participant node tampers with the block, it's hash value changes resulting in the mismatch of the hash values and rendering the local chain of the node in an invalid state. Any future blocks initiated by the node would be rejected by other miners due to hash mismatch. This enforces the immutability of the chain.
+
+Summarizing, a combination of hashing and encryption are used for securing the various elements of the block chain. Private public key pair and hashing are important foundational concepts in decentralized networks that operate beyond trust boundaries.for the complete transaction verification, the timestamp, nons, account balances, and sufficiency of fees are also verified.
+
+Linkage:
+
+* https://assets.kpmg/content/dam/kpmg/xx/pdf/2017/05/securing-the-chain.pdf
+* https://bitcoin.stackexchange.com/questions/35448/is-it-chain-of-headers-rather-than-a-chain-of-blocks
+* https://www.cryptocompare.com/coins/guides/what-is-a-block-header-in-bitcoin/
