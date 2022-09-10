@@ -381,3 +381,39 @@ Linkage:
 * https://assets.kpmg/content/dam/kpmg/xx/pdf/2017/05/securing-the-chain.pdf
 * https://bitcoin.stackexchange.com/questions/35448/is-it-chain-of-headers-rather-than-a-chain-of-blocks
 * https://www.cryptocompare.com/coins/guides/what-is-a-block-header-in-bitcoin/
+
+## Week 4 Trust Essentials
+
+ 
+
+Learning objectives:
+
+* Define elements of trust in a Blockchain: security, validation, verification, and consensus.
+* Discuss Consensus protocol: an algorithmic approach to add a new block and to secure the chain.
+* Explain trust in the robustness of the main chain.
+* Illustrate trust in managing exceptional situations: soft fork and hard fork.
+* Demonstrate you are able to follow the steps to transact on a blockchain.
+
+### Decentralized Systems
+
+Elements of trust in a blockchain: security, validation, verification, and consensus
+
+Consensus protocol -  an algorithmic approach to add a new block and to secure the chain
+
+Trust in a decentralized blockchain is also about securing, validating, verifying, and making sure resources needed for transaction execution are available. This is accomplished by securing the chain using specific protocols, validating the transaction and blocks for tamper proofing, verifying the availability of resources for transactions, and executing and confirming the transactions.
+
+The Trust Trail is defined by these operations: validate transaction, verify gas and resources, gather transactions, execute transaction to get a new state, form the block, work towards consensus, finalize the block by the bidder, and everyone add the block to their chain and confirm the transactions.
+
+Ethereum transaction. The syntax, the transaction signature, time stamp, nonce, gas limit, and sender account balance are validated before execution
+
+The fuel, or gas points, and other resources available for smart contract execution, are also validated.
+
+Transaction signatures and hash are also verified.
+
+Executing transactions - the  Merkle tree hash of the validated transactions is computed. This is in Ethereum. This is the transaction root of the block header. All miners execute the transaction for either transfer, as well as for execution of smart contracts. The state resulting from transaction execution are used in computing the Merkle tree hash of the states, the state root of the block header. The receipt root of the block header is also computed.
+ 
+Linkage
+
+* https://arxiv.org/pdf/1706.01730.pdf
+* https://www.ted.com/talks/bettina_warburg_how_the_blockchain_will_radically_transform_the_economy?utm_campaign=tedspread--b&utm_medium=referral&utm_source=tedcomshare
+
