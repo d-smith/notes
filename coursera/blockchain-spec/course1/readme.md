@@ -417,3 +417,16 @@ Linkage
 * https://arxiv.org/pdf/1706.01730.pdf
 * https://www.ted.com/talks/bettina_warburg_how_the_blockchain_will_radically_transform_the_economy?utm_campaign=tedspread--b&utm_medium=referral&utm_source=tedcomshare
 
+### Consensus Protocol
+
+A secure chain is a single main chain with a consistent state. Every valid block added to this chain, adds to the trust level of the chain.
+
+Proof of work - used to determine the next block to add to the chain.
+
+First, compute the hash of the block header elements that is a fixed value, and a nonce that is a variable. If hash value is less than 2 par 128 for bitcoin, and less than function of difficulty for ethereum, the puzzle has been solved. If it has not been solved, repeat the process after changing the nonce value. If the puzzle has been solved, broadcast the winning block that will be verified by other miners. Non-winning miner nodes add the new block to the local copy of the chain, and move on to working on the next block. The winner gets an incentive for creating the block. Proof of Work is a consensus protocol used by bitcoin block chain and also by the current version of ethereum.
+
+Linkage:
+
+* https://www.coindesk.com/short-guide-blockchain-consensus-protocols/
+* https://medium.com/wavesprotocol/review-of-blockchain-consensus-mechanisms-f575afae38f2
+* https://www.youtube.com/watch?v=hYip_Vuv8J0
