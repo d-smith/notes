@@ -41,5 +41,23 @@ Advanced
 * Norma Variations - Arban (Joey)
 * Sounds from the Hudson - CLarke (Joey)
 * From the Shores of the Mighty Pacific - Clarke (Joey)
-* Rose Variations - Robert Russell Bennet
+* Rose Variations - Robert Russell Bennett
 
+## C Trumpet
+
+Starter
+
+* Lied - Bozza (Brian)
+* Badinage - Bozza (Joey, Bill)
+
+Intermediate
+
+* Boutade - Gabaye (Brian)
+* Caprice - Turrin (Joey)
+* Prayer and Peace - Ewazen (Bill)
+
+Advanced
+
+* Legend - Enesco (Brian)
+* Intrada - Honnegar (Joey)
+* Caprice - Bozza (Bill)
