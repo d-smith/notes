@@ -61,3 +61,23 @@ Advanced
 * Legend - Enesco (Brian)
 * Intrada - Honnegar (Joey)
 * Caprice - Bozza (Bill)
+
+## Eb Trumpet Rep
+
+Starter
+
+* Concertino - Sachse (Brian)
+* Concerto - Neruda (Joey)
+* One of the Fitzgerald on Eb (Bill)
+
+Intermediate
+
+* Concerto - Neruda (Brian, Bill)
+* Concerto - Hummel (Jpey)
+
+Advanced
+
+* Concerto - Hummel (Brian)
+* Concerto - Haydn (Joey)
+* Chamber Music VII - Suderburg (Bill)
+
