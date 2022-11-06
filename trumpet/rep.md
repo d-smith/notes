@@ -81,3 +81,16 @@ Advanced
 * Concerto - Haydn (Joey)
 * Chamber Music VII - Suderburg (Bill)
 
+## Piccolo Trumpet
+
+Starter
+
+* Sonata Prima or Secunda - Viviani (Brian)
+* Concerto in Bb - Albinoni (Joey)
+* Suite in D - Handel (Bill)
+
+Intermediate
+
+* Concerto in D - Teleman (Brian)
+* Concerto in D - Fasch (Joey)
+* 12 Heroic Marches - Teleman (Brian)
