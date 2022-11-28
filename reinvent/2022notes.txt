@@ -1,0 +1,66 @@
+
+
+# Deep Racer workshop
+
+* goal - easy way to get hands on with reinforcement learning
+* deepracer evo - latest model
+* simulator in the console
+
+AI - building an algorithm which can take and proces information
+to inform future decisions
+
+ML - subset of AI, teaching an algorithm (creating a model) how to learningwithout explicitly
+being programmed to do simulator
+
+* supervised
+* unsupervised - pattern detection
+* reinforcement
+
+Key terms
+
+* Agent - piece of software, deep racer creating
+* Environment - environment the agent interacts with
+* State - for example the position on the track
+* Action - based on the state the agent decides an action to take
+* Reward - positive rewards if the action was good, negative if no good
+* Episode - iteration
+
+
+Reward function - incentivizes particular behaviors and is at the core at
+reinforcement learning
+
+HOw?
+
+Rewards that incentivize centerline driving - weight the reward based on the car`
+being on the line or not
+
+Exploration vs exploitation
+
+NN architecture for deep racer
+
+* image as input (greyscale)
+* cnn feature detection - track borders, center line, action output layer
+* policy network to weight the extracted features
+
+Action space - space of actions your car can take
+
+* discrete 
+* continuous
+
+input data -> openvino optimized model -> openvino interence engine -> control action
+
+sagemaker - train model
+s3 - store the model
+cloudwatch - model training logs
+kinesis videostreams - capture the data from the input streams
+
+Track components - many definitions
+
+Track coordinates - x,y waypoints
+Heading - which way you are Heading
+
+distance from center parameters - wink wink
+
+
+
+
