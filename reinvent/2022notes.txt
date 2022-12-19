@@ -61,6 +61,34 @@ Heading - which way you are Heading
 
 distance from center parameters - wink wink
 
+architecture
+
+## Application Recovery Controller WOrkshop
+
+A case study in global fault isolation
+
+https://aws.amazon.com/blogs/architecture/a-case-study-in-global-fault-isolation/
+
+
+Route 53 ARC 
+
+* Multi AZ recovery - zonal shift
+    * temporarily shift away traffic from an az is the zone has an outage
+    * available for alb and nlb at the resource level
+    * grant access and go
+* Multi-region
+    * Routing controls
+        * Reliable - routing controls are durably stored across five AWS regions and can be
+        changed through any one of five unqiue regional endpoints
+        * Single tenant - changes to routing controls effect changes through route 53 APIs
+    * Safety rules
+        * customer configuratble rules that set preconfitions when making changes to routing controls
+    * Readiness checks
+        * Checks for provisioned capacity, resource limits, replication latency, custom readiness checks via custom cloudwatch alarms
+        * Can also be used for migration between regions and/or accounts
+        * Currently only available is us-west-2, don't rely on this in duress, use this to access
+        the readyiness of your Application
+        
 
 
 
