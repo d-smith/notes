@@ -126,3 +126,53 @@ contract Staker {
 
 ```
 
+## Challenge 2 - Token Vending Machine
+
+https://speedrunethereum.com/challenge/token-vendor
+
+The token contract
+
+```
+pragma solidity 0.8.4;  //Do not change the solidity version as it negativly impacts submission grading
+// SPDX-License-Identifier: MIT
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+// learn more: https://docs.openzeppelin.com/contracts/4.x/erc20
+
+contract YourToken is ERC20 {
+    constructor() ERC20("Gold", "GLD") {
+        _mint( msg.sender , 1000 * 10 ** 18);
+    }
+}
+```
+
+buyTokens:
+
+```
+ function buyTokens() public payable {
+    require(msg.value > 0, "Must send ETH to buy tokens");
+    uint numTokens = msg.value * tokensPerEth;
+    uint vendorBalance = yourToken.balanceOf(address(this));
+
+    require(vendorBalance >= numTokens, "Vendor balance is less than requested tokens");
+
+    emit BuyTokens(msg.sender, msg.value , numTokens); 
+
+    bool sent = yourToken.transfer(msg.sender, numTokens);
+    require(sent, "Token transfer failed");
+    
+  }
+  ```
+
+  withdraw:
+
+  ```
+  function withdraw() public payable onlyOwner {
+    uint ethBalance = address(this).balance;
+    require(ethBalance > 0, "No ETH to withdraw");
+
+    emit Withdraw(owner(), ethBalance);
+    (bool sent,) = owner().call{value: ethBalance}("");
+    require(sent, "Error withdrawing ETH");
+  }
+```
