@@ -130,6 +130,10 @@ contract Staker {
 
 https://speedrunethereum.com/challenge/token-vendor
 
+* Can reuse deployment accounts via copying ./packages/hardhat/mnemonic.txt across projects
+* Use `yarn account` to verify
+* 0x8406bb372E6efD0E2453bB988eA612B797C2870A
+
 The token contract
 
 ```
@@ -176,3 +180,33 @@ buyTokens:
     require(sent, "Error withdrawing ETH");
   }
 ```
+
+Sell tokens
+
+```
+function sellTokens(uint256 amount) public {
+    // Amount to sell must be greater than zero
+    require(amount > 0, "Amount to sell must be greater than zero");
+
+    // Seller must have the given amount of tokens
+    uint256 tokenBal = yourToken.balanceOf(msg.sender);
+    require(tokenBal >= amount, "Seller does not have enough tokens to sell specified amount");
+
+    // Buyer must have enough eth
+    uint256 requiredEth = amount / tokensPerEth;
+    require(address(this).balance >= requiredEth, "Vendor does not have enough eth to purchase given amount of tokens");
+
+    // Emit the event
+    emit SellTokens(msg.sender, requiredEth, amount);
+
+
+    // Transfer tokens to buyer
+    bool transferred = yourToken.transferFrom(msg.sender, address(this), amount);
+    require(transferred, "Error transferring tokens");
+    
+    // Send eth to seller
+    (bool sent,) = msg.sender.call{value: requiredEth}("");
+    require(sent, "Error sending eth to seller");
+
+  }
+  ```
