@@ -132,7 +132,8 @@ https://speedrunethereum.com/challenge/token-vendor
 
 * Can reuse deployment accounts via copying ./packages/hardhat/mnemonic.txt across projects
 * Use `yarn account` to verify
-* 0x8406bb372E6efD0E2453bB988eA612B797C2870A
+* 0xD6604D041A5cBBB96DFd128000b64a2b44ccd957
+* responsible-jeans.surge.sh
 
 The token contract
 
