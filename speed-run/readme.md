@@ -263,3 +263,8 @@ contract RiggedRoll is Ownable {
     receive() external payable {  }
 }
 ```
+
+## Challenge 4 - DEX
+
+Original notes [here](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90)
+
