@@ -267,4 +267,29 @@ contract RiggedRoll is Ownable {
 ## Challenge 4 - DEX
 
 Original notes [here](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90)
+Also see [Formulas of a Uniswap](https://hackernoon.com/formulas-of-uniswap-a-deep-dive)
+And... [Price Pool Calculation](https://youtu.be/IL7cRj5vzEU)
+
+* Local address for front end - 0xAFCa58B131b95084A8Ae5c0B22AEbA2313D9C5A1
+
+
+Price
+
+DEX invariant:
+
+$$x \times y = k$$
+
+If I put in $ \Delta x$ , what $\Delta y$ do I get out?
+
+$$(x+\Delta x)(y-\Delta y) = xy$$
+$$y(x+\Delta x) - \Delta y(x+\Delta x) = xy$$
+
+$$\Delta y(x+\Delta x)=y(x+\Delta x)-xy$$
+
+$$\Delta y = \dfrac{y(x+\Delta x) - xy}{(x+\Delta x)}$$
+
+$$\Delta y = y \dfrac{(x+\Delta x) -x}{(x+\Delta x) }$$
+
+$$\Delta y = \dfrac{y \Delta x}{x + \Delta x}$$
+
 
