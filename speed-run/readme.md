@@ -277,14 +277,14 @@ Price
 
 DEX invariant:
 
-$$x \times y = k$$
+$$xy = k$$
 
-If I put in $ \Delta x$ , what $\Delta y$ do I get out?
+If I put in $\Delta x$ , what $\Delta y$ do I get out?
 
 $$(x+\Delta x)(y-\Delta y) = xy$$
 $$y(x+\Delta x) - \Delta y(x+\Delta x) = xy$$
 
-$$\Delta y(x+\Delta x)=y(x+\Delta x)-xy$$
+$$\Delta y(x+\Delta x)-y(x+\Delta x)-xy$$
 
 $$\Delta y = \dfrac{y(x+\Delta x) - xy}{(x+\Delta x)}$$
 
