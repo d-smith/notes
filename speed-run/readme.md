@@ -269,7 +269,7 @@ contract RiggedRoll is Ownable {
 Original notes [here](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90)
 Also see [Formulas of a Uniswap](https://hackernoon.com/formulas-of-uniswap-a-deep-dive)
 And... [Price Pool Calculation](https://youtu.be/IL7cRj5vzEU)
-
+And... [A Brief HIstory of Uniswap and It's Math](https://pandichef.medium.com/a-brief-history-of-uniswap-and-its-math-90443241c9b7)
 * Local address for front end - 0xAFCa58B131b95084A8Ae5c0B22AEbA2313D9C5A1
 
 
@@ -277,19 +277,91 @@ Price
 
 DEX invariant:
 
-$$xy = k$$
+$xy = k$ where x is the reserve of token a, y is the reserve of token b
 
-If I put in $\Delta x$ , what $\Delta y$ do I get out?
+If I put in $\Delta x$ (e.g. sell token a), what $\Delta y$ do I get out?
 
-$$(x+\Delta x)(y-\Delta y) = xy$$
-$$y(x+\Delta x) - \Delta y(x+\Delta x) = xy$$
+$(x+\Delta x)(y-\Delta y) = xy$
 
-$$\Delta y(x+\Delta x)-y(x+\Delta x)-xy$$
+$y(x+\Delta x) - \Delta y(x+\Delta x) = xy$
 
-$$\Delta y = \dfrac{y(x+\Delta x) - xy}{(x+\Delta x)}$$
+$\Delta y(x+\Delta x)-y(x+\Delta x)-xy$
 
-$$\Delta y = y \dfrac{(x+\Delta x) -x}{(x+\Delta x) }$$
+$\Delta y = \dfrac{y(x+\Delta x) - xy}{(x+\Delta x)}$
 
-$$\Delta y = \dfrac{y \Delta x}{x + \Delta x}$$
+$\Delta y = y \dfrac{(x+\Delta x) -x}{(x+\Delta x) }$
 
+$\Delta y = \dfrac{y \Delta x}{x + \Delta x}$
+
+What if I want to buy token b? How much $\Delta x$ token a do I need to 
+put in to get out a desired amount of token b ($\Delta y$)?
+
+Again, we use the invariant, and express the calculation
+of the invariant in terms of token a in and token b out.
+
+$x(y-\Delta y) + \Delta x (y-\Delta y) = xy$
+
+$\Delta x = \dfrac{xy - x(y-\Delta y)}{(y-\Delta y)}$
+
+$\Delta x = x \dfrac{y - (y-\Delta y)}{(y-\Delta y)}$
+
+$\Delta x = \dfrac{x \Delta y}{(y-\Delta y)}$
+
+Anyway, the price function looks like:
+
+```
+ function price (
+        uint256 xInput,
+        uint256 xReserves,
+        uint256 yReserves
+    ) public view returns (uint256 yOutput) {
+        uint256 xInputWithFee = xInput.mul(997);
+        uint256 numerator = xInputWithFee.mul(yReserves);
+        uint256 denominator = (xReserves.mul(1000)).add(xInputWithFee);
+        return (numerator / denominator);
+    }
+```
+
+This uses the above price formula, applying a 0.3% fee using Solidity's integer math.
+
+Trading functions
+
+```
+/**
+     * @notice sends Ether to DEX in exchange for $BAL
+     */
+    function ethToToken() public payable returns (uint256 tokenOutput) {
+        require(msg.value > 0, "Cannot call with zero ETH value");
+
+        uint256 ethReserve = address(this).balance.sub(msg.value);
+        uint256 tokenReserve = token.balanceOf(address(this));
+        tokenOutput = price(msg.value,ethReserve,tokenReserve);
+
+        emit EthToTokenSwap(msg.sender,"Eth to balloons", msg.value, tokenOutput);
+        bool xferStatus = token.transfer(msg.sender, tokenOutput);
+        require(xferStatus, "error transferring tokens");
+    }
+
+    /**
+     * @notice sends $BAL tokens to DEX in exchange for Ether
+     */
+    function tokenToEth(uint256 tokenInput) public returns (uint256 ethOutput) {
+        // Checks
+        require(tokenInput > 0, "Must specify number of tokens greater than zero");
+
+        // Effects
+        uint256 tokenReserve = token.balanceOf(address(this));
+        uint256 ethReserve = address(this).balance;
+
+        ethOutput = price(tokenInput,tokenReserve,ethReserve);
+
+        emit TokenToEthSwap(msg.sender, "Balloons to Eth", ethOutput, tokenInput);
+
+        // Interactions
+        require(token.transferFrom(msg.sender,address(this),tokenInput), "Error transferring token to smart contract");
+        (bool sent,) = msg.sender.call{value: ethOutput}("");
+        require(sent, "Error sending ETH to caller");
+
+    }
+    ```
 
