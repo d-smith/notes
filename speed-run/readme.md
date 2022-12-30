@@ -328,40 +328,45 @@ Trading functions
 
 ```
 /**
-     * @notice sends Ether to DEX in exchange for $BAL
-     */
-    function ethToToken() public payable returns (uint256 tokenOutput) {
-        require(msg.value > 0, "Cannot call with zero ETH value");
+  * @notice sends Ether to DEX in exchange for $BAL
+  */
+function ethToToken() public payable returns (uint256 tokenOutput) {
+    require(msg.value > 0, "Cannot call with zero ETH value");
 
-        uint256 ethReserve = address(this).balance.sub(msg.value);
-        uint256 tokenReserve = token.balanceOf(address(this));
-        tokenOutput = price(msg.value,ethReserve,tokenReserve);
+    uint256 ethReserve = address(this).balance.sub(msg.value);
+    uint256 tokenReserve = token.balanceOf(address(this));
+    tokenOutput = price(msg.value,ethReserve,tokenReserve);
 
-        emit EthToTokenSwap(msg.sender,"Eth to balloons", msg.value, tokenOutput);
-        bool xferStatus = token.transfer(msg.sender, tokenOutput);
-        require(xferStatus, "error transferring tokens");
-    }
+    emit EthToTokenSwap(msg.sender,"Eth to balloons", msg.value, tokenOutput);
+    bool xferStatus = token.transfer(msg.sender, tokenOutput);
+    require(xferStatus, "error transferring tokens");
+}
 
-    /**
-     * @notice sends $BAL tokens to DEX in exchange for Ether
-     */
-    function tokenToEth(uint256 tokenInput) public returns (uint256 ethOutput) {
-        // Checks
-        require(tokenInput > 0, "Must specify number of tokens greater than zero");
+/**
+  * @notice sends $BAL tokens to DEX in exchange for Ether
+  */
+function tokenToEth(uint256 tokenInput) public returns (uint256 ethOutput) {
+    // Checks
+    require(tokenInput > 0, "Must specify number of tokens greater than zero");
 
-        // Effects
-        uint256 tokenReserve = token.balanceOf(address(this));
-        uint256 ethReserve = address(this).balance;
+    // Effects
+    uint256 tokenReserve = token.balanceOf(address(this));
+    uint256 ethReserve = address(this).balance;
 
-        ethOutput = price(tokenInput,tokenReserve,ethReserve);
+    ethOutput = price(tokenInput,tokenReserve,ethReserve);
 
-        emit TokenToEthSwap(msg.sender, "Balloons to Eth", ethOutput, tokenInput);
+    emit TokenToEthSwap(msg.sender, "Balloons to Eth", ethOutput, tokenInput);
 
-        // Interactions
-        require(token.transferFrom(msg.sender,address(this),tokenInput), "Error transferring token to smart contract");
-        (bool sent,) = msg.sender.call{value: ethOutput}("");
-        require(sent, "Error sending ETH to caller");
+    // Interactions
+    require(token.transferFrom(msg.sender,address(this),tokenInput), "Error transferring token to smart contract");
+    (bool sent,) = msg.sender.call{value: ethOutput}("");
+    require(sent, "Error sending ETH to caller");
 
-    }
-    ```
+}
+```
+
+
+Adding liquidity, note that to fund tokens to the account providing liquidity the UI
+requires working in wei, so to deposit and approve use the 10**18 button.
+
 
