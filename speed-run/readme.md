@@ -370,3 +370,8 @@ Adding liquidity, note that to fund tokens to the account providing liquidity th
 requires working in wei, so to deposit and approve use the 10**18 button.
 
 
+DEX 
+
+* balloon contract - 0x7F4Ec63E49A2BbA66f45CcD39a9f03661e3623E5
+* dex contract - 0x12Be7939301a62ED0d6f1E166FF12b382DFaAe56
+
