@@ -264,7 +264,7 @@ contract RiggedRoll is Ownable {
 }
 ```
 
-## Challenge 4 - DEX
+## Challenge 5 - DEX
 
 Original notes [here](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90)
 Also see [Formulas of a Uniswap](https://hackernoon.com/formulas-of-uniswap-a-deep-dive)
@@ -374,4 +374,18 @@ DEX
 
 * balloon contract - 0x7F4Ec63E49A2BbA66f45CcD39a9f03661e3623E5
 * dex contract - 0x12Be7939301a62ED0d6f1E166FF12b382DFaAe56
+* https://near-morning.surge.sh/
+
+
+## Challenge 6 - State Channel Challenge
+
+Simple example: service users lock collateral on-chain in a transaction, interact with the service, then
+finalize the interaction via a second on-chain transaction.
+
+* Sweet spot for state channels is high frequency interactions between service provider and consumers, for example
+file sharing or media streaming where chunks of data are metered out in exchange for micro payments.
+
+Ethereum Documents on State Channels is available [here](https://ethereum.org/en/developers/docs/scaling/state-channels/)
+
+Note - can switch between private keys in the wallet UI
 
