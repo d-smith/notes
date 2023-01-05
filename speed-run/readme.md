@@ -389,3 +389,8 @@ Ethereum Documents on State Channels is available [here](https://ethereum.org/en
 
 Note - can switch between private keys in the wallet UI
 
+The particulars
+
+* loud-whistle.surge.sh
+* https://goerli.etherscan.io/address/0x6ef8537f47b5034694B654D1B60054037A214162
+
