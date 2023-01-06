@@ -15,6 +15,13 @@ Foundational elements of trumpet playing
 
 Means to an end of being a great musician who expresses musical ideas using the trumpet
 
+Warm up
+
+* Get buzz and air going, get intellect going
+* Prepare for the work of the day
+* Cover all the bases, check in on fundamentals, identify focus area
+for practice
+
 ## Sound
 
 Good sound has...
@@ -26,7 +33,7 @@ Good sound has...
 To work on sound...
 
 * Mouthpiece buzzing
-  * Consistent buzz
+  * Consistent buzz, constant airflow
   * Bends, half steps, fourths
 * Transition the buzz to the trumpet
   * Same exercises, mid register
