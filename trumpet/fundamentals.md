@@ -90,3 +90,27 @@ equal sharper, and if going flat could be an aperture problem
 * Play standard exercises in the bad keys - Db, B
 * Be able to read in chunks automatically
 * Speed Studies - Nagal, Plog Volume 7
+
+## Non-Technical Fundamentals
+
+Transposition
+
+* By clef (old school) or by interval
+* Understand the key, watch for the accidentals
+* Use your earn, play it first as written then transpose
+* Start with the Arban melodies and single step transposition, move on to
+Sasche, Bordogni, etc.
+
+Rhythm
+
+* Use a metronome all the time
+* Master subdividing
+
+Lyracism
+
+* Think about phrasing, play passages dolce then apply dynamics
+
+Be musical
+
+* Play music with adjectives - sweetly, noble, plaintively
+* Use your tools - color, directness, rubato, etc.
