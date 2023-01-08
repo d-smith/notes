@@ -14,6 +14,8 @@ Course available [here](https://docs.metricsdao.xyz/analyst-resources/web3-analy
 
 [Publishing your work](https://github.com/readme/guides/publishing-your-work)
 
+Video [here](https://drive.google.com/file/d/1msewm8hfEWOHQCVC96EZqYMLu-eCXHMp/view)
+
 ```
 select count(*) FROM ethereum.core.fact_transactions
   where block_timestamp::date BETWEEN '2022-06-01'
