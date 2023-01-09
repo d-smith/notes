@@ -16,6 +16,10 @@ Course available [here](https://docs.metricsdao.xyz/analyst-resources/web3-analy
 
 Video [here](https://drive.google.com/file/d/1msewm8hfEWOHQCVC96EZqYMLu-eCXHMp/view)
 
+Tools - Flipside, Dune, Foorprint, DappLooker
+
+docs.metricsdao.xyz
+
 ```
 select count(*) FROM ethereum.core.fact_transactions
   where block_timestamp::date BETWEEN '2022-06-01'
@@ -36,3 +40,10 @@ select count(*) FROM  ethereum.core.ez_dex_swaps
   block_timestamp::date BETWEEN '2022-06-01'
   and '2022-06-30'
 ```
+
+fact tables - things that happened, raw
+ez - cleaned up, tailored
+dim - reference data, not a view over time
+
+Flipside docs - have info about each table
+
