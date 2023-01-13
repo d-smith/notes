@@ -16,6 +16,9 @@ Course available [here](https://docs.metricsdao.xyz/analyst-resources/web3-analy
 
 Video [here](https://drive.google.com/file/d/1msewm8hfEWOHQCVC96EZqYMLu-eCXHMp/view)
 
+* Metrics dao poaps - see them via app.poap.xy
+* Gnosis network
+
 Tools - Flipside, Dune, Foorprint, DappLooker
 
 docs.metricsdao.xyz
