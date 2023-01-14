@@ -50,3 +50,28 @@ dim - reference data, not a view over time
 
 Flipside docs - have info about each table
 
+Decentralized Networks
+
+* Immutable
+* Tamper proof
+* Secure
+
+Some standards
+
+* ERC 20 - fungable tokens
+* ERC 721 - non-fungable tokens
+* ERC 777 - defines functions to send tokens on behalf of another address, contract, or regular account
+* ERC 1155 - stanard for contracts that manage multiple token types
+
+Flipside
+
+* Prepared data that can be easily queries using SQL
+
+Metrics DAO
+
+* Bounties
+* Take a look at the dashboards on metrics dao, dune to see the queries behind the charts, etc.
+
+
+
+
