@@ -44,7 +44,7 @@ select count(*) FROM  ethereum.core.ez_dex_swaps
   and '2022-06-30'
 ```
 
-fact tables - things that happened, raw
+fact tables - records of things that happened, raw
 ez - cleaned up, tailored
 dim - reference data, not a view over time
 
@@ -71,6 +71,26 @@ Metrics DAO
 
 * Bounties
 * Take a look at the dashboards on metrics dao, dune to see the queries behind the charts, etc.
+
+
+EZ Tables
+
+* Example - dex swaps
+* Break out json from transactions into easy to query tables, tailored for use cases
+* Standard items for analysis - in and out in terms of tokens and dollar amounts, addresses,
+contract address
+* NFTs - providers, fees, price, buyers and sellers
+* NFT tables will have different data than swaps tables
+
+A16Z - https://debank.com/profile/0x66b870ddf78c975af5cd8edc6de25eca81791de1
+
+
+Flipside - runs on snowflake
+Dune - runes on postgres
+
+Dune
+
+* Focus on protocol-specific tables
 
 
 
