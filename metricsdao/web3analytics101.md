@@ -44,6 +44,15 @@ select count(*) FROM  ethereum.core.ez_dex_swaps
   and '2022-06-30'
 ```
 
+```
+select count(*) FROM
+ethereum.core.ez_nft_sales
+  where platform_name='opensea'
+AND
+block_timestamp::date BETWEEN '2022-06-01'
+  and '2022-06-30'
+```
+
 fact tables - records of things that happened, raw
 ez - cleaned up, tailored
 dim - reference data, not a view over time
