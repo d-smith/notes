@@ -101,6 +101,8 @@ Dune
 
 * Focus on protocol-specific tables
 
+## Segment 2
 
+[Video](https://drive.google.com/file/d/1L60fdvgRLtxCZgltVfbkrOByc4ljDn-c/view)
 
 
