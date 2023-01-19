@@ -108,3 +108,18 @@ Dune
 
 * group by
 * ehterscan.io for transaction details when investigating transactions, e.g. GALA currency
+
+```
+select currency_symbol,
+sum(platform_fee) as total_platform_fee,
+sum(platform_fee_usd) as total_platform_fee_usd
+FROM
+ethereum.core.ez_nft_sales
+where platform_name='opensea'
+AND
+block_timestamp::date BETWEEN '2022-06-01'
+  and '2022-06-30'
+group by 1
+order by 1 desc
+```
+
