@@ -123,3 +123,75 @@ group by 1
 order by 1 desc
 ```
 
+```
+select currency_symbol,
+sum(platform_fee) as total_platform_fee,
+sum(platform_fee_usd) as total_platform_fee_usd
+FROM
+ethereum.core.ez_nft_sales
+where platform_name='opensea'
+AND
+block_timestamp::date BETWEEN '2022-06-01'
+  and '2022-06-30'
+group by 1
+  having total_platform_fee_usd > 1000
+order by 1 desc
+```
+
+
+```
+select
+  date_trunc('day', block_timestamp) as _date,
+  case
+    when currency_symbol = 'ETH' then 'ETH'
+    when currency_symbol = 'WETH' then 'WETH'
+    when currency_symbol = 'USDC' then 'USDC'
+    else 'Other'
+  end as currency_symbol,
+  sum(platform_fee) as total_platform_fee,
+  sum(platform_fee_usd) as total_platform_fee_usd
+FROM
+  ethereum.core.ez_nft_sales
+where
+  platform_name = 'opensea'
+  AND block_timestamp::date BETWEEN '2022-06-01' and '2022-06-30'
+group by
+  1,
+  2
+  --  having total_platform_fee_usd > 1000
+order by
+  1 asc
+
+```
+
+
+CTE - common table expression
+
+```
+
+with opensea_sales as (
+    select * FROM  ethereum.core.ez_nft_sales
+    where block_timestamp::date BETWEEN '2022-01-01' and '2022-06-30'
+    and platform_name = 'opensea'
+)
+
+
+select
+  date_trunc('day', block_timestamp) as _date,
+  case
+    when currency_symbol = 'ETH' then 'ETH'
+    when currency_symbol = 'WETH' then 'WETH'
+    when currency_symbol = 'USDC' then 'USDC'
+    else 'Other'
+  end as currency_symbol,
+  sum(platform_fee) as total_platform_fee,
+  sum(platform_fee_usd) as total_platform_fee_usd
+FROM
+  opensea_sales
+
+group by
+  1,
+  2
+order by
+    1, 4 desc
+```
