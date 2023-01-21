@@ -195,3 +195,8 @@ group by
 order by
     1, 4 desc
 ```
+
+Learning strategies
+
+* Take a look at completed bounties, think about how those were built in an
+iterative fashion
