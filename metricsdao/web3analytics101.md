@@ -53,6 +53,13 @@ block_timestamp::date BETWEEN '2022-06-01'
   and '2022-06-30'
 ```
 
+
+```
+select * from ethereum.core.dim_labels
+where address like '0x8484ef%'
+```
+
+
 fact tables - records of things that happened, raw
 ez - cleaned up, tailored
 dim - reference data, not a view over time
@@ -200,3 +207,8 @@ Learning strategies
 
 * Take a look at completed bounties, think about how those were built in an
 iterative fashion
+
+Trust Wallet - https://trustwallet.com/
+
+Metrics Dao - course has moved to https://docs.metricsdao.xyz/analyst-resources/web3-analytics-101-async-course
+
