@@ -212,3 +212,13 @@ Trust Wallet - https://trustwallet.com/
 
 Metrics Dao - course has moved to https://docs.metricsdao.xyz/analyst-resources/web3-analytics-101-async-course
 
+
+```
+select platform_name, count(*) as count FROM
+ethereum.core.ez_nft_sales
+where event_type = 'sale'
+  and block_timestamp::date between '2022-07-01'
+  and '2022-07-31'
+group by platform_name
+order by count desc
+```
