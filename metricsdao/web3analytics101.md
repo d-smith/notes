@@ -222,3 +222,29 @@ where event_type = 'sale'
 group by platform_name
 order by count desc
 ```
+
+```
+select pool_name, count(*) as count
+FROM
+ethereum.core.ez_dex_swaps
+where platform = 'sushiswap'
+  and block_timestamp::date between '2022-07-01'
+  and '2022-07-31'
+group by pool_name
+order by count desc
+```
+
+
+```
+with top_10 as (
+  select nft_to_address, count(*) as count
+from 
+ethereum.core.ez_nft_mints
+where block_timestamp::date between '2022-07-01'
+  and '2022-07-31'
+group by nft_to_address
+having count >= 20000
+)
+select sum(count)
+from top_10
+```
