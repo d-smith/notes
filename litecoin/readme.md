@@ -14,3 +14,5 @@ https://github.com/vulpemventures/nigiri
 
 https://bitcoindev.network/getting-started-with-nigiri/
 
+[Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
+
