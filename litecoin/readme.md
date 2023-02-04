@@ -16,3 +16,14 @@ https://bitcoindev.network/getting-started-with-nigiri/
 
 [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
 
+```
+ngiri start
+```
+
+ http://localhost:5000
+
+
+alias bcli='docker exec -it bitcoin bitcoin-cli -datadir=config'
+bcli getblockchaininfo
+
+Golang btc suite - https://github.com/btcsuite/btcd
