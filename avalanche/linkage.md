@@ -1,0 +1,3 @@
+Some links...
+
+* [Create a local testnet](https://docs.avax.network/quickstart/create-a-local-test-network)
