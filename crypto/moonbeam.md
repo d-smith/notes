@@ -12,3 +12,5 @@ purestake/moonbeam:v0.29.0 \
 
 Connect a block explorer - see explore section in https://docs.moonbeam.network/builders/get-started/networks/moonbeam-dev/
 
+
+Hardhat - see https://docs.moonbeam.network/builders/build/eth-api/dev-env/hardhat/
