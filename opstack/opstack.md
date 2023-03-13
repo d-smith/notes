@@ -34,3 +34,14 @@ Chain to chain communication via message passing.
 
 Shared sequencers - cross chain composibility
 
+## Local Instance
+
+git clone https://github.com/ethereum-optimism/optimism.git
+cd optimism
+
+cd ops
+
+docker compose pull
+
+Then as per the read me, `make up` or `make down`
+
