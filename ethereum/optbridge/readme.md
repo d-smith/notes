@@ -38,3 +38,27 @@ Sequencer
 * Main block producer in the rollup
 * Optimism sequencer - fork of geth
 * Executes the transactions to get the rollup state
+* The 'super node' of the rollup.
+
+Design Principles
+
+* Deliver most realistic scaling
+* Plasma problem - doesn't support general computation
+* Modularity - can plug in other proof systems in the future
+
+Bedrock
+
+* Changes Optimism to geth with some rollup enhancements, modular/open architecture
+* Cannon prover - based on geth
+* Foundation of OP stack
+
+Truffle boxes
+
+* Boilerplate/scaffol code to start projects
+
+
+Bridging
+
+* L1, L2 cross domain - L1CrossDomainMessenger.sol and L2CrossDomainMessenger.sol
+* Deployments - see https://github.com/ethereum-optimism/optimism/tree/develop/packages/contracts/deployments
+
