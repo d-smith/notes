@@ -82,3 +82,12 @@ Transfer ETH and ERC20s
 Bridge box - uses pre-deployed contracts frm optimism
 
 * Need infura, metamash, goerli eth, optimism goerli eth, goerli dai
+
+goerli_bridge_value.js is the interesting bit
+
+Unbox
+
+```
+truffle unbox optimism-bridge optimism-bridge
+cd optimism-bridge
+```
