@@ -49,3 +49,7 @@ Then as per the read me, `make up` or `make down`
 
 Updated stack docs - this is the turtorial - https://stack.optimism.io/docs/build/getting-started/
 
+nvm use 16.19.0
+git clone https://github.com/ethereum-optimism/optimism.git op-stack
+
+yarn install
