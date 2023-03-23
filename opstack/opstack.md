@@ -53,3 +53,9 @@ nvm use 16.19.0
 git clone https://github.com/ethereum-optimism/optimism.git op-stack
 
 yarn install
+yarn build
+
+rekey output - see [private gist](https://gist.github.com/d-smith/235222ac3a245ffd373073464d766c63) 
+
+
+
