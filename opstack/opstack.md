@@ -45,3 +45,7 @@ docker compose pull
 
 Then as per the read me, `make up` or `make down`
 
+## Getting Started
+
+Updated stack docs - this is the turtorial - https://stack.optimism.io/docs/build/getting-started/
+
