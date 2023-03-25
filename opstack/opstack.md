@@ -55,7 +55,7 @@ git clone https://github.com/ethereum-optimism/optimism.git op-stack
 yarn install
 yarn build
 
-rekey output - see [private gist](https://gist.github.com/d-smith/235222ac3a245ffd373073464d766c63) 
+rekey output - see [gist](https://gist.github.com/d-smith/235222ac3a245ffd373073464d766c63) 
 
 
 L1 Block for rollup starting point
@@ -75,6 +75,20 @@ number               8716288
 timestamp            1679758272
 ```
 
+Fund accounts 
+
+Admin, Proposer, and Batcher need eth funds
+
+```
+cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+cast send --private-key $ACCT1PK $ADMIN --value 1ether
+cast balance $ADMIN
+```
+
+Deploy config
+
+* ADMIN, PROPOSER, BATCHER, SEQUENCER as per rekey addresses
+* BLOCKHASH, TIMESTAMP as above
 
 
 
