@@ -58,4 +58,25 @@ yarn build
 rekey output - see [private gist](https://gist.github.com/d-smith/235222ac3a245ffd373073464d766c63) 
 
 
+L1 Block for rollup starting point
+
+For local dev, can run anvil from a predetermined point, e.g.
+
+```
+anvil --fork-url $GOERLI_URL --fork-block-number 871635
+```
+
+Then you can reliably create a rollup starting point, e.g. the following output is reproducable:
+
+```
+$ cast block finalized --rpc-url http://localhost:8545 |  grep -E "(timestamp|hash|number)"
+hash                 0xdf00adf5e973eec33c2493e1e1deab9dc541e4f5d96e7134cd0e20346607ed50
+number               8716288
+timestamp            1679758272
+```
+
+
+
+
+
 
