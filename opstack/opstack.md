@@ -83,14 +83,29 @@ Admin, Proposer, and Batcher need eth funds
 cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 cast send --private-key $ACCT1PK $ADMIN --value 1ether
 cast balance $ADMIN
+
+cast send --private-key $ACCT1PK $PROPOSER --value 1ether
+cast balance $PROPOSER
+
+cast send --private-key $ACCT1PK $BATCHER --value 1ether
+cast balance $BATCHER
 ```
 
 Deploy config
 
 * ADMIN, PROPOSER, BATCHER, SEQUENCER as per rekey addresses
 * BLOCKHASH, TIMESTAMP as above
+* edit deploy-config/getting-started.json
 
+Running that errors out after the warning.
 
+0x666c27ce5c8e5ef69d81e0a8197c4aa072298b3a
+WARNING: setting OptimismPortal.GUARDIAN to 0x666c27ce5c8e5ef69d81e0a8197c4aa072298b3a and it has no code
 
+What if we use the first 'named' account for the anvil local?
 
+0x666... => 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 
+Doing so allows the deployment to local to complete with a warning, e.g.
+
+WARNING: setting OptimismPortal.GUARDIAN to 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 and it has no code
