@@ -109,3 +109,8 @@ What if we use the first 'named' account for the anvil local?
 Doing so allows the deployment to local to complete with a warning, e.g.
 
 WARNING: setting OptimismPortal.GUARDIAN to 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 and it has no code
+
+Sidebar - proxy troubleshooting builds
+
+Look for the package.json used for the yarn hardhat build, add the --verbose flag to the hardhat compile command. Now when you run the build it will tell you what it is trying to download and where it wants to cache it. YOu can then do the downloads manually to get on with the build.
+
