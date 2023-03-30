@@ -34,7 +34,7 @@ Chain to chain communication via message passing.
 
 Shared sequencers - cross chain composibility
 
-## Local Instance
+## Local Install
 
 git clone https://github.com/ethereum-optimism/optimism.git
 cd optimism
@@ -45,7 +45,7 @@ docker compose pull
 
 Then as per the read me, `make up` or `make down`
 
-## Getting Started
+### Getting Started
 
 Updated stack docs - this is the turtorial - https://stack.optimism.io/docs/build/getting-started/
 
@@ -57,6 +57,8 @@ yarn build
 
 rekey output - see [gist](https://gist.github.com/d-smith/235222ac3a245ffd373073464d766c63) 
 
+
+### Deploy L1 contects
 
 L1 Block for rollup starting point
 
@@ -114,3 +116,17 @@ Sidebar - proxy troubleshooting builds
 
 Look for the package.json used for the yarn hardhat build, add the --verbose flag to the hardhat compile command. Now when you run the build it will tell you what it is trying to download and where it wants to cache it. YOu can then do the downloads manually to get on with the build.
 
+Note on smart contract deployment
+
+* If you need to restart and redeploy to L1 you have to clean out your deployments, e.g. `rm -rf deployments/getting-started/` in the build contracts-bedrock directory.
+
+### Generating L2 config files
+
+go run cmd/main.go genesis l2 \
+    --deploy-config ../packages/contracts-bedrock/deploy-config/getting-started.json \
+    --deployment-dir ../packages/contracts-bedrock/deployments/getting-started/ \
+    --outfile.l2 genesis.json \
+    --outfile.rollup rollup.json \
+    --l1-rpc http://localhost:8545
+
+This generates genesis.json and rollup.json
