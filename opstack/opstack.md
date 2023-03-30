@@ -130,3 +130,45 @@ go run cmd/main.go genesis l2 \
     --l1-rpc http://localhost:8545
 
 This generates genesis.json and rollup.json
+
+cp genesis.json ~/code/op-geth
+cp jwt.txt ~/code/op-geth
+
+### Initialize op-geth
+
+Sequencer key from rekey output.
+
+### Run op-geth
+
+export SEQADDR=0x45740d200b2e27a62cbe81824337a6930c8463d5
+
+./build/bin/geth \
+	--datadir ./datadir \
+	--http \
+	--http.corsdomain="*" \
+	--http.vhosts="*" \
+	--http.addr=0.0.0.0 \
+	--http.api=web3,debug,eth,txpool,net,engine \
+	--ws \
+	--ws.addr=0.0.0.0 \
+	--ws.port=8546 \
+	--ws.origins="*" \
+	--ws.api=debug,eth,txpool,net,engine \
+	--syncmode=full \
+	--gcmode=full \
+	--nodiscover \
+	--maxpeers=0 \
+	--networkid=42069 \
+	--authrpc.vhosts="*" \
+	--authrpc.addr=0.0.0.0 \
+	--authrpc.port=8551 \
+	--authrpc.jwtsecret=./jwt.txt \
+	--rollup.disabletxpoolgossip=true \
+	--password=./datadir/password \
+	--allow-insecure-unlock \
+	--mine \
+	--miner.etherbase=$SEQADDR \
+	--unlock=$SEQADDR \
+    --http.port 9545
+
+Http port needed to avoid conflict with anvil
