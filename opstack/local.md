@@ -177,5 +177,39 @@ CRIT [04-01|08:46:46.343] Application failed                       message="inco
 
 What is we run anvil with --chain-id 5?
 
+* restart
+* fund the accounts again
 
+
+* add chain id
+
+anvil: {
+      url: process.env.L1_RPC,
+      accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
+      live: true,
+      chainId: 5
+    },
+
+
+* get hash and timestamp
+
+
+$ cast block finalized --rpc-url http://localhost:9545 | grep -E "(timestamp|hash|number)"
+hash                 0x29b67a46a093e18a2c0f7487148e991f939f22d76021078ff70e2008aa8259c2
+number               0
+timestamp            1680364561
+
+Update the anvil config file
+
+Redeploy L1 contracts
+
+Re initialize geth and genesis block
+
+Clean out datadir for op-geth
+
+Back to the same error we see from before, e.g.
+
+ERROR[04-01|13:21:03.509] failed to fetch runtime config data      err="failed to fetch unsafe block signing address from system config: failed to fetch proof of storage slot 0x65a7ed542fb37fe237fdfbdd70b31
+
+Try with local geth?
 
