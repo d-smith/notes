@@ -1,20 +1,23 @@
-# op stack - local
+geth -miner.gaslimit 12000000 \
+--http \
+--http.port 9545 \
+--http.api personal,eth,net,web3,debug \
+--allow-insecure-unlock \
+--rpc.allow-unprotected-txs \
+--http.vhosts '*,localhost,host.docker.internal' \
+--http.corsdomain '*' \
+--http.addr "0.0.0.0" \
+--dev \
+--dev.period 13 \
+--nodiscover --maxpeers 0 --mine \
+--miner.threads 1 \
+--ignore-legacy-receipts \
+--datadir ./datadir \
+--authrpc.port 9551
 
-## Local L1
+ geth attach ./datadir/geth.ipc
 
- ganache --fork --fork.network goerli -p 9545 --fork.preLatestConfirmations 100
-
- cast block 8757411 --rpc-url http://localhost:9545 | grep -E "(timestamp|hash|number)"
-
-$  cast block 8757411 --rpc-url http://localhost:9545 | grep -E "(timestamp|hash|number)"
-hash                 0x63b58a118e467246b695283fec7b7c80d58ed6687edf62cf46e0121b76f21dfa
-number               8757411
-timestamp            1680386040
-
-Generate accounts
-
-```
-$ npx hardhat rekey
+ $ npx hardhat rekey
 Mnemonic: version color below disease chronic genuine spend blur arrange hover warm violin
 
 Admin: 0xc75d791ad01d7411acbb98e892448ce8c609092d
@@ -28,18 +31,22 @@ Private Key: f5c7a01c600701d000ef4d847029d41ebb5ed91fdb685b8888ba7d87d1f087f2
 
 Sequencer: 0x9ff3f67a61041829569e244579adf8d049ccd291
 Private Key: 47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959
-```
 
-Fund some accounts
 
-export ACCT1PK=from ganache # Anvil default account 0
-cast send --rpc-url http://localhost:9545 --private-key $ACCT1PK 0xc75d791ad01d7411acbb98e892448ce8c609092d --value 1ether
-cast send --rpc-url http://localhost:9545 --private-key $ACCT1PK 0xd663cbb4ffbcbb8e25c81f22383d73c37c6bbb3c --value 1ether
-cast send --rpc-url http://localhost:9545 --private-key $ACCT1PK 0x590f96f352415cab6f07cb6f2871e6aaf3ce2c51 --value 1ether
 
-Update anvil.json with the hash and timestamp
+ eth.sendTransaction({from: eth.accounts[0], to: '0xc75d791ad01d7411acbb98e892448ce8c609092d', value: web3.toWei(5, "ether")})
+eth.sendTransaction({from: eth.accounts[0], to: '0xd663cbb4ffbcbb8e25c81f22383d73c37c6bbb3c', value: web3.toWei(5, "ether")})
+eth.sendTransaction({from: eth.accounts[0], to: '0x9ff3f67a61041829569e244579adf8d049ccd291', value: web3.toWei(5, "ether")})
+eth.sendTransaction({from: eth.accounts[0], to: '0x590f96f352415cab6f07cb6f2871e6aaf3ce2c51', value: web3.toWei(5, "ether")})
 
-Update the chain id, e.g. 
+
+
+cast block 3 --rpc-url http://localhost:9545 | grep -E "(timestamp|hash|number)"
+hash                 0x3bb1a1955de57d673ee6853f4a95fe890c5999218bbc07cce92282d3d9402630
+number               3
+timestamp            1680450880
+
+What is I shutdown and restart? Same result... excellent.
 
 anvil: {
       url: process.env.L1_RPC,
@@ -55,12 +62,7 @@ go run cmd/main.go genesis l2 \
     --outfile.rollup rollup.json \
     --l1-rpc http://localhost:9545
 
-
-
 echo "47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959" > datadir/block-signer-key
-
-
-RUn op-geth
 
 ./build/bin/geth \
 	--datadir ./datadir \
@@ -91,9 +93,6 @@ RUn op-geth
 	--unlock=0x9ff3f67a61041829569e244579adf8d049ccd291
 
 
-
-Run op-node
-
 ./bin/op-node \
 	--l2=http://localhost:8551 \
 	--l2.jwt-secret=./jwt.txt \
@@ -109,17 +108,34 @@ Run op-node
 	--l1=http://localhost:9545 \
 	--l1.rpckind=basic
 
-    Error
 
-    ROR[04-01|18:09:27.310] failed to fetch runtime config data      err="failed to fetch unsafe block signing address from system config: failed to fetch proof of storage slot 0x65a7ed542fb37fe237fdfbdd70b31598523fe5b32879e307bae27a0bd9581c08 at block 0xb55fbc00282419ddb5d90ab54363187b1f82d07db45dd05ceb53c067468fffc9: eth_getProof is not supported on a forked network. See https://github.com/trufflesuite/ganache/issues/3234 for details."
+local batcher
 
+./bin/op-batcher \
+    --l2-eth-rpc=http://localhost:8545 \
+    --rollup-rpc=http://localhost:8547 \
+    --poll-interval=1s \
+    --sub-safety-margin=6 \
+    --num-confirmations=1 \
+    --safe-abort-nonce-too-low-count=3 \
+    --resubmission-timeout=30s \
+    --rpc.addr=0.0.0.0 \
+    --rpc.port=8548 \
+    --rpc.enable-admin \
+    --max-channel-duration=1 \
+    --target-l1-tx-size-bytes=2048 \
+    --l1-eth-rpc=http://localhost:9545 \
+    --private-key=f5c7a01c600701d000ef4d847029d41ebb5ed91fdb685b8888ba7d87d1f087f2
 
-Ok - non forked?
+Works
 
-ganache -p 9545 --db .
+How to shutdown...
 
-And
-cast block 0 --rpc-url http://localhost:9545  | grep -E "(timestamp|hash|number)"
-hash                 0x6606b6ef6152cdaed194834c71ec02716b867a623301a5d7f4835f787262c73d
-number               0
-timestamp            1680398087
+Stop the batcher
+
+curl -d '{"id":0,"jsonrpc":"2.0","method":"admin_stopBatcher","params":[]}' \
+    -H "Content-Type: application/json" http://localhost:8548 | jq
+
+Then stop the batcher process, op-node, op-geth
+
+Restart in the same order

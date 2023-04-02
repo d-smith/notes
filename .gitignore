@@ -1,3 +1,6 @@
+datadir
+keystore
+clefdata
 kubectl
 node_modules/
 .ipynb_checkpoints/

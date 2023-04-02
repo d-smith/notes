@@ -37,6 +37,8 @@ Shared sequencers - cross chain composibility
 
 # OP Stack Install Notes
 
+***Instructions work with goerli. To run with local geth see local-geth.md***
+
 20230330
 
 ## Build - Source Code
