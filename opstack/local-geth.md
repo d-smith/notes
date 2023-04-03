@@ -1,5 +1,7 @@
 # Op Stack with local Geth Node
 
+Notes for running op stack with geth locally. This supplements the main instructions [here](https://stack.optimism.io/docs/build/getting-started/)
+
 In this scenario we can run a node like this. Note we avoid port conflicts with op-geth when run on the same node, and we need to enable mining for op-node to keep making progress.
 
 ```
