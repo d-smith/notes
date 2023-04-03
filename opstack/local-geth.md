@@ -1,3 +1,8 @@
+# Op Stack with local Geth Node
+
+In this scenario we can run a node like this. Note we avoid port conflicts with op-geth when run on the same node, and we need to enable mining for op-node to keep making progress.
+
+```
 geth -miner.gaslimit 12000000 \
 --http \
 --http.port 9545 \
@@ -14,9 +19,17 @@ geth -miner.gaslimit 12000000 \
 --ignore-legacy-receipts \
 --datadir ./datadir \
 --authrpc.port 9551
+```
 
+To fund accounts we need to attach to the node like this:
+
+```
  geth attach ./datadir/geth.ipc
+```
 
+For this example I generated the following accounts:
+
+```
  $ npx hardhat rekey
 Mnemonic: version color below disease chronic genuine spend blur arrange hover warm violin
 
@@ -31,39 +44,61 @@ Private Key: f5c7a01c600701d000ef4d847029d41ebb5ed91fdb685b8888ba7d87d1f087f2
 
 Sequencer: 0x9ff3f67a61041829569e244579adf8d049ccd291
 Private Key: 47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959
+```
 
+When attached to get the following can fund the accounts.
 
-
+```
  eth.sendTransaction({from: eth.accounts[0], to: '0xc75d791ad01d7411acbb98e892448ce8c609092d', value: web3.toWei(5, "ether")})
 eth.sendTransaction({from: eth.accounts[0], to: '0xd663cbb4ffbcbb8e25c81f22383d73c37c6bbb3c', value: web3.toWei(5, "ether")})
 eth.sendTransaction({from: eth.accounts[0], to: '0x9ff3f67a61041829569e244579adf8d049ccd291', value: web3.toWei(5, "ether")})
 eth.sendTransaction({from: eth.accounts[0], to: '0x590f96f352415cab6f07cb6f2871e6aaf3ce2c51', value: web3.toWei(5, "ether")})
+```
 
+I used the following to get a starting point for the L2 sync - block 3 is arbitrary. A fresh 'snap' needs
+to be done whenever redeploying starting with a clean L1 (cleaned out via deleting the datadir)
 
-
+```
 cast block 3 --rpc-url http://localhost:9545 | grep -E "(timestamp|hash|number)"
 hash                 0x3bb1a1955de57d673ee6853f4a95fe890c5999218bbc07cce92282d3d9402630
 number               3
 timestamp            1680450880
+```
 
 What is I shutdown and restart? Same result... excellent.
 
+For the hardhat deployment, I needed to set the following hardhat config. Note the chain id.
+
+
+```
 anvil: {
       url: process.env.L1_RPC,
       accounts: [process.env.PRIVATE_KEY_DEPLOYER || ethers.constants.HashZero],
       live: true,
       chainId: 1337
     },
+```
+To generate the chain config, first deploy the L1 contracts, then make sure the deployment
+config and artifacts are correctly referenced:
 
+```
 go run cmd/main.go genesis l2 \
     --deploy-config ../packages/contracts-bedrock/deploy-config/anvil.json \
     --deployment-dir ../packages/contracts-bedrock/deployments/anvil/ \
     --outfile.l2 genesis.json \
     --outfile.rollup rollup.json \
     --l1-rpc http://localhost:9545
+```
 
+Key for op-geth based on the above rekey output
+
+```
 echo "47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959" > datadir/block-signer-key
+```
 
+Running op-geth
+
+```
 ./build/bin/geth \
 	--datadir ./datadir \
 	--http \
@@ -91,8 +126,11 @@ echo "47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959" > datadi
 	--mine \
 	--miner.etherbase=0x9ff3f67a61041829569e244579adf8d049ccd291 \
 	--unlock=0x9ff3f67a61041829569e244579adf8d049ccd291
+```
 
+Running op-node
 
+```
 ./bin/op-node \
 	--l2=http://localhost:8551 \
 	--l2.jwt-secret=./jwt.txt \
@@ -107,10 +145,11 @@ echo "47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959" > datadi
 	--p2p.sequencer.key=47afecc02e839aed01864c196ad24615d449325c9ebdb1e0641e2105ceb30959 \
 	--l1=http://localhost:9545 \
 	--l1.rpckind=basic
+```
 
+Running the batcher
 
-local batcher
-
+```
 ./bin/op-batcher \
     --l2-eth-rpc=http://localhost:8545 \
     --rollup-rpc=http://localhost:8547 \
@@ -126,16 +165,17 @@ local batcher
     --target-l1-tx-size-bytes=2048 \
     --l1-eth-rpc=http://localhost:9545 \
     --private-key=f5c7a01c600701d000ef4d847029d41ebb5ed91fdb685b8888ba7d87d1f087f2
-
-Works
+```
 
 How to shutdown...
 
-Stop the batcher
+Stop the batcher:
 
+```
 curl -d '{"id":0,"jsonrpc":"2.0","method":"admin_stopBatcher","params":[]}' \
     -H "Content-Type: application/json" http://localhost:8548 | jq
+```
 
 Then stop the batcher process, op-node, op-geth
 
-Restart in the same order
+Restart in the reverse order of shutdown.
