@@ -28,3 +28,8 @@ clef - tool to manage account key pairs
     
     * Get details on transactions via `eth.getTransaction`
 
+## Install
+
+Verify the download on ubuntu via md5sum
+
+Ubuntu [install](https://geth.ethereum.org/docs/getting-started/installing-geth#ubuntu-via-ppas)
