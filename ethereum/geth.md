@@ -53,5 +53,39 @@ geth --sepolia --http --http.api eth,net,engine,admin --authrpc.jwtsecret ./jwt.
  ./prysm.sh beacon-chain --execution-endpoint=http://localhost:8551 --sepolia --suggested-fee-recipient=0x01234567722E6b0000012BFEBf6177F1D2e9758D9 --jwt-secret=jwt.hex --genesis-state=genesis.ssz
  ```
 
- 
+ ## Fundamentals
+
+ ### Node Architecture
+
+ A node consists of two clients
+
+ * Execution client - transaction handling, transaction gossip, state management, and EVM support
+ * Consensus client - block building, block gossiping, handling consensus logic
+    * Can add a validator to the consensus client to handle attestations and block proposals
+    * Running a validator makes the node eligible to propose new blocks
+
+### Ports
+
+* 8545 - allow traffic from trusted machines, block others
+* 30303 - udp and tcp, for peer to peer discovery and communications.
+
+### Sync Modes
+
+* Snap - start from relatively recent block, sync from there to the head of the chain, as opposed to rebuilding state starting from the genesis block.
+* Full - block by blok starting from genesis
+
+Archive nodes - keep all data, never pruned, good for lookups of historical data, e.g. etherscan
+Light nodes - process only headers, not block data, keeps small amount of state. Rely heavily on data served by altruistic full nodes. Not currently working on PoS.
+
+Note that consensus logic and block propogation is handled by the consensus client - syncing is a process shared between execution and consensus client. Header to start syncing from is obtained by the consensus client.
+
+Two ways for consensus client to find header to sync to:
+
+* [Optimistic sync](https://github.com/ethereum/consensus-specs/blob/dev/sync/optimistic.md) - download blocks before the execution client has validated them.
+* Checkpoint sync - start from checkpoint provided by a trusted source
+
+
+
+
+
 
