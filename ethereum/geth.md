@@ -84,7 +84,13 @@ Two ways for consensus client to find header to sync to:
 * [Optimistic sync](https://github.com/ethereum/consensus-specs/blob/dev/sync/optimistic.md) - download blocks before the execution client has validated them.
 * Checkpoint sync - start from checkpoint provided by a trusted source
 
+### Databases
 
+* Data storage split between recent blocks and state data kept in quick-access storage, older blocks and receipts kept in a freezer database.
+
+Recent blocks - kept in LevelDB, migrate to freezer db over time as they age out.
+
+Note the state database can be rebuit using data from the freezer - passing --datadir and --removedb can start the process (remove only the state db not freezer or LES database)
 
 
 
