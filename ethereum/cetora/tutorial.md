@@ -38,3 +38,5 @@ Reality
 * Biggest value of FV is finding bugs
 * Hardest problem is specification
 * FV guarantees code upgrade safety
+
+Review materials - chapter 1 [here](http://web.mit.edu/gleitz/www/Introduction%20to%20Logic%20-%20P.%20Suppes%20(1957)%20WW.pdf) and chapter 3.1 [here](https://discrete.openmathbooks.org/dmoi2/sec_propositional.html)
