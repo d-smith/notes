@@ -40,3 +40,11 @@ Reality
 * FV guarantees code upgrade safety
 
 Review materials - chapter 1 [here](http://web.mit.edu/gleitz/www/Introduction%20to%20Logic%20-%20P.%20Suppes%20(1957)%20WW.pdf) and chapter 3.1 [here](https://discrete.openmathbooks.org/dmoi2/sec_propositional.html)
+
+# 01
+
+Install instructions [here](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#)
+Solidity downloads [here](https://github.com/ethereum/solidity/releases)
+
+Tutorial also recommends Ethereum Security Bundle by tintinweb
+
