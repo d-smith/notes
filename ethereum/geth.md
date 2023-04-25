@@ -90,7 +90,7 @@ Two ways for consensus client to find header to sync to:
 
 Recent blocks - kept in LevelDB, migrate to freezer db over time as they age out.
 
-Note the state database can be rebuit using data from the freezer - passing --datadir and --removedb can start the process (remove only the state db not freezer or LES database)
+Note the state database can be rebuilt using data from the freezer - passing --datadir and --removedb can start the process (remove only the state db not freezer or LES database)
 
 
 
