@@ -19,3 +19,5 @@ EVM is a stack machine
 * Each item is a 256-bit word
 * Opcodes are in the [yellow paper](https://ethereum.github.io/yellowpaper/paper.pdf)
 
+
+EVM Puzzles - see [this](https://github.com/zaryab2000/decipher_EVM_Puzzles)
