@@ -48,3 +48,17 @@ Solidity downloads [here](https://github.com/ethereum/solidity/releases)
 
 Tutorial also recommends Ethereum Security Bundle by tintinweb
 
+Preconditions - use to eliminate infeasible states
+
+```
+rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
+	env e;
+	calldataarg args;
+	require getStateById(e, meetingId) == 0 => getnumOfParticipants(e, meetingId) == 0;
+	uint256 numOfParticipantsBefore = getnumOfParticipants(e, meetingId);
+	f(e, args);
+    uint256 numOfParticipantsAfter = getnumOfParticipants(e, meetingId);
+
+	assert numOfParticipantsBefore <= numOfParticipantsAfter, "the number of participants decreased as a result of a function call";
+}
+```
