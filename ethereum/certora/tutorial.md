@@ -50,6 +50,8 @@ Tutorial also recommends Ethereum Security Bundle by tintinweb
 
 Preconditions - use to eliminate infeasible states
 
+# 02
+
 ```
 rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
 	env e;
@@ -74,4 +76,40 @@ rule checkStartedToStateTransition(method f, uint256 meetingId) {
 	assert (stateBefore == 2 => (getStateById(e, meetingId) == 2 || getStateById(e, meetingId) == 3)), "the status of the meeting changed from STARTED to an invalid state";
 	assert ((stateBefore == 2 && getStateById(e, meetingId) == 3) => f.selector == endMeeting(uint256).selector), "the status of the meeting changed from STARTED to ENDED through a function other then endMeeting()";
 }
+```
+
+# 03 
+
+Certora uses SMT - [Satisfiability Modulo Theories](https://en.wikipedia.org/wiki/Satisfiability_modulo_theories)
+
+Z3 playground - https://jfmc.github.io/z3-play/
+
+First problem
+
+```
+; declare-const - declare a constant of a specific type
+(declare-const x Int)
+(declare-const y Int)
+(declare-const z Int)
+; assert - add an assertion to the stack
+(assert (= (+ x x) 10))
+(assert (= (+ y (* x y)) 12))
+(assert (= (- (* x y) (* z x)) x))
+; return sat if the formulas on the stack can be satisfied, unsat if not, unknown if we can't tell
+(check-sat)
+;return an interpretation that makes it sat
+(get-model)
+```
+
+Second
+
+```
+(declare-const p Bool)
+(declare-const q Bool)
+(define-fun conjecture () Bool
+    (= (=(and p q) p)
+        (=> p q))
+)
+(assert (not conjecture))
+(check-sat)
 ```
