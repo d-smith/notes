@@ -16,8 +16,8 @@ Two types of LLMs
 ## Prompting Principles
 
 * Avoid prompt injections
-* Model does not always know the boundary of its knowledge, where it hasn't perfectly memorized data it has seen during training.
-
+* Model does not always know the boundary of its knowledge, where it hasn't perfectly memorized data it has seen during training. One way to deal with this
+is to first find relevant information then answer the question based on the relevant information.
 
 ### Principal 1: Give Clear Instructions
 Tactics
