@@ -9,5 +9,9 @@ sudo apt-get update
 sudo apt-get install build-essential gdb
 ```
 
-After creating a cpp source file, at the prompting from VS Code install the C/C++ tools
+After creating a cpp source file, at the prompting from VS Code install the C/C++ tools.
+
+To run, simply press the run button in VS studio.
+
+
 
