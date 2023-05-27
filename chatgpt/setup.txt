@@ -1,0 +1,9 @@
+ 2014  python3 -m venv .venv .
+ 2015  jupyter notebook
+ 2016  source .venv/bin/activate.
+ 2017  ls
+ 2018  ls bin
+ 2019  source bin/activate
+ 2020  jupyter notebook
+ 2021  pip install notebook
+ 2022  jupyter notebook
