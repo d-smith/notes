@@ -13,3 +13,11 @@ Some notes
 * [crypto suite](https://github.com/Safeheron/safeheron-crypto-suites-cpp)
     * google test [source](https://github.com/google/googletest)
     * google test [build instructions](https://github.com/google/googletest/tree/main/googletest)
+* [openssl](https://github.com/openssl/openssl)
+    * Configure build to install in a standalone location to avoid putting OS is an unexpected state
+    * [Detailed build and install instructions](https://github.com/openssl/openssl/blob/master/INSTALL.md)
+    * mkdir $HOME/openssl
+    * ./Configure --prefix=$HOME/openssl --openssldir=$HOME/openssl
+    * make
+    * make test
+    * make install
