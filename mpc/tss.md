@@ -11,6 +11,11 @@
 
 [Ing Bank Open Source](https://github.com/ing-bank/threshold-signatures)
 
+## Algorithms
+
+[GG18](https://eprint.iacr.org/2019/114.pdf)
+[GG20](https://eprint.iacr.org/2020/540.pdf)
+[CMP](https://eprint.iacr.org/2021/060.pdf)
 
 ## Vulnerabilities
 
