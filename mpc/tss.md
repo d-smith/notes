@@ -20,3 +20,7 @@
 ## Vulnerabilities
 
 [Key extraction exploit](https://blog.verichains.io/p/2ef2525e-cd6b-4d20-9f38-1fce387f3a33)
+
+## General MPC
+
+A [master's thesis](https://core.ac.uk/download/198011581.pdf)
