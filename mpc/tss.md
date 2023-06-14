@@ -5,6 +5,9 @@
 [Threshold Signing in Blockchains](https://wiki.mpcalliance.org/key%20management%20for%20blockchain.html)
 [MPC Threshold Signing in Practice](https://medium.com/ing-blog/multiparty-computation-threshold-signing-in-practice-bringing-security-to-our-customers-f2d63b912bca)
 [NIST Multi-Party Cryptography](https://csrc.nist.gov/Projects/threshold-cryptography)
+[Awesome TSS](https://github.com/ZenGo-X/awesome-tss)
+[Ing Bank MPC TSS Paper](https://www.ingwb.com/binaries/content/assets/insights/themes/distributed-ledger-technology/ing-releases-multiparty-threshold-signing-library-to-improve-customer-security/threshold-signatures-using-secure-multiparty-computation.pdf)
+[Pallier in MPC TSS](https://medium.com/silence-laboratories/a-compute-perspective-of-mpc-tss-paillier-in-ecdsa-revisited-3e7e92f4bd0a)
 
 ## Open Source
 
