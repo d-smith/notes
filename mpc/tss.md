@@ -8,6 +8,7 @@
 [Awesome TSS](https://github.com/ZenGo-X/awesome-tss)
 [Ing Bank MPC TSS Paper](https://www.ingwb.com/binaries/content/assets/insights/themes/distributed-ledger-technology/ing-releases-multiparty-threshold-signing-library-to-improve-customer-security/threshold-signatures-using-secure-multiparty-computation.pdf)
 [Pallier in MPC TSS](https://medium.com/silence-laboratories/a-compute-perspective-of-mpc-tss-paillier-in-ecdsa-revisited-3e7e92f4bd0a)
+[What is the Threshold Signature Scheme?](https://cryptoapis.io/blog/78-what-is-the-threshold-signature-scheme)
 
 ## Open Source
 
