@@ -17,7 +17,11 @@
 ## Algorithms
 
 [GG18](https://eprint.iacr.org/2019/114.pdf)
+[Threshold ECDSA from ECDSA Assumptions:
+The Multiparty Case](https://eprint.iacr.org/2019/523.pdf)
 [GG20](https://eprint.iacr.org/2020/540.pdf)
+[A Survey of ECDSA Threshold Signing](https://eprint.iacr.org/2019/523.pdf)
+[A Survey on Threshold Signature Schemes](https://www.net.in.tum.de/fileadmin/TUM/NET/NET-2020-11-1/NET-2020-11-1_10.pdf)
 [CMP](https://eprint.iacr.org/2021/060.pdf)
 
 ## Vulnerabilities
