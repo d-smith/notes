@@ -117,6 +117,48 @@ Uniform sampling is a foundational concept in probability theory, and it is used
 If you're interested in the practical implementation of uniform sampling in programming or want to learn more about random number generation and distributions, many resources are available online, and you can refer to textbooks on probability and statistics for a deeper understanding.
 </blockquote>
 
+#### Key Pairs, Procedures, Hashing
+
+>>>
+In general, private/public key pairs are denoted sk, pk
+and are obtained from a key generation procedure KGen.
+The algorithms for signature generation and verification
+are Sig, Vf. Encryption and decryption functions are Enc
+and Dec.
+We write H for hash functions. Depending on the
+context it can be a general-purpose hash to bit strings,
+or a hash into a specific set.
+>>
+
+*Contrast a general hash to bit strings from hash into a specific set.*
+
+<blockquote>
+A general hash function and a hash function that maps bit strings into a specific set serve different purposes, but both involve the concept of hashing. Let's contrast the two:
+
+1. **General Hash Function**:
+A general hash function is a function that takes an input (often of arbitrary size) and produces a fixed-size output, which is usually a hash value or a hash code. The primary purpose of a general hash function is to distribute the input values uniformly across the output space. This helps in various applications such as data structures (hash tables), cryptography, and checksums.
+
+Key Characteristics:
+- Input: Can be of any size or type.
+- Output: Typically produces a hash value with a fixed length, regardless of the input size.
+- Purpose: Primarily used for distributing data uniformly in hash tables, ensuring data integrity, and generating unique identifiers for data (hash codes).
+- Collision Handling: Collisions (two different inputs producing the same hash value) are possible and need to be managed, often through techniques like chaining or open addressing.
+
+2. **Hash Function into a Specific Set**:
+This type of hash function maps input values (usually bit strings) into a specific set of values. Unlike a general hash function that aims for uniform distribution across a large output space, this type of hash function has a predefined set of possible outputs, and the goal is to map inputs to elements within that set.
+
+Key Characteristics:
+- Input: Typically designed to handle a specific type of input, such as bit strings.
+- Output: Maps inputs to elements within a specific set (range of values).
+- Purpose: Often used in applications where the goal is to categorize or classify inputs into predefined categories or buckets.
+- Collision Handling: Depending on the application, collision handling may be less of a concern compared to general hash functions. The set size and the nature of the problem may dictate how collisions are managed.
+
+Examples of the use of a hash function into a specific set include:
+- Hashing a password into a set of possible hash values (password hashing).
+- Assigning keys to specific locations in a cache or memory structure based on their properties (such as cache indexing).
+
+In summary, a general hash function is designed for uniform distribution across a wide range of possible hash values, while a hash function into a specific set is designed to map inputs to elements within a predefined set or range. The choice between the two depends on the specific requirements of the application.
+</blockquote>
 
 
 
