@@ -171,3 +171,83 @@ we assumed that $\mathrm G$ is known to all parties as part of the
 group’s description
 >>>
 
+*Concisely explain what a finite field is. Cite some references for further exploration.*
+
+<blockquote>
+A finite field, often denoted as GF(q) or Fq, is a mathematical structure in which arithmetic operations (addition, subtraction, multiplication, and division) are performed modulo a prime number "q," resulting in a set of elements that form a finite, closed, and algebraic system. Finite fields are fundamental in various areas, including cryptography, error-correcting codes, and algebraic geometry.
+
+Key points about finite fields:
+
+1. **Finite Size**: A finite field contains a finite number of elements. The number of elements in a finite field is given by q, which is a prime power (q = p^n, where p is a prime and n is a positive integer).
+
+2. **Closure under Operations**: Finite fields are closed under addition, subtraction, multiplication, and division (excluding division by zero). The result of each operation remains within the finite field.
+
+3. **Characteristics**: Each finite field has a characteristic, denoted as char(Fq), which is the smallest positive integer "k" such that adding "1" to itself "k" times results in zero. For prime fields (Fp, where p is a prime), the characteristic is simply the prime number "p."
+
+4. **Algebraic Structure**: Finite fields exhibit many algebraic properties similar to real numbers, but they operate within a finite set of elements, making them particularly useful in applications where finite resources are involved.
+
+References for further exploration:
+
+1. **"A Course in Number Theory and Cryptography" by Neal Koblitz**: This book provides an introduction to finite fields, their properties, and their applications in cryptography.
+
+2. **"Finite Fields and Applications" by Gary L. Mullen and Daniel Panario**: A comprehensive book that covers finite fields, their constructions, and applications in various fields.
+
+3. **"Introduction to Cryptography: Principles and Applications" by Hans Delfs and Helmut Knebl**: This book includes sections on finite fields and their role in modern cryptography.
+
+4. **Online Resources**: Websites like Khan Academy (https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-are-modular-arithmetic-and-remainder) provide introductory explanations and examples of finite fields and modular arithmetic.
+
+Exploring these resources will help you gain a deeper understanding of finite fields, their properties, and their significance in various mathematical and practical applications.
+</blockquote>
+
+In programming bitcoin, this definition is used:
+
+<blockquote>
+Mathematically, a finite field is defined as a finite set of numbers and two operations + (addition) and ⋅ (multiplication) that satisfy the following: 
+
+1. If a and b are in the set, a + b and a ⋅ b are in the set. We call this property closed.  
+
+2. 0 exists and has the property a + 0 = a. We call this the additive identity.  
+3. 1 exists and has the property a ⋅ 1 = a. We call this the multiplicative identity.  
+4. If a is in the set, –a is in the set, which is defined as the value that makes a + (–a) = 0. This is what we call the additive inverse.  
+5. If a is in the set and is not 0, $a^{–1}$ is in the set, which is defined as the value that makes $a ⋅ a^{–1} = 1$. This is what we call the multiplicative inverse.
+
+Song, Jimmy. Programming Bitcoin: Learn How to Program Bitcoin from Scratch (p. 2). O'Reilly Media. Kindle Edition. 
+</blockquote>
+
+Elliptic curve canonical form: $y^2 = x^3 + ax + b$.
+
+Elliptic curves over finite fields are used in cryptography because of the difficulty of solving the discrete logarithm problem for the group of points on an elliptic curve defined over a finite field.
+
+Scalar multiplication - denotes the number of times from add a point to itself.
+
+*Explain how point addition works on elliptic curves over finite fields, and what the discrete log problem is in this context. Include an explanation of why the addition involves reflecting the intersection over the x axis.*
+
+<blockquote>
+Point addition on elliptic curves over finite fields is a fundamental operation used in elliptic curve cryptography (ECC). It's a method for combining two points on an elliptic curve to produce a third point that also lies on the curve. This operation is essential for various cryptographic algorithms, including key exchange and digital signatures.
+
+Here's a high-level explanation of how point addition works on elliptic curves over finite fields:
+
+1. **Elliptic Curve Equation**: An elliptic curve is defined by an equation of the form: y^2 = x^3 + ax + b, where "a" and "b" are constants, and the curve is defined over a finite field. The set of points (x, y) that satisfy this equation form the elliptic curve.
+
+2. **Point Addition**: To add two points, P and Q, on the elliptic curve, you draw a line that passes through both P and Q. This line intersects the curve at a third point, R. The reflection of R over the x-axis gives you the result of the point addition operation, denoted as P + Q.
+
+3. **Special Cases**: Special care must be taken for the cases when P and Q are equal (P = Q) or when the line connecting them is vertical. These special cases have their rules for point addition.
+
+The discrete log problem in the context of elliptic curves over finite fields is related to finding a positive integer "k" given a base point G and another point P such that P = k * G. In other words, it involves determining the exponent "k" when given the result of a point multiplication operation. The difficulty of the discrete log problem in this context is the foundation of the security of certain cryptographic schemes based on elliptic curves, like the Diffie-Hellman key exchange and the Digital Signature Algorithm (DSA).
+
+The reason that point addition involves reflecting the intersection point over the x-axis is due to the properties of elliptic curves. When a line intersects an elliptic curve, it typically intersects the curve at a third point, and the slope of the line used in the calculation is used to find the coordinates of this third point. The reflection over the x-axis ensures that the resulting point is on the curve. This property, combined with the group structure of points on the elliptic curve, allows for efficient and secure cryptographic operations.
+
+Understanding the mathematical properties of elliptic curves, point addition, and the discrete log problem is crucial for implementing and analyzing elliptic curve cryptography. Further exploration of books and resources on elliptic curve cryptography, such as "Guide to Elliptic Curve Cryptography" by Darrel Hankerson, Alfred J. Menezes, and Scott Vanstone, can provide in-depth explanations and examples.
+</blockquote>
+
+Finite groups
+
+<blockquote>
+Another property of scalar multiplication is that at a certain multiple, we get to the point at infinity (remember, the point at infinity is the additive identity or 0). If we imagine a point G and scalar-multiply until we get the point at infinity, we end up with a set: 
+
+{ G, 2G, 3G, 4G, ... nG } where nG = 0 
+
+It turns out that this set is called a group, and because n is finite, we have a finite group (or more specifically, a finite cyclic group). Groups are interesting mathematically because they behave well with respect to addition: G + 4G = 5G or aG + bG = (a + b)G When we combine the fact that scalar multiplication is easy to do in one direction but hard in the other and the mathematical properties of a group, we have exactly what we need for elliptic curve cryptography.
+
+Song, Jimmy. Programming Bitcoin: Learn How to Program Bitcoin from Scratch (pp. 48-49). O'Reilly Media. Kindle Edition. 
+<blockquote>
