@@ -161,4 +161,13 @@ In summary, a general hash function is designed for uniform distribution across 
 </blockquote>
 
 
+#### Elliptic Curves
+
+>>>
+An elliptic curve $\mathrm E$ over a finite field $\mathrm K$ is denoted
+$\mathrm E(K)$, and we write $\Bbb G \subseteq  E(K)$ a subgroup of E(K)
+of prime order q. A generator for $\Bbb G$ is denoted $\mathrm G$ and
+we assumed that $\mathrm G$ is known to all parties as part of the
+group’s description
+>>>
 
