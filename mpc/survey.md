@@ -339,5 +339,40 @@ In summary, the threshold in threshold cryptography refers to the minimum number
 
 </blockquote>
 
+### Threshold Signature Schemes
+
+>>>
+**Definition 2.1.** A (t, n)-threshold signature scheme
+(TSS) for a given (single-party) signature scheme
+(KGen, Sig, Vf) involves n > 1 parties $\mathcal P_1$, . . . ,$\mathcal P_n$ capable of running the following protocols:
+
+* Thresh-KGen is a distributed key generation (DKG)
+protocol, with no previously shared key material, but
+only public identities/addresses. When the protocol
+successfully completes, each party $\mathcal P_i$ has their private share $sk_i$ of the secret key sk, all parties know
+the public key pk, and none of the parties learns
+information about sk.
+* Thresh-Sig is a distributed signing protocol, whereby
+all parties receive a message to be signed and jointly
+return a valid signature.
+
+The following protocols are optional:
+
+* Thresh-PreSig is a sub-protocol of Thresh-Sig that
+does not depend on the message to be signed. Upon
+successful execution, each participant stores a presignature that can be retrieved when Thresh-Sig is later
+completed .
+* Thresh-Reshare is a threshold secret sharing protocol
+that can be performed after Thresh-KGen. On input
+$t^ \prime$ ≤ n, the secret shares ski
+are refreshed such that
+the scheme satisfies a ($t^ \prime$
+, n) threshold.
+In practice, a number of assumptions are required
+on the reliability and integrity of the communications
+between participants, as we’ll discuss in §5.3.
+>>>
+
+
 
 
