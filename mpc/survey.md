@@ -373,6 +373,34 @@ on the reliability and integrity of the communications
 between participants, as we’ll discuss in §5.3.
 >>>
 
+### Arithmetic Black Box Primitives
+
+
+>>>
+To describe MPC protocols operating over shared secrets, complex operations can be broken down in a set
+of simple operations that are each individually defined
+as secure MPC operations. For this, we use the arithmetic black box (ABB) [DN03] framework and its extension ABB+ [DKO+19], which includes all the operations
+needed to compute threshold signatures.
+>>>
+
+*What is an arithmetic black box?*
+
+From [Universally Composable Efficient Multiparty
+Computation from Threshold Homomorphic
+Encryption](https://iacr.org/archive/crypto2003/27290247/27290247.pdf)
+
+<blockquote>
+An
+ABB can be thought of as a secure general-purpose computer. Every party can
+in private specify inputs to the ABB, and any majority of parties can ask it
+to perform any feasible computational task and make the result (and only the
+result) public. Moreover the ABB can be invoked several times and keeps an
+internal state between invocations. This point of view allows for easier and more
+modular proofs, and also makes it easier to use our protocols as tools in other
+constructions.
+</blockquote>
+
+
 
 
 
