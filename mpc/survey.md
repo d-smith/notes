@@ -400,6 +400,13 @@ modular proofs, and also makes it easier to use our protocols as tools in other
 constructions.
 </blockquote>
 
+>>>
+ABB+ assumes that the secrets are shared via a linear
+secret sharing scheme. That is, for any $a, b \in \Bbb Z_p$ and
+representations [x], [y] or \<x>,\<y>, the parties can compute
+a[x]+b[y] = [ax+by] and a· \<x> + b · \<y> = \<ax + by> locally
+>>>
+
 
 
 
