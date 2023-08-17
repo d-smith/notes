@@ -408,6 +408,87 @@ a[x]+b[y] = [ax+by] and a· \<x> + b · \<y> = \<ax + by> locally
 >>>
 
 
+### Cryptographic Toolbox
+
+#### Commitment Schemes
+
+>>>
+A party $\mathrm A$ can temporarily
+hide a message m that cannot be changed by first computing c ← Commit(m, r) where r is fresh randomness, and
+later sharing r with $\beta$, which allows them to verify the
+commitment’s validity by running Open(m, c; r), which
+always succeeds if c = Commit(m, r) (correctness)
+>>>
+
+*What is a cryptographic commitment scheme?*
+
+<blockquote>
+A cryptographic commitment scheme is a fundamental concept in cryptography that allows a party to commit to a value while keeping it hidden from others, ensuring that the committed value cannot be changed or revealed before a later point in time. Commitment schemes are used in various cryptographic protocols to achieve properties like commitment to a decision, data integrity, and fairness.
+
+Here's how a basic cryptographic commitment scheme works:
+
+1. **Commitment Phase**: A party (the committer) chooses a value to commit to and uses a commitment function to generate a commitment. The commitment is a fixed-size output that hides the original value, making it difficult for others to determine the committed value.
+
+2. **Reveal Phase**: At a later time, the committer reveals the committed value. This process involves providing the original value and any necessary auxiliary information.
+
+The properties of a secure cryptographic commitment scheme include:
+
+- **Hiding**: The committed value should be computationally hiding, meaning that it's difficult for an attacker to determine the committed value from the commitment, even with significant computational resources.
+
+- **Binding**: The committed value should be binding, ensuring that once a commitment is made, it's infeasible to change the committed value without detection. This prevents the committer from later claiming a different value.
+
+- **Non-malleability**: An adversary shouldn't be able to create a commitment for a related value without knowing the original committed value.
+
+Cryptographic commitment schemes find applications in various cryptographic protocols, including:
+
+- **Zero-Knowledge Proofs**: Commitments can be used to create zero-knowledge proofs of knowledge, allowing one party to prove knowledge of a value without revealing the value itself.
+
+- **Secure Multi-Party Computation**: Commitments can facilitate protocols where participants commit to their inputs before the inputs are revealed and used in computations, ensuring fairness and security.
+
+- **Blockchain and Cryptocurrencies**: Commitment schemes play a role in certain cryptographic constructs like Pedersen commitments, which are used in blockchain and cryptocurrency systems for privacy-preserving transactions.
+
+- **Fair Exchanges**: Commitment schemes can be used to achieve secure and fair exchanges of values between parties, where neither party can back out without detection.
+
+It's important to choose well-established commitment schemes that have undergone rigorous analysis and meet specific security requirements for your particular application.
+</blockquote>
 
 
+*Explain what a Pedersen commitment is, and cite authoritative sources.*
+
+<blockquote>
+A Pedersen commitment is a cryptographic primitive used to commit to a value while maintaining its privacy and ensuring the ability to prove properties about the committed value, such as its correctness and range. It's named after its inventor, Torben Pedersen. Pedersen commitments are widely used in cryptographic protocols, especially in applications like blockchain, privacy-preserving computations, and cryptographic proofs.
+
+In a Pedersen commitment, two large prime numbers (p and q) and a generator point (G) on an elliptic curve are used. The commitment is formed by combining a linear combination of two points: one representing the committed value (V) and the other being a point on the elliptic curve raised to a blinding factor (R), which adds randomness and enhances security.
+
+The Pedersen commitment formula can be expressed as:
+
+**C = V * G + R * H**
+
+Where:
+- **C** is the commitment.
+- **V** is the value being committed to.
+- **G** is the generator point on the elliptic curve.
+- **R** is the blinding factor, a randomly chosen value.
+- **H** is another point on the elliptic curve.
+
+Pedersen commitments provide two crucial properties:
+
+1. **Hiding**: An observer who only knows the commitment cannot determine the committed value V or the blinding factor R, even with significant computational resources.
+
+2. **Binding**: Given a commitment C and a pair of values (V, R), it's infeasible to find another pair of values (V', R') such that C = V' * G + R' * H, unless V = V' and R = R'.
+
+These properties make Pedersen commitments suitable for a wide range of cryptographic applications where privacy and accountability are essential.
+
+Citing authoritative sources for further information:
+
+1. **"Introduction to Modern Cryptography: Principles and Protocols" by Jonathan Katz and Yehuda Lindell**: This textbook provides comprehensive coverage of cryptographic concepts, including Pedersen commitments.
+
+2. **"Bulletproofs: Short Proofs for Confidential Transactions and More" by Benedikt Bünz et al.**: This research paper discusses the use of Pedersen commitments in Bulletproofs, a non-interactive zero-knowledge proof protocol.
+
+3. **"Pedersen Commitments" (Original Paper by Torben Pedersen)**: The original paper by Torben Pedersen, titled "Non-Interactive and Information-Theoretic Secure Verifiable Secret Sharing," introduces the concept of Pedersen commitments.
+
+Exploring these sources will provide you with a deeper understanding of Pedersen commitments and their applications in modern cryptography.
+</blockquote>
+
+Note - ChatGPT is not able to give a good explanation of what ElGamal commitments are. [This resource](https://medium.com/iovlabs-innovation-stories/commitment-schemes-4f3590be8c5) does.
 
