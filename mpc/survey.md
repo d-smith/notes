@@ -492,3 +492,27 @@ Exploring these sources will provide you with a deeper understanding of Pedersen
 
 Note - ChatGPT is not able to give a good explanation of what ElGamal commitments are. [This resource](https://medium.com/iovlabs-innovation-stories/commitment-schemes-4f3590be8c5) does.
 
+*Why do some explainations of Pedersen commitments use addition and some use multiplication and exponentiation?*
+
+<blockquote>
+The variations in explanations of Pedersen commitments that involve addition, multiplication, and exponentiation are due to the different mathematical frameworks in which these explanations are presented. Pedersen commitments can be understood and described using multiple perspectives, depending on the context and the mathematical notation being used.
+
+1. **Additive Notation**: Some explanations use additive notation to describe Pedersen commitments because they draw parallels with additive operations in algebraic structures like groups and rings. In this context, the commitment operation is represented using symbols that resemble addition. For example, the Pedersen commitment formula can be written as "C = m * G + r * H," where "*" represents an additive-like operation in the context of elliptic curve groups.
+
+2. **Multiplicative Notation**: Other explanations use multiplicative notation to describe Pedersen commitments, especially when the elliptic curve group is defined in a multiplicative form. This form is common in cryptographic literature because of the mathematical properties of elliptic curve groups. In this notation, the commitment formula might be presented as "C = G^m * H^r," where "^" represents exponentiation.
+
+The choice of notation often depends on the mathematical framework that's being used to explain Pedersen commitments and the context in which they are being applied. Elliptic curve groups have both additive and multiplicative representations, and the notation used can vary based on the mathematical properties being emphasized and the familiarity of the audience with different notations.
+
+Ultimately, both notations are valid and accurate ways of describing Pedersen commitments. It's important to understand the underlying mathematical concepts and relationships between the operations regardless of the notation used. When encountering explanations, it's beneficial to have a general understanding of both additive and multiplicative perspectives to ensure a comprehensive understanding of Pedersen commitments.
+</blockquote>
+
+>>>
+TSS protocols often use Pedersen commitments, which
+work as follows: Given a cyclic group G of prime order q
+and two generators G, H $\in \Bbb G$, the commitment of an m ∈
+$\Bbb Z_q$ picks r ← $\Bbb Z_q$ and sets Commit(m, r) = m·G+r ·H.
+The opening phase checks if c = m · G + r · H given m.
+ElGamal commitments are also found in TSS: A difference with Pedersen is that committed messages are $\Bbb G$
+elements rather than $\Bbb Z_q$ elements, and that commitment
+computes Commit(M, r) = (r · G, M + r · H).
+>>>
