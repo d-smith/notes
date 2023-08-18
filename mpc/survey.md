@@ -516,3 +516,93 @@ ElGamal commitments are also found in TSS: A difference with Pedersen is that co
 elements rather than $\Bbb Z_q$ elements, and that commitment
 computes Commit(M, r) = (r · G, M + r · H).
 >>>
+
+#### Additively Homomorphic Encryption
+
+*Explain additively homomorphic encryption. Include some authoritative sources where I can get detailed information*
+
+<blockquote>
+Additively homomorphic encryption is a type of encryption scheme that allows mathematical operations to be performed on encrypted data in such a way that when the encrypted results are decrypted, they correspond to the result of performing the same operations on the original plaintext values. In other words, it enables secure computation on encrypted data while maintaining privacy.
+
+With additively homomorphic encryption, you can:
+
+1. Encrypt two plaintext values: `a` and `b`.
+2. Perform an encrypted operation on the ciphertexts, such as addition.
+3. Decrypt the result to obtain the sum of `a` and `b`.
+
+This property is particularly useful for applications that require privacy-preserving computations, such as secure multi-party computation and privacy-enhanced data analysis.
+
+Additively homomorphic encryption is defined by the property:
+
+E(a) + E(b) = E(a + b)
+
+Here, `E` represents the encryption function, and `a` and `b` are plaintext values.
+
+An example of additively homomorphic encryption is the Paillier encryption scheme, which allows encrypted values to be added together while still providing the correct decryption results.
+
+Authoritative Sources for Detailed Information:
+
+1. **"Introduction to Modern Cryptography: Principles and Protocols" by Jonathan Katz and Yehuda Lindell**: This textbook covers various cryptographic concepts, including homomorphic encryption, in depth.
+
+2. **"Fully Homomorphic Encryption" (Original Paper by Craig Gentry)**: The seminal paper by Craig Gentry introduces fully homomorphic encryption, a more advanced version of homomorphic encryption that includes both additive and multiplicative properties.
+
+3. **"Homomorphic Encryption Standard" by The HomomorphicEncryption.org Consortium**: This resource provides information about various homomorphic encryption schemes, including additively homomorphic ones.
+
+4. **Research Papers and Conference Proceedings**: Look for research papers from cryptographic conferences such as IEEE S&P (Security and Privacy), Eurocrypt, and ACM CCS (Conference on Computer and Communications Security). These papers often discuss various aspects of homomorphic encryption, including additively homomorphic schemes.
+
+Exploring these resources will provide you with a comprehensive understanding of additively homomorphic encryption and its applications in modern cryptography.
+</blockquote>
+
+*What is the Paillier encryption scheme?*
+
+<blockquote>
+The Paillier encryption scheme is a homomorphic encryption scheme that allows for the encryption of data and the computation of certain operations on the encrypted data without needing to decrypt it first. It was introduced by Pascal Paillier in 1999 and is widely used in applications that require privacy-preserving computations, such as secure voting, privacy-enhanced data analysis, and more.
+
+The main property of the Paillier encryption scheme is its additive homomorphism. This means that you can add the encrypted values together and, when decrypted, the result will be the sum of the corresponding plaintext values. Additionally, the scheme supports multiplication of an encrypted value by a constant, and when decrypted, the result will be the corresponding plaintext value raised to that constant.
+
+For details on key generation, encryption, and decryption see [this article](https://en.wikipedia.org/wiki/Paillier_cryptosystem) and [this paper](https://link.springer.com/content/pdf/10.1007/3-540-48910-X_16.pdf).
+
+</blockquote>
+
+#### Zero-Knowledge Proofs
+
+*Explain zero-knowledge proofs and how they are used in MPC threshold cryptography. Include some authoritative sources where I can get detailed information*
+
+<blockquote>
+Zero-knowledge proofs are cryptographic protocols that allow one party (the prover) to prove to another party (the verifier) that a certain statement is true, without revealing any information about the statement itself other than its truth. In other words, a zero-knowledge proof demonstrates knowledge of information without disclosing that information.
+
+In the context of zero-knowledge proofs, there are three important properties:
+
+1. **Completeness**: If the statement is true, an honest prover can convince an honest verifier with high probability.
+
+2. **Soundness**: If the statement is false, no cheating prover can convince an honest verifier except with negligible probability.
+
+3. **Zero-Knowledge**: Even if the statement is true, the verifier learns nothing about the actual statement beyond its truth.
+
+Zero-knowledge proofs are used in various applications, including cryptographic protocols like Multiparty Computation (MPC) threshold cryptography. In MPC, multiple parties collaborate to perform computations on their private inputs without revealing those inputs to each other. Zero-knowledge proofs play a role in ensuring the security and correctness of the computations while preserving the privacy of the inputs.
+
+In the context of MPC threshold cryptography:
+
+1. **Verifiable Secret Sharing (VSS)**: Zero-knowledge proofs can be used to prove the validity of secret sharing without revealing the actual shares. This ensures that each party contributes a valid share of the secret without revealing the share itself.
+
+2. **Consistency of Shares**: Zero-knowledge proofs can demonstrate that each party's secret share is consistent with the corresponding share in the distributed secret. This prevents malicious participants from submitting inconsistent shares.
+
+3. **Correctness of Computation**: In threshold cryptographic protocols, parties collaborate to perform computations. Zero-knowledge proofs can be used to prove that each party's contribution is correct without revealing the actual data used in the computation.
+
+4. **Input Privacy**: Zero-knowledge proofs can help parties verify that their inputs were used correctly in the computation without revealing the inputs themselves.
+
+Authoritative Sources for Detailed Information:
+
+1. **"Zero-Knowledge Proofs: An Illustrated Primer" by Vitalik Buterin**: This article provides an intuitive introduction to zero-knowledge proofs and their applications.
+
+2. **"Zero-Knowledge Proofs" (Original Paper by Shafi Goldwasser, Silvio Micali, and Charles Rackoff)**: This seminal paper introduces zero-knowledge proofs and their theoretical foundations.
+
+3. **"Foundations of Cryptography: Volume 1, Basic Techniques" by Oded Goldreich**: This book covers various cryptographic concepts, including zero-knowledge proofs, in depth.
+
+4. **Research Papers and Conference Proceedings**: Look for research papers from cryptographic conferences such as IEEE S&P (Security and Privacy), Eurocrypt, and ACM CCS (Conference on Computer and Communications Security). These papers often discuss zero-knowledge proofs and their applications in MPC threshold cryptography.
+
+Exploring these resources will provide you with a comprehensive understanding of zero-knowledge proofs and how they contribute to the security and privacy of MPC threshold cryptography.
+</blockquote>
+
+
+
