@@ -604,5 +604,13 @@ Authoritative Sources for Detailed Information:
 Exploring these resources will provide you with a comprehensive understanding of zero-knowledge proofs and how they contribute to the security and privacy of MPC threshold cryptography.
 </blockquote>
 
+From the paper:
+
+>>>
+   Proofs used are for example proofs of knowledge of
+   discrete logarithm, of a modulus factorization, proofs of
+   consistency of a Paillier ciphertext, and range proofs.
+>>>
+
 
 
