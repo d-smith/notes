@@ -36,3 +36,5 @@ The Multiparty Case](https://eprint.iacr.org/2019/523.pdf)
 ## General MPC
 
 A [master's thesis](https://core.ac.uk/download/198011581.pdf)
+
+[Tutorial and Whitepaper](https://nakasendoproject.org/Threshold-Signatures-whitepaper-nchain.pdf)
