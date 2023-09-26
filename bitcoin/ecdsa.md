@@ -26,3 +26,4 @@ y = 15*x + 3
 https://andrea.corbellini.name/ecc/interactive/reals-add.html
 
 
+Generator point 15,13 on F17 A = 0, b = 7
