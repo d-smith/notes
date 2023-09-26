@@ -9,6 +9,10 @@ Basic outline
 * Finite fields
 * Elliptic curves
 * secp256k1
+    * Params
+    * private key - random number 
+    * public key - pub key = random number * generator point
+    * compression - symmetry of the equation
 * Signature basics and the discrete log problem
 * Signing and verifying
 
@@ -26,4 +30,4 @@ y = 15*x + 3
 https://andrea.corbellini.name/ecc/interactive/reals-add.html
 
 
-Generator point 15,13 on F17 A = 0, b = 7
+Generator point 15,13 on F17 A = 0, b = 7 - illustrate how multiplying the generator point up to r 
