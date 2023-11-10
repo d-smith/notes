@@ -1,0 +1,8 @@
+Environment sharing:
+
+Share from cloud9 ide to another IDE user
+
+IDE user can see enviroments shared with then and connect from the list in the console.
+
+Note once launched you can attached a different service role to the EC2 instance to customized the 
+fine grained roles in effect which using the IDE.
