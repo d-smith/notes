@@ -1,0 +1,73 @@
+@startuml
+
+class MessageTransmitter
+interface IMessageTransmitter
+class Pausable
+class Rescuable
+class Attestable
+interface IRelayer
+Interface IReceiver
+
+class Ownable2Step
+class Ownable
+
+MessageTransmitter *-- IMessageTransmitter
+IMessageTransmitter *-- IRelayer
+IMessageTransmitter *-- IReceiver
+MessageTransmitter *-- Pausable
+MessageTransmitter *-- Rescuable
+MessageTransmitter o-- Attestable
+
+Ownable2Step *-- Ownable
+
+IReceiver : receiveMessage()
+
+IRelayer : sendMessage()
+IRelayer : sendMessageWithCaller()
+IRelayer : replaceMessage()
+
+Pausable *-- Ownable2Step
+Pausable : pauser() 
+Pausable : pause()
+Pausable : unpause()
+Pausable : updatePauser()
+
+Rescuable *-- Ownable2Step
+Rescuable : rescuer()
+Rescuable : rescueERC20()
+Rescuable : updatePauser()
+
+Attestable *-- Ownable2Step
+Attestable : enableAttester()
+Attestable : isEnabledAttester()
+Attestable : getNumEnabledAttesters()
+Attestable : updateAttesterManager()
+Attestable : disableAttester()
+Attestable : setSignatureThreshold()
+Attestable : attesterManager()
+Attestable : getEnabledAttester()
+Attestable : _setAttesterManager()
+Attestable : _verifyAttestationSignatures()
+Attestable : _recoverAttesterSignature()
+
+MessageTransmitter : sendMessage() <<override>>
+MessageTransmitter : replaceMessage() <<override>>
+MessageTransmitter : sendMessageWithCaller() <<override>>
+MessageTransmitter : receiveMessage() <<override>>
+MessageTransmitter : setMaxMessageBodySize()
+MessageTransmitter : _sendMessage()
+MessageTransmitter : _hashSourceAndNonce()
+MessageTransmitter : _reserveAndIncrementNonce()
+
+Ownable2Step : pendingOwner()
+Ownable2Step : transferOwnership() <<override>>
+Ownable2Step : _transferOwnership() <<override>>
+Ownable2Step : acceptOwnership()
+
+Ownable : owner()
+Ownable : _checkOwner()
+Ownable : transferOwnership()
+Ownable : _transferOwnership()
+
+
+@enduml
