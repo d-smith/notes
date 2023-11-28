@@ -1,0 +1,31 @@
+@startuml
+
+class TokenMinter
+TokenMinter *-- ITokenMinter
+TokenMinter o-- TokenController
+TokenMinter *-- Pausable
+TokenMinter *-- Rescuable
+
+TokenMinter : mint() <<override>>
+TokenMinter : burn() <<override>>
+TokenMinter : addLocalTokenMessenger()
+TokenMinter : removeLocalTokenMessenger()
+TokenMinter : setTokenController() <<override>>
+TokenMinter : getLocalToken() <<override>>
+TokenMinter : _isLocalTokenMessenger()
+
+ITokenMinter : mint()
+ITokenMinter : burn()
+ITokenMinter : setTokenController()
+ITokenMinter : getLocalToken()
+
+abstract class TokenController
+TokenController : tokenController()
+TokenController : linkTokenPair()
+TokenController : unlinkTokenPair()
+TokenController : setMaxBurnAmountPerMessage()
+TokenController : _setTokenController()
+TokenController : _getLocalToken()
+TokenController : _hashRemoteDomainAndToken()
+
+@enduml

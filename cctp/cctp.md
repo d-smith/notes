@@ -41,6 +41,6 @@ Open Zeppelin Acess Control - see https://docs.openzeppelin.com/contracts/2.x/ac
 
 ## TokenMinter
 
-
+![TokenMinter](./tokenMinter.png)
 
 
