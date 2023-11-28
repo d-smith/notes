@@ -31,7 +31,10 @@ Open Zeppelin Acess Control - see https://docs.openzeppelin.com/contracts/2.x/ac
 * Ownable - most basic form of access control: a contract has an owner can can do administrative stuff on it
 * Ownable2Step - transfer of ownership requires acceptance by the new owner
 
-TokenMessenger
+## TokenMessenger
 
-* is IMessageHandler, Rescuable
 
+
+## MessageTransmitter
+
+![MessageTransmitter](./MessageTransmitter.png)
