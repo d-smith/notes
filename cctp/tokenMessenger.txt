@@ -1,0 +1,34 @@
+@startuml
+
+class TokenMessenger
+interface IMessageHandler
+class Rescuable
+
+TokenMessenger *-- IMessageHandler
+TokenMessenger *-- Rescuable
+TokenMessenger o-- MessageTransmitter
+
+IMessageHandler : handleReceiveMessage()
+
+Rescuable *-- Ownable2Step
+Rescuable : rescuer()
+Rescuable : rescueERC20()
+Rescuable : updatePauser()
+
+TokenMessenger : depositForBurn()
+TokenMessenger : depositForBurnWithCaller()
+TokenMessenger : replaceDepositForBurn()
+TokenMessenger : handleReceiveMessage()
+TokenMessenger : addRemoteTokenMessenger()
+TokenMessenger : removeRemoteTokenMessenger()
+TokenMessenger : addLocalMinter()
+TokenMessenger : removeLocalMinter()
+TokenMessenger : _depositForBurn()
+TokenMessenger : _sendDepositForBurnMessage()
+TokenMessenger : _mintAndWithdraw()
+TokenMessenger : _getRemoteTokenMessenger()
+TokenMessenger : _getLocalMinter()
+TokenMessenger : _isRemoteTokenMessenger()
+TokenMessenger : _isLocalMessageTransmitter()
+
+@enduml
