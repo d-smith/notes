@@ -1,0 +1,28 @@
+@startuml
+
+class Attestible <<contract>>
+class ERC20 <<contract>>
+
+class TokenMinter <<contract>>
+
+TokenMessenger o-- TokenMinter
+TokenMinter o-- TokenMessenger
+TokenMinter : pauser <<address>>
+TokenMinter : rescuer <<address>>
+TokenMinter o-- ERC20
+TokenMinter : remoteERC20 <<address>>
+
+class MessageTransmitter <<contract>>
+MessageTransmitter o-- Attestible
+MessageTransmitter : pauser <<address>>
+MessageTransmitter  : rescuer <<address>>
+
+class TokenMessenger <<contract>>
+TokenMessenger o-- MessageTransmitter
+TokenMessenger : rescuer <<address>>
+TokenMessenger : remoteTokenMessenger <<address>>
+
+
+
+
+@enduml

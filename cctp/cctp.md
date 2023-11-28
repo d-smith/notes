@@ -44,3 +44,35 @@ Open Zeppelin Acess Control - see https://docs.openzeppelin.com/contracts/2.x/ac
 ![TokenMinter](./tokenMinter.png)
 
 
+## Deployment
+
+1. Deploy the MessageTransmitter contract
+1.1 Add pauser
+1.2 Add rescuer
+
+Note the attestable address must be known at deployment time
+
+2. Deploy TokenMessenger contract
+2.1 Uses address from deployment of MessageTransmitter
+2.2 Add rescuer
+
+3. Deploy TokenMinter contract
+3.1 Uses address from deployment of TokenMessenger
+3.2 Add local token messenger 
+3.3 Update pauser
+3.4 Update rescuer
+
+4. Add minter address to token messenger
+
+5. Link token pair
+
+* This links the token pair contract address with the remote address and remote domain
+* In the deployment script the max burn amount per message is also set
+
+6. Add remote token messenger to token minter
+
+
+Note contract addresses can be [precomputed](https://ethereum.stackexchange.com/questions/760/how-is-the-address-of-an-ethereum-contract-computed).
+
+
+![Deployment](./deployed.png)
