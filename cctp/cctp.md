@@ -50,14 +50,17 @@ Open Zeppelin Acess Control - see https://docs.openzeppelin.com/contracts/2.x/ac
 1.1 Add pauser
 1.2 Add rescuer
 
-Note the attestable address must be known at deployment time
+Note the attestable address must be known at deployment time. This is set from the ATTESTER_ADDRESS environment variable.
 
 2. Deploy TokenMessenger contract
 2.1 Uses address from deployment of MessageTransmitter
 2.2 Add rescuer
 
 3. Deploy TokenMinter contract
-3.1 Uses address from deployment of TokenMessenger
+3.1 Uses address from deployment of TokenMessenger as the token controller argument
+
+* Token controller address comes from environment
+
 3.2 Add local token messenger 
 3.3 Update pauser
 3.4 Update rescuer
@@ -76,3 +79,41 @@ Note contract addresses can be [precomputed](https://ethereum.stackexchange.com/
 
 
 ![Deployment](./deployed.png)
+
+Based on the above, it should be possible to reuse the CCTP contracts with any token that can fit the
+CCTP contracts.
+
+### Deployment Illustrated
+
+Environment variables
+
+    - `MESSAGE_TRANSMITTER_DEPLOYER_KEY`
+    - `TOKEN_MESSENGER_DEPLOYER_KEY`
+    - `TOKEN_MINTER_DEPLOYER_KEY`
+    - `TOKEN_CONTROLLER_DEPLOYER_KEY`
+    - `ATTESTER_ADDRESS`
+    - `USDC_CONTRACT_ADDRESS`
+    - `REMOTE_USDC_CONTRACT_ADDRESS`
+    - `MESSAGE_TRANSMITTER_PAUSER_ADDRESS`
+    - `TOKEN_MINTER_PAUSER_ADDRESS`
+    - `MESSAGE_TRANSMITTER_RESCUER_ADDRESS`
+    - `TOKEN_MESSENGER_RESCUER_ADDRESS`
+    - `TOKEN_MINTER_RESCUER_ADDRESS`
+    - `TOKEN_CONTROLLER_ADDRESS`
+    - `DOMAIN`
+    - `REMOTE_DOMAIN`
+    - `BURN_LIMIT_PER_MESSAGE`
+
+The USDC contract addresses must be known. But... what about the token controller address?
+
+- Token controller is at https://etherscan.io/address/0x8a9A13A106cB89E15410B2AB4488135155032169
+- On-chain this is an EOA, not an address.
+- This represents the address who can access functions gated by the `onlyTokenController` modifier.
+
+For the attester:
+
+- Sourced using the `ATTESTER_ADDRESS` environment variable
+- The MessageTransmitter is at https://etherscan.io/address/0x0a992d191deec32afe36203ad87d7d289a738f81
+- The Attester abstract Solidity contract is constructed with an EOA address, which is used to guard method calls using the `onlyAttesterManager` modifier.
+- The address passed to the constructor is used to initalize the attesterManager variable.
+
