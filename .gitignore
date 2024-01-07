@@ -1,3 +1,4 @@
+.certora_internal/
 helloworld/helloworld
 hello2
 scratch
