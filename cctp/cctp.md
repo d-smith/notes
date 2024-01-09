@@ -47,30 +47,36 @@ Open Zeppelin Acess Control - see https://docs.openzeppelin.com/contracts/2.x/ac
 ## Deployment
 
 1. Deploy the MessageTransmitter contract
-1.1 Add pauser
-1.2 Add rescuer
+
+    * Add pauser
+    * Add rescuer
 
 Note the attestable address must be known at deployment time. This is set from the ATTESTER_ADDRESS environment variable.
 
 2. Deploy TokenMessenger contract
-2.1 Uses address from deployment of MessageTransmitter
-2.2 Add rescuer
+
+   * Uses address from deployment of MessageTransmitter
+
+    * Add rescuer
 
 3. Deploy TokenMinter contract
-3.1 Uses address from deployment of TokenMessenger as the token controller argument
 
-* Token controller address comes from environment
+    * Uses address from deployment of TokenMessenger as the token controller argument
 
-3.2 Add local token messenger 
-3.3 Update pauser
-3.4 Update rescuer
+    * Token controller address comes from environment
+
+    * Add local token messenger 
+
+    * Update pauser
+
+    * Update rescuer
 
 4. Add minter address to token messenger
 
 5. Link token pair
 
-* This links the token pair contract address with the remote address and remote domain
-* In the deployment script the max burn amount per message is also set
+    * This links the token pair contract address with the remote address and remote domain
+    * In the deployment script the max burn amount per message is also set
 
 6. Add remote token messenger to token minter
 
