@@ -1,4 +1,50 @@
 @startuml
 
+class FiddyCent {
+  pause()
+  unpause()
+  mint()
+}
+
+class ERC20 {
+  -- state --
+  balances
+  alowances
+  --
+  name()
+  symbol()
+  decimals()
+  totalSuppply()
+  balanceOf()
+  transfer()
+  allowance()
+  approve()
+  transferFrom()
+  _mint()
+  _burn()
+}
+
+class ERC20Burnable {
+  burn()
+  burnFrom()
+}
+
+class ERC20Pausable{
+  _pause()
+  _unpause()
+}
+class AccessControl{
+  -- state --
+  roleState: mapping(role => mapping(address => bool))
+  --
+  grant()
+  revoke()
+  hasRole()
+}
+
+FiddyCent --|> ERC20
+FiddyCent --|> ERC20Burnable
+FiddyCent --|> ERC20Pausable
+FiddyCent --|> AccessControl
 
 @enduml
