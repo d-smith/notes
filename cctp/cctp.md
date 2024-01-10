@@ -84,7 +84,7 @@ Note the attestable address must be known at deployment time. This is set from t
 Note contract addresses can be [precomputed](https://ethereum.stackexchange.com/questions/760/how-is-the-address-of-an-ethereum-contract-computed).
 
 
-![Deployment](./deployed.png)
+![Deployment](./deployed2.png)
 
 Based on the above, it should be possible to reuse the CCTP contracts with any token that can fit the
 CCTP contracts.

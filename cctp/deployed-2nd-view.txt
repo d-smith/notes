@@ -1,0 +1,69 @@
+@startuml
+class MessageTransmitter {
+  -- configuration --
+  domain
+  maxMessageBodySize
+  version
+  -- admin role addresses --
+  pauser
+  rescuer
+  -- methods --
+  receiveMessage()
+  sendMessage()
+  -- events --
+  MessageSent
+}
+
+class TokenMinter {
+  -- admin role addresses --
+  localTokenMessenger
+  tokenControllerAddress
+  pauser
+  rescuer
+}
+
+
+class TokenMessenger {
+  -- state --
+  messageBodyVersion
+  remoteTokenMessengers
+  -- admin role addresses --
+  rescuer
+-- methods --
+  depositForBurn()
+}
+
+TokenMessenger o-- MessageTransmitter
+TokenMessenger o-- TokenMinter
+
+interface IMintBurnToken {
+  mint() : bool
+  burn()
+}
+
+interface IERC20 {
+  totalSupply()
+  balanceOf()
+  transfer()
+  allowance()
+  approve()
+  transferFrom()
+}
+
+TokenMinter ..|> IMintBurnToken
+
+IMintBurnToken --|> IERC20
+
+interface TokenController {
+  -- state --
+  burnLimitsPerMessage : mapping(address => bytes32)
+  remoteTokensToLocalTokens: mapping(address => bytes32)
+  -- methods --
+  linkTokenPair()
+  setMaxBurnAmountPerMessage()
+}
+
+TokenMinter --|> TokenController
+
+
+@enduml 
