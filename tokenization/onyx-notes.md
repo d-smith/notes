@@ -46,3 +46,65 @@ requirements and limited liquidity
 technology.
 3. Access to and distribution of tokenized assets is fragmented across blockchain networks
 
+Tokenization Approaches
+
+> *Asset-Backed Tokenization*: In this approach, the traditional asset continues to be recorded and custodied in
+existing legacy systems like transfer agent registries, bank ledgers, or trust company or custodian accounts.
+The traditional asset is immobilized in underlying ledgers and a digital pointer (in the form of a smart contract
+based token) is then created on a blockchain as a representation of an investor's claim on the asset. This
+establishes a digital twin of the traditional asset, similar to how depository receipts mirror securities held
+in custody. The value of asset-backed tokens is the same as the underlying asset – because the blockchainbased representation is not a new asset
+>
+> Native Asset Tokenization: In this approach, the financial instrument itself is issued natively as a smart contract
+based token on a blockchain, encapsulating the inherent contractual rights and obligations without requiring
+external asset backing. Bonds, equities, fund shares and many other financial instruments can be represented
+as native tokens. They are valued in the same way as 'non-blockchain' asset types but the books and records
+of ownership and transfer exist only on the blockchain without necessarily depending on legacy tech systems.
+
+Theses
+
+* "Creating new, connected infrastructure can streamline, simplify and normalize the investment and
+operational processes related to building and managing portfolios"
+* "The tokenization of alts can reshape the alternative investment landscape, making it more inclusive,
+transparent and efficient"
+
+
+Benefits
+
+* Greater efficiency - collapse PM and operations, enable automated rebalancing, reduce reconciliation, reduce errors
+* Potentially improve liquidity - share information across multiple parties on the same ledger, simplified operations via smart contracts, automated netting of subscriptions and redemptions, etc
+* Enhanced investment outcomes through alternative investments - allow alts to be included in model portfolios
+* Combining the efficiency of robo-advisory with the alpha of active management
+* Flexibility and broader access
+
+Tech Components
+
+* Base chain & smart contract platform
+* Interopability capabilities
+* Account abstraction/smart-contract wallets
+* Smart contract event listeners
+* ODA-FACT smart contracts
+
+
+ODA-FACT: Onyx Digital Assets - Financial Asset Contract Templates
+
+*Managed token* Allows permissioned deactivation and reactivation of Tokens. Needed for sanctions or admin actions — for
+instance, token administrators may wish to temporarily cease all activity with tokens that represent sanctioned
+assets.
+
+*Managed account* Allows permissioned locking of balances and disallowing of accounts. Important for security measures — for
+instance, token administrators may wish to prevent certain entities from further transacting with their tokens.
+Allows permissioned locking of balances and force transfer/burn of locked balances within a specific account.
+Useful for Account Administrators in the event of a default scenario.
+
+*Mintable* Requires authorized mint requests before increasing token supply to an account, also reducing reconciliation.
+Provides an audit trail of all requests and corresponding actions (acceptance or rejection) for a Tokenization
+Agent and a requesting party.
+
+*Burnable* Requires authorized burn requests before decreasing token supply from an account. Provides an audit trail of all
+requests and corresponding actions (acceptance or rejection) for a Tokenization Agent and a requesting party.
+
+*Token metadata* Allows setting metadata like a URI to link off-chain instrument data.
+
+
+Biconomy - Smart Accounts Platform
