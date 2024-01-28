@@ -57,4 +57,18 @@ The interchain implements a modular architecture with two blockchain classes: hu
 
 [Ethermint](https://github.com/tharsis/ethermint) - extend the Cosmos SDK to use the EVM as a Cosmos SDK module. Ethermint docs [here](https://github.com/cosmos/ethermint)
 
+## Native Token, Staking
+
+https://tutorials.cosmos.network/academy/1-what-is-cosmos/4-atom-staking.html
+
+[ATOM](https://www.coingecko.com/en/coins/cosmos-hub) - native token of the Cosmos Hub
+
+
+Wallet used in tutorial - [Keplr](https://www.keplr.app/)
+
+## Cosmos Concepts
+
+https://tutorials.cosmos.network/academy/2-cosmos-concepts/
+
+
 
