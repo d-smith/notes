@@ -68,7 +68,48 @@ Wallet used in tutorial - [Keplr](https://www.keplr.app/)
 
 ## Cosmos Concepts
 
+### A Blockchain App Architecture
+
 https://tutorials.cosmos.network/academy/2-cosmos-concepts/
 
 
+Tendermint
+
+* Accelerate blockchain dev with prebuilt networking and consensus layers
+    *  peer discovery, block propagation, consensus, and transaction finalization
+
+[CometBFT](https://docs.cometbft.com/v0.37/) - BFT state machine replication (SMR)
+
+https://arxiv.org/abs/1807.04938
+
+CometBFT packages the networking and consensus layers of a blockchain and presents an interface to the application layer, the Application Blockchain Interface (ABCI).
+
+CometBFT provides security guarantees, including the following:
+
+* Forks are never created, provided that at least half the validators are honest.
+* Strict accountability for fork creation allows determination of liability.
+* 
+
+Transactions are finalized as soon as a block is created.
+
+There are at least two broad approaches to application-level concerns using blockchains:
+
+1. Create an application-specific blockchain where everything that can be done is defined in the protocol.
+2. Create a programmable state machine and push application concerns to a higher level, such as bytecode created by compilers interpreting higher-level languages.
+
+
+EVM is an example of approach 2
+Cosmos supports approach 1
+
+Cosmos SDK - build the application blockchain on top of CometBFT
+
+* Also the Cosmos SDK provides a rich set of modules that address common concerns such as governance, tokens, other standards, and interactions with other blockchains through the Inter-Blockchain Communication Protocol (IBC).
+
+S -> apply(t) -> S'
+
+* S - state
+* t - transaction
+* S' - new state
+
+## Accounts
 
