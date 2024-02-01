@@ -113,3 +113,24 @@ S -> apply(t) -> S'
 
 ## Accounts
 
+Cosmos uses BIP39 for key reconstruction and BIP44 for derivation paths.
+
+Cosmos SDK - keyring
+
+Key schemes
+
+* secp256k1 as implemented in the SDK's crypto/keys/secp256k1 package: is the most common and the same one used for Bitcoin.
+* secp256r as implemented in the SDK's crypto/keys/secp256r1 package.
+* tm-ed25519 as implemented in the SDK's crypto/keys/ed25519 package: is supported only for consensus validation.
+
+## Dev Environment Setup
+
+https://tutorials.cosmos.network/tutorials/2-setup/
+
+## Run a Node, API, and CLI
+
+[SimApp](https://github.com/cosmos/cosmos-sdk/tree/main/simapp) -  an application built using the Cosmos SDK for testing and educational purposes.
+
+> The Cosmos SDK repository contains a folder called simapp (opens new window). In this folder you can find the code to run a simulated version of the Cosmos SDK, so you can test commands without actually interacting with your chain. The binary is called simd and you will be using it to interact with your node.
+
+Interchain Academy Playlist - [here](https://www.youtube.com/playlist?list=PLE4J1RDdNh6sTSDLehUpp7vqvm2WuFWNU  )
