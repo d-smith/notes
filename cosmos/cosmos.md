@@ -134,3 +134,327 @@ https://tutorials.cosmos.network/tutorials/2-setup/
 > The Cosmos SDK repository contains a folder called simapp (opens new window). In this folder you can find the code to run a simulated version of the Cosmos SDK, so you can test commands without actually interacting with your chain. The binary is called simd and you will be using it to interact with your node.
 
 Interchain Academy Playlist - [here](https://www.youtube.com/playlist?list=PLE4J1RDdNh6sTSDLehUpp7vqvm2WuFWNU  )
+
+
+Booting up a local chain
+
+1. Clean out the private directory
+2. Initialize a new chain genesis block
+3. Prepare an account
+4. Make genesis account a validator
+5. Start the chain
+
+### Clean Out Private Directory
+
+Note - after installing and building the Cosmos SDK we can work with simd and a local chain in the private subdirectory. This subdirectory is gitignored.
+
+Prior to working there we can clean it out, e.g.
+
+ ```
+ rm -rf ./private/.simapp
+ ```
+
+### Initialize a New Chain Genesis Block
+
+```
+./build/simd init demo \
+    --home ./private/.simapp \
+    --chain-id learning-chain-1
+```
+
+You can inspect the genesis file with:
+
+```
+cat ./private/.simapp/config/genesis.json
+```
+
+
+```
+{
+   "app_message":{
+      "auth":{
+         "accounts":[
+            
+         ],
+         "params":{
+            "max_memo_characters":"256",
+            "sig_verify_cost_ed25519":"590",
+            "sig_verify_cost_secp256k1":"1000",
+            "tx_sig_limit":"7",
+            "tx_size_cost_per_byte":"10"
+         }
+      },
+      "authz":{
+         "authorization":[
+            
+         ]
+      },
+      "bank":{
+         "balances":[
+            
+         ],
+         "denom_metadata":[
+            
+         ],
+         "params":{
+            "default_send_enabled":true,
+            "send_enabled":[
+               
+            ]
+         },
+         "supply":[
+            
+         ]
+      },
+      "capability":{
+         "index":"1",
+         "owners":[
+            
+         ]
+      },
+      "crisis":{
+         "constant_fee":{
+            "amount":"1000",
+            "denom":"stake"
+         }
+      },
+      "distribution":{
+         "delegator_starting_infos":[
+            
+         ],
+         "delegator_withdraw_infos":[
+            
+         ],
+         "fee_pool":{
+            "community_pool":[
+               
+            ]
+         },
+         "outstanding_rewards":[
+            
+         ],
+         "params":{
+            "base_proposer_reward":"0.010000000000000000",
+            "bonus_proposer_reward":"0.040000000000000000",
+            "community_tax":"0.020000000000000000",
+            "withdraw_addr_enabled":true
+         },
+         "previous_proposer":"",
+         "validator_accumulated_commissions":[
+            
+         ],
+         "validator_current_rewards":[
+            
+         ],
+         "validator_historical_rewards":[
+            
+         ],
+         "validator_slash_events":[
+            
+         ]
+      },
+      "evidence":{
+         "evidence":[
+            
+         ]
+      },
+      "feegrant":{
+         "allowances":[
+            
+         ]
+      },
+      "genutil":{
+         "gen_txs":[
+            
+         ]
+      },
+      "gov":{
+         "deposit_params":{
+            "max_deposit_period":"172800s",
+            "min_deposit":[
+               {
+                  "amount":"10000000",
+                  "denom":"stake"
+               }
+            ]
+         },
+         "deposits":[
+            
+         ],
+         "proposals":[
+            
+         ],
+         "starting_proposal_id":"1",
+         "tally_params":{
+            "quorum":"0.334000000000000000",
+            "threshold":"0.500000000000000000",
+            "veto_threshold":"0.334000000000000000"
+         },
+         "votes":[
+            
+         ],
+         "voting_params":{
+            "voting_period":"172800s"
+         }
+      },
+      "mint":{
+         "minter":{
+            "annual_provisions":"0.000000000000000000",
+            "inflation":"0.130000000000000000"
+         },
+         "params":{
+            "blocks_per_year":"6311520",
+            "goal_bonded":"0.670000000000000000",
+            "inflation_max":"0.200000000000000000",
+            "inflation_min":"0.070000000000000000",
+            "inflation_rate_change":"0.130000000000000000",
+            "mint_denom":"stake"
+         }
+      },
+      "params":null,
+      "slashing":{
+         "missed_blocks":[
+            
+         ],
+         "params":{
+            "downtime_jail_duration":"600s",
+            "min_signed_per_window":"0.500000000000000000",
+            "signed_blocks_window":"100",
+            "slash_fraction_double_sign":"0.050000000000000000",
+            "slash_fraction_downtime":"0.010000000000000000"
+         },
+         "signing_infos":[
+            
+         ]
+      },
+      "staking":{
+         "delegations":[
+            
+         ],
+         "exported":false,
+         "last_total_power":"0",
+         "last_validator_powers":[
+            
+         ],
+         "params":{
+            "bond_denom":"stake",
+            "historical_entries":10000,
+            "max_entries":7,
+            "max_validators":100,
+            "unbonding_time":"1814400s"
+         },
+         "redelegations":[
+            
+         ],
+         "unbonding_delegations":[
+            
+         ],
+         "validators":[
+            
+         ]
+      },
+      "upgrade":{
+         
+      },
+      "vesting":{
+         
+      }
+   },
+   "chain_id":"learning-chain-1",
+   "gentxs_dir":"",
+   "moniker":"demo",
+   "node_id":"7784967d06ce74ad61bc266bebb7aa99034a8423"
+}
+```
+
+### Prepare an Account
+
+
+Inspect keys - initial keyring is of course empty:
+
+```
+./build/simd keys list \
+    --home ./private/.simapp \
+    --keyring-backend test
+```
+
+
+Create an account, e.g. alice:
+
+```
+    ./build/simd keys add alice \
+        --home ./private/.simapp \
+        --keyring-backend test
+```
+
+Staking denomination
+
+```
+grep bond_denom ./private/.simapp/config/genesis.json
+```
+
+Fund alice with some tokens.
+
+```
+./build/simd add-genesis-account alice 100000000stake \
+    --home ./private/.simapp \
+    --keyring-backend test
+```
+
+Check the balance in the genesis file:
+
+```
+grep -A 10 balances ./private/.simapp/config/genesis.json
+```
+### Make Genesis Account a Validator
+
+
+Stake some of Alice's tokens in a genesis transaction.
+
+```
+./build/simd gentx alice 70000000stake \
+    --home ./private/.simapp \
+    --keyring-backend test \
+    --chain-id learning-chain-1
+```
+
+Collect the genesis transactions:
+
+```
+./build/simd collect-gentxs \
+    --home ./private/.simapp
+```
+
+### Start the Chain
+
+```
+./build/simd start \
+    --home ./private/.simapp
+```
+
+Once the chain is started we can try it out by sending a transaction.
+
+```
+export alice=$(./build/simd keys show alice --address \
+    --home ./private/.simapp \
+    --keyring-backend test)
+
+./build/simd query bank balances $alice
+
+
+export bob=cosmos1ytt4z085fwxwnj0xdckk43ek4c9znuy00cghtq
+
+./build/simd query bank balances $bob
+
+./build/simd tx bank send $alice $bob 10stake \
+    --home ./private/.simapp \
+    --keyring-backend test \
+    --chain-id learning-chain-1
+
+
+export txhash=<hash from above>
+
+./build/simd query tx $txhash
+
+./build/simd query bank balances $bob
+```
