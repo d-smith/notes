@@ -458,3 +458,8 @@ export txhash=<hash from above>
 
 ./build/simd query bank balances $bob
 ```
+
+Cosmwasm 
+
+* Write smart contracts to target an existing chain - ignite is for creating new chains.
+* Cosmwasm Acadegy - see [here](https://academy.cosmwasm.com/learn/smart-contracts)
