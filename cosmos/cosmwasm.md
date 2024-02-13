@@ -33,3 +33,62 @@ find ./target/ -name "*.wasm"
 cosmwasm-check ./target/wasm32-unknown-unknown/release/cw1_whitelist.wasm
 ```
 
+## Preparing a Project
+
+Materials [here](https://academy.cosmwasm.com/learn/smart-contracts/prepare-a-project)
+
+
+cargo new --lib ./counting_contract
+
+Smart contracts are wasn dynamic libraries, so we use the --lib flag
+
+cd counting_contract/
+cargo build
+
+Edit the Cargo.toml file to add a library section
+
+Now build with wasm target
+
+
+For convenience create some aliases
+
+$ cat .cargo/config
+[alias]
+wasm = "build --release --target wasm32-unknown-unknown"
+wasm-debug = "build --target wasm32-unknown-unknown"
+
+At this point if we check the contract:
+
+$ cosmwasm-check target/wasm32-unknown-unknown/release/counting_contract.wasm
+Available capabilities: {"cosmwasm_1_1", "cosmwasm_1_2", "cosmwasm_1_4", "staking", "stargate", "cosmwasm_1_3", "iterator"}
+
+target/wasm32-unknown-unknown/release/counting_contract.wasm: failure
+Error during static Wasm validation: Wasm contract missing a required marker export: interface_version_*
+
+Passes: 0, failures: 1
+
+This fails because the contract does not have an entry point.
+
+Add a dependency
+
+cargo add cosmwasm-std
+
+Now edit src/lib.rs - add an instantiate function
+
+```rust
+use cosmwasm_std::{DepsMut, Env, MessageInfo, Empty, StdResult, Response, entry_point};
+
+#[entry_point]
+pub fn instantiate(deps: DepsMut, _env: Env, _info: MessageInfo, _msg: Empty) -> StdResult<Response> {
+    Ok(Response::default())
+}
+```
+
+Instantiate called when the contract is first created
+
+The repo for the lession is [here](https://github.com/CosmWasm/cw-academy-course/commit/7d007d4833530c3f7464f1e304749715e5c4d2f3)
+
+
+
+Entry point documention - https://docs.rs/cosmwasm-std/latest/cosmwasm_std/attr.entry_point.html
+
