@@ -92,3 +92,16 @@ The repo for the lession is [here](https://github.com/CosmWasm/cw-academy-course
 
 Entry point documention - https://docs.rs/cosmwasm-std/latest/cosmwasm_std/attr.entry_point.html
 
+## Creating a Message
+
+Need to include the serde crate for serializing and deserializing messages
+
+Create a message model file src/msg.rs
+
+Note the structuring for serialization including snake_case, values attributes, etc.
+
+Note use of modules for both the message and the query functionality
+
+cargo build, cargo wask, cosmwasm-check target/wasm32-unknown-unknown/release/counting_contract.wasm
+
+
