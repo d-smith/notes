@@ -104,4 +104,25 @@ Note use of modules for both the message and the query functionality
 
 cargo build, cargo wask, cosmwasm-check target/wasm32-unknown-unknown/release/counting_contract.wasm
 
+## Contract Testing
+
+Additional dependency
+
+`
+
+We test the contract code directly as opposed to first deploying it to the blockchain.
+
+Note we need a smart contract wrapper for this, in lib.rs
+
+
+App - our simulated blockchain interface
+
+Build and test
+
+cargo test
+cargo wasm
+cosmwasm-check target/wasm32-unknown-unknown/release/counting_contract.wasm
+
+
+
 
