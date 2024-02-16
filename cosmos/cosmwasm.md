@@ -123,6 +123,15 @@ cargo test
 cargo wasm
 cosmwasm-check target/wasm32-unknown-unknown/release/counting_contract.wasm
 
+## State
+
+Create for working with state:
+
+cargo add cw-storage-plus
+
+State can be initialized on contract instantiation via an instantiation entrypoint.
+
+
 
 
 
