@@ -131,7 +131,22 @@ cargo add cw-storage-plus
 
 State can be initialized on contract instantiation via an instantiation entrypoint.
 
+## Execution Entry Point
 
+Define a message, e.g. Poke in msg.rs
+
+Define a message handler, e.g. poke in contract.rs
+
+Add code to dispatch the message in lib.rs
+
+Add events too
+
+
+> Every execution (and other action, like instantiation) emits events. Events are logs reporting what was perfromed by an action. Event contains a type and the set of key-value pairs (both key and value being strings) named attributes.
+>
+> Events are emitted from execution using the Response::add_event function, passing the constructed Event type.
+>
+> Every execution emits at least one default event, with the type of wasm. In most cases, it is good enough to emit only that one. To add attributes to the wasm event, we can use a Response::add_attribute function. 
 
 
 
