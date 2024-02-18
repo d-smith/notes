@@ -148,5 +148,13 @@ Add events too
 >
 > Every execution emits at least one default event, with the type of wasm. In most cases, it is good enough to emit only that one. To add attributes to the wasm event, we can use a Response::add_attribute function. 
 
+## Receiving Funds
 
+Token - arbitrary abstraction that an account can possess, with the ability to know how much of the token an account possesses.
+
+Two types of tokens: native and cw20
+
+Native tokens - managed directly by the blockchain
+
+* Two ways to send them to other addresses: sending a blank message to the blockchain just to transfer them, and pass tokens as funds with a message.
 
