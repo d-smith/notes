@@ -158,3 +158,4 @@ Native tokens - managed directly by the blockchain
 
 * Two ways to send them to other addresses: sending a blank message to the blockchain just to transfer them, and pass tokens as funds with a message.
 
+Note you can't control receiving funds, but you can react to them.
