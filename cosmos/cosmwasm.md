@@ -159,3 +159,13 @@ Native tokens - managed directly by the blockchain
 * Two ways to send them to other addresses: sending a blank message to the blockchain just to transfer them, and pass tokens as funds with a message.
 
 Note you can't control receiving funds, but you can react to them.
+
+
+## Sending Funds
+
+[Lesson here](https://academy.cosmwasm.com/learn/smart-contracts/sending-funds)
+
+Example - add a withdraw function that the contract creator can use to withdraw funds from the contract.
+
+* Need to keep track of the owner when the contract is instantiated
+* Add a WithDraw message and message handler
