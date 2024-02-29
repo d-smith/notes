@@ -169,3 +169,11 @@ Example - add a withdraw function that the contract creator can use to withdraw 
 
 * Need to keep track of the owner when the contract is instantiated
 * Add a WithDraw message and message handler
+
+## Schema
+
+Add `use schemars::JsonSchema;`
+
+Extend the traits... `#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq, JsonSchema)]`
+
+That's unwieldy... we can use the ` #[cw_serde]` macro.
