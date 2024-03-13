@@ -60,5 +60,37 @@ continuously updated.
 - Monitoring: The company is monitored by the PEI, and the company is not
 required to disclose information to the public.
 
+### Why Would a Company Use Private Equity?
+
+- Certifications: The PEI is a professional investor, and the investment is a
+certification of the company's value.
+- Networking: The PEI can provide the company with a network of contacts, suppliers,
+and customers.
+- Knowledge and Skills: The PEI can provide the company with knowledge and skills
+that the company does not have. This can be soft knowledge, such as management
+skills, or hard knowledge, such as technical skills or domain expertise.
+- Financial Resources: The PEI can provide the company with financial resources
+that the company does not have. This can be money, but it can also be financial
+engineering skills, such as the ability to structure a deal or to raise debt, or
+establishing credit worthiness.
+
+Financial needs vary across the life cycle of a company.
+
+* Development - to sustain R&D
+* Start-up - fixed assets and working capital
+* Early growth - sustain sales
+* Expansion - new fixed assets abd working capital
+* Mature age - acquisitions and business transformation
+* Decline - exit the crisis
+
+Each stage has different sources of financing.
+
+* Development - family and friends, business angels, venture capital
+* Start-up - family and friends, business angels, venture capital
+* Early growth - venture capital, private equity, banking system
+* Expansion - banking system, private equity, trade credit
+* Mature age - stock exchange, ipo, private equity, banking system
+* Decline - family and friends, founder, family and friends
+
 
 
