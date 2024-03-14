@@ -94,3 +94,21 @@ Each stage has different sources of financing.
 
 
 
+### Private Equity Clusters
+
+Venture Capital
+
+* Development - seed financing
+* Start-up - start-up
+* Early growth - early growth financing
+
+This cluster is a subset of private equity.
+
+Expansion financing
+Replacement Financing
+Vulture Financing
+
+6 different deals, markets, different risk/reward profiles
+
+How much ownership, how much hands on?
+
