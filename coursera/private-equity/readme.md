@@ -112,3 +112,31 @@ Vulture Financing
 
 How much ownership, how much hands on?
 
+## Seed, Start-Up, Early Stage Financing
+
+Venture capital
+
+Seed financing - most complex and risky
+
+* Financing of an R&D project to generate a patent that can become a product
+* Sectors - biomedical, chemical, IT, pharma
+* Very high risk
+
+100/10/1 rules - screen 100 projects, invest in 10, 1 will be a success
+
+Startup financing
+
+* Financing of a company that has a product and a business model
+* Money needed to start the activity
+* High risk - making a bet on the business plan
+* Investor must negotiate the terms to protect the investment, e.g. a put option to sell shares back to the entrepreneur
+
+Early Stage
+
+* The day after financing
+* May need to finance a gap in financing based up the uptake of the business
+* Investor may need to be hands on -  help the entrepreneur write the business plan again, to analyze the reason of this gap, and to launch the activity of the company again
+
+
+
+
