@@ -138,5 +138,34 @@ Early Stage
 * Investor may need to be hands on -  help the entrepreneur write the business plan again, to analyze the reason of this gap, and to launch the activity of the company again
 
 
+ ## Expansion Financing
 
+ Expansion financing is the process of financing the growth of the company.
+
+ Growth
+
+ * Can be organic or inorganic
+    * Organic/Internal Growth - the company grows by itself
+        * Invest in new assets
+        * Enhance the working capital
+    * Inorganic/External Growth - the company grows by acquiring other companies
+        * Enter new markets
+        * Change business area
+
+Job of PE Investor
+
+* Organic - give money to the company
+* Inorganic - give money, but also act as advisor and consultant to the company
+
+Steps of M&A
+
+* Screen and scout the market
+* Support negotiation with the potential target
+* Give money to the company to fund the acquisition
+    * Give money in exchange for shares
+    * PEI creates a special purpose vehicle SPV, PEI and company fund the shell, SPV uses the banking system to fund the acquisition
+* Provide legal and taxation support
+
+
+SPV option avoids saddling the new company with debt
 
