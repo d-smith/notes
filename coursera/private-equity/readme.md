@@ -169,3 +169,48 @@ Steps of M&A
 
 SPV option avoids saddling the new company with debt
 
+## Replacement Financing
+
+Financing of a mature company that needs to change its capital structure
+
+Three different deals
+
+* Leveraged Buyout (LBO)
+    * Identify potential target to buy 100%
+    * PEI creates an SPV
+    * Fund the SPV with equity and debt
+    * SPV buys the target, SPV owns the company, and since the PEI owns the SPV, the PEI owns the company
+    * PEI can then easily seel the company as they own it 100%
+* PIPE - Private investment in public equity
+    * Buy a minority stake in a public company
+    * Gamble is the stake is enough to decide who will be the owner of the company
+    * Use the stake to negotiate the price
+* Corporate Governance Deals
+    * This is prompted by a company needing to reorganize its corporate governance, for example succession in a family business
+    * PEI buys shares from an existing shareholder to become an insider in the company
+    * PEI works as an insider to restructure the governance of the company
+    * PEI sells the shares to another shareholder
+
+
+## Vulture Financing
+
+Finance a company in crisis or decline
+
+Two different deals
+
+* Restructuring Financing
+    * Company in crisis but still alive
+    * Needs financing to pay suppliers, invest to relaunch
+    * Needs strategic support
+    * PEI provides money and strategic support
+    * Very risky, PEI will want to be the majority shareholder
+
+* Distressed Financing
+    * Financing of a defaulted company, dead company
+    * PEI buys the assets of the defauled company - brand name, patents, equipment, etc
+        * PEI may create a new company, and will use the assets to start a new business
+        * PEI may sell the assets to another company
+    * Difficult as the sale is negotiated by the court
+    
+
+    
