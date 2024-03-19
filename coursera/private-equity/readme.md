@@ -213,4 +213,60 @@ Two different deals
     * Difficult as the sale is negotiated by the court
     
 
+# Week 2 DIscovering Private Equity Investors: Legal Issues and Taxation
+
+## PEI The Map to Investigate
+
+Two formats regulating PEI
+
+* European Union format
+    * Also used in Brazil, Turkey, and Russia
+    * Private equity is viewed as a financial service
+    * Two directives: banking directive and financial services directive
+    * Managed for stability: approvals at both local and central level
+    * Three players: banks, investment firms, closed-end funds
+
+* Anglo-saxon Format (US and UK)
+    * ALso Australia, Commonwealth, and India
+    * Private equity is viewed as an entrepreneurial activity
+    * Framework: common law + ad hoc fiscal rules + special regulations for PE
+    * No supervisor
+
+## Closed-End Funds in Europe: Overview
+
+Europe - 3 types of investors (Banks, Investment Firms, Closed-End Funds)
+
+3 players - closed end
+
+1. Asset management company
+    * Financial institution approved and supervised by local supervisors, which is responsible for the management of the fund
+    * Must provide at least 2% of the investment in the fund
+2. The Funds
+    * A fund is a bank account in which the investors can put their money
+    * Automatically lose tailored used of the money once they put money in
+    * Receives a certificate of participation representing their investment
+    * Closed-end - can only invest at the beginning of the fund, and can only withdraw at the end
+    * Can only invest the money put in, cannot raise additional money (e.g. no debt)
+3. The Investors
+    * HIgh net worth individuals, institutional investors, states, and companies
+
+
+## Closed-End Funds in Europe: Lifetime of a Fund
+
+Document called the Internal Code of Activity is the set of rules that regulate the functioning of the closed-end fund
+
+* One and half years max before time zero is a period of fundraising - proposal, convince investors, etc
+* Ang size of fund is 100 - 300 million euros
+* Minimum investment is typically 1 million euros
+* Money doesn't have to be provided all at once
+* Asset company has the possibility to ask for commitment over a 3 year draw down
+* Typically fund lives for 10 years, but year 10 can ask for an additional 3 years more to exit from the investment
+* Must close the activity after 13 years
+* Money then distributed proportionally to the investors
+
+
     
+
+
+
+
