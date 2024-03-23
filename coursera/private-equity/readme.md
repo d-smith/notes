@@ -264,6 +264,46 @@ Document called the Internal Code of Activity is the set of rules that regulate 
 * Must close the activity after 13 years
 * Money then distributed proportionally to the investors
 
+## Management Fees and Carried Interest
+
+Profit mechanisms
+
+* Investors - receive money at the end of the fund
+* Code of activity specifies how to calculate the profit for both the investors and the asset management company
+* AMC - two types of profit
+    * Management fees - fixed percentage taken from the money put in by the investors at the beginning of the fund. For example, 2% of the money put in by the investors is taken by the AMC as the management fee every year.
+    * Carried interest - calculated at the end of the life of the fund. The carried interest is a fixed percentage calcualted as the difference between the final IRR and the hurdle rate agreed to upfront. If the carried interest is 30 % (standard is between 20 and 30 percent), and the hurdle rate is 8 % (7-8 is standard), then the AMC will take 30 % of the difference between the final IRR and 8 %.
+
+## Investment Firms and Banks in Europe
+
+Uncommon that banks invest directly in private equity.
+
+* High requirements for regulatory capital which puts a drag on the available profile
+* Lots of complicated regulatory restrictions
+* More likely to participate as an AMC
+
+
+
+Investment firms are more likely to invest in private equity.
+
+* Can do what a bank does except collect deposits
+* Liablity is the equity of the shareholders and debts
+* Assets are cash collected through debts and equity
+* A Shareholders - manage the investment firm, act like the AMC
+* B Shareholders - provide the money to the investment firm as investor, do not manage the fund
+
+
+Renumeration
+
+ * A shareholders - management fees every year, carried interest every year
+ * B shareholders - receive money at the end of the fund, receive the profit minus the carried interest given the A shareholders
+
+
+ Advantages of the investment firm
+
+ * Levverage is possible
+ * Direct management of captital with fewer regulations
+ 
 
     
 
