@@ -238,7 +238,7 @@ Europe - 3 types of investors (Banks, Investment Firms, Closed-End Funds)
 
 3 players - closed end
 
-1. Asset management company
+1. Asset management company AMC
     * Financial institution approved and supervised by local supervisors, which is responsible for the management of the fund
     * Must provide at least 2% of the investment in the fund
 2. The Funds
@@ -293,7 +293,7 @@ Investment firms are more likely to invest in private equity.
 * B Shareholders - provide the money to the investment firm as investor, do not manage the fund
 
 
-Renumeration
+Remumeration
 
  * A shareholders - management fees every year, carried interest every year
  * B shareholders - receive money at the end of the fund, receive the profit minus the carried interest given the A shareholders
@@ -303,7 +303,171 @@ Renumeration
 
  * Levverage is possible
  * Direct management of captital with fewer regulations
- 
+
+ ## Limited Partnerships - US
+
+ 5 PEI Vehicles
+
+ * Venture capital fund VCF
+ * SBIC
+ * Banks
+ * Corporate Ventures
+ * Business Angels
+
+VCF
+
+* The largest private equity market in the world
+
+Limited Partnerships LP
+
+* Legal entity for a VCF
+* Two groups of shareholders
+    * General Partners - manage the fund 1 % shares
+        * Full liability
+    * Limited Partners - provide the money 99% shares
+        * Limited liability - only lose the money they put in
+* Taxation
+    * General Partners - taxed as individuals
+    * Limited Partners - taxed as individuals
+    * The LP vehicle does not pay taxes
+    * Tax transparency assumes LP only invests in private equity and the maturtiy of the fund is 10 years
+
+Limited Partnership Agreement LPA
+
+* Contract between the GP and LPs that lays out the rules of the fund
+    * The LPA specifies the management fees and carried interest
+    * The LPA specifies the rules for the distribution of the profit at the end of the fund
+    * The LPA specifies the rules for the exit of the LPs from the fund
+
+General partners typically form a limited liability company LLC to manage the fund,
+for example to collect debt, etc
+
+* This allows the use of leverage
+* This is a distinction from closed end funds which cannot leverage
+
+
+## SBIC
+
+Small Business Investment Company
+
+* Created by the US government in 1958 to stimulate private equity market and venture capital market
+* Example of a public-private partnership
+* The government provides the money, the private sector manages the money
+* Two shareholders
+    * The government - provides the money
+    * The private sector - manages the money
+    * The government provides the money to the private sector at a low interest rate
+        * 33% of the leverage is guaranteed by the federal reserve
+    * Management fees are shared between the government and the private sector
+    * Profit is asymetric
+
+Corporate Ventures
+
+* Department of a company that runs seed and startup companies
+* Goal is to create new business lines
+
+Business Angels
+
+* High network individuals, charities, and and/or foundations
+* Investor receives qualified small business stocks
+    * Doesn't pay taxes on the capital gain if when exiting invests in another equity of QSBS
+
+
+
+## UK Solutions
+
+5 solutions
+
+* VCF - still the largest market
+* Venture Capital Trust VCT
+* PPP - more limited than the US
+* Business Angels - favorable taxation
+* Banks
+
+Venture Capital Trust
+
+* Created in 1997
+* Combine retail investments with an ideal private equity
+* Trust - a legal entity that can own assets
+    * Settlor can insert assets
+    * Trustee manages the assets
+    * Beneficiary receives the profit
+* In VCT
+    * Settlor - retail investors  - put money in the trust
+    * Trustee - asset management company - manages the money
+    * Beneficiary - retail investors - receive the profit
+
+Investors receive certificates that are listed on the london stock exchange
+
+70% of the trust must be invested in private equity and venture capital
+Tax benefits to retail investors
+
+## Taxation
+
+* Different in every country
+* The players
+    * Investor
+    * Vehicle
+    * Company
+
+Areas of impact
+
+* Capital gains - investor, vehicle (flat tax, tax transparency, pex participation exemption)
+* Dividends - like capital gains
+* Inventive to start up - company, (mark-down, shadow cost, tax break)
+* Incentive to R&D - company, like start up - like start up
+* Incentive of the ration of debt to equity - company, (thin capitalization, DIT dual income taxiation)
+
+
+## New Solutions
+
+Private Debt Funds
+
+* Use a vehicle to invest in private debt instead of private equity
+* Use the market to finance the company instead of bank
+* Companies that can't use the stock exchange sell bonds to private investors
+
+Crowd Funding
+
+* Platform that allows companies to raise money from the public
+
+
+Venture Philanthropy
+
+* Use private equity techniques to finance social projects
+
+SPAC - special purpose acquisition company
+
+* Empty shell, SPV
+* Promoters with an idea, have 20% of the shares invested
+* Lists company on the stock exchange, solitits the remaining 80% of the shares
+* Uses the money to buy a company
+    * If successful the SPAC merges with the target company
+    * If fails investors get their money back
+
+## Calculating Retuns
+
+1. Input
+
+management fee, hurdle rate, carried interest, committed capital, percentage managers (GP)
+
+2. Calculate the investment development
+
+
+* draw downs in each year
+* investment in each year
+* divestment - manage exit of deals
+* management fee each year
+* cash - amount of cash at the end that represents the value of the closed end fund
+
+Carried interest - two ways
+
+* global IRR - calculate the IRR of the fund, and then calculate the carried interest
+    * global - diff between the final amount - committed capital divided by the committed capital
+* yearly irr
+    * 
+
+
 
     
 
