@@ -468,8 +468,41 @@ Carried interest - two ways
     * 
 
 
+## Week 3 The Management of Private Equity Funds and Venture Capital Funds
 
+### The managerial process 
+
+Start slides page 3
     
+Different legal entities but management is the same
+
+4 activities - page 5
+
+## Fund Raising
+
+slides page 12
+
+* Business Idea Creation
+* Selling
+* Raising Debt
+* Closing
+
+## Investment - Decision Process
+
+slides - page 22
+
+decision-making
+deal-making
+
+deal-flow
+
+origination - spontaneous and/or proactive
+
+100/10/1 rule - throw away 90, 10 makes sense to investigate, 1 of those 10 will be successful
+
+Due diligence - done on the 10
+
+
 
 
 
