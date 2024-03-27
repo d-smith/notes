@@ -478,7 +478,7 @@ Different legal entities but management is the same
 
 4 activities - page 5
 
-## Fund Raising
+### Fund Raising
 
 slides page 12
 
@@ -487,7 +487,7 @@ slides page 12
 * Raising Debt
 * Closing
 
-## Investment - Decision Process
+### Investment - Decision Process
 
 slides - page 22
 
@@ -502,7 +502,24 @@ origination - spontaneous and/or proactive
 
 Due diligence - done on the 10
 
+### Deal Making Phases
 
+Start slides page 32
+
+Target - what vehicle to use? Maybe an SPV instead of investing in equity, e.g. for acquisition
+
+* Direct investment or indirect investment (e.g. through a SPV)
+
+Liability profile
+
+* Syndication strategy - what other investors to bring in?
+* Debt issuance - how much debt to issue? Could be via the market, or via a bank.
+
+Engagement - set up the rules
+
+* Share categories - preferred, standard
+* Governance rules - board size, how to manage the company, do preferred stocks have greater voting rights?
+* Paying policy - purchase new shares (financing) or buy shares of the entrepreneur too
 
 
 
