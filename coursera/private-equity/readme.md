@@ -521,6 +521,22 @@ Engagement - set up the rules
 * Governance rules - board size, how to manage the company, do preferred stocks have greater voting rights?
 * Paying policy - purchase new shares (financing) or buy shares of the entrepreneur too
 
+### Managing and Monitoring
+
+Slides - page 43
+
+Conflict resolution can be required if the entrepreneur and the PEI have different objectives, for example if the entrepreneur wants to diverge from the original business plan
+
+### Use of Covenants 
+
+Mitigate risk, provide incentives
+
+Slides - page 50
+
+### Exiting
+
+page 56
+
 
 
 
