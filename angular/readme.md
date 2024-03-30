@@ -92,3 +92,7 @@ Services - share code and data between components
 * Implement business logic 
 
 
+
+## Course 2 - Angular The Big Picture by Joe Eames
+
+
