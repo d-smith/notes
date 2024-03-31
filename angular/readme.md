@@ -95,4 +95,24 @@ Services - share code and data between components
 
 ## Course 2 - Angular The Big Picture by Joe Eames
 
+Goals - know angular's capabilities, strengths, and weaknesses
+
+What is angular?
+
+* a tool to help you build websites
+* tools to
+    * communicate with servers
+    * maintain state
+    * ease display of data
+    * sync state with changes
+    * package apps
+    * improve performance
+
+
+Goals
+
+* Standards-based
+* Modern
+* Performant
+
 
