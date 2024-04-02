@@ -115,4 +115,17 @@ Goals
 * Modern
 * Performant
 
+CLI
 
+* ng new <appname>
+* ng generate component <componentname>
+
+stackblitz.com - create and play with angular apps (and others)
+
+Release cycle
+
+* Major version every 6 months
+* 6 months of active support
+* 12 months of long-term support
+
+schematics -can use to update code to new major version
