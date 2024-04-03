@@ -537,6 +537,24 @@ Slides - page 50
 
 page 56
 
+## Week 4 Company Valuation and Private Equity Deals
+
+### Company Valuation Fundamentals
+
+Calculate the value of the company & equity.
+
+Uses the standard methods for calculating the value of a company, nothing special about private equity
+
+Must calculate:
+
+* At t=0
+* At exit
+
+Discounted cash flow
+
+* Present value of the future cash flows of the company, derived from the business plan
+* Calculation - slide 8
+
 
 
 
