@@ -208,3 +208,26 @@ Database to GraphQL Server
 GraphiQL
 GraphQL voyager
 GraphQL Faker
+
+# Building a GraphQL API with Apollo Server
+
+Jonathan Mills
+
+Apollo - node js server for GraphQL
+
+Apollo playgroud - in-browser IDE for writing, validating, and testing GraphQL queries
+
+Introspection - query the schema
+
+All interactions with the endpoint are POST requests
+
+
+Resolving queries
+
+* Resolver  - function for popoulating the data for a single field in your schema
+* Resolver map - object that maps the schema to the resolver functions
+* Executing queries
+* Schema directives
+* Implementing datasources
+* Query filtering
+
