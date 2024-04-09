@@ -290,3 +290,18 @@ provide speaker details along with the session?
 * Add a speakers array attribute to the session type
 * Resolver has session as the parent
 
+Mutations
+
+* Create and modify data
+
+Input type
+
+* Narrow an entity to remove server created data like
+ids, modified dates, etc.
+
+Enums
+
+* Not always great - may want to add stuff later, all caps convention
+leaks to user, may need a resolver to translate enum to data value,
+mostly just used when wrapping some legacy API.
+
