@@ -231,3 +231,62 @@ Resolving queries
 * Implementing datasources
 * Query filtering
 
+Filtering
+
+* Add it to the schema - expect something to be passed in, and return a filtered list
+
+```graphql
+query {
+  sessionById(id:"84473") {
+    id
+    title
+    room
+    track
+    level
+  }
+}
+```
+General filter pattern:
+
+* Include all the attributes as query args
+* Pass the args from the resolver to the data source
+* Filter the data source based on the args
+
+```graphql
+query {
+  sessionById(id:"84473") {
+    title
+    room
+    track
+    id
+    level
+    description
+  }
+  sessions(room:"Europa", track:".NET") {
+    title
+    room
+    track
+    id
+    level
+  }
+}
+```
+
+Nesting Data
+
+* You can use nested resolver maps
+
+REST
+
+* Apollo has a RESTDataSource class that you can extend to create a data source for your REST API
+
+```javascript
+import { RESTDataSource } from 'apollo-datasource-rest';
+```
+
+For a nesting example, think about the sessions example - we can get a list of the session - what if we want to nest some speaker data to
+provide speaker details along with the session?
+
+* Add a speakers array attribute to the session type
+* Resolver has session as the parent
+
