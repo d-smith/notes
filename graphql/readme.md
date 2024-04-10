@@ -305,3 +305,48 @@ Enums
 leaks to user, may need a resolver to translate enum to data value,
 mostly just used when wrapping some legacy API.
 
+Apollo Built-in Error Handling
+
+* Basic schema validation
+* Can add a formatError function to the ApolloServer constructor to customize error handling
+
+```javascript
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  formatError: (err) => {
+    console.log(err);
+    return err;
+  }
+});
+```
+
+Union types
+
+* Can use to return a entity when everything is cool and an error if
+not
+* Have to use fragments in the query
+
+```graphql
+query {
+  sessionById(id:"84473") {
+    ... on Session {
+      title
+      room
+      track
+      id
+      level
+    }
+    ... on Error {
+      code
+      message
+    }
+  }
+}
+```
+
+Apollo studio
+
+* wire up your api
+* monitor
+* track schema changes
