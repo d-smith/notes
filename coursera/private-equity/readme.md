@@ -556,5 +556,18 @@ Discounted cash flow
 * Calculation - slide 8
 
 
+* Based on the cash flow of the company
+
+CF - cash flow, slide 14
+WACC - weight average cost of capital, slide 16
+CAPM - capital asset pricing model, used to calculate cost of equity which does not 
+available from the balance sheet - note the beta needs to be unlevered and relevered to take into account the differening liability structures of the company and the company used for the comparison.
+
+TV - terminal value, calculated at the end of the business plan
+
+Good model the financials using different assumptions for sensitivity analysis to understand how
+the value of the company changes with different assumptions.
+
+
 
 
