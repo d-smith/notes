@@ -561,12 +561,33 @@ Discounted cash flow
 CF - cash flow, slide 14
 WACC - weight average cost of capital, slide 16
 CAPM - capital asset pricing model, used to calculate cost of equity which does not 
-available from the balance sheet - note the beta needs to be unlevered and relevered to take into account the differening liability structures of the company and the company used for the comparison.
+available from the balance sheet - note the beta needs to be un-levered and re-levered to take into account the differening liability structures of the company and the company used for the comparison.
 
 TV - terminal value, calculated at the end of the business plan
 
 Good model the financials using different assumptions for sensitivity analysis to understand how
 the value of the company changes with different assumptions.
+
+Venture capital valuation
+
+* Difficult as the business plan is not robust enough to have a reliable cash flow
+
+5 steps - slide 46
+
+Good time for venture startups
+
+* high liquidity in the world, desire for alternative investments, need for growth
+
+6 rules for startups
+
+* commitment, hard work, passion
+* have the right team
+* promote your idea
+* numbers, numbers, numbers
+* be ready and able to face risk (share the risk with the PEI)
+* be able to commit other people
+
+select an investor suitable to your needs
 
 
 
