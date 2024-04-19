@@ -130,6 +130,10 @@ Release cycle
 
 schematics -can use to update code to new major version
 
+### Module 3
+
+
+
 Benefits
 
 * Reduced cost (build less, reuse more)
@@ -140,6 +144,25 @@ Benefits
 * Backed by Google
 * Uniformity
 * Documentation
+
+
+RxJS - reactive extensions for javascript
+
+
+Basic Features
+
+* Can build progressive web applications
+* Supports lazy loading
+* FOrms library
+* Reactivity
+* Router
+* Animations
+* Strictly typed forms
+
+Advanced Features
+
+* Server side rendering
+* Mobile friendly
 
 
 
