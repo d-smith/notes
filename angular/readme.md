@@ -129,3 +129,18 @@ Release cycle
 * 12 months of long-term support
 
 schematics -can use to update code to new major version
+
+Benefits
+
+* Reduced cost (build less, reuse more)
+* Standards compliance
+    * ECMASscript, modules, i18n, accessibility, performance, open source
+* Typescript
+* Signals library - reactive sync library
+* Backed by Google
+* Uniformity
+* Documentation
+
+
+
+    
