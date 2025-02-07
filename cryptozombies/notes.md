@@ -1,3 +1,4 @@
+## Zombie Factory
 
 contract
 
@@ -14,8 +15,6 @@ pragma solidity >=0.5.0 <0.6.0;
 
 contract ZombieFactory {
 
-    //start here
-
 }
 ```
 state variables
@@ -25,6 +24,36 @@ state variables
 
 uint - unsigned integer, can't be negative
 int - signed integer, can be negative
+string - arbitrary length UTF-8 data
+
+```solidity
+pragma solidity >=0.5.0 <0.6.0;
+
+contract ZombieFactory {
+    uint dnaDigits = 16;
+}
+```
+
+math operations
+
+- addition (+)
+- subtraction (-)
+- multiplication (*)
+- division (/)
+- modulus  (%)
+- exponentiation (**)
+
+```solidity
+pragma solidity >=0.5.0 <0.6.0;
+
+contract ZombieFactory {
+    uint dnaDigits = 16;
+    uint dnaModulus = 10 ** dnaDigits;
+}
+```
+
+structs
+- custom data structures to store data with multiple properties
 
 ```solidity
 pragma solidity >=0.5.0 <0.6.0;
@@ -32,6 +61,11 @@ pragma solidity >=0.5.0 <0.6.0;
 contract ZombieFactory {
 
     uint dnaDigits = 16;
+    uint dnaModulus = 10 ** dnaDigits;
 
+    struct Zombie {
+        string name;
+        uint dna;
+    }
 }
-````
+```
