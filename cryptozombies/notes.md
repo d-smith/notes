@@ -185,4 +185,104 @@ contract ZombieFactory {
 }
 ```
 
+private / public functions
 
+- In solidity, functions are public by default
+- Good practice is to make functions private by default, and then only make public the functions you want to expose to the world
+- By convention, functions that are private are prefixed with an underscore (_)
+
+```solidity
+pragma solidity >=0.5.0 <0.6.0;
+
+contract ZombieFactory {
+
+    uint dnaDigits = 16;
+    uint dnaModulus = 10 ** dnaDigits;
+
+    struct Zombie {
+        string name;
+        uint dna;
+    }
+
+    Zombie[] public zombies;
+
+    function _createZombie(string memory _name, uint _dna) private {
+        zombies.push(Zombie(_name, _dna));
+    }
+
+    // start here
+
+}
+```
+
+return values
+
+- function declaration is modified to indicate return values
+
+```solidity
+function sayHello() public returns (string memory) {
+  return "Hello";
+}
+```
+
+function modifiers
+
+- view functions don't change any state variables
+- pure functions don't read or modify the state
+
+```solidity
+function _generateRandomDna(string memory _str) private view returns (uint) {
+}
+```
+
+Keccak256 and typecasting
+
+- keccak256 is a version of sha3
+- keccak256 expects a single parameter of type bytes, which can be produced via abi.encodePacked
+- typecasting is done by enclosing the type in parentheses
+
+```solidity
+// Typecast example
+uint8 a = 5;
+uint b = 6;
+// throws an error because a * b returns a uint, not uint8:
+uint8 c = a * b;
+// we have to typecast b as a uint8 to make it work:
+uint8 c = a * uint8(b);
+```
+
+
+```solidity
+pragma solidity >=0.5.0 <0.6.0;
+
+contract ZombieFactory {
+
+    // declare our event here
+
+    uint dnaDigits = 16;
+    uint dnaModulus = 10 ** dnaDigits;
+
+    struct Zombie {
+        string name;
+        uint dna;
+    }
+
+    Zombie[] public zombies;
+
+    function _createZombie(string memory _name, uint _dna) private {
+        zombies.push(Zombie(_name, _dna));
+        // and fire it here
+    }
+
+    function _generateRandomDna(string memory _str) private view returns (uint) {
+        uint rand = uint(keccak256(abi.encodePacked(_str)));
+        return rand % dnaModulus;
+    }
+
+    function createRandomZombie(string memory _name) public {
+        uint randDna = _generateRandomDna(_name);
+        _createZombie(_name, randDna);
+    }
+
+}
+```
