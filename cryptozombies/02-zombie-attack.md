@@ -24,3 +24,41 @@ This creates a mapping with `address` keys that map to another mapping with `add
 
 ## Msg.Sender
 
+msg.sender is a global variable in Solidity that contains the address of the person (or smart contract) who called the current function.
+
+- Solidity function execution always needs to start with an external caller. A contract will never just run on its own.
+
+Example:
+
+```solidity
+mapping (address => uint) favoriteNumber;
+
+function setMyNumber(uint _myNumber) public {
+  // Update our `favoriteNumber` mapping to store `_myNumber` under `msg.sender`
+  favoriteNumber[msg.sender] = _myNumber;
+  // ^ The syntax for storing data in a mapping is just like with arrays
+}
+
+function whatIsMyNumber() public view returns (uint) {
+  // Retrieve the value stored in the sender's address
+  // Will be `0` if the sender hasn't called `setMyNumber` yet
+  return favoriteNumber[msg.sender];
+}
+``` 
+
+## Require
+
+In solidity you can use `require` to validate inputs and check conditions. If the input for require is false, the function will stop executing and revert any changes made.
+
+```solidity
+function sayHiToVitalik(string memory _name) public returns (string memory) {
+  // Compares if _name equals "Vitalik". Throws an error and exits if not true.
+  // (Side note: Solidity doesn't have native string comparison, so we
+  // compare their keccak256 hashes to see if the strings are equal)
+  require(keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")));
+  // If it's true, proceed with the function:
+  return "Hi!";
+}
+```
+
+
