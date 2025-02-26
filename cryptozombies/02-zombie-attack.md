@@ -61,4 +61,93 @@ function sayHiToVitalik(string memory _name) public returns (string memory) {
 }
 ```
 
+## Inheritance
+
+In Solidity, you can inherit from other contracts. This is a way to make a contract inherit the behavior and storage of another contract.
+
+Example:
+
+```solidity
+contract Doge {
+  function catchphrase() public returns (string memory) {
+    return
+      "So Wow
+      "Such Doge";
+  }
+}
+
+// Inherit from Doge by specifying Doge in the contract declaration
+contract BabyDoge is Doge {
+  function anotherCatchphrase() public returns (string memory) {
+    return
+      "Much Moon
+      "Very Mars";
+  }
+}
+``` 
+
+## Import
+
+In Solidity, you can use `import` to include other source files. This is similar to how other programming languages use `include`, `require`, or `import`.
+
+Example:
+
+```solidity
+import "./someothercontract.sol";
+
+contract newContract is SomeOtherContract {
+
+}  
+```
+
+## Storage and Memory
+
+In solidity, there are two locations you can store variables — in storage and in memory.
+
+Storage refers to variables stored permanently on the blockchain. Memory variables are temporary, and are erased between (and during) function calls. You can think of memory as your computer's hard disk and storage as a USB stick.
+
+Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of a function) are by default storage and written permanently to the blockchain, while variables declared inside a function are memory and will disappear when the function call ends.
+
+There are times when you need to use these keywords, for example when dealing with structs and arrays within functions.
+
+Example from Cryotozombies:
+
+```solidity
+contract SandwichFactory {
+  struct Sandwich {
+    string name;
+    string status;
+  }
+
+  Sandwich[] sandwiches;
+
+  function eatSandwich(uint _index) public {
+    // Sandwich mySandwich = sandwiches[_index];
+
+    // ^ Seems pretty straightforward, but solidity will give you a warning
+    // telling you that you should explicitly declare `storage` or `memory` here.
+
+    // So instead, you should declare with the `storage` keyword, like:
+    Sandwich storage mySandwich = sandwiches[_index];
+    // ...in which case `mySandwich` is a pointer to `sandwiches[_index]`
+    // in storage, and...
+    mySandwich.status = "Eaten!";
+    // ...this will permanently change `sandwiches[_index]` on the blockchain.
+
+    // If you just want a copy, you can use `memory`:
+    Sandwich memory anotherSandwich = sandwiches[_index + 1];
+    // ...in which case `anotherSandwich` will simply be a copy of the
+    // data in memory, and...
+    anotherSandwich.status = "Eaten!";
+    // ...will just modify the temporary variable and have no effect
+    // on `sandwiches[_index + 1]`. But you can do this:
+    sandwiches[_index + 1] = anotherSandwich;
+    // ...if you want to copy the changes back into blockchain storage.
+  }
+}
+```
+
+Next: https://cryptozombies.io/en/lesson/2/chapter/9
+
+
 
