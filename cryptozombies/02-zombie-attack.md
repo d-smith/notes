@@ -149,5 +149,79 @@ contract SandwichFactory {
 
 Next: https://cryptozombies.io/en/lesson/2/chapter/9
 
+## More On Function Visibility
+
+In addition to public and private, Solidity has two more types of visibility for functions: internal and external.
+
+internal is the same as private, except that it's also accessible to contracts that inherit from this contract. (Hey, that sounds like what we want here!).
+
+external is similar to public, except that these functions can ONLY be called outside the contract — they can't be called by other functions inside that contract.
+
+## Interacting with Other Contracts
+
+In Solidity, you can interact with other contracts by declaring them as an interface. An interface
+declaration looks like a contract but only declares the functions. The functions don't have any logic
+inside them.
+
+Example:
+
+```solidity
+contract NumberInterface {
+  function getNum(address _myAddress) public view returns (uint);
+}
+```
+
+You can then use this interface to interact with the contract that implements this interface.
+
+## Using an interface
+
+With the interface declared, you can now use it to interact with the contract that implements the interface.
+
+Example:
+
+```solidity
+contract MyContract {
+  address NumberInterfaceAddress = 0xab38... 
+  // ^ The address of the FavoriteNumber contract on the blockchain
+
+  NumberInterface numberContract = NumberInterface(NumberInterfaceAddress);
+  // ^ This is how you cast the address into an interface
+
+  function someFunction() public {
+    // Now you can call `getNum` from that contract:
+    uint num = numberContract.getNum(msg.sender);
+    // ...and do something with `num` here
+  }
+}
+```
+
+## Handling Multiple Return Values
+
+Solidity can return multiple values from a function.
+
+Example:
+
+```solidity
+function multipleReturns() internal returns(uint a, uint b, uint c) {
+  return (1, 2, 3);
+}
+
+function processMultipleReturns() external {
+  uint a;
+  uint b;
+  uint c;
+  // This is how you do multiple assignment:
+  (a, b, c) = multipleReturns();
+}
+
+// Or if we only cared about one of the values:
+function getLastReturnValue() external {
+  uint c;
+  // We can just leave the other fields blank:
+  (,,c) = multipleReturns();
+}
+```
+
+
 
 
